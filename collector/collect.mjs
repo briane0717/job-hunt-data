@@ -213,26 +213,45 @@ async function workableFeed() {
   return [...byUrl.values()];
 }
 
-async function pool(items, worker, label) {
-  const stats = { companies: items.length, answered: 0, failed: 0, jobs: 0 };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Asks each company's board, a few at a time. A board that says "too many requests" (429)
+ * or times out is asked again after a pause, up to 3 more times. Failures are counted by
+ * reason so the manifest shows dead boards (404) apart from throttling (429).
+ */
+async function pool(items, worker, label, concurrency = CONCURRENCY) {
+  const stats = { companies: items.length, answered: 0, failed: 0, jobs: 0, failures: {} };
   let next = 0;
   const results = [];
   const started = Date.now();
   async function run() {
     while (next < items.length) {
       const item = items[next++];
-      try {
-        const jobs = await worker(item);
-        stats.answered++;
-        stats.jobs += jobs.length;
-        results.push(...jobs);
-      } catch {
-        stats.failed++;
+      for (let attempt = 0; ; attempt++) {
+        try {
+          const jobs = await worker(item);
+          stats.answered++;
+          stats.jobs += jobs.length;
+          for (const j of jobs) results.push(j);
+          break;
+        } catch (e) {
+          const why = e.status ? String(e.status) : e.name === 'TimeoutError' ? 'timeout' : 'error';
+          if ((why === '429' || why === 'timeout' || why.startsWith('5')) && attempt < 3) {
+            await sleep(3000 * 2 ** attempt + Math.random() * 1000);
+            continue;
+          }
+          stats.failed++;
+          stats.failures[why] = (stats.failures[why] || 0) + 1;
+          break;
+        }
       }
     }
   }
-  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, items.length) }, run));
-  console.log(`${label}: ${stats.answered}/${stats.companies} boards answered, ${stats.jobs} jobs, ${Math.round((Date.now() - started) / 1000)}s`);
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, run));
+  console.log(
+    `${label}: ${stats.answered}/${stats.companies} boards answered, ${stats.jobs} jobs, ${Math.round((Date.now() - started) / 1000)}s, failures ${JSON.stringify(stats.failures)}`,
+  );
   return { results, stats };
 }
 
@@ -244,26 +263,29 @@ async function companies(file) {
 const want = (name) => !ONLY || ONLY.split(',').includes(name);
 const sources = {};
 const all = [];
+const add = (jobs) => {
+  for (const j of jobs) all.push(j);
+};
 
 if (want('greenhouse')) {
-  const r = await pool(await companies('greenhouse_companies.json'), greenhouse, 'Greenhouse');
+  const r = await pool(await companies('greenhouse_companies.json'), greenhouse, 'Greenhouse', 8);
   sources.greenhouse = r.stats;
-  all.push(...r.results);
+  add(r.results);
 }
 if (want('lever')) {
   const r = await pool(await companies('lever_companies.json'), lever, 'Lever');
   sources.lever = r.stats;
-  all.push(...r.results);
+  add(r.results);
 }
 if (want('ashby')) {
   const r = await pool(await companies('ashby_companies.json'), ashby, 'Ashby');
   sources.ashby = r.stats;
-  all.push(...r.results);
+  add(r.results);
 }
 if (want('workday')) {
   const r = await pool(await companies('workday_companies.json'), workday, 'Workday');
   sources.workday = r.stats;
-  all.push(...r.results);
+  add(r.results);
 }
 if (want('workable')) {
   try {
@@ -271,7 +293,7 @@ if (want('workable')) {
     const jobs = await workableFeed();
     sources.workable = { companies: null, answered: 1, failed: 0, jobs: jobs.length };
     console.log(`Workable feed: ${jobs.length} US jobs, ${Math.round((Date.now() - started) / 1000)}s`);
-    all.push(...jobs);
+    add(jobs);
   } catch (e) {
     sources.workable = { companies: null, answered: 0, failed: 1, jobs: 0, error: String(e.message || e) };
     console.log(`Workable feed failed: ${e.message || e}`);
