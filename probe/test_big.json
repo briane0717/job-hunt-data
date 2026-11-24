@@ -1,0 +1,158 @@
+{
+ "workday": [
+  "ghr|wd1|us-emplsv|Bank of America",
+  "pae|wd1|amentum_careers|Amentum",
+  "gevernova|wd5|vernova_externalsite|GE Vernova",
+  "capitalone|wd12|capital_one|Capital One",
+  "nvidia|wd5|nvidiaexternalcareersite|Nvidia",
+  "citi|wd5|2|Citi",
+  "abbott|wd5|abbottcareers|Abbott",
+  "jabil|wd5|jabil_careers|Jabil",
+  "jll|wd1|jllcareers|JLL",
+  "bah|wd1|bah_jobs|Booz Allen Hamilton",
+  "ghr|wd1|lateral-us|Bank of America",
+  "global|wd1|globalpartnerscareers|Global Partners",
+  "amgen|wd1|careers|Amgen",
+  "labcorp|wd1|external|Labcorp",
+  "danaher|wd1|danaherjobs|Danaher",
+  "stryker|wd1|strykercareers|Stryker",
+  "cnx|wd1|external_global|Concentrix",
+  "otis|wd504|rec_ext_gateway|Otis",
+  "paloaltonetworks|wd5|panwexternalcareers|Palo Alto Networks",
+  "vfc|wd5|vfc_careers|VF",
+  "usbank|wd1|us_bank_careers|U.S. Bancorp",
+  "carmax|wd1|external|CarMax",
+  "statestreet|wd1|global|State Street",
+  "livenation|wd503|lnexternalsite|Live Nation",
+  "abbott|wd5|abbottcareers2|Abbott",
+  "carrier|wd5|jobs|Carrier",
+  "visa|wd5|visa|Visa",
+  "kyndryl|wd5|kyndrylprofessionalcareers|Kyndryl",
+  "boeing|wd1|external_careers|Boeing",
+  "motorolasolutions|wd5|careers|Motorola Solutions",
+  "boeing|wd1|external_subsidiary|Boeing",
+  "msd|wd5|searchjobs|Merck (MSD)",
+  "tysonfoods|wd5|tsn|Tyson Foods",
+  "pfizer|wd1|pfizercareers|Pfizer",
+  "mtb|wd5|mtb|M&T Bank",
+  "mastercard|wd1|corporatecareers|Mastercard",
+  "bristolmyerssquibb|wd5|bms|Bristol-Myers Squibb",
+  "ntrs|wd1|northerntrust|Northern Trust",
+  "lkqcorp|wd5|externalcareersite-lkq|LKQ",
+  "geaerospace|wd5|ge_externalsite|GE Aerospace",
+  "baxter|wd1|baxter|Baxter",
+  "vfc|wd5|vans_careers|Vans",
+  "tysonfoods|wd5|tsn5|Tyson Foods",
+  "cigna|wd5|cignacareers|Cigna",
+  "xylem|wd5|xylem-careers|Xylem",
+  "centene|wd5|centene_external|Centene",
+  "ferguson|wd1|ferguson_experienced|Ferguson",
+  "avisbudget|wd1|abg_careers|Avis Budget",
+  "marvell|wd1|marvellcareers|Marvell",
+  "allstate|wd5|agent|Allstate",
+  "graybar|wd1|careers|Graybar",
+  "ryder|wd5|rydercareers|Ryder",
+  "jbhunt|wd501|careers|J.B. Hunt",
+  "healthcare|wd1|search|Solventum",
+  "gilead|wd1|gileadcareers|Gilead Sciences"
+ ],
+ "oracle": [
+  {
+   "name": "Marriott",
+   "host": "ejwl.fa.us2.oraclecloud.com",
+   "site": "CX"
+  },
+  {
+   "name": "Hilton",
+   "host": "efet.fa.us2.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Tenet Healthcare",
+   "host": "eodr.fa.us2.oraclecloud.com",
+   "site": "CX_1001"
+  },
+  {
+   "name": "Vertiv",
+   "host": "egup.fa.us2.oraclecloud.com",
+   "site": "CX"
+  },
+  {
+   "name": "Honeywell",
+   "host": "ibqbjb.fa.ocs.oraclecloud.com",
+   "site": "Honeywell"
+  },
+  {
+   "name": "BNY",
+   "host": "eofe.fa.us2.oraclecloud.com",
+   "site": "BNY"
+  },
+  {
+   "name": "Caesars Entertainment",
+   "host": "edmn.fa.us2.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Caesars Entertainment",
+   "host": "edmn.fa.us2.oraclecloud.com",
+   "site": "CX_6001"
+  },
+  {
+   "name": "Emerson",
+   "host": "hdjq.fa.us2.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Waste Management",
+   "host": "emcm.fa.us2.oraclecloud.com",
+   "site": "WMCareers"
+  },
+  {
+   "name": "Williams-Sonoma",
+   "host": "ehac.fa.us6.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Macy's",
+   "host": "ebwh.fa.us2.oraclecloud.com",
+   "site": "CX_1002"
+  },
+  {
+   "name": "NOV",
+   "host": "egay.fa.us6.oraclecloud.com",
+   "site": "CX_2001"
+  },
+  {
+   "name": "International Paper",
+   "host": "iazbqy.fa.ocs.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Molina Healthcare",
+   "host": "hckd.fa.us2.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Hormel Foods",
+   "host": "ekkh.fa.us2.oraclecloud.com",
+   "site": "CX"
+  },
+  {
+   "name": "Con Edison",
+   "host": "ejcu.fa.us6.oraclecloud.com",
+   "site": "CX_1033"
+  },
+  {
+   "name": "Resideo",
+   "host": "ehtl.fa.us6.oraclecloud.com",
+   "site": "CX"
+  },
+  {
+   "name": "Cheniere Energy",
+   "host": "hcgi.fa.us2.oraclecloud.com",
+   "site": "CX_2"
+  }
+ ],
+ "jibe": [],
+ "rmk": []
+}

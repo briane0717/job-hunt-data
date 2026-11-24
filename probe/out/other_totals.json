@@ -1,0 +1,443 @@
+[
+ {
+  "name": "Nvidia",
+  "kind": "eightfold",
+  "host": "app.eightfold.ai",
+  "domain": "nvidia.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Chevron",
+  "kind": "eightfold",
+  "host": "chevron.eightfold.ai",
+  "domain": "chevron.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Citigroup",
+  "kind": "eightfold",
+  "host": "citi.eightfold.ai",
+  "domain": "citigroup.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Morgan Stanley",
+  "kind": "eightfold",
+  "host": "morganstanley.eightfold.ai",
+  "domain": "morganstanley.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "American Express",
+  "kind": "eightfold",
+  "host": "aexp.eightfold.ai",
+  "domain": "americanexpress.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Lockheed Martin",
+  "kind": "eightfold",
+  "host": "lockheedmartin.eightfold.ai",
+  "domain": "lockheedmartin.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Capital One Financial",
+  "kind": "eightfold",
+  "host": "capitalone.eightfold.ai",
+  "domain": "capitalone.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Galaxy Digital",
+  "kind": "greenhouse",
+  "id": "galaxydigitalservices",
+  "code": 200,
+  "total": 56
+ },
+ {
+  "name": "HP",
+  "kind": "eightfold",
+  "host": "hp-sandbox.eightfold.ai",
+  "domain": "hp.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Molina Healthcare",
+  "kind": "oracle",
+  "host": "hckd.fa.us2.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 389
+ },
+ {
+  "name": "Dollar General",
+  "kind": "oracle",
+  "host": "ibxwjb.fa.ocs.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 91238
+ },
+ {
+  "name": "Dollar General",
+  "kind": "oracle",
+  "host": "ibxwjb.fa.ocs.oraclecloud.com",
+  "site": "cx_1001",
+  "code": 200,
+  "total": 91238
+ },
+ {
+  "name": "Northrop Grumman",
+  "kind": "eightfold",
+  "host": "ngc.eightfold.ai",
+  "domain": "northropgrumman.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Bank of New York (BNY)",
+  "kind": "oracle",
+  "host": "eofe.fa.us2.oraclecloud.com",
+  "site": "bny",
+  "code": 200,
+  "total": 1230
+ },
+ {
+  "name": "Honeywell Technologies",
+  "kind": "oracle",
+  "host": "ibqbjb.fa.ocs.oraclecloud.com",
+  "site": "honeywell",
+  "code": 200,
+  "total": 1326
+ },
+ {
+  "name": "Micron Technology",
+  "kind": "eightfold",
+  "host": "micron.eightfold.ai",
+  "domain": "micron.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Starbucks",
+  "kind": "eightfold",
+  "host": "starbucks.eightfold.ai",
+  "domain": "starbucks.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Amgen",
+  "kind": "eightfold",
+  "host": "amgen.eightfold.ai",
+  "domain": "amgen.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Coupang",
+  "kind": "greenhouse",
+  "id": "embed",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "GuideWell Mutual Holding",
+  "kind": "oracle",
+  "host": "saasfaprod1.fa.ocs.oraclecloud.com",
+  "site": "cx_1",
+  "code": 503,
+  "total": null
+ },
+ {
+  "name": "KKR",
+  "kind": "greenhouse",
+  "id": "embed",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Marriott International",
+  "kind": "oracle",
+  "host": "ejwl.fa.us2.oraclecloud.com",
+  "site": "cx",
+  "code": 200,
+  "total": 12923
+ },
+ {
+  "name": "International Paper",
+  "kind": "oracle",
+  "host": "iazbqy.fa.ocs.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 509
+ },
+ {
+  "name": "Waste Management",
+  "kind": "oracle",
+  "host": "emcm.fa.us2.oraclecloud.com",
+  "site": "wmcareers",
+  "code": 200,
+  "total": 1194
+ },
+ {
+  "name": "Sherwin-Williams",
+  "kind": "oracle",
+  "host": "ejhp.fa.us6.oraclecloud.com",
+  "site": "cx_2",
+  "code": 200,
+  "total": 2285
+ },
+ {
+  "name": "Macy's",
+  "kind": "oracle",
+  "host": "ebwh.fa.us2.oraclecloud.com",
+  "site": "cx_1001",
+  "code": 200,
+  "total": 4549
+ },
+ {
+  "name": "Macy's",
+  "kind": "oracle",
+  "host": "ebwh.fa.us2.oraclecloud.com",
+  "site": "cx_1002",
+  "code": 200,
+  "total": 929
+ },
+ {
+  "name": "Tenet Healthcare",
+  "kind": "oracle",
+  "host": "eodr.fa.us2.oraclecloud.com",
+  "site": "cx_1001",
+  "code": 200,
+  "total": 2513
+ },
+ {
+  "name": "Boston Scientific",
+  "kind": "eightfold",
+  "host": "bostonscientific.eightfold.ai",
+  "domain": "bostonscientific.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Cheniere Energy",
+  "kind": "oracle",
+  "host": "hcgi.fa.us2.oraclecloud.com",
+  "site": "cx_2",
+  "code": 200,
+  "total": 15
+ },
+ {
+  "name": "Lam Research",
+  "kind": "eightfold",
+  "host": "lamresearch.eightfold.ai",
+  "domain": "lamresearch.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Emerson Electric",
+  "kind": "oracle",
+  "host": "hdjq.fa.us2.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 1204
+ },
+ {
+  "name": "Corteva",
+  "kind": "eightfold",
+  "host": "corteva.eightfold.ai",
+  "domain": "corteva.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Consolidated Edison",
+  "kind": "oracle",
+  "host": "ejcu.fa.us6.oraclecloud.com",
+  "site": "cx_1033",
+  "code": 200,
+  "total": 54
+ },
+ {
+  "name": "Keurig Dr Pepper",
+  "kind": "eightfold",
+  "host": "kdrp.eightfold.ai",
+  "domain": "keurigdrpepper.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Keurig Dr Pepper",
+  "kind": "eightfold",
+  "host": "app.eightfold.ai",
+  "domain": "keurigdrpepper.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Bitgo Holdings",
+  "kind": "greenhouse",
+  "id": "bitgo",
+  "code": 200,
+  "total": 59
+ },
+ {
+  "name": "Whirlpool",
+  "kind": "eightfold",
+  "host": "whirlpool.eightfold.ai",
+  "domain": "whirlpoolcorp.com",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "Whirlpool",
+  "kind": "eightfold",
+  "host": "app.eightfold.ai",
+  "domain": "whirlpoolcorp.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Fluor",
+  "kind": "eightfold",
+  "host": "fluor.eightfold.ai",
+  "domain": "fluor.com",
+  "code": 200,
+  "total": 720,
+  "sample": "Aurora, US-CO, United States"
+ },
+ {
+  "name": "M&T Bank",
+  "kind": "eightfold",
+  "host": "mtb.eightfold.ai",
+  "domain": "mtb.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Community Health Systems",
+  "kind": "oracle",
+  "host": "saasfaprod1.fa.ocs.oraclecloud.com",
+  "site": "cx_1",
+  "code": 503,
+  "total": null
+ },
+ {
+  "name": "Hormel Foods",
+  "kind": "oracle",
+  "host": "ekkh.fa.us2.oraclecloud.com",
+  "site": "cx_2002",
+  "code": 200,
+  "total": 215
+ },
+ {
+  "name": "Hormel Foods",
+  "kind": "oracle",
+  "host": "ekkh.fa.us2.oraclecloud.com",
+  "site": "cx",
+  "code": 200,
+  "total": 215
+ },
+ {
+  "name": "Hilton Worldwide Holdings",
+  "kind": "oracle",
+  "host": "efet.fa.us2.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 4462
+ },
+ {
+  "name": "Caesars Entertainment",
+  "kind": "oracle",
+  "host": "edmn.fa.us2.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 1216
+ },
+ {
+  "name": "Caesars Entertainment",
+  "kind": "oracle",
+  "host": "edmn.fa.us2.oraclecloud.com",
+  "site": "cx_6001",
+  "code": 200,
+  "total": 57
+ },
+ {
+  "name": "Westinghouse Air Brake",
+  "kind": "smartrecruiters",
+  "id": "my-applications",
+  "code": 200,
+  "total": 0
+ },
+ {
+  "name": "Vertiv Holdings",
+  "kind": "oracle",
+  "host": "egup.fa.us2.oraclecloud.com",
+  "site": "cx",
+  "code": 200,
+  "total": 2336
+ },
+ {
+  "name": "Avery Dennison",
+  "kind": "smartrecruiters",
+  "id": "external-referrals",
+  "code": 200,
+  "total": 0
+ },
+ {
+  "name": "Avery Dennison",
+  "kind": "smartrecruiters",
+  "id": "averydennison",
+  "code": 200,
+  "total": 448
+ },
+ {
+  "name": "NOV",
+  "kind": "oracle",
+  "host": "egay.fa.us6.oraclecloud.com",
+  "site": "cx_2001",
+  "code": 200,
+  "total": 697
+ },
+ {
+  "name": "EQT",
+  "kind": "greenhouse",
+  "id": "embed",
+  "code": 404,
+  "total": null
+ },
+ {
+  "name": "CACI International",
+  "kind": "eightfold",
+  "host": "app.eightfold.ai",
+  "domain": "caci.com",
+  "code": 403,
+  "total": null
+ },
+ {
+  "name": "Williams-Sonoma",
+  "kind": "oracle",
+  "host": "ehac.fa.us6.oraclecloud.com",
+  "site": "cx_1",
+  "code": 200,
+  "total": 1101
+ },
+ {
+  "name": "Resideo Technologies",
+  "kind": "oracle",
+  "host": "ehtl.fa.us6.oraclecloud.com",
+  "site": "cx",
+  "code": 200,
+  "total": 50
+ }
+]

@@ -1,0 +1,25 @@
+# One-off checks of employers' public job lists (which hiring system, how many jobs).
+# Runs only on the work branch when probe/step.mjs changes, and saves results to probe/out/.
+name: Probe employers
+on:
+  push:
+    branches: ['claude/**']
+    paths: ['probe/step.mjs']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node probe/step.mjs
+      - name: Save results
+        run: |
+          git config user.name "job-probe"; git config user.email "actions@users.noreply.github.com"
+          git add probe/out
+          git commit -m "Probe results" || exit 0
+          git pull --rebase -q origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME"

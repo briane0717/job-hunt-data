@@ -1,0 +1,3 @@
+https://fortune.com/ranking/fortune500/2025/ len=1082919 next=959186 title=undefined
+https://fortune.com/ranking/fortune500/ len=1394614 next=1128876 title=undefined
+https://fortune.com/ranking/fortune500/2025/search/ len=265655 next=0 title=Fortune
