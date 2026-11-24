@@ -205,55 +205,76 @@ async function workday(entry, max = 400) {
 
 const US_STATE = /^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|PR|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$/;
 
-/** Career sites built on Jibe (iCIMS and others): GET https://{host}/api/jobs?page=N&limit=100 */
+const US_STATE_NAMES = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia',
+  'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+  'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada',
+  'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
+  'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
+];
+
+/**
+ * Career sites built on Jibe (iCIMS and others): GET https://{host}/api/jobs?page=N&limit=100
+ * The API stops paging after about 5,100 results (later pages repeat the last one), so bigger
+ * sites are read one state at a time (&state=Texas).
+ */
 async function jibe({ name, host }) {
-  const out = [];
-  for (let page = 1; page <= 400; page++) {
-    const data = await curlJson(`https://${host}/api/jobs?page=${page}&limit=100`);
-    const jobs = data.jobs || [];
-    for (const { data: d = {} } of jobs) {
-      const country = String(d.country_code || d.country || '').toLowerCase();
-      if (country && !['us', 'usa', 'united states', 'united states of america'].includes(country)) continue;
-      const place = [d.city, d.state].filter(Boolean).join(', ') || d.full_location || d.location_name || '';
-      const id = d.req_id || d.slug || d.id;
-      if (!d.title || !id) continue;
-      out.push({
-        // One posting can cover many stores (Costco), so the place is part of the ID.
-        i: `jb:${host}:${id}@${place.toLowerCase()}`,
-        t: d.title,
-        c: name,
-        l: place,
-        u: `https://${host}/jobs/${d.slug || id}`,
-        d: d.posted_date || d.create_date || d.update_date || '',
-        s: 'jibe',
-      });
+  const out = new Map();
+  const read = async (filter) => {
+    let total = 0;
+    for (let page = 1; page <= 60; page++) {
+      const data = await curlJson(`https://${host}/api/jobs?page=${page}&limit=100${filter}`);
+      const jobs = data.jobs || [];
+      total = data.totalCount || data.count || 0;
+      const before = out.size;
+      for (const { data: d = {} } of jobs) {
+        const country = String(d.country_code || d.country || '').toLowerCase();
+        if (country && !['us', 'usa', 'united states', 'united states of america'].includes(country)) continue;
+        const place = [d.city, d.state].filter(Boolean).join(', ') || d.full_location || d.location_name || '';
+        const id = d.req_id || d.slug || d.id;
+        if (!d.title || !id) continue;
+        out.set(`${id}@${place.toLowerCase()}`, {
+          i: `jb:${host}:${id}@${place.toLowerCase()}`,
+          t: d.title,
+          c: name,
+          l: place,
+          u: `https://${host}/jobs/${d.slug || id}`,
+          d: d.posted_date || d.create_date || d.update_date || '',
+          s: 'jibe',
+        });
+      }
+      // Stop at the end, or when a page brings nothing new (the API repeating itself).
+      if (!jobs.length || page * 100 >= total || out.size === before) break;
     }
-    if (!jobs.length || page * 100 >= (data.totalCount || data.count || 0)) break;
-  }
-  return out;
+    return total;
+  };
+  const total = await read('');
+  if (total > out.size + 100) for (const st of US_STATE_NAMES) await read(`&state=${encodeURIComponent(st)}`);
+  return [...out.values()];
 }
 
 /**
  * Oracle Recruiting Cloud career sites: the public requisitions API behind the job search.
- * A search stops at 10,000 results, so bigger sites are read newest-first and then oldest-first,
- * which covers up to 20,000. (Sites bigger than that need reading by location; the first page's
- * location filter is logged so it can be added.)
+ * A search stops at 10,000 results, so bigger sites are read one state at a time through the
+ * site's own location filter (each state is well under 10,000).
  */
 async function oracle({ name, host, site }) {
   const out = new Map();
-  const readSorted = async (sortBy, stopAt) => {
+  const read = async (facet) => {
     let step = 200;
     let total = 0;
-    for (let offset = 0; offset < 10000 && out.size < stopAt; ) {
+    let first = null;
+    for (let offset = 0; offset < 10000; ) {
       const url =
         `https://${host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList,locationsFacet` +
-        `&finder=findReqs;siteNumber=${site},facetsList=LOCATIONS,limit=${step},offset=${offset},sortBy=${sortBy}`;
+        `&finder=findReqs;siteNumber=${site},facetsList=LOCATIONS,limit=${step},offset=${offset},sortBy=POSTING_DATES_DESC` +
+        (facet ? `,selectedLocationsFacet=${facet}` : '');
       const data = await curlJson(url);
       const item = (data.items || [])[0] || {};
+      first ||= item;
       const list = item.requisitionList || [];
       total = item.TotalJobsCount || total;
-      if (offset === 0 && sortBy === 'POSTING_DATES_DESC' && total > 10000)
-        console.log(`  ${name}: ${total} jobs; location filter: ${JSON.stringify((item.locationsFacet || []).slice(0, 8))}`);
       for (const j of list) {
         out.set(j.Id, {
           i: `or:${host}:${j.Id}`,
@@ -270,10 +291,17 @@ async function oracle({ name, host, site }) {
       offset += list.length;
       if (offset >= total) break;
     }
-    return total;
+    return { total, facets: first?.locationsFacet || [] };
   };
-  const total = await readSorted('POSTING_DATES_DESC', Infinity);
-  if (total > out.size) await readSorted('POSTING_DATES_ASC', total);
+  const { total, facets } = await read(null);
+  if (total > out.size) {
+    const states = facets.filter((f) => /^[A-Z]{2}, United States$/.test(f.Name || ''));
+    console.log(`  ${name}: ${total} jobs, reading ${states.length} states one at a time`);
+    for (const f of states) {
+      const got = await read(f.Id);
+      if (Math.abs(got.total - f.TotalCount) > 50) console.log(`  ${name} ${f.Name}: filter returned ${got.total}, expected ${f.TotalCount}`);
+    }
+  }
   return [...out.values()];
 }
 
