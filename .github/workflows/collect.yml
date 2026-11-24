@@ -1,8 +1,8 @@
 # Runs the job collector every 6 hours (the same rhythm Indeed and LinkedIn use for job feeds)
 # and publishes the results to the `data` branch, which the app reads from
 # https://raw.githubusercontent.com/briane0717/job-hunt-data/data/v1/...
-# The sources are read at the same time in separate jobs, then one last job merges them and
-# publishes. The branch is replaced on every run, so it never piles up old copies.
+# The sources are read at the same time in separate jobs. Each publishes as soon as it finishes
+# (with the newest results of the other parts), and one last job publishes the complete set. The branch is replaced on every run, so it never piles up old copies.
 name: Collect jobs
 
 on:
@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  actions: read # to download the saved results of this run and the last one
 
 concurrency:
   group: collect
@@ -44,7 +45,14 @@ jobs:
         with:
           name: raw-${{ strategy.job-index }}
           path: raw-${{ strategy.job-index }}.json
-          retention-days: 1
+          retention-days: 2
+      # Publish right away with the newest results of every part, so fast parts show up in the
+      # app without waiting for the slowest. The publish job below makes the final, complete copy.
+      - name: Publish early
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash collector/publish.sh 5
 
   publish:
     needs: collect
@@ -57,24 +65,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: raw-*
-          path: raw
-          merge-multiple: true
-      - name: City coordinates (GeoNames, CC BY 4.0)
-        run: |
-          curl -sSfL -o cities1000.zip https://download.geonames.org/export/dump/cities1000.zip
-          unzip -o -q cities1000.zip
-      - name: Merge and write the app's files
-        run: node --max-old-space-size=6144 collector/collect.mjs --raw-in raw --out public --places cities1000.txt
-      - name: Publish to the data branch
-        run: |
-          cd public
-          echo "Public job listings for the Job Hunt app, replaced every 6 hours. See v1/manifest.json." > README.md
-          git init -q -b data
-          git config user.name "job-hunt-collector"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          git commit -q -m "Jobs collected $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data
+      - name: Merge every part and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash collector/publish.sh 5 final
