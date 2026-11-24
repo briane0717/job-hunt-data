@@ -1,0 +1,2522 @@
+[
+ {
+  "rank": 1,
+  "name": "Amazon",
+  "tried": [
+   "0 https://careers.amazon.com",
+   "0 https://jobs.amazon.com",
+   "200 https://amazon.jobs/en/",
+   "404 https://www.amazon.com/en/careers",
+   "404 https://www.amazon.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 2,
+  "name": "Walmart",
+  "tried": [
+   "0 https://careers.stock.walmart.com",
+   "0 https://jobs.stock.walmart.com",
+   "0 https://www.stock.walmart.com/careers",
+   "0 https://www.stock.walmart.com/en/careers",
+   "0 https://www.stock.walmart.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 4,
+  "name": "Apple",
+  "tried": [
+   "200 https://idmsac.apple.com/IDMSWebAuth/appleauth/auth/oauth2/v2/authorize?client_id=k8pehdkbjdfms5zvaavpjtmxj2d5nh&redirect_uri=https%3A//people.apple.com/idms/oidc-authorize&response_type=code&state=/careers&scope=openid%20offline_access%20profile%20email%20roles%20api%20extended_profile",
+   "200 https://www.apple.com/careers/us/",
+   "200 https://www.apple.com/careers/us/",
+   "404 https://www.apple.com/en/careers",
+   "404 https://www.apple.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 5,
+  "name": "Alphabet",
+  "tried": [
+   "200 https://www.google.com/",
+   "200 https://www.google.com/",
+   "404 https://www.abc.xyz/careers/",
+   "404 https://www.abc.xyz/en/careers/",
+   "404 https://www.abc.xyz/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 7,
+  "name": "Berkshire Hathaway",
+  "tried": [
+   "0 https://careers.berkshirehathaway.com",
+   "0 https://jobs.berkshirehathaway.com",
+   "404 https://www.berkshirehathaway.com/careers",
+   "404 https://www.berkshirehathaway.com/en/careers",
+   "404 https://www.berkshirehathaway.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 9,
+  "name": "Exxon Mobil Holdings",
+  "at": "https://jobs.exxonmobil.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "403 https://corporate.exxonmobil.com/Company/Careers",
+   "200 https://jobs.exxonmobil.com/"
+  ]
+ },
+ {
+  "rank": 11,
+  "name": "Microsoft",
+  "tried": [
+   "200 https://careers.microsoft.com/v2/global/en/home.html",
+   "0 https://jobs.microsoft.com",
+   "200 https://www.bing.com/?ref=aka&shorturl=9849952",
+   "404 https://www.microsoft.com/en/careers",
+   "404 https://www.microsoft.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 12,
+  "name": "JPMorgan Chase",
+  "at": "https://www.jpmorganchase.com/careers?redirect=careers_jpm",
+  "sig": [
+   "oraclecloud.com/hcmui"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://www.jpmorganchase.com/careers?redirect=careers_jpm"
+  ]
+ },
+ {
+  "rank": 13,
+  "name": "Costco Wholesale",
+  "at": "https://careers.costco.com/",
+  "sig": [
+   "jibe",
+   "taleo.net",
+   "icims.com"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.costco.com/"
+  ]
+ },
+ {
+  "rank": 15,
+  "name": "Cardinal Health",
+  "tried": [
+   "0 https://careers.cardinalhealth.com",
+   "200 https://jobs.cardinalhealth.com/",
+   "0 https://www.cardinalhealth.com/careers",
+   "0 https://www.cardinalhealth.com/en/careers",
+   "0 https://www.cardinalhealth.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 17,
+  "name": "Meta Platforms",
+  "at": "https://www.meta.com/en/careers/",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.meta.com",
+   "0 https://jobs.meta.com",
+   "400 https://www.metacareers.com/?utm_source=meta.com&utm_medium=redirect",
+   "400 https://www.meta.com/en/careers/"
+  ]
+ },
+ {
+  "rank": 22,
+  "name": "Ford Motor",
+  "at": "https://www.careers.ford.com/en",
+  "sig": [
+   "talentbrew"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://www.careers.ford.com/en"
+  ]
+ },
+ {
+  "rank": 27,
+  "name": "Kroger",
+  "tried": [
+   "0 https://careers.thekrogerco.com",
+   "0 https://jobs.thekrogerco.com",
+   "200 https://www.krogerfamilycareers.com/en/sites/CX_2001",
+   "404 https://www.thekrogerco.com/en/careers",
+   "404 https://www.thekrogerco.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 30,
+  "name": "Marathon Petroleum",
+  "tried": [
+   "0 https://careers.marathonpetroleum.com",
+   "403 https://jobs.marathonpetroleum.com/",
+   "403 https://www.marathonpetroleum.com/careers",
+   "403 https://www.marathonpetroleum.com/en/careers",
+   "403 https://www.marathonpetroleum.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 31,
+  "name": "StoneX Group",
+  "tried": [
+   "0 https://careers.stonex.com",
+   "0 https://jobs.stonex.com",
+   "403 https://www.stonex.com/en/careers/",
+   "403 https://www.stonex.com/en/careers/",
+   "403 https://www.stonex.com/en/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 32,
+  "name": "State Farm Insurance",
+  "at": "https://jobs.statefarm.com/main/",
+  "sig": [
+   "jibe",
+   "icims.com"
+  ],
+  "workday": [],
+  "tried": [
+   "401 https://www.statefarm.com/careers",
+   "200 https://jobs.statefarm.com/main/"
+  ]
+ },
+ {
+  "rank": 35,
+  "name": "AT&T",
+  "tried": [
+   "0 https://careers.att.com",
+   "0 https://jobs.att.com",
+   "403 http://about.att.com/sites/careers",
+   "404 https://www.att.com/en/careers",
+   "404 https://www.att.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 37,
+  "name": "Comcast",
+  "tried": [
+   "0 https://careers.corporate.comcast.com",
+   "0 https://jobs.corporate.comcast.com",
+   "0 https://www.corporate.comcast.com/careers",
+   "0 https://www.corporate.comcast.com/en/careers",
+   "0 https://www.corporate.comcast.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 38,
+  "name": "Wells Fargo",
+  "tried": [
+   "0 https://careers.wellsfargo.com",
+   "0 https://jobs.wellsfargo.com",
+   "200 https://www.wellsfargojobs.com/en/",
+   "404 https://www.wellsfargo.com/en/careers",
+   "404 https://www.wellsfargo.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 41,
+  "name": "Dell Technologies",
+  "tried": [
+   "0 https://careers.dell.com",
+   "200 https://enterpriseplatform.dell.com/hcmUI/CandidateExperience/en/sites/careers",
+   "200 https://enterpriseplatform.dell.com/hcmUI/CandidateExperience/en/sites/careers",
+   "200 https://www.dell.com/en-us",
+   "200 https://www.dell.com/en-us"
+  ]
+ },
+ {
+  "rank": 43,
+  "name": "Tesla",
+  "tried": [
+   "0 https://careers.tesla.com",
+   "0 https://jobs.tesla.com",
+   "403 https://www.tesla.com/careers",
+   "403 https://www.tesla.com/en/careers",
+   "403 https://www.tesla.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 45,
+  "name": "Johnson & Johnson",
+  "at": "https://www.careers.jnj.com/en/",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "jj|wd5|jj"
+  ],
+  "tried": [
+   "200 https://www.careers.jnj.com/en/"
+  ]
+ },
+ {
+  "rank": 48,
+  "name": "UPS",
+  "tried": [
+   "0 https://careers.ups.com",
+   "0 https://jobs.ups.com",
+   "200 https://www.ups.com/careers",
+   "200 https://www.ups.com/en/careers",
+   "200 https://www.ups.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 49,
+  "name": "RTX",
+  "tried": [
+   "403 https://careers.rtx.com/",
+   "403 https://jobs.rtx.com/",
+   "403 https://www.rtx.com/careers",
+   "403 https://www.rtx.com/en/careers",
+   "403 https://www.rtx.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 50,
+  "name": "FedEx",
+  "at": "https://careers.fedex.com/",
+  "sig": [
+   "paradox.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.fedex.com/"
+  ]
+ },
+ {
+  "rank": 51,
+  "name": "Progressive",
+  "tried": [
+   "403 https://careers.progressive.com/",
+   "0 https://jobs.progressive.com",
+   "403 https://careers.progressive.com/",
+   "404 https://www.progressive.com/en/careers/",
+   "404 https://www.progressive.com/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 54,
+  "name": "Procter & Gamble",
+  "tried": [
+   "0 https://careers.pginvestor.com",
+   "0 https://jobs.pginvestor.com",
+   "404 https://www.pginvestor.com/careers/",
+   "404 https://www.pginvestor.com/en/careers/",
+   "404 https://www.pginvestor.com/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 57,
+  "name": "Albertsons",
+  "tried": [
+   "0 https://careers.albertsonscompanies.com",
+   "403 https://www.albertsonscompanies.com/careers/en/our-companies/albertsons-companies.html",
+   "403 https://www.albertsonscompanies.com/careers",
+   "403 https://www.albertsonscompanies.com/en/careers",
+   "403 https://www.albertsonscompanies.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 60,
+  "name": "HCA Healthcare",
+  "tried": [
+   "403 https://careers.hcahealthcare.com/",
+   "0 https://jobs.hcahealthcare.com",
+   "403 https://careers.hcahealthcare.com/?bid=6936",
+   "500 https://www.hcahealthcare.com/en/careers",
+   "404 https://www.hcahealthcare.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 62,
+  "name": "New York Life Insurance",
+  "at": "https://careers.newyorklife.com/careers",
+  "sig": [
+   "jibe",
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.newyorklife.com/careers"
+  ]
+ },
+ {
+  "rank": 65,
+  "name": "Caterpillar",
+  "tried": [
+   "200 https://careers.caterpillar.com/en/",
+   "0 https://jobs.caterpillar.com",
+   "403 https://www.caterpillar.com/careers",
+   "403 https://www.caterpillar.com/en/careers",
+   "403 https://www.caterpillar.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 66,
+  "name": "International Business Machines",
+  "tried": [
+   "202 https://careers.ibm.com/en_US/careers",
+   "0 https://jobs.ibm.com",
+   "200 https://www.ibm.com/careers",
+   "404 https://www.ibm.com/en/careers",
+   "200 https://www.ibm.com/us-en"
+  ]
+ },
+ {
+  "rank": 67,
+  "name": "Eli Lilly",
+  "tried": [
+   "403 https://careers.lilly.com/",
+   "0 https://jobs.lilly.com",
+   "403 https://careers.lilly.com/",
+   "403 https://www.lilly.com/en/careers",
+   "403 https://www.lilly.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 69,
+  "name": "Nationwide",
+  "at": "https://careers.nationwide.com/",
+  "sig": [
+   "paradox.ai",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "nationwide|wd1|nationwide_career"
+  ],
+  "tried": [
+   "200 https://careers.nationwide.com/"
+  ]
+ },
+ {
+  "rank": 70,
+  "name": "Broadcom",
+  "tried": [
+   "0 https://careers.broadcom.com",
+   "0 https://jobs.broadcom.com",
+   "200 https://www.broadcom.com/company/careers",
+   "404 https://www.broadcom.com/en/careers",
+   "404 https://www.broadcom.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 74,
+  "name": "TD Synnex",
+  "tried": [
+   "0 https://careers.uk.tdsynnex.com",
+   "0 https://jobs.uk.tdsynnex.com",
+   "0 https://www.uk.tdsynnex.com/careers",
+   "0 https://www.uk.tdsynnex.com/en/careers",
+   "0 https://www.uk.tdsynnex.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 77,
+  "name": "AbbVie",
+  "tried": [
+   "200 https://careers.abbvie.com/",
+   "0 https://jobs.abbvie.com",
+   "403 https://www.abbvie.com/join-us.html?utm_source=CAREERS-URL",
+   "403 https://www.abbvie.com/en/careers",
+   "403 https://www.abbvie.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 78,
+  "name": "Prudential Financial",
+  "tried": [
+   "0 https://careers.investor.prudential.com",
+   "0 https://jobs.investor.prudential.com",
+   "404 https://investor.prudential.com/careers",
+   "404 https://investor.prudential.com/en/careers",
+   "404 https://investor.prudential.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 79,
+  "name": "TJX",
+  "at": "https://jobs.tjx.com/global/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.tjx.com",
+   "200 https://jobs.tjx.com/global/en"
+  ]
+ },
+ {
+  "rank": 81,
+  "name": "United Airlines Holdings",
+  "at": "https://careers.united.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.united.com/us/en"
+  ]
+ },
+ {
+  "rank": 82,
+  "name": "Oracle",
+  "tried": [
+   "200 https://careers.oracle.com/en/sites/jobsearch",
+   "0 https://jobs.oracle.com",
+   "200 https://www.oracle.com/careers/",
+   "404 https://www.oracle.com/en/careers",
+   "404 https://www.oracle.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 83,
+  "name": "Cisco Systems",
+  "at": "https://careers.cisco.com/global/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.cisco.com/global/en"
+  ]
+ },
+ {
+  "rank": 85,
+  "name": "Charter Communications",
+  "tried": [
+   "0 https://careers.charter.com",
+   "0 https://jobs.charter.com",
+   "0 https://www.charter.com/careers",
+   "0 https://www.charter.com/en/careers",
+   "0 https://www.charter.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 86,
+  "name": "American Airlines Group",
+  "tried": [
+   "0 https://careers.aa.com",
+   "403 https://jobs.aa.com/",
+   "403 https://www.aa.com/careers",
+   "403 https://www.aa.com/en/careers",
+   "403 https://www.aa.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 88,
+  "name": "Intel",
+  "tried": [
+   "0 https://careers.intel.com",
+   "403 https://corpredirect.intel.com/Redirector/404Redirector.aspx?404;https://jobs.intel.com/",
+   "403 https://www.intel.com/careers",
+   "403 https://www.intel.com/en/careers",
+   "403 https://www.intel.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 90,
+  "name": "Ingram Micro Holding",
+  "at": "https://careers.ingrammicro.com/en/",
+  "sig": [
+   "paradox.ai",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "ingrammicro|wd5|ingrammicro"
+  ],
+  "tried": [
+   "200 https://careers.ingrammicro.com/en/"
+  ]
+ },
+ {
+  "rank": 91,
+  "name": "General Dynamics",
+  "tried": [
+   "0 https://careers.gd.com",
+   "0 https://jobs.gd.com",
+   "200 https://www.gd.com/careers/",
+   "404 https://www.gd.com/en/careers/",
+   "404 https://www.gd.com/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 92,
+  "name": "Uber Technologies",
+  "at": "https://jobs.uber.com/en/",
+  "sig": [
+   "oraclecloud.com/hcmui"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.uber.com",
+   "200 https://jobs.uber.com/en/"
+  ]
+ },
+ {
+  "rank": 93,
+  "name": "United Services Automobile Assn.",
+  "tried": [
+   "0 https://careers.usaa.com",
+   "0 https://jobs.usaa.com",
+   "200 https://www.usaa.com/careers?akredirect=true",
+   "200 https://www.usaa.com/en/careers?akredirect=true",
+   "200 https://www.usaa.com/us/en/careers?akredirect=true"
+  ]
+ },
+ {
+  "rank": 94,
+  "name": "TIAA",
+  "at": "https://careers.tiaa.org/",
+  "sig": [
+   "paradox.ai",
+   "myworkdayjobs.com",
+   "phenompeople"
+  ],
+  "workday": [
+   "tiaa|wd1|search"
+  ],
+  "tried": [
+   "200 https://careers.tiaa.org/"
+  ]
+ },
+ {
+  "rank": 99,
+  "name": "Nike",
+  "tried": [
+   "0 https://careers.investors.nike.com",
+   "0 https://jobs.investors.nike.com",
+   "0 https://www.investors.nike.com/careers",
+   "0 https://www.investors.nike.com/en/careers",
+   "0 https://www.investors.nike.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 100,
+  "name": "Massachusetts Mutual Life Insurance",
+  "at": "https://careers.massmutual.com/",
+  "sig": [
+   "talentbrew"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.massmutual.com/"
+  ]
+ },
+ {
+  "rank": 102,
+  "name": "Deere",
+  "at": "https://careers.deere.com/careers",
+  "sig": [
+   "talentbrew",
+   "successfactors",
+   "eightfold.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.deere.com/careers"
+  ]
+ },
+ {
+  "rank": 105,
+  "name": "Netflix",
+  "tried": [
+   "0 https://careers.netflix.com",
+   "200 https://jobs.netflix.com/",
+   "200 https://www.netflix.com/unsupportedbrowser",
+   "200 https://www.netflix.com/unsupportedbrowser",
+   "200 https://www.netflix.com/unsupportedbrowser"
+  ]
+ },
+ {
+  "rank": 108,
+  "name": "Qualcomm",
+  "at": "https://careers.qualcomm.com/careers",
+  "sig": [
+   "eightfold.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.qualcomm.com/careers"
+  ]
+ },
+ {
+  "rank": 113,
+  "name": "Best Buy",
+  "tried": [
+   "0 https://careers.investors.bestbuy.com",
+   "0 https://jobs.investors.bestbuy.com",
+   "404 https://www.investors.bestbuy.com/careers/",
+   "404 https://www.investors.bestbuy.com/en/careers/",
+   "404 https://www.investors.bestbuy.com/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 114,
+  "name": "Salesforce",
+  "tried": [
+   "200 https://www.salesforce.com/company/careers/?bc=OTH",
+   "0 https://jobs.salesforce.com",
+   "200 https://www.salesforce.com/company/careers/?bc=OTH",
+   "404 https://www.salesforce.com/en/careers/?bc=OTH",
+   "404 https://www.salesforce.com/us/en/careers/?bc=OTH"
+  ]
+ },
+ {
+  "rank": 118,
+  "name": "CBRE Group",
+  "tried": [
+   "202 https://careers.cbre.com/",
+   "0 https://jobs.cbre.com",
+   "200 https://www.cbre.com/careers",
+   "200 https://www.cbre.com/careers",
+   "404 https://www.cbre.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 120,
+  "name": "Dow",
+  "tried": [
+   "0 https://careers.dow.com",
+   "200 https://jobs.dow.com/",
+   "403 https://www.dow.com/careers",
+   "403 https://www.dow.com/en/careers",
+   "403 https://www.dow.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 123,
+  "name": "Lithia Motors",
+  "tried": [
+   "0 https://careers.investors.lithiadriveway.com",
+   "0 https://jobs.investors.lithiadriveway.com",
+   "0 https://www.investors.lithiadriveway.com/careers",
+   "0 https://www.investors.lithiadriveway.com/en/careers",
+   "0 https://www.investors.lithiadriveway.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 126,
+  "name": "Warner Bros. Discovery",
+  "at": "https://careers.wbd.com/global/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.wbd.com/global/en"
+  ]
+ },
+ {
+  "rank": 133,
+  "name": "Hewlett Packard Enterprise",
+  "at": "https://careers.hpe.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.hpe.com/us/en"
+  ]
+ },
+ {
+  "rank": 136,
+  "name": "PNC Financial Services Group",
+  "at": "https://careers.pnc.com/global/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.pnc.com/global/en"
+  ]
+ },
+ {
+  "rank": 137,
+  "name": "Cummins",
+  "at": "https://cummins.jobs/",
+  "sig": [
+   "oraclecloud.com/hcmui"
+  ],
+  "workday": [],
+  "tried": [
+   "403 https://careers.cummins.com/",
+   "200 https://cummins.jobs/"
+  ]
+ },
+ {
+  "rank": 139,
+  "name": "PayPal Holdings",
+  "tried": [
+   "0 https://careers.paypal.com",
+   "0 https://jobs.paypal.com",
+   "403 https://www.paypal.com/webapps/mpp/paypal-jobs",
+   "403 https://www.paypal.com/en/webapps/mpp/paypal-jobs",
+   "404 https://www.paypal.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 142,
+  "name": "Nucor",
+  "at": "https://jobs.nucor.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.nucor.com",
+   "200 https://jobs.nucor.com/"
+  ]
+ },
+ {
+  "rank": 144,
+  "name": "Penske Automotive Group",
+  "tried": [
+   "0 https://careers.penskeautomotive.com",
+   "0 https://jobs.penskeautomotive.com",
+   "403 https://www.penskeautomotive.com/careers",
+   "403 https://www.penskeautomotive.com/en/careers",
+   "403 https://www.penskeautomotive.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 146,
+  "name": "United Natural Foods",
+  "tried": [
+   "0 https://careers.unfi.com",
+   "200 https://jobs.unfi.com/",
+   "200 https://www.unfi.com/",
+   "404 https://www.unfi.com/en/careers",
+   "404 https://www.unfi.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 148,
+  "name": "Arrow Electronics",
+  "at": "https://careers.arrow.com/us/en",
+  "sig": [
+   "phenompeople",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "arrow|wd1|ac"
+  ],
+  "tried": [
+   "200 https://careers.arrow.com/us/en"
+  ]
+ },
+ {
+  "rank": 152,
+  "name": "Southern",
+  "tried": [
+   "200 https://southerncompany.jobs/",
+   "200 https://directemployers.org/",
+   "200 https://southerncompany.jobs/",
+   "404 https://www.southerncompany.com/en/careers",
+   "404 https://www.southerncompany.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 155,
+  "name": "Paramount Skydance",
+  "tried": [
+   "0 https://careers.cbscorporation.com",
+   "0 https://jobs.cbscorporation.com",
+   "403 https://www.paramount.com/",
+   "403 https://www.paramount.com/",
+   "403 https://www.paramount.com/"
+  ]
+ },
+ {
+  "rank": 158,
+  "name": "Paccar",
+  "at": "https://jobs.paccar.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.paccar.com",
+   "200 https://jobs.paccar.com/"
+  ]
+ },
+ {
+  "rank": 159,
+  "name": "Medline",
+  "tried": [
+   "0 https://careers.medline.com",
+   "0 https://jobs.medline.com",
+   "403 https://www.medline.com/careers",
+   "403 https://www.medline.com/en/careers",
+   "403 https://www.medline.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 160,
+  "name": "Applied Materials",
+  "at": "https://careers.appliedmaterials.com/careers",
+  "sig": [
+   "talentbrew",
+   "eightfold.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.appliedmaterials.com/careers"
+  ]
+ },
+ {
+  "rank": 164,
+  "name": "Baker Hughes",
+  "at": "https://careers.bakerhughes.com/global/en",
+  "sig": [
+   "phenompeople",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "bakerhughes|wd5|bakerhughes"
+  ],
+  "tried": [
+   "200 https://careers.bakerhughes.com/global/en"
+  ]
+ },
+ {
+  "rank": 165,
+  "name": "Charles Schwab",
+  "tried": [
+   "0 https://careers.aboutschwab.com",
+   "0 https://jobs.aboutschwab.com",
+   "403 https://www.aboutschwab.com/careers",
+   "403 https://www.aboutschwab.com/en/careers",
+   "403 https://www.aboutschwab.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 166,
+  "name": "AutoNation",
+  "at": "https://careers.autonation.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.autonation.com/us/en"
+  ]
+ },
+ {
+  "rank": 170,
+  "name": "McDonald's",
+  "tried": [
+   "0 https://careers.investor.mcdonalds.com",
+   "0 https://jobs.investor.mcdonalds.com",
+   "0 https://www.investor.mcdonalds.com/careers",
+   "0 https://www.investor.mcdonalds.com/en/careers",
+   "0 https://www.investor.mcdonalds.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 183,
+  "name": "3M",
+  "at": "https://careers.3m.com/en",
+  "sig": [
+   "talentbrew",
+   "paradox.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.3m.com/en"
+  ]
+ },
+ {
+  "rank": 184,
+  "name": "Kraft Heinz",
+  "tried": [
+   "200 https://careers.kraftheinzcompany.com/",
+   "0 https://jobs.kraftheinzcompany.com",
+   "404 https://www.kraftheinzcompany.com/careers",
+   "404 https://www.kraftheinzcompany.com/en/careers",
+   "404 https://www.kraftheinzcompany.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 191,
+  "name": "Block",
+  "tried": [
+   "0 https://careers.block.xyz",
+   "0 https://jobs.block.xyz",
+   "200 https://block.xyz/careers/jobs",
+   "200 https://block.xyz/careers/jobs",
+   "404 https://block.xyz/us/en/careers"
+  ]
+ },
+ {
+  "rank": 192,
+  "name": "Adobe",
+  "at": "https://careers.adobe.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.adobe.com/us/en"
+  ]
+ },
+ {
+  "rank": 195,
+  "name": "WESCO International",
+  "tried": [
+   "0 https://careers.wesco.com",
+   "0 https://jobs.wesco.com",
+   "403 https://www.wesco.com/careers",
+   "403 https://www.wesco.com/en/careers",
+   "403 https://www.wesco.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 198,
+  "name": "Amphenol",
+  "tried": [
+   "0 https://careers.amphenol.com",
+   "0 https://jobs.amphenol.com",
+   "403 https://www.amphenol.com/careers",
+   "403 https://www.amphenol.com/en/careers",
+   "403 https://www.amphenol.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 201,
+  "name": "EOG Resources",
+  "tried": [
+   "200 https://careers.eogresources.com/process_jobsearch.asp",
+   "0 https://jobs.eogresources.com",
+   "200 https://www.eogresources.com/careers/",
+   "404 https://www.eogresources.com/en/careers",
+   "404 https://www.eogresources.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 204,
+  "name": "Group 1 Automotive",
+  "tried": [
+   "0 https://careers.group1auto.com",
+   "0 https://jobs.group1auto.com",
+   "403 https://www.group1auto.com/careers",
+   "403 https://www.group1auto.com/en/careers",
+   "403 https://www.group1auto.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 205,
+  "name": "CDW",
+  "tried": [
+   "0 https://careers.cdw.com",
+   "0 https://jobs.cdw.com",
+   "403 https://www.cdwjobs.com/?cm_mmc=vanity-_-careers-_-NA-_-NA",
+   "404 https://www.cdw.com/Error/ErrorPage404",
+   "404 https://www.cdw.com/Error/ErrorPage404"
+  ]
+ },
+ {
+  "rank": 206,
+  "name": "Avnet",
+  "tried": [
+   "0 https://careers.avnet.com",
+   "0 https://jobs.avnet.com",
+   "400 https://www.avnet.com/careers",
+   "400 https://www.avnet.com/en/careers",
+   "400 https://www.avnet.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 208,
+  "name": "Super Micro Computer",
+  "at": "https://jobs.supermicro.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.supermicro.com",
+   "200 https://jobs.supermicro.com/"
+  ]
+ },
+ {
+  "rank": 211,
+  "name": "Becton Dickinson",
+  "at": "https://jobs.bd.com/en",
+  "sig": [
+   "talentbrew",
+   "myworkdayjobs.com",
+   "paradox.ai"
+  ],
+  "workday": [
+   "bdx|wd1|external_career_site_usa"
+  ],
+  "tried": [
+   "0 https://careers.bd.com",
+   "200 https://jobs.bd.com/en"
+  ]
+ },
+ {
+  "rank": 213,
+  "name": "BJ's Wholesale Club",
+  "at": "https://careers.bjs.com/",
+  "sig": [
+   "paradox.ai",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "bjswholesaleclub|wd1|bjscareers"
+  ],
+  "tried": [
+   "200 https://careers.bjs.com/"
+  ]
+ },
+ {
+  "rank": 216,
+  "name": "Cognizant Technology Solutions",
+  "tried": [
+   "200 https://careers.cognizant.com/us-en/",
+   "0 https://jobs.cognizant.com",
+   "200 https://careers.cognizant.com/us-en/",
+   "200 https://www.cognizant.com/us/en",
+   "200 https://careers.cognizant.com/global-en/"
+  ]
+ },
+ {
+  "rank": 218,
+  "name": "Automatic Data Processing",
+  "at": "https://careers.adp.com",
+  "sig": [
+   "adp.com"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.adp.com"
+  ]
+ },
+ {
+  "rank": 219,
+  "name": "Colgate-Palmolive",
+  "tried": [
+   "0 https://careers.colgatepalmolive.com",
+   "0 https://jobs.colgatepalmolive.com",
+   "403 https://www.colgatepalmolive.com/careers",
+   "403 https://www.colgatepalmolive.com/en/careers",
+   "403 https://www.colgatepalmolive.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 220,
+  "name": "Carvana",
+  "tried": [
+   "0 https://careers.carvana.com",
+   "0 https://jobs.carvana.com",
+   "200 https://www.carvana.com/careers",
+   "404 https://www.carvana.com/en/careers",
+   "404 https://www.carvana.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 221,
+  "name": "Altria Group",
+  "at": "https://careers.altria.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.altria.com/"
+  ]
+ },
+ {
+  "rank": 224,
+  "name": "Parker-Hannifin",
+  "tried": [
+   "0 https://careers.investors.parker.com",
+   "0 https://jobs.investors.parker.com",
+   "0 https://www.investors.parker.com/careers",
+   "0 https://www.investors.parker.com/en/careers",
+   "0 https://www.investors.parker.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 225,
+  "name": "Kimberly-Clark",
+  "tried": [
+   "403 https://careers.kimberly-clark.com/",
+   "403 https://jobs.kimberly-clark.com/",
+   "403 https://www.kimberly-clark.com/careers",
+   "403 https://www.kimberly-clark.com/en/careers",
+   "403 https://www.kimberly-clark.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 229,
+  "name": "AutoZone",
+  "tried": [
+   "200 https://careers.autozone.com/hcmUI/CandidateExperience/en/sites/CX_1",
+   "0 https://jobs.autozone.com",
+   "403 https://www.autozone.com/careers",
+   "403 https://www.autozone.com/en/careers",
+   "403 https://www.autozone.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 230,
+  "name": "Ameriprise Financial",
+  "tried": [
+   "0 https://careers.ir.ameriprise.com",
+   "0 https://jobs.ir.ameriprise.com",
+   "0 https://www.ir.ameriprise.com/careers",
+   "0 https://www.ir.ameriprise.com/en/careers",
+   "0 https://www.ir.ameriprise.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 231,
+  "name": "Intuit",
+  "at": "https://jobs.intuit.com/",
+  "sig": [
+   "talentbrew"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://www.intuit.com/careers/",
+   "200 https://jobs.intuit.com/"
+  ]
+ },
+ {
+  "rank": 233,
+  "name": "Cleveland-Cliffs",
+  "tried": [
+   "200 https://careers.clevelandcliffs.com/",
+   "0 https://jobs.clevelandcliffs.com",
+   "200 https://careers.clevelandcliffs.com/",
+   "404 https://www.clevelandcliffs.com/en/careers",
+   "404 https://www.clevelandcliffs.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 239,
+  "name": "Goodyear Tire & Rubber",
+  "at": "https://corporate.goodyear.com/us/en/company/working-at-goodyear.html",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "goodyear|wd1|goodyearcareers"
+  ],
+  "tried": [
+   "200 https://corporate.goodyear.com/us/en/company/working-at-goodyear.html"
+  ]
+ },
+ {
+  "rank": 243,
+  "name": "Lincoln National",
+  "at": "https://jobs.lincolnfinancial.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.lincolnfinancial.com",
+   "200 https://jobs.lincolnfinancial.com/"
+  ]
+ },
+ {
+  "rank": 246,
+  "name": "Asbury Automotive Group",
+  "tried": [
+   "0 https://careers.asburyauto.com",
+   "0 https://jobs.asburyauto.com",
+   "429 https://www.asburyauto.com/careers",
+   "429 https://www.asburyauto.com/en/careers",
+   "429 https://www.asburyauto.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 247,
+  "name": "ManpowerGroup",
+  "tried": [
+   "0 https://careers.manpowergroup.com",
+   "0 https://jobs.manpowergroup.com",
+   "200 https://www.manpowergroup.com/careers",
+   "200 https://www.manpowergroup.com/en/careers",
+   "404 https://www.manpowergroup.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 248,
+  "name": "W.W. Grainger",
+  "at": "https://jobs.grainger.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.grainger.com",
+   "200 https://jobs.grainger.com/"
+  ]
+ },
+ {
+  "rank": 250,
+  "name": "O'Reilly Automotive",
+  "at": "https://careers.oreillyauto.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.oreillyauto.com/us/en"
+  ]
+ },
+ {
+  "rank": 252,
+  "name": "Texas Instruments",
+  "tried": [
+   "200 https://careers.ti.com/en/sites/CX",
+   "400 https://jobs.ti.com/",
+   "200 https://careers.ti.com/en/sites/CX",
+   "404 https://www.ti.com/en/careers",
+   "404 https://www.ti.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 253,
+  "name": "MGM Resorts International",
+  "tried": [
+   "200 https://careers.mgmresorts.com/",
+   "0 https://jobs.mgmresorts.com",
+   "0 https://www.mgmresorts.com/careers",
+   "0 https://www.mgmresorts.com/en/careers",
+   "0 https://www.mgmresorts.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 257,
+  "name": "Omnicom Group",
+  "tried": [
+   "0 https://careers.omc.com",
+   "0 https://jobs.omc.com",
+   "404 https://www.omc.com/careers",
+   "404 https://www.omc.com/en/careers",
+   "404 https://www.omc.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 258,
+  "name": "Dick's Sporting Goods",
+  "tried": [
+   "0 https://careers.investors.dicks.com",
+   "0 https://jobs.investors.dicks.com",
+   "0 https://www.investors.dicks.com/careers",
+   "0 https://www.investors.dicks.com/en/careers",
+   "0 https://www.investors.dicks.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 260,
+  "name": "Leidos Holdings",
+  "tried": [
+   "403 https://careers.leidos.com/",
+   "403 https://careers.leidos.com/",
+   "403 https://careers.leidos.com/",
+   "404 https://www.leidos.com/en/careers",
+   "404 https://www.leidos.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 261,
+  "name": "Aflac",
+  "at": "https://careers.aflac.com/",
+  "sig": [
+   "successfactors",
+   "paradox.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.aflac.com/"
+  ]
+ },
+ {
+  "rank": 262,
+  "name": "Targa Resources",
+  "tried": [
+   "0 https://careers.targaresources.com",
+   "0 https://jobs.targaresources.com",
+   "403 https://www.targaresources.com/careers",
+   "403 https://www.targaresources.com/en/careers",
+   "403 https://www.targaresources.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 263,
+  "name": "Murphy USA",
+  "at": "https://jobs.murphyusa.com/murphyusa/jobs",
+  "sig": [
+   "adp.com"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.murphyusa.com",
+   "200 https://jobs.murphyusa.com/murphyusa/jobs"
+  ]
+ },
+ {
+  "rank": 264,
+  "name": "LPL Financial Holdings",
+  "at": "https://career.lpl.com/",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://career.lpl.com/"
+  ]
+ },
+ {
+  "rank": 270,
+  "name": "Markel Group",
+  "tried": [
+   "0 https://careers.mklgroup.com",
+   "0 https://jobs.mklgroup.com",
+   "404 https://www.mklgroup.com/careers",
+   "404 https://www.mklgroup.com/en/careers",
+   "404 https://www.mklgroup.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 271,
+  "name": "Farmers Insurance Exchange",
+  "tried": [
+   "0 https://careers.farmers.com",
+   "0 https://jobs.farmers.com",
+   "0 https://www.farmers.com/careers",
+   "0 https://www.farmers.com/en/careers",
+   "0 https://www.farmers.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 274,
+  "name": "IQVIA Holdings",
+  "tried": [
+   "0 https://careers.iqvia.com",
+   "403 https://jobs.iqvia.com/",
+   "403 https://jobs.iqvia.com/",
+   "403 https://jobs.iqvia.com/",
+   "404 https://www.iqvia.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 275,
+  "name": "Fox",
+  "tried": [
+   "0 https://careers.foxcorporation.com",
+   "0 https://jobs.foxcorporation.com",
+   "404 https://www.foxcorporation.com/careers",
+   "404 https://www.foxcorporation.com/en/careers",
+   "404 https://www.foxcorporation.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 276,
+  "name": "AECOM",
+  "tried": [
+   "0 https://careers.aecom.com",
+   "0 https://jobs.aecom.com",
+   "200 https://aecom.com/careers/",
+   "200 https://aecom.com/careers/",
+   "200 https://aecom.com/"
+  ]
+ },
+ {
+  "rank": 279,
+  "name": "United Rentals",
+  "at": "https://jobs.unitedrentals.com/",
+  "sig": [
+   "paradox.ai",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "ur|wd1|urcareers"
+  ],
+  "tried": [
+   "200 https://jobs.unitedrentals.com/"
+  ]
+ },
+ {
+  "rank": 280,
+  "name": "Ecolab",
+  "at": "https://jobs.ecolab.com/global/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.ecolab.com",
+   "200 https://jobs.ecolab.com/global/en"
+  ]
+ },
+ {
+  "rank": 282,
+  "name": "Casey's General Stores",
+  "tried": [
+   "0 https://careers.caseys.com",
+   "0 https://jobs.caseys.com",
+   "403 https://www.caseys.com/careers",
+   "403 https://www.caseys.com/en/careers",
+   "403 https://www.caseys.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 283,
+  "name": "Raymond James Financial",
+  "tried": [
+   "0 https://careers.raymondjames.com",
+   "0 https://jobs.raymondjames.com",
+   "0 https://www.raymondjames.com/careers",
+   "0 https://www.raymondjames.com/en/careers",
+   "0 https://www.raymondjames.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 284,
+  "name": "PPG Industries",
+  "at": "https://careers.ppg.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.ppg.com/us/en"
+  ]
+ },
+ {
+  "rank": 286,
+  "name": "Corning",
+  "at": "https://careers.corning.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.corning.com/us/en"
+  ]
+ },
+ {
+  "rank": 288,
+  "name": "Mutual of Omaha",
+  "tried": [
+   "200 https://www.mutualofomaha.com/careers/",
+   "0 https://jobs.mutualofomaha.com",
+   "200 https://www.mutualofomaha.com/careers/",
+   "404 https://www.mutualofomaha.com/en/careers",
+   "404 https://www.mutualofomaha.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 289,
+  "name": "Kohl's",
+  "tried": [
+   "0 https://careers.corporate.kohls.com",
+   "0 https://jobs.corporate.kohls.com",
+   "0 https://www.corporate.kohls.com/careers",
+   "0 https://www.corporate.kohls.com/en/careers",
+   "0 https://www.corporate.kohls.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 290,
+  "name": "Tractor Supply",
+  "tried": [
+   "0 https://careers.tractorsupply.com",
+   "0 https://jobs.tractorsupply.com",
+   "0 https://www.tractorsupply.com/careers",
+   "0 https://www.tractorsupply.com/en/careers",
+   "0 https://www.tractorsupply.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 294,
+  "name": "S&P Global",
+  "at": "https://careers.spglobal.com/jobs",
+  "sig": [
+   "jibe",
+   "icims.com",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "spgi|wd5|spgi_careers"
+  ],
+  "tried": [
+   "200 https://careers.spglobal.com/jobs"
+  ]
+ },
+ {
+  "rank": 297,
+  "name": "Sonic Automotive",
+  "tried": [
+   "0 https://careers.sonicautomotive.com",
+   "200 https://jobs.sonicautomotive.com/",
+   "403 https://www.sonicautomotive.com/careers",
+   "403 https://www.sonicautomotive.com/en/careers",
+   "403 https://www.sonicautomotive.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 298,
+  "name": "Stanley Black & Decker",
+  "tried": [
+   "0 https://careers.stanleyblackanddecker.com",
+   "0 https://jobs.stanleyblackanddecker.com",
+   "0 https://www.stanleyblackanddecker.com/careers",
+   "0 https://www.stanleyblackanddecker.com/en/careers",
+   "0 https://www.stanleyblackanddecker.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 301,
+  "name": "Diamondback Energy",
+  "tried": [
+   "0 https://careers.diamondbackenergy.com",
+   "0 https://jobs.diamondbackenergy.com",
+   "403 https://www.diamondbackenergy.com/careers",
+   "403 https://www.diamondbackenergy.com/en/careers",
+   "403 https://www.diamondbackenergy.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 307,
+  "name": "FirstEnergy",
+  "tried": [
+   "200 https://careers.firstenergycorp.com/",
+   "0 https://jobs.firstenergycorp.com",
+   "200 https://www.firstenergycorp.com/careers.html",
+   "200 https://www.firstenergycorp.com/page_not_found.html",
+   "200 https://www.firstenergycorp.com/page_not_found.html"
+  ]
+ },
+ {
+  "rank": 308,
+  "name": "Erie Insurance Group",
+  "at": "https://jobs.erieinsurance.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.erieinsurance.com",
+   "200 https://jobs.erieinsurance.com/"
+  ]
+ },
+ {
+  "rank": 310,
+  "name": "Blackstone",
+  "tried": [
+   "0 https://careers.blackstone.com",
+   "0 https://jobs.blackstone.com",
+   "403 https://www.blackstone.com/careers",
+   "403 https://www.blackstone.com/en/careers",
+   "403 https://www.blackstone.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 314,
+  "name": "Regeneron Pharmaceuticals",
+  "tried": [
+   "200 https://careers.regeneron.com/en/",
+   "0 https://jobs.regeneron.com",
+   "403 https://www.regeneron.com/careers",
+   "403 https://www.regeneron.com/en/careers",
+   "403 https://www.regeneron.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 315,
+  "name": "Estée Lauder",
+  "at": "https://careers.elcompanies.com/careers",
+  "sig": [
+   "eightfold.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.elcompanies.com/careers"
+  ]
+ },
+ {
+  "rank": 322,
+  "name": "Alaska Air Group",
+  "at": "https://careers.alaskaair.com/",
+  "sig": [
+   "icims.com"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.alaskaair.com/"
+  ]
+ },
+ {
+  "rank": 324,
+  "name": "CSX",
+  "tried": [
+   "403 https://careers.csx.com/",
+   "0 https://jobs.csx.com",
+   "403 https://www.csx.com/careers",
+   "403 https://www.csx.com/en/careers",
+   "403 https://www.csx.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 328,
+  "name": "Venture Global",
+  "tried": [
+   "0 https://careers.ventureglobal.com",
+   "0 https://jobs.ventureglobal.com",
+   "200 https://ventureglobal.com/careers/",
+   "200 https://ventureglobal.com/careers/",
+   "200 https://ventureglobal.com/careers/"
+  ]
+ },
+ {
+  "rank": 329,
+  "name": "DoorDash",
+  "tried": [
+   "0 https://careers.ir.doordash.com",
+   "0 https://jobs.ir.doordash.com",
+   "0 https://www.ir.doordash.com/careers",
+   "0 https://www.ir.doordash.com/en/careers",
+   "0 https://www.ir.doordash.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 330,
+  "name": "Sempra",
+  "at": "https://www.sempra.com/careers",
+  "sig": [
+   "adp.com"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.sempra.com",
+   "0 https://jobs.sempra.com",
+   "200 https://www.sempra.com/careers"
+  ]
+ },
+ {
+  "rank": 333,
+  "name": "ServiceNow",
+  "at": "https://careers.servicenow.com/",
+  "sig": [
+   "avature.net"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.servicenow.com/"
+  ]
+ },
+ {
+  "rank": 336,
+  "name": "GXO Logistics",
+  "at": "https://jobs.gxo.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.gxo.com",
+   "200 https://jobs.gxo.com/"
+  ]
+ },
+ {
+  "rank": 339,
+  "name": "Las Vegas Sands",
+  "tried": [
+   "403 https://careers.sands.com/",
+   "403 https://jobs.sands.com/",
+   "403 https://www.sands.com/careers",
+   "403 https://www.sands.com/en/careers",
+   "403 https://www.sands.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 341,
+  "name": "Fifth Third Bancorp",
+  "tried": [
+   "0 https://careers.53.com",
+   "0 https://jobs.53.com",
+   "200 https://www.53.com/careers",
+   "200 https://www.53.com/en/careers",
+   "200 https://www.53.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 343,
+  "name": "DXC Technology",
+  "at": "https://careers.dxc.com/",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://dxc.com/",
+   "200 https://careers.dxc.com/"
+  ]
+ },
+ {
+  "rank": 350,
+  "name": "Huntington Bancshares",
+  "at": "https://huntington-careers.com/",
+  "sig": [
+   "paradox.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://huntington-careers.com/"
+  ]
+ },
+ {
+  "rank": 352,
+  "name": "Huntington Ingalls Industries",
+  "tried": [
+   "0 https://careers.hii.com",
+   "0 https://jobs.hii.com",
+   "200 https://www.hii.com/careers",
+   "404 https://www.hii.com/en/careers",
+   "404 https://www.hii.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 353,
+  "name": "Wayfair",
+  "tried": [
+   "0 https://careers.wayfair.com",
+   "0 https://jobs.wayfair.com",
+   "429 https://www.wayfair.com/careers",
+   "429 https://www.wayfair.com/en/careers",
+   "429 https://www.wayfair.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 354,
+  "name": "Lumen Technologies",
+  "at": "https://careers.lumen.com/careers",
+  "sig": [
+   "eightfold.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.lumen.com/careers"
+  ]
+ },
+ {
+  "rank": 357,
+  "name": "Airbnb",
+  "tried": [
+   "200 https://careers.airbnb.com/",
+   "0 https://jobs.airbnb.com",
+   "200 https://careers.airbnb.com/",
+   "404 https://www.airbnb.com/404",
+   "404 https://www.airbnb.com/404"
+  ]
+ },
+ {
+  "rank": 358,
+  "name": "AES",
+  "at": "https://www.aes.com/about-us/careers",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.aes.com",
+   "0 https://jobs.aes.com",
+   "200 https://www.aes.com/about-us/careers"
+  ]
+ },
+ {
+  "rank": 360,
+  "name": "Public Service Enterprise Group",
+  "at": "https://jobs.pseg.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.pseg.com",
+   "200 https://jobs.pseg.com/"
+  ]
+ },
+ {
+  "rank": 361,
+  "name": "KLA",
+  "tried": [
+   "200 https://www.kla.com/careers//",
+   "0 https://jobs.kla.com",
+   "200 https://www.kla.com/careers",
+   "200 https://www.kla.com/en/careers",
+   "200 https://www.kla.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 362,
+  "name": "Expand Energy",
+  "at": "https://jobs.expandenergy.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.chk.com",
+   "200 https://jobs.expandenergy.com/"
+  ]
+ },
+ {
+  "rank": 365,
+  "name": "Citizens Financial Group",
+  "at": "https://jobs.citizensbank.com/",
+  "sig": [
+   "talentbrew",
+   "oraclecloud.com/hcmui",
+   "paradox.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.citizensbank.com",
+   "200 https://jobs.citizensbank.com/"
+  ]
+ },
+ {
+  "rank": 368,
+  "name": "Air Products & Chemicals",
+  "tried": [
+   "0 https://careers.airproducts.com",
+   "0 https://jobs.airproducts.com",
+   "403 https://www.airproducts.com/careers",
+   "403 https://www.airproducts.com/en/careers",
+   "403 https://www.airproducts.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 370,
+  "name": "Vertex Pharmaceuticals",
+  "tried": [
+   "403 https://www.vrtx.com/working-here",
+   "0 https://jobs.vrtx.com",
+   "403 https://www.vrtx.com/careers",
+   "403 https://www.vrtx.com/en/careers",
+   "403 https://www.vrtx.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 375,
+  "name": "Yum China Holdings",
+  "tried": [
+   "0 https://careers.ir.yumchina.com",
+   "0 https://jobs.ir.yumchina.com",
+   "0 https://www.ir.yumchina.com/careers",
+   "0 https://www.ir.yumchina.com/en/careers",
+   "0 https://www.ir.yumchina.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 376,
+  "name": "Oscar Health",
+  "tried": [
+   "0 https://careers.hioscar.com",
+   "0 https://jobs.hioscar.com",
+   "200 https://oscarhealth.com/careers",
+   "200 https://oscarhealth.com/careers",
+   "200 https://www.hioscar.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 379,
+  "name": "Equitable Holdings",
+  "tried": [
+   "0 https://careers.equitableholdings.com",
+   "0 https://jobs.equitableholdings.com",
+   "404 https://ir.equitableholdings.com/careers/",
+   "404 https://ir.equitableholdings.com/en/careers/",
+   "404 https://ir.equitableholdings.com/us/en/careers/"
+  ]
+ },
+ {
+  "rank": 381,
+  "name": "Conagra Brands",
+  "at": "https://careers.conagrabrands.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.conagrabrands.com/us/en"
+  ]
+ },
+ {
+  "rank": 383,
+  "name": "Burlington Stores",
+  "tried": [
+   "0 https://careers.burlingtoninvestors.com",
+   "0 https://jobs.burlingtoninvestors.com",
+   "403 https://www.burlingtoninvestors.com/careers",
+   "403 https://www.burlingtoninvestors.com/en/careers",
+   "403 https://www.burlingtoninvestors.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 386,
+  "name": "KeyCorp",
+  "at": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "keybank|wd5|external_career_site"
+  ],
+  "tried": [
+   "200 https://keybank.wd5.myworkdayjobs.com/External_Career_Site"
+  ]
+ },
+ {
+  "rank": 391,
+  "name": "Lululemon athletica",
+  "tried": [
+   "0 https://careers.corporate.lululemon.com",
+   "0 https://jobs.corporate.lululemon.com",
+   "0 https://www.corporate.lululemon.com/careers",
+   "0 https://www.corporate.lululemon.com/en/careers",
+   "0 https://www.corporate.lululemon.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 393,
+  "name": "Ebay",
+  "tried": [
+   "403 https://careers.ebayinc.com/",
+   "0 https://jobs.ebay.com",
+   "403 https://careers.ebayinc.com/join-our-team/start-your-search/",
+   "404 https://pages.ebay.com/en/careers",
+   "404 https://pages.ebay.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 394,
+  "name": "Expeditors Intl. of Washington",
+  "tried": [
+   "0 https://careers.expeditors.com",
+   "0 https://jobs.expeditors.com",
+   "200 https://www.expeditors.com/careers",
+   "404 https://www.expeditors.com/en/careers",
+   "404 https://www.expeditors.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 395,
+  "name": "Quest Diagnostics",
+  "tried": [
+   "0 https://careers.ir.questdiagnostics.com",
+   "0 https://jobs.ir.questdiagnostics.com",
+   "0 https://www.ir.questdiagnostics.com/careers",
+   "0 https://www.ir.questdiagnostics.com/en/careers",
+   "0 https://www.ir.questdiagnostics.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 396,
+  "name": "Analog Devices",
+  "tried": [
+   "0 https://careers.analog.com",
+   "0 https://jobs.analog.com",
+   "0 https://www.analog.com/careers",
+   "0 https://www.analog.com/en/careers",
+   "0 https://www.analog.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 398,
+  "name": "Gold.com",
+  "tried": [
+   "0 https://careers.gold.com",
+   "0 https://jobs.gold.com",
+   "200 https://www.gold.com/careers/",
+   "200 https://www.gold.com/careers/",
+   "404 https://www.gold.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 400,
+  "name": "International Flavors & Fragrances",
+  "tried": [
+   "0 https://careers.iff.com",
+   "0 https://jobs.iff.com",
+   "403 https://www.iff.com/careers",
+   "403 https://www.iff.com/en/careers",
+   "403 https://www.iff.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 402,
+  "name": "Jefferies Financial Group",
+  "tried": [
+   "522 https://careers.jefferies.com/",
+   "0 https://jobs.jefferies.com",
+   "200 https://www.jefferies.com/careers/",
+   "404 https://www.jefferies.com/en/careers",
+   "404 https://www.jefferies.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 403,
+  "name": "Autoliv",
+  "tried": [
+   "0 https://careers.autoliv.com",
+   "0 https://jobs.autoliv.com",
+   "200 https://www.autoliv.com/careers",
+   "404 https://www.autoliv.com/en/careers",
+   "404 https://www.autoliv.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 406,
+  "name": "Fidelity National Information (FIS)",
+  "at": "https://careers.fisglobal.com/us/en",
+  "sig": [
+   "phenompeople",
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "fis|wd5|searchjobs"
+  ],
+  "tried": [
+   "200 https://careers.fisglobal.com/us/en"
+  ]
+ },
+ {
+  "rank": 408,
+  "name": "American Tower",
+  "tried": [
+   "200 https://careers.americantower.com/",
+   "0 https://jobs.americantower.com",
+   "403 https://www.americantower.com/careers",
+   "403 https://www.americantower.com/en/careers",
+   "403 https://www.americantower.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 415,
+  "name": "Global Payments",
+  "tried": [
+   "0 https://careers.globalpaymentsinc.com",
+   "0 https://jobs.globalpaymentsinc.com",
+   "403 https://www.globalpaymentsinc.com/careers",
+   "403 https://www.globalpaymentsinc.com/en/careers",
+   "403 https://www.globalpaymentsinc.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 418,
+  "name": "Intuitive Surgical",
+  "at": "https://careers.intuitive.com/en/",
+  "sig": [
+   "smartrecruiters.com"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.intuitive.com/en/"
+  ]
+ },
+ {
+  "rank": 419,
+  "name": "Ace Hardware",
+  "at": "https://careers.acehardware.com/",
+  "sig": [
+   "paradox.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.acehardware.com/"
+  ]
+ },
+ {
+  "rank": 422,
+  "name": "News Corp.",
+  "tried": [
+   "200 https://careers.newscorp.com/",
+   "0 https://jobs.newscorp.com",
+   "200 https://careers.newscorp.com/",
+   "200 https://careers.newscorp.com/",
+   "200 https://careers.newscorp.com/"
+  ]
+ },
+ {
+  "rank": 427,
+  "name": "Icahn Enterprises",
+  "tried": [
+   "0 https://careers.ielp.com",
+   "0 https://jobs.ielp.com",
+   "403 https://www.ielp.com/careers",
+   "403 https://www.ielp.com/en/careers",
+   "403 https://www.ielp.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 432,
+  "name": "Western Digital",
+  "tried": [
+   "0 https://careers.westerndigital.com",
+   "200 https://www.westerndigital.com/careers",
+   "200 https://www.westerndigital.com/careers",
+   "404 https://www.westerndigital.com/en/careers",
+   "0 https://www.westerndigital.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 433,
+  "name": "QVC Group",
+  "tried": [
+   "0 https://careers.investors.qvcgrp.com",
+   "0 https://jobs.investors.qvcgrp.com",
+   "0 https://www.investors.qvcgrp.com/careers",
+   "0 https://www.investors.qvcgrp.com/en/careers",
+   "0 https://www.investors.qvcgrp.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 436,
+  "name": "Equinix",
+  "tried": [
+   "200 https://careers.equinix.com/",
+   "0 https://jobs.equinix.com",
+   "200 https://careers.equinix.com/homepage?utm_source=dotcom",
+   "404 https://www.equinix.com/en/careers",
+   "200 https://careers.equinix.com/homepage?utm_source=dotcom"
+  ]
+ },
+ {
+  "rank": 439,
+  "name": "Old Republic International",
+  "tried": [
+   "0 https://careers.oldrepublic.com",
+   "0 https://jobs.oldrepublic.com",
+   "404 https://oldrepublic.com/careers",
+   "404 https://oldrepublic.com/en/careers",
+   "404 https://oldrepublic.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 441,
+  "name": "JetBlue Airways",
+  "at": "https://careers.jetblue.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.jetblue.com/"
+  ]
+ },
+ {
+  "rank": 444,
+  "name": "Arista Networks",
+  "tried": [
+   "0 https://careers.arista.com",
+   "406 https://www.arista.com/en/careers",
+   "406 https://www.arista.com/careers",
+   "406 https://www.arista.com/en/careers",
+   "406 https://www.arista.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 445,
+  "name": "Packaging Corp. of America",
+  "tried": [
+   "200 https://careers.packagingcorp.com/",
+   "0 https://jobs.packagingcorp.com",
+   "404 https://www.packagingcorp.com/careers",
+   "404 https://www.packagingcorp.com/en/careers",
+   "404 https://www.packagingcorp.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 449,
+  "name": "TransDigm Group",
+  "tried": [
+   "0 https://careers.transdigm.com",
+   "0 https://jobs.transdigm.com",
+   "403 https://www.transdigm.com/careers",
+   "403 https://www.transdigm.com/en/careers",
+   "403 https://www.transdigm.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 452,
+  "name": "Franklin Templeton",
+  "tried": [
+   "0 https://careers.franklinresources.com",
+   "0 https://jobs.franklinresources.com",
+   "200 https://www.franklintempleton.com/corporate/careers",
+   "200 https://www.franklintempleton.com/corporate/en/careers",
+   "200 https://www.franklintempleton.com/corporate/us/en/careers"
+  ]
+ },
+ {
+  "rank": 453,
+  "name": "Eastman Chemical",
+  "at": "https://jobs.eastman.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://jobs.eastman.com/"
+  ]
+ },
+ {
+  "rank": 454,
+  "name": "ABM Industries",
+  "tried": [
+   "0 https://careers.abm.com",
+   "0 https://jobs.abm.com",
+   "403 https://www.abm.com/careers",
+   "403 https://www.abm.com/en/careers",
+   "403 https://www.abm.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 461,
+  "name": "Advance Auto Parts",
+  "at": "https://jobs.advanceautoparts.com/us/en",
+  "sig": [
+   "phenompeople"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.advanceautoparts.com",
+   "200 https://jobs.advanceautoparts.com/us/en"
+  ]
+ },
+ {
+  "rank": 465,
+  "name": "Hertz Global Holdings",
+  "tried": [
+   "0 https://careers.hertz.com",
+   "0 https://jobs.hertz.com",
+   "200 https://www.hertz.com/careers/",
+   "404 https://www.hertz.com/en/careers",
+   "200 https://www.hertz.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 467,
+  "name": "Rockwell Automation",
+  "at": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "rockwellautomation|wd1|external_rockwell_automation"
+  ],
+  "tried": [
+   "0 https://careers.rockwellautomation.com",
+   "200 https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation"
+  ]
+ },
+ {
+  "rank": 469,
+  "name": "Monster Beverage",
+  "tried": [
+   "0 https://careers.monsterbevcorp.com",
+   "0 https://jobs.monsterbevcorp.com",
+   "403 https://www.monsterbevcorp.com/careers",
+   "403 https://www.monsterbevcorp.com/en/careers",
+   "403 https://www.monsterbevcorp.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 471,
+  "name": "Howmet Aerospace",
+  "tried": [
+   "0 https://careers.arconic.com",
+   "0 https://jobs.arconic.com",
+   "404 https://www.arconic.com/careers",
+   "404 https://www.arconic.com/en/careers",
+   "404 https://www.arconic.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 472,
+  "name": "Insight Enterprises",
+  "at": "https://login.microsoftonline.com/6c637512-c417-4e78-9d62-b61258e4b619/saml2?SAMLRequest=fVJNc9owFLzzKzy%2B20bCX2gwHRrSlhkKnkB76CUj5GfQjC25enLa%2FvtaTmmSQ9BFo6fdfW9XWiBvm46tentRD%2FCzB7QTz%2FvdNgrZeFX4vVFMc5TIFG8BmRXssPq6ZTScss5oq4Vu%2FDek2xyOCMZKrRxpsy78%2Fe5%2Bu%2F%2B82T3OE8LTLJmfBJ%2FlpM7qE59RELTOeJ7MaJXV0zhNp8QRv4PBQaPwB0l39rzS6CdZgdkNHQv%2FXp4vttZNNXZB7GGj0HJlB8aUpgEhAY2PlLA4ZyT54VDrwbxU3I6yF2s7ZFHU6LNUYSuF0ahrq1UjFYRCt1Eq0lmWEBqImGRBDFkezKuUBqeU0CSHeNjnkYuDOvHyX1IfpaqkOt%2BO6PQMQvbleCyDcn84OonVNbg7rbBvwRzAPEkB3x62L%2FNKhc55CFf%2FIZcRon7kwxN%2F4AKLK2Lw4C%2FH5BZuSjaGZJa3hBbRa%2BQLt2Mu9M261I0Uf8a6W5%2B0abl93yoJyViRVVCPUNYr7EDIWkLl%2F5dZNY3%2BdWeA2%2BFdrenB96LlZPI8zNu%2Fu%2FwL&RelayState=https%3A%2F%2Fcareers.insight.com%2Fhome",
+  "sig": [
+   "eightfold.ai"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://login.microsoftonline.com/6c637512-c417-4e78-9d62-b61258e4b619/saml2?SAMLRequest=fVJNc9owFLzzKzy%2B20bCX2gwHRrSlhkKnkB76CUj5GfQjC25enLa%2FvtaTmmSQ9BFo6fdfW9XWiBvm46tentRD%2FCzB7QTz%2FvdNgrZeFX4vVFMc5TIFG8BmRXssPq6ZTScss5oq4Vu%2FDek2xyOCMZKrRxpsy78%2Fe5%2Bu%2F%2B82T3OE8LTLJmfBJ%2FlpM7qE59RELTOeJ7MaJXV0zhNp8QRv4PBQaPwB0l39rzS6CdZgdkNHQv%2FXp4vttZNNXZB7GGj0HJlB8aUpgEhAY2PlLA4ZyT54VDrwbxU3I6yF2s7ZFHU6LNUYSuF0ahrq1UjFYRCt1Eq0lmWEBqImGRBDFkezKuUBqeU0CSHeNjnkYuDOvHyX1IfpaqkOt%2BO6PQMQvbleCyDcn84OonVNbg7rbBvwRzAPEkB3x62L%2FNKhc55CFf%2FIZcRon7kwxN%2F4AKLK2Lw4C%2FH5BZuSjaGZJa3hBbRa%2BQLt2Mu9M261I0Uf8a6W5%2B0abl93yoJyViRVVCPUNYr7EDIWkLl%2F5dZNY3%2BdWeA2%2BFdrenB96LlZPI8zNu%2Fu%2FwL&RelayState=https%3A%2F%2Fcareers.insight.com%2Fhome"
+  ]
+ },
+ {
+  "rank": 474,
+  "name": "Yum Brands",
+  "tried": [
+   "0 https://careers.yum.com",
+   "200 https://jobs.yum.com/",
+   "200 https://www.yum.com/wps/portal/yumbrands/Yumbrands/careers",
+   "404 https://www.yum.com/en/careers",
+   "404 https://www.yum.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 475,
+  "name": "Fastenal",
+  "tried": [
+   "200 https://careers.fastenal.com/",
+   "200 https://jobs.fastenal.com/jobs",
+   "403 https://www.fastenal.com/careers",
+   "403 https://www.fastenal.com/en/careers",
+   "403 https://www.fastenal.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 478,
+  "name": "American Financial Group",
+  "tried": [
+   "0 https://careers.afginc.com",
+   "0 https://jobs.afginc.com",
+   "403 https://www.afginc.com/careers",
+   "403 https://www.afginc.com/en/careers",
+   "403 https://www.afginc.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 480,
+  "name": "XPO",
+  "at": "https://jobs.xpo.com/",
+  "sig": [
+   "successfactors",
+   "jobs2web"
+  ],
+  "workday": [],
+  "tried": [
+   "0 https://careers.xpo.com",
+   "200 https://jobs.xpo.com/"
+  ]
+ },
+ {
+  "rank": 481,
+  "name": "DuPont",
+  "tried": [
+   "0 https://careers.dow-dupont.com",
+   "0 https://jobs.dow-dupont.com",
+   "0 https://www.dow-dupont.com/careers",
+   "0 https://www.dow-dupont.com/en/careers",
+   "0 https://www.dow-dupont.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 482,
+  "name": "Sanmina",
+  "tried": [
+   "0 https://careers.sanmina.com",
+   "403 https://jobs.sanmina.com/",
+   "200 https://www.sanmina.com/careers/",
+   "404 https://www.sanmina.com/?attachment_id=9224",
+   "404 https://www.sanmina.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 484,
+  "name": "Dover",
+  "at": "https://dover.wd103.myworkdayjobs.com/Dover",
+  "sig": [
+   "myworkdayjobs.com"
+  ],
+  "workday": [
+   "dover|wd103|dover"
+  ],
+  "tried": [
+   "200 https://dover.wd103.myworkdayjobs.com/Dover"
+  ]
+ },
+ {
+  "rank": 485,
+  "name": "Vulcan Materials",
+  "tried": [
+   "200 https://careers.vulcanmaterials.com/hcmUI/CandidateExperience/en/sites/careers/jobs",
+   "200 https://www.vulcanmaterials.com/",
+   "200 https://www.vulcanmaterials.com/careers",
+   "404 https://www.vulcanmaterials.com/en/careers",
+   "404 https://www.vulcanmaterials.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 486,
+  "name": "APi Group",
+  "tried": [
+   "0 https://careers.apigroupcorp.com",
+   "0 https://jobs.apigroupcorp.com",
+   "403 https://www.apigroupcorp.com/careers",
+   "403 https://www.apigroupcorp.com/en/careers",
+   "403 https://www.apigroupcorp.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 487,
+  "name": "Roper Technologies",
+  "tried": [
+   "0 https://careers.ropertech.com",
+   "0 https://jobs.ropertech.com",
+   "403 https://www.ropertech.com/careers",
+   "403 https://www.ropertech.com/en/careers",
+   "403 https://www.ropertech.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 494,
+  "name": "Ingersoll Rand",
+  "at": "https://careers.irco.com/",
+  "sig": [
+   "successfactors"
+  ],
+  "workday": [],
+  "tried": [
+   "200 https://careers.irco.com/"
+  ]
+ },
+ {
+  "rank": 495,
+  "name": "Core & Main",
+  "tried": [
+   "200 https://jobs.coreandmain.com/p/coreandmain/home",
+   "200 https://jobs.coreandmain.com/p/coreandmain/home",
+   "404 https://www.coreandmain.com/careers",
+   "404 https://www.coreandmain.com/en/careers",
+   "404 https://www.coreandmain.com/us/en/careers"
+  ]
+ },
+ {
+  "rank": 496,
+  "name": "Coterra Energy",
+  "tried": [
+   "0 https://careers.coterra.com",
+   "0 https://jobs.coterra.com",
+   "404 https://www.coterra.com/careers",
+   "404 https://www.coterra.com/en/careers",
+   "404 https://www.coterra.com/us/en/careers"
+  ]
+ }
+]
