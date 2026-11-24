@@ -17,7 +17,7 @@
 //   {out}/v1/remote.json         remote jobs open to US workers
 // A job is {i: id, t: title, c: company, l: location, u: url, d: posted date or '', s: source, g?: [lat, lon]}.
 
-import { execFile } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import path from 'node:path';
@@ -158,21 +158,24 @@ async function workday(entry) {
   return out;
 }
 
-/** Workable's public feed of every customer's jobs: one big XML file, read as it streams in. */
+/**
+ * Workable's public feed of every customer's jobs: one big XML file, read as it streams in.
+ * The feed only answers compressed downloads, and (like Workday) turns away Node's fetch, so curl reads it.
+ */
 async function workableFeed() {
-  const res = await fetch('https://www.workable.com/boards/workable.xml', {
-    headers: { 'User-Agent': UA },
-    signal: AbortSignal.timeout(15 * 60_000),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const curl = spawn('curl', ['-sS', '--fail', '--compressed', '--max-time', '1200', '-A', UA, 'https://www.workable.com/boards/workable.xml']);
+  let stderr = '';
+  curl.stderr.on('data', (d) => (stderr += d));
+  const exited = new Promise((resolve) => curl.on('close', resolve));
+  // Every tag sits on its own lines with its value wrapped in CDATA, so allow space around both.
   const tag = (block, name) => {
-    const m = block.match(new RegExp(`<${name}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${name}>`));
+    const m = block.match(new RegExp(`<${name}>\\s*(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?\\s*</${name}>`));
     return m ? m[1].trim() : '';
   };
   const byUrl = new Map();
   const decoder = new TextDecoder();
   let buffer = '';
-  for await (const chunk of res.body) {
+  for await (const chunk of curl.stdout) {
     buffer += decoder.decode(chunk, { stream: true });
     let end;
     while ((end = buffer.indexOf('</job>')) >= 0) {
@@ -205,6 +208,8 @@ async function workableFeed() {
       });
     }
   }
+  const code = await exited;
+  if (code !== 0 && byUrl.size === 0) throw new Error(`curl exit ${code}: ${stderr.trim().slice(0, 200)}`);
   return [...byUrl.values()];
 }
 
