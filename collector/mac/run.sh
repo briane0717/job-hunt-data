@@ -21,7 +21,7 @@ if [ ! -f "$WORK/geo/cities1000.txt" ] || [ -n "$(find "$WORK/geo/cities1000.txt
 fi
 
 rm -rf "$WORK/public"
-node collector/collect.mjs --out "$WORK/public" --places "$WORK/geo/cities1000.txt"
+node collector/collect.mjs --out "$WORK/public" --places "$WORK/geo/cities1000.txt" "$@"
 
 # Publish: replace the data branch with this run's files.
 ORIGIN="$(git remote get-url origin)"
