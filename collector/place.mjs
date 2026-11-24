@@ -65,16 +65,43 @@ export function loadGazetteer(text) {
   return byCityState;
 }
 
-/** Coordinates for the first "City, ST" (or "City, State") in a location, if the city is known. */
+const CITY_ALIAS = { nyc: 'new york city', 'new york': 'new york city', sf: 'san francisco', 'washington dc': 'washington', 'washington d.c.': 'washington', 'st louis': 'st. louis', 'saint louis': 'st. louis' };
+
+function lookupCity(gazetteer, city, st) {
+  const c = city.replace(/^(remote|hybrid|on-?site|in-?office)\s*[-–:]?\s*/i, '').replace(/\s*\b(hq|office|area|metro|metropolitan|greater)\b\s*/gi, ' ').trim().toLowerCase();
+  if (!c || !st) return null;
+  return gazetteer.get(`${CITY_ALIAS[c] ?? c}|${st}`) ?? gazetteer.get(`${c}|${st}`) ?? null;
+}
+
+/**
+ * Coordinates for the first place in a location that the city list knows. Tries every
+ * "City, ST" / "City, State" in the text, then big cities written without a state
+ * ("San Francisco or New York (Hybrid)"), then any phrase in the one state the text names.
+ */
 export function coordsOf(location, gazetteer) {
   if (!gazetteer) return null;
-  const text = String(location || '').split(/;|\s\|\s/)[0];
-  const m = text.match(/([A-Za-z .'-]{2,40}),\s*([A-Z]{2}|[A-Za-z ]{4,20})\b/);
-  if (!m) return null;
-  const city = m[1].replace(/^(remote|hybrid)\s*[-–]?\s*/i, '').trim().toLowerCase();
-  const st = m[2].length === 2 ? m[2] : NAME_TO_ABBR[m[2].trim().toLowerCase()];
-  if (!st) return null;
-  const alias = { nyc: 'new york city', 'new york': 'new york city', manhattan: 'manhattan', sf: 'san francisco' };
-  const p = gazetteer.get(`${alias[city] ?? city}|${st}`) ?? gazetteer.get(`${city}|${st}`);
-  return p ? [p[0], p[1]] : null;
+  const text = String(location || '').replace(/\bUnited States( of America)?\b|\bUSA\b|\bUS\b/g, '');
+  for (const m of text.matchAll(/([A-Za-z .'-]{2,40}),\s*([A-Z]{2}|[A-Za-z ]{4,20})(?=$|[^A-Za-z])/g)) {
+    const st = m[2].length === 2 ? (STATES[m[2]] ? m[2] : null) : NAME_TO_ABBR[m[2].trim().toLowerCase()];
+    const p = lookupCity(gazetteer, m[1].split(/[;|·/()]|\s+or\s+|\s+and\s+/i).pop(), st);
+    if (p) return [p[0], p[1]];
+  }
+  const lower = text.toLowerCase();
+  let best = null;
+  for (const [city, st] of Object.entries(CITY_STATE)) {
+    const at = lower.indexOf(city);
+    if (at >= 0 && (!best || at < best.at)) best = { at, city, st };
+  }
+  if (best) {
+    const p = lookupCity(gazetteer, best.city, best.st);
+    if (p) return [p[0], p[1]];
+  }
+  const { states } = placeOf(location);
+  if (states.length === 1) {
+    for (const part of text.split(/[,;|·/()]+|\s[-–]\s|\s+or\s+/i)) {
+      const p = lookupCity(gazetteer, part, states[0]);
+      if (p) return [p[0], p[1]];
+    }
+  }
+  return null;
 }
