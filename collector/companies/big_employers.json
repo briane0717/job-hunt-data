@@ -1,0 +1,25 @@
+{
+  "_about": "Large employers with many store and warehouse jobs, checked by hand on 2026-11-24. Their job lists are read in full (not cut at 400 like the general Workday list).",
+  "workday": [
+    "target|wd5|targetcareers",
+    "kohls|wd504|kohlscareers",
+    "homedepot|wd5|CareerDepot",
+    "lowes|wd5|lws_external_cs",
+    "tjx|wd1|tjx_external",
+    "dickssportinggoods|wd1|DSG",
+    "gapinc|wd1|gapinc",
+    "nordstrom|wd501|nordstrom_careers",
+    "dollartree|wd5|dollartreeus",
+    "cvshealth|wd1|cvs_health_careers",
+    "michaels|wd5|external",
+    "burlington|wd5|BurlingtonCareers"
+  ],
+  "jibe": [
+    { "name": "Costco", "host": "careers.costco.com" },
+    { "name": "JCPenney", "host": "jobs.jcp.com" },
+    { "name": "Ulta Beauty", "host": "careers.ulta.com" },
+    { "name": "PetSmart", "host": "careers.petsmart.com" }
+  ],
+  "oracle": [{ "name": "Kroger", "host": "eluq.fa.us2.oraclecloud.com", "site": "CX_2001" }],
+  "amazon": true
+}

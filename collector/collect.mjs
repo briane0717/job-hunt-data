@@ -130,20 +130,45 @@ function workdayDate(postedOn) {
   return ago === null ? '' : new Date(Date.now() - ago * day).toISOString().slice(0, 10);
 }
 
-async function workday(entry) {
+/** One page of a Workday job list. */
+function workdayPage(co, base, site, offset, appliedFacets = {}) {
+  return curlJson(`${base}/wday/cxs/${co}/${site}/jobs`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Origin: base, Referer: `${base}/${site}` },
+    body: JSON.stringify({ appliedFacets, limit: 20, offset, searchText: '' }),
+  });
+}
+
+/**
+ * The location filter Workday offers on a board, flattened to [{param, id, count}].
+ * Workday shows at most 2,000 jobs per search, so big boards are read one location at a time.
+ */
+function workdayLocationSlices(facets = []) {
+  const flat = [];
+  const walk = (list, param) => {
+    for (const v of list || []) {
+      if (Array.isArray(v.values)) walk(v.values, v.facetParameter || param);
+      else if (v.id && typeof v.count === 'number') flat.push({ param, id: v.id, count: v.count });
+    }
+  };
+  for (const f of facets) {
+    if (!/location/i.test(f.facetParameter || '') || /country/i.test(f.facetParameter || '')) continue;
+    const before = flat.length;
+    walk(f.values, f.facetParameter);
+    if (flat.length > before) break; // use the first location facet that has values
+  }
+  return flat;
+}
+
+/** A Workday board's jobs, up to `max`. */
+async function workday(entry, max = 400) {
   const [co, wd, site] = entry.split('|');
   const base = `https://${co}.${wd}.myworkdayjobs.com`;
-  const api = `${base}/wday/cxs/${co}/${site}/jobs`;
-  const out = [];
-  for (let offset = 0; offset < 400; offset += 20) {
-    const data = await curlJson(api, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Origin: base, Referer: `${base}/${site}` },
-      body: JSON.stringify({ appliedFacets: {}, limit: 20, offset, searchText: '' }),
-    });
-    const posts = data.jobPostings || [];
-    for (const j of posts) {
-      out.push({
+  const out = new Map();
+  const add = (posts) => {
+    for (const j of posts || []) {
+      if (out.has(j.externalPath)) continue;
+      out.set(j.externalPath, {
         i: `wd:${co}:${j.externalPath}`,
         t: j.title,
         c: pretty(co),
@@ -153,7 +178,109 @@ async function workday(entry) {
         s: 'workday',
       });
     }
-    if (posts.length < 20 || offset + 20 >= (data.total || 0)) break;
+  };
+  const readAll = async (facets, limit, first) => {
+    let data = first;
+    for (let offset = 0; offset < limit; offset += 20) {
+      if (!data) data = await workdayPage(co, base, site, offset, facets);
+      add(data.jobPostings);
+      const n = (data.jobPostings || []).length;
+      if (n < 20 || offset + 20 >= (data.total || 0) || out.size >= max) break;
+      data = null;
+    }
+  };
+  const first = await workdayPage(co, base, site, 0);
+  const total = first.total || 0;
+  const slices = total >= 2000 && max > 2000 ? workdayLocationSlices(first.facets) : [];
+  if (!slices.length) {
+    await readAll({}, Math.min(max, 2000), first);
+  } else {
+    for (const sl of slices) {
+      if (out.size >= max) break;
+      await readAll({ [sl.param]: [sl.id] }, Math.min(sl.count, 2000));
+    }
+  }
+  return [...out.values()];
+}
+
+const US_STATE = /^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|PR|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$/;
+
+/** Career sites built on Jibe (iCIMS and others): GET https://{host}/api/jobs?page=N&limit=100 */
+async function jibe({ name, host }) {
+  const out = [];
+  for (let page = 1; page <= 400; page++) {
+    const data = await curlJson(`https://${host}/api/jobs?page=${page}&limit=100`);
+    const jobs = data.jobs || [];
+    for (const { data: d = {} } of jobs) {
+      const country = String(d.country_code || d.country || '').toLowerCase();
+      if (country && !['us', 'usa', 'united states', 'united states of america'].includes(country)) continue;
+      const place = [d.city, d.state].filter(Boolean).join(', ') || d.full_location || d.location_name || '';
+      const id = d.req_id || d.slug || d.id;
+      if (!d.title || !id) continue;
+      out.push({
+        i: `jb:${host}:${id}`,
+        t: d.title,
+        c: name,
+        l: place,
+        u: `https://${host}/jobs/${d.slug || id}`,
+        d: d.posted_date || d.create_date || d.update_date || '',
+        s: 'jibe',
+      });
+    }
+    if (!jobs.length || page * 100 >= (data.totalCount || data.count || 0)) break;
+  }
+  return out;
+}
+
+/** Oracle Recruiting Cloud career sites: the public requisitions API behind the job search. */
+async function oracle({ name, host, site }) {
+  const out = [];
+  let step = 200;
+  for (let offset = 0; offset < 40000; ) {
+    const url =
+      `https://${host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList` +
+      `&finder=findReqs;siteNumber=${site},limit=${step},offset=${offset},sortBy=POSTING_DATES_DESC`;
+    const data = await curlJson(url);
+    const item = (data.items || [])[0] || {};
+    const list = item.requisitionList || [];
+    for (const j of list) {
+      out.push({
+        i: `or:${host}:${j.Id}`,
+        t: j.Title,
+        c: name,
+        l: String(j.PrimaryLocation || '').replace(/,\s*United States$/, ''),
+        u: `https://${host}/hcmUI/CandidateExperience/en/sites/${site}/job/${j.Id}`,
+        d: j.PostedDate || '',
+        s: 'oracle',
+      });
+    }
+    if (!list.length) break;
+    if (list.length < step) step = list.length; // the site allows smaller pages than asked for
+    offset += list.length;
+    if (offset >= (item.TotalJobsCount || 0)) break;
+  }
+  return out;
+}
+
+/** Amazon's own job search (amazon.jobs), newest first. It shows at most 10,000 results. */
+async function amazon() {
+  const out = [];
+  for (let offset = 0; offset < 10000; offset += 100) {
+    const data = await curlJson(`https://www.amazon.jobs/en/search.json?country=USA&result_limit=100&offset=${offset}&sort=recent`);
+    const jobs = data.jobs || [];
+    for (const j of jobs) {
+      const st = String(j.state || '').trim();
+      out.push({
+        i: `az:${j.id_icims || j.id}`,
+        t: j.title,
+        c: j.company_name || 'Amazon',
+        l: j.city && US_STATE.test(st) ? `${j.city}, ${st}` : j.normalized_location || j.location || '',
+        u: `https://www.amazon.jobs${j.job_path || ''}`,
+        d: j.posted_date ? new Date(j.posted_date).toISOString() : '',
+        s: 'amazon',
+      });
+    }
+    if (jobs.length < 100 || offset + 100 >= (data.hits || 0)) break;
   }
   return out;
 }
@@ -285,6 +412,27 @@ if (want('ashby')) {
 if (want('workday')) {
   const r = await pool(await companies('workday_companies.json'), workday, 'Workday');
   sources.workday = r.stats;
+  add(r.results);
+}
+const big = JSON.parse(await readFile(path.join(HERE, 'companies', 'big_employers.json'), 'utf8'));
+if (want('bigworkday')) {
+  const r = await pool(big.workday, (e) => workday(e, 40000), 'Big employers on Workday', 4);
+  sources.bigworkday = r.stats;
+  add(r.results);
+}
+if (want('jibe')) {
+  const r = await pool(big.jibe, jibe, 'Jibe career sites (Costco, JCPenney, …)', 4);
+  sources.jibe = r.stats;
+  add(r.results);
+}
+if (want('oracle')) {
+  const r = await pool(big.oracle, oracle, 'Oracle career sites (Kroger, …)', 2);
+  sources.oracle = r.stats;
+  add(r.results);
+}
+if (want('amazon') && big.amazon) {
+  const r = await pool(['amazon'], amazon, 'Amazon', 1);
+  sources.amazon = r.stats;
   add(r.results);
 }
 if (want('workable')) {
