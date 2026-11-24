@@ -32,7 +32,7 @@ jobs:
           - lever,ashby,workable
           - workday
           - bigworkday
-          - jibe,oracle,amazon
+          - jibe,oracle,amazon,rmk
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

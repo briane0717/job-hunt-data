@@ -110,5 +110,27 @@
       "site": "careers"
     }
   ],
-  "amazon": true
+  "amazon": true,
+  "rmk": [
+    {
+      "name": "Tractor Supply",
+      "host": "www.tractorsupply.careers"
+    },
+    {
+      "name": "Sephora",
+      "host": "jobs.sephora.com"
+    },
+    {
+      "name": "Stater Bros",
+      "host": "careers.staterbros.com"
+    },
+    {
+      "name": "ExxonMobil",
+      "host": "jobs.exxonmobil.com"
+    },
+    {
+      "name": "Ingles",
+      "host": "jobs.inglescareers.com"
+    }
+  ]
 }

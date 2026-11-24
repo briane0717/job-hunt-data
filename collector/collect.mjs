@@ -83,6 +83,71 @@ async function curlJson(url, { method = 'GET', headers = {}, body } = {}) {
   return JSON.parse(stdout.slice(0, cut));
 }
 
+/** A web page's HTML through curl (some career sites answer browsers only). */
+async function curlText(url) {
+  const { stdout } = await run('curl', ['-sSL', '--compressed', '--max-time', '25', '-A', UA, '-w', '\n%{http_code}', url], { maxBuffer: 64 * 1024 * 1024 });
+  const cut = stdout.lastIndexOf('\n');
+  const status = Number(stdout.slice(cut + 1));
+  if (status < 200 || status >= 300) {
+    const err = new Error(`HTTP ${status}`);
+    err.status = status;
+    throw err;
+  }
+  return stdout.slice(0, cut);
+}
+
+const unescapeHtml = (t) =>
+  t.replace(/&amp;/g, '&').replace(/&#39;|&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
+
+/** Job rows on a SuccessFactors search page: each title link with the location that follows it. */
+export function parseRmkRows(html) {
+  const links = [...html.matchAll(/<a[^>]*class="[^"]*jobTitle-link[^"]*"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)];
+  return links.map((m, k) => {
+    const end = k + 1 < links.length ? links[k + 1].index : html.length;
+    const loc = html.slice(m.index, end).match(/<span[^>]*class="[^"]*jobLocation[^"]*"[^>]*>([\s\S]*?)<\/span>/i);
+    return { href: m[1], title: unescapeHtml(m[2].replace(/<[^>]+>/g, '')), place: loc ? unescapeHtml(loc[1].replace(/<[^>]+>/g, '')) : '' };
+  });
+}
+
+/**
+ * SuccessFactors career sites (SAP "RMK" pages: Tractor Supply, Sephora, Stater Bros, …).
+ * There is no public JSON, so this reads the search pages, which robots.txt allows
+ * (GET /search/?q=&startrow=N, 20 to 25 jobs each; rows show title, link and "City, ST, US, ZIP").
+ */
+async function rmk({ name, host }) {
+  const out = new Map();
+  let total = Infinity;
+  const seenFirst = new Set();
+  for (let start = 0; start < Math.min(total, 20000); ) {
+    const html = await curlText(`https://${host}/search/?q=&startrow=${start}`);
+    const t = html.match(/of\s*<b>\s*([\d,]+)\s*<\/b>/i) || html.match(/of\s+([\d,]+)\s+Jobs/i);
+    if (t) total = Number(t[1].replace(/,/g, ''));
+    const rows = parseRmkRows(html);
+    // Past the end some sites show page 1 again: stop when a page starts with a link already read.
+    if (rows.length && start > 0 && seenFirst.has(rows[0].href)) break;
+    if (rows.length) seenFirst.add(rows[0].href);
+    for (const { href, title, place } of rows) {
+      if (out.has(href)) continue;
+      const parts = place.split(',').map((x) => x.trim());
+      if (parts.length >= 3 && parts[2] && parts[2] !== 'US') continue; // keep US jobs only
+      out.set(href, {
+        i: `sf:${host}:${href.match(/\/(\d+)\/?$/)?.[1] || href}`,
+        t: title,
+        c: name,
+        l: parts.length >= 2 ? `${parts[0]}, ${parts[1]}` : place,
+        u: new URL(href, `https://${host}`).href,
+        d: '',
+        s: 'successfactors',
+      });
+    }
+    // Each row appears twice (desktop and phone layouts), so step by the number of distinct links.
+    const step = new Set(rows.map((r) => r.href)).size;
+    if (!step) break;
+    start += step;
+  }
+  return [...out.values()];
+}
+
 async function greenhouse(slug) {
   const data = await getJson(`https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(slug)}/jobs`);
   return (data.jobs || []).map((j) => ({
@@ -483,6 +548,11 @@ if (want('jibe')) {
 if (want('oracle')) {
   const r = await pool(big.oracle, oracle, 'Oracle career sites (Kroger, …)', 2);
   sources.oracle = r.stats;
+  add(r.results);
+}
+if (want('rmk') && big.rmk?.length) {
+  const r = await pool(big.rmk, rmk, 'SuccessFactors career sites (Tractor Supply, …)', 3);
+  sources.rmk = r.stats;
   add(r.results);
 }
 if (want('amazon') && big.amazon) {
