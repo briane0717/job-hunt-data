@@ -15,11 +15,44 @@
     "burlington|wd5|BurlingtonCareers"
   ],
   "jibe": [
-    { "name": "Costco", "host": "careers.costco.com" },
-    { "name": "JCPenney", "host": "jobs.jcp.com" },
-    { "name": "Ulta Beauty", "host": "careers.ulta.com" },
-    { "name": "PetSmart", "host": "careers.petsmart.com" }
+    {
+      "name": "Costco",
+      "host": "careers.costco.com"
+    },
+    {
+      "name": "JCPenney",
+      "host": "jobs.jcp.com"
+    },
+    {
+      "name": "Ulta Beauty",
+      "host": "careers.ulta.com"
+    },
+    {
+      "name": "PetSmart",
+      "host": "careers.petsmart.com"
+    }
   ],
-  "oracle": [{ "name": "Kroger", "host": "eluq.fa.us2.oraclecloud.com", "site": "CX_2001" }],
+  "oracle": [
+    {
+      "name": "Kroger",
+      "host": "eluq.fa.us2.oraclecloud.com",
+      "site": "CX_2001"
+    },
+    {
+      "name": "Dollar General",
+      "host": "ibxwjb.fa.ocs.oraclecloud.com",
+      "site": "CX_1"
+    },
+    {
+      "name": "Macy's",
+      "host": "ebwh.fa.us2.oraclecloud.com",
+      "site": "CX_1001"
+    },
+    {
+      "name": "Staples",
+      "host": "fa-exhh-saasfaprod1.fa.ocs.oraclecloud.com",
+      "site": "StaplesInc"
+    }
+  ],
   "amazon": true
 }
