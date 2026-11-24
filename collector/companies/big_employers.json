@@ -27,7 +27,10 @@
     "petco|wd504|External",
     "totalwine|wd1|twm",
     "qvc|wd5|QRG",
-    "signetjewelers|wd1|SignetCorporateCareers"
+    "signetjewelers|wd1|SignetCorporateCareers",
+    "abercrombie|wd108|anf",
+    "tapestry|wd108|Tapestry_Careers",
+    "schnucks|wd5|SchnucksCareers"
   ],
   "jibe": [
     {
