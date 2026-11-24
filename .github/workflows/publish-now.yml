@@ -25,5 +25,5 @@ jobs:
       - name: Merge and publish
         env:
           GH_TOKEN: ${{ github.token }}
-          GITHUB_RUN_ID: ${{ inputs.run_id }}
+          SOURCE_RUN_ID: ${{ inputs.run_id }}
         run: bash collector/publish.sh 5 final

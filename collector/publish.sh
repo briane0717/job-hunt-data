@@ -6,16 +6,16 @@
 #   collector/publish.sh <number of parts> [final]
 # With "final", a part with no saved results anywhere is left out instead of stopping (the
 # collector still refuses to publish fewer than 100,000 jobs).
-# Needs GH_TOKEN, GITHUB_REPOSITORY and GITHUB_RUN_ID (set by GitHub Actions).
+# Needs GH_TOKEN, GITHUB_REPOSITORY and GITHUB_RUN_ID (set by GitHub Actions); SOURCE_RUN_ID picks another run.
 set -euo pipefail
 PARTS="$1"
 FINAL="${2:-}"
 rm -rf raw rawnow rawprev public
 mkdir -p raw
 
-gh run download "$GITHUB_RUN_ID" -R "$GITHUB_REPOSITORY" -p 'raw-*' -D rawnow 2>/dev/null || true
+gh run download "${SOURCE_RUN_ID:-$GITHUB_RUN_ID}" -R "$GITHUB_REPOSITORY" -p 'raw-*' -D rawnow || echo "No finished parts in this run yet"
 PREV=$(gh run list -R "$GITHUB_REPOSITORY" -w collect.yml -s success -L 1 --json databaseId -q '.[0].databaseId' || true)
-if [ -n "$PREV" ]; then gh run download "$PREV" -R "$GITHUB_REPOSITORY" -p 'raw-*' -D rawprev 2>/dev/null || true; fi
+if [ -n "$PREV" ]; then gh run download "$PREV" -R "$GITHUB_REPOSITORY" -p 'raw-*' -D rawprev || echo "No saved parts in run $PREV"; fi
 
 for i in $(seq 0 $((PARTS - 1))); do
   if [ -f "rawnow/raw-$i/raw-$i.json" ]; then
