@@ -22,7 +22,7 @@ const CITY_STATE = {
   columbus: 'OH', cleveland: 'OH', cincinnati: 'OH', indianapolis: 'IN', milwaukee: 'WI', 'new orleans': 'LA',
   'san antonio': 'TX', sacramento: 'CA', 'jersey city': 'NJ', newark: 'NJ', hoboken: 'NJ', stamford: 'CT',
 };
-const NON_US = /\b(canada|united kingdom|uk|england|london|germany|berlin|france|paris|india|bangalore|bengaluru|mexico|brazil|spain|ireland|dublin|netherlands|amsterdam|australia|sydney|singapore|japan|tokyo|china|poland|philippines|israel|tel aviv|toronto|vancouver|montreal|emea|apac|latam|europe)\b/i;
+const NON_US = /\b(canada|united kingdom|uk|england|london|germany|berlin|france|paris|india|bangalore|bengaluru|mexico|brazil|spain|ireland|dublin|netherlands|amsterdam|australia|sydney|singapore|japan|tokyo|china|poland|philippines|israel|tel aviv|toronto|vancouver|montreal|emea|apac|latam|europe|queensland|new south wales|brisbane|melbourne|new zealand|auckland|south africa|cape town|johannesburg|nigeria|lagos|kenya|nairobi|egypt|cairo|pakistan|karachi|lahore|vietnam|indonesia|jakarta|malaysia|kuala lumpur|thailand|bangkok|korea|seoul|hong kong|taiwan|taipei|hyderabad|pune|chennai|mumbai|delhi|gurgaon|gurugram|noida|manila|cebu|argentina|buenos aires|colombia|bogota|chile|santiago de chile|peru|lima, peru|sao paulo|são paulo|portugal|lisbon|italy|milan|madrid|barcelona|munich|zurich|switzerland|austria|vienna|belgium|brussels|sweden|stockholm|norway|oslo|denmark|copenhagen|finland|helsinki|czech|prague|romania|bucharest|ukraine|kyiv|turkey|istanbul|uae|dubai|abu dhabi|saudi|riyadh|scotland|edinburgh|glasgow|wales|manchester|costa rica|guatemala|el salvador|honduras|dominican republic)\b/i;
 
 /** Which US states a location text names, and whether it is remote for US workers. */
 export function placeOf(location) {
@@ -38,9 +38,11 @@ export function placeOf(location) {
     states.delete('WA');
     states.add('DC');
   }
-  if (!states.size) for (const [city, abbr] of Object.entries(CITY_STATE)) if (lower.includes(city)) states.add(abbr);
+  // Whole words only: "Queensland" (Australia) must not count as Queens, NY.
+  const foreignPlace = NON_US.test(text);
+  if (!states.size && !foreignPlace) for (const [city, abbr] of Object.entries(CITY_STATE)) if (new RegExp(`(^|[^a-z])${city.replace(/\./g, '\\.')}($|[^a-z])`).test(lower)) states.add(abbr);
   const remote = /remote|work from home|anywhere|distributed/i.test(text);
-  const foreign = NON_US.test(text) && !states.size && !/\b(us|usa|united states|americas|north america)\b/i.test(text);
+  const foreign = foreignPlace && !states.size && !/\b(us|usa|united states|americas|north america)\b/i.test(text);
   return { states: [...states].slice(0, 4), remote: remote && !foreign, foreign };
 }
 
@@ -89,7 +91,8 @@ export function coordsOf(location, gazetteer) {
   const lower = text.toLowerCase();
   let best = null;
   for (const [city, st] of Object.entries(CITY_STATE)) {
-    const at = lower.indexOf(city);
+    const m = new RegExp(`(^|[^a-z])${city.replace(/\./g, '\\.')}($|[^a-z])`).exec(lower);
+    const at = m ? m.index : -1;
     if (at >= 0 && (!best || at < best.at)) best = { at, city, st };
   }
   if (best) {
