@@ -127,7 +127,19 @@ async function rmk({ name, host }) {
   let total = Infinity;
   const seenFirst = new Set();
   for (let start = 0; start < Math.min(total, 20000); ) {
-    const html = await curlText(`https://${host}/search/?q=&startrow=${start}`);
+    // Retry a page a couple of times, and keep what was read if the site stops answering part way.
+    let html = null;
+    for (let attempt = 0; attempt < 3 && html === null; attempt++) {
+      html = await curlText(`https://${host}/search/?q=&startrow=${start}`).catch(async (e) => {
+        if (attempt === 2) console.log(`  ${name}: stopped at row ${start} of ${total} (${e.message})`);
+        await new Promise((r) => setTimeout(r, 3000 * (attempt + 1)));
+        return null;
+      });
+    }
+    if (html === null) {
+      if (!out.size) throw new Error(`${name}: search page did not answer`);
+      break;
+    }
     const t = html.match(/of\s*<b>\s*([\d,]+)\s*<\/b>/i) || html.match(/of\s+([\d,]+)\s+Jobs/i);
     if (t) total = Number(t[1].replace(/,/g, ''));
     const rows = parseRmkRows(html);
