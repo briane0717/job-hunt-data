@@ -216,15 +216,15 @@ const US_STATE_NAMES = [
 
 /**
  * Career sites built on Jibe (iCIMS and others): GET https://{host}/api/jobs?page=N&limit=100
- * The API stops paging after about 5,100 results (later pages repeat the last one), so bigger
- * sites are read one state at a time (&state=Texas).
+ * Some sites stop paging after about 5,100 results (later pages repeat the last one); those are
+ * then read one state at a time (&location=Texas).
  */
 async function jibe({ name, host }) {
   const out = new Map();
   const read = async (filter) => {
     let total = 0;
     let lastPage = '';
-    for (let page = 1; page <= 60; page++) {
+    for (let page = 1; page <= 400; page++) {
       const data = await curlJson(`https://${host}/api/jobs?page=${page}&limit=100${filter}`);
       const jobs = data.jobs || [];
       total = data.totalCount || data.count || 0;
@@ -253,7 +253,8 @@ async function jibe({ name, host }) {
     return total;
   };
   const total = await read('');
-  if (total > out.size + 100) for (const st of US_STATE_NAMES) await read(`&state=${encodeURIComponent(st)}`);
+  // &location= matches the state whether a site stores it as "Texas" or "TX" (&state= doesn't).
+  if (total > out.size + 100) for (const st of US_STATE_NAMES) await read(`&location=${encodeURIComponent(st)}`);
   return [...out.values()];
 }
 
