@@ -14,6 +14,7 @@
 // Output (each run replaces everything, so filled jobs drop out):
 //   {out}/v1/manifest.json       when it ran, counts per source and per state
 //   {out}/v1/us/{ST}.json        jobs in each US state (a job with several places is in each)
+//   {out}/v1/all/{0-7}.json      every US job once, in a compact form (for "any distance")
 //   {out}/v1/remote.json         remote jobs open to US workers
 // A job is {i: id, t: title, c: company, l: location, u: url, d: posted date or '', s: source, g?: [lat, lon]}.
 
@@ -676,6 +677,42 @@ for (const [key, map] of Object.entries(cells)) {
   cellCounts[key] = jobs.length;
   await writeFile(path.join(OUT, 'v1', 'cells', `${key}.json`), JSON.stringify(jobs));
 }
+// The whole country in a few compact files, for "any distance" searches: each row is
+// [title, company number, place, day, rest of link, rest of id, lat, lon], and each company
+// entry is [name, source, start of its links, start of its ids], so repeated text is stored once.
+const ALL_PARTS = 8;
+await mkdir(path.join(OUT, 'v1', 'all'), { recursive: true });
+const everyJob = new Map();
+for (const jobs of Object.values(byState)) for (const j of jobs) everyJob.set(j.i, j);
+const nationwide = [...everyJob.values()].sort(newestFirst);
+const commonStart = (list) => {
+  let p = list[0];
+  for (const x of list) while (!x.startsWith(p)) p = p.slice(0, -1);
+  return p;
+};
+const per = Math.ceil(nationwide.length / ALL_PARTS);
+for (let k = 0; k < ALL_PARTS; k++) {
+  const groups = new Map();
+  for (const j of nationwide.slice(k * per, (k + 1) * per)) {
+    const key = `${j.c}\u0000${j.s}`;
+    (groups.get(key) || groups.set(key, []).get(key)).push(j);
+  }
+  const c = [];
+  const r = [];
+  for (const jobs of groups.values()) {
+    const pu = commonStart(jobs.map((j) => j.u));
+    const pi = commonStart(jobs.map((j) => j.i));
+    const n = c.length;
+    c.push([jobs[0].c, jobs[0].s, pu, pi]);
+    for (const j of jobs) {
+      const t = Date.parse(j.d);
+      const row = [j.t, n, j.l.slice(0, 80), Number.isFinite(t) ? Math.floor(t / 864e5) : 0, j.u.slice(pu.length), j.i.slice(pi.length)];
+      if (j.g) row.push(j.g[0], j.g[1]);
+      r.push(row);
+    }
+  }
+  await writeFile(path.join(OUT, 'v1', 'all', `${k}.json`), JSON.stringify({ c, r }));
+}
 remote.sort(newestFirst);
 await writeFile(path.join(OUT, 'v1', 'remote.json'), JSON.stringify(remote));
 // The newest remote jobs only, so a phone search doesn't download every remote job each time.
@@ -688,6 +725,7 @@ const manifest = {
   withCoordinates: located,
   states: stateCounts,
   cells: cellCounts,
+  nationwideParts: ALL_PARTS,
   sources,
 };
 await writeFile(path.join(OUT, 'v1', 'manifest.json'), JSON.stringify(manifest, null, 2));
