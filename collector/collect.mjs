@@ -36,6 +36,8 @@ const OUT = path.resolve(arg('--out', 'public'));
 const ONLY = arg('--only', ''); // e.g. "greenhouse,lever"
 // Split runs: each part saves what it gathered (--raw-out), and a last step merges them (--raw-in).
 const RAW_OUT = arg('--raw-out', '');
+// Stop reading big boards after this many minutes and keep what was read (GitHub stops jobs at a hard limit).
+const DEADLINE = Date.now() + Number(arg('--minutes', '0') || 1e9) * 60000;
 const RAW_IN = arg('--raw-in', '');
 const CONCURRENCY = Number(arg('--concurrency', '24'));
 const PLACES = arg('--places', ''); // path to GeoNames cities1000.txt, for job coordinates
@@ -273,7 +275,7 @@ async function workday(entry, max = 400) {
       if (!data) data = await workdayPage(co, base, site, offset, facets);
       add(data.jobPostings);
       const n = (data.jobPostings || []).length;
-      if (n < 20 || offset + 20 >= (data.total || 0) || out.size >= max) break;
+      if (n < 20 || offset + 20 >= (data.total || 0) || out.size >= max || Date.now() > DEADLINE) break;
       data = null;
     }
   };
@@ -284,7 +286,7 @@ async function workday(entry, max = 400) {
     await readAll({}, Math.min(max, 2000), first);
   } else {
     for (const sl of slices) {
-      if (out.size >= max) break;
+      if (out.size >= max || Date.now() > DEADLINE) break;
       await readAll({ [sl.param]: [sl.id] }, Math.min(sl.count, 2000));
     }
   }
@@ -527,7 +529,14 @@ async function companies(file) {
   return [...new Set(list)].slice(0, LIMIT);
 }
 
-const want = (name) => !RAW_IN && (!ONLY || ONLY.split(',').includes(name));
+const want = (name) => !RAW_IN && (!ONLY || ONLY.split(',').some((t) => t.split('@')[0] === name));
+// "bigworkday@1/3" reads every third board starting at the second, so a big list can run in parallel parts.
+const shardOf = (name) => {
+  const t = ONLY.split(',').find((x) => x.split('@')[0] === name && x.includes('@'));
+  if (!t) return (list) => list;
+  const [k, n] = t.split('@')[1].split('/').map(Number);
+  return (list) => list.filter((_, i) => i % n === k);
+};
 const sources = {};
 const all = [];
 const add = (jobs) => {
@@ -556,7 +565,7 @@ if (want('workday')) {
 }
 const big = JSON.parse(await readFile(path.join(HERE, 'companies', 'big_employers.json'), 'utf8'));
 if (want('bigworkday')) {
-  const r = await pool(big.workday, (e) => workday(e, 40000), 'Big employers on Workday', 4);
+  const r = await pool(shardOf('bigworkday')(big.workday), (e) => workday(e, 40000), 'Big employers on Workday', 4);
   sources.bigworkday = r.stats;
   add(r.results);
 }

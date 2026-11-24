@@ -28,11 +28,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Keep in sync with collector/parts.txt.
         part:
           - greenhouse
           - lever,ashby,workable
           - workday
-          - bigworkday
+          - bigworkday@0/3
+          - bigworkday@1/3
+          - bigworkday@2/3
           - jibe,oracle,amazon,rmk
     steps:
       - uses: actions/checkout@v4
@@ -40,11 +43,15 @@ jobs:
         with:
           node-version: 22
       - name: Collect ${{ matrix.part }}
-        run: node collector/collect.mjs --only "${{ matrix.part }}" --raw-out "raw-${{ strategy.job-index }}.json"
+        id: collect
+        run: |
+          NAME="raw-$(echo '${{ matrix.part }}' | tr ',@/' '---')"
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          node collector/collect.mjs --only "${{ matrix.part }}" --raw-out "$NAME.json" --minutes 300
       - uses: actions/upload-artifact@v4
         with:
-          name: raw-${{ strategy.job-index }}
-          path: raw-${{ strategy.job-index }}.json
+          name: ${{ steps.collect.outputs.name }}
+          path: ${{ steps.collect.outputs.name }}.json
           retention-days: 2
       # Publish right away with the newest results of every part, so fast parts show up in the
       # app without waiting for the slowest. The publish job below makes the final, complete copy.
@@ -52,7 +59,7 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash collector/publish.sh 5
+        run: bash collector/publish.sh
 
   publish:
     needs: collect
@@ -68,4 +75,4 @@ jobs:
       - name: Merge every part and publish
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash collector/publish.sh 5 final
+        run: bash collector/publish.sh final
