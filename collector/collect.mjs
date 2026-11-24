@@ -218,7 +218,8 @@ async function jibe({ name, host }) {
       const id = d.req_id || d.slug || d.id;
       if (!d.title || !id) continue;
       out.push({
-        i: `jb:${host}:${id}`,
+        // One posting can cover many stores (Costco), so the place is part of the ID.
+        i: `jb:${host}:${id}@${place.toLowerCase()}`,
         t: d.title,
         c: name,
         l: place,
@@ -232,34 +233,48 @@ async function jibe({ name, host }) {
   return out;
 }
 
-/** Oracle Recruiting Cloud career sites: the public requisitions API behind the job search. */
+/**
+ * Oracle Recruiting Cloud career sites: the public requisitions API behind the job search.
+ * A search stops at 10,000 results, so bigger sites are read newest-first and then oldest-first,
+ * which covers up to 20,000. (Sites bigger than that need reading by location; the first page's
+ * location filter is logged so it can be added.)
+ */
 async function oracle({ name, host, site }) {
-  const out = [];
-  let step = 200;
-  for (let offset = 0; offset < 40000; ) {
-    const url =
-      `https://${host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList` +
-      `&finder=findReqs;siteNumber=${site},limit=${step},offset=${offset},sortBy=POSTING_DATES_DESC`;
-    const data = await curlJson(url);
-    const item = (data.items || [])[0] || {};
-    const list = item.requisitionList || [];
-    for (const j of list) {
-      out.push({
-        i: `or:${host}:${j.Id}`,
-        t: j.Title,
-        c: name,
-        l: String(j.PrimaryLocation || '').replace(/,\s*United States$/, ''),
-        u: `https://${host}/hcmUI/CandidateExperience/en/sites/${site}/job/${j.Id}`,
-        d: j.PostedDate || '',
-        s: 'oracle',
-      });
+  const out = new Map();
+  const readSorted = async (sortBy, stopAt) => {
+    let step = 200;
+    let total = 0;
+    for (let offset = 0; offset < 10000 && out.size < stopAt; ) {
+      const url =
+        `https://${host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList,locationsFacet` +
+        `&finder=findReqs;siteNumber=${site},facetsList=LOCATIONS,limit=${step},offset=${offset},sortBy=${sortBy}`;
+      const data = await curlJson(url);
+      const item = (data.items || [])[0] || {};
+      const list = item.requisitionList || [];
+      total = item.TotalJobsCount || total;
+      if (offset === 0 && sortBy === 'POSTING_DATES_DESC' && total > 10000)
+        console.log(`  ${name}: ${total} jobs; location filter: ${JSON.stringify((item.locationsFacet || []).slice(0, 8))}`);
+      for (const j of list) {
+        out.set(j.Id, {
+          i: `or:${host}:${j.Id}`,
+          t: j.Title,
+          c: name,
+          l: String(j.PrimaryLocation || '').replace(/,\s*United States$/, ''),
+          u: `https://${host}/hcmUI/CandidateExperience/en/sites/${site}/job/${j.Id}`,
+          d: j.PostedDate || '',
+          s: 'oracle',
+        });
+      }
+      if (!list.length) break;
+      if (list.length < step) step = list.length; // the site allows smaller pages than asked for
+      offset += list.length;
+      if (offset >= total) break;
     }
-    if (!list.length) break;
-    if (list.length < step) step = list.length; // the site allows smaller pages than asked for
-    offset += list.length;
-    if (offset >= (item.TotalJobsCount || 0)) break;
-  }
-  return out;
+    return total;
+  };
+  const total = await readSorted('POSTING_DATES_DESC', Infinity);
+  if (total > out.size) await readSorted('POSTING_DATES_ASC', total);
+  return [...out.values()];
 }
 
 /** Amazon's own job search (amazon.jobs), newest first. It shows at most 10,000 results. */
