@@ -1,0 +1,177 @@
+{
+ "phenom": {
+  "n": 100,
+  "hits": 1301,
+  "job": {
+   "ml_skills": [
+    "iso 13485",
+    "quality tools",
+    "root cause analysis",
+    "microsoft office",
+    "continuous improvement",
+    "statistical analysis",
+    "validation processes",
+    "technical documentation",
+    "cross-functional collaboration",
+    "audit management",
+    "sampling plans",
+    "dmaic"
+   ],
+   "descriptionTeaser": "We are looking for a Quality Engineer to support product quality and compliance at our Salt Lake City manufacturing site. This role involves driving quality outcomes in a regulated environment and optimizing processes to enhance product quality. Join us to make a significant impact in the industry!",
+   "state": "Utah",
+   "siteType": "external",
+   "multi_category": [
+    "Quality & Continuous Improvement"
+   ],
+   "reqId": "77819",
+   "city": "Salt Lake City",
+   "latitude": "40.76078",
+   "industry": "",
+   "multi_location": [
+    "Salt Lake City, Utah, United States, 84107"
+   ],
+   "ml_job_parser": {
+    "descriptionTeaser": "We are looking for a Quality Engineer to support product quality and compliance at our Salt Lake City manufacturing site. This role involves driving quality outcomes in a regulated environment and optimizing processes to enhance product quality. Join us to make a significant impact in the industry!",
+    "descriptionTeaser_first200": "Requisition Number: 77819. The company built on breakthroughs. Join us. Corning is one of the world’s leading innovators in glass, ceramic, and materials science. From the depths of the ocean to th...",
+    "descriptionTeaser_keyword": "Requisition Number: 77819. The company built on breakthroughs. Join us. Corning is one of the world’s leading innovators in glass, ceramic, and materials science. From the depths of the ocean to the f...",
+    "descriptionTeaser_ats": "Requisition Number: 77819 The company built on breakthroughs. ​  Join us.​                                                                              Corning is one of the world’s leading innovators"
+   },
+   "externalApply": false,
+   "cityState": "Salt Lake City, Utah",
+   "country": "United States",
+   "visibilityType": "External",
+   "longitude": "-111.89105",
+   "jobId": "77819",
+   "imExternalApply": false,
+   "locale": "en_US",
+   "title": "Quality Engineer, Salt Lake City",
+   "jobSeqNo": "CUWCUPUS77819EXTERNALENUS",
+   "postedDate": "2026-10-22T21:32:30.000+0000",
+   "dateCreated": "2026-09-25T15:36:12.155+0000",
+   "cityStateCountry": "Salt Lake City, Utah, United States",
+   "department": "G - Quality",
+   "jobVisibility": [
+    "external",
+    "internal"
+   ],
+   "location": "Salt Lake City, Utah, United States, 84107",
+   "category": "Quality & Continuous Improvement",
+   "isMultiLocation": true,
+   "multi_location_array": [
+    {
+     "latlong": {
+      "lon": -111.88827,
+      "lat": 40.65634
+     },
+     "location": "Salt Lake City, Utah, United States, 84107"
+    }
+   ],
+   "isMultiCategory": true,
+   "multi_category_array": [
+    {
+     "category": "Quality & Continuous Improvement"
+    }
+   ],
+   "badge": ""
+  },
+  "countries": {
+   "United States": 700,
+   "Mexico": 217,
+   "China": 213,
+   "Poland": 48,
+   "Taiwan": 35,
+   "India": 33,
+   "Germany": 24,
+   "Hungary": 7,
+   "Singapore": 7,
+   "Viet Nam": 5,
+   "France": 4,
+   "Australia": 2,
+   "Finland": 2,
+   "Saudi Arabia": 2,
+   "Israel": 1,
+   "Japan": 1,
+   "Korea, Republic of": 1,
+   "Malaysia": 1,
+   "Morocco": 1,
+   "United Kingdom": 1
+  }
+ },
+ "phenomDeep": {
+  "hits": 0
+ },
+ "radancy": "\r\n\r\n\r\n\r\n    <section id=\"search-results\" data-keywords=\"\" data-location=\"\" data-distance=\"50\" data-latitude=\"\" data-longitude=\"\" data-show-radius=\"False\" data-total-results=\"8326\" data-total-job-results=\"8326\" data-total-pages=\"84\" data-current-page=\"3\" data-records-per-page=\"100\" data-active-facet-id=\"0\" data-custom-facet-name=\"\" data-facet-term=\"\" data-facet-type=\"0\" data-search-results-module-name=\"Search Results\" data-sort-criteria=\"0\" data-sort-direction=\"0\" data-search-type=\"5\" data-ajax-url=\"/search-jobs/results\" data-ajax-post-url=\"/search-jobs/resultspost\" data-server-error-message=\"There was an error retrieving your results. Please refresh and try again.\" data-keyword-type=\"\" data-location-type=\"\" data-location-path=\"\" data-organization-ids=\"\" data-selector-name=\"searchresults\" data-refined-keywords=\"[]\" data-postal-code=\"\" data-save-jobs=\"false\" data-results-type=\"0\" data-use-noindex=\"true\">\r\n        <div class=\"SR-heading\">8326 Jobs</div>\r\n\r\n            <section id=\"search-results-list\">\r\n\r\n\r\n                <ul>\r\n                        <li>\r\n                            <a href=\"/job/new-albany/crew-member/282/71611593440\" data-job-id=\"71611593440\">\r\n                               <h2>Crew Member</h2>\r\n                                        <span class=\"job-location\">New Albany, OH</span>\r\n                                    <span class=\"job-address\">9825 Johnstown Rd, 43054</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a href=\"/job/saint-clair-shores/kitchen-leader/282/103651860656\" data-job-id=\"103651860656\">\r\n                               <h2>Kitchen Leader</h2>\r\n                                        <span class=\"job-location\">Saint Clair Shores, MI</span>\r\n                                    <span class=\"job-address\">22651 East 9 Mile Road, 48080</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a href=\"/job/glasgow/crew-member/282/103651802368\" data-job-id=\"103651802368\">\r\n                               <h2>Crew Member</h2>\r\n                                        <span class=\"job-location\">Glasgow, DE</span>\r\n                                    <span class=\"job-address\">2675 Pulaski Highway, 19702</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a href=\"/job/saint-clair-shores/service-leader/282/103651784720\" data-job-id=\"103651784720\">\r\n                               <h2>Service Leader</h2>\r\n                                        <span class=\"job-location\">Saint Clair Shores, MI</span>\r\n                                    <span class=\"job-address\">22651 East 9 Mile Road, 48080</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a href=\"/job/morrow/crew-member/282/71245345824\" data-job-id=\"71245345824\">\r\n                               <h2>Crew Member</h2>\r\n                                        <span class=\"job-location\">Morrow, GA</span>\r\n                                    <span class=\"job-address\">2011 Mt. Zion Rd., 30260</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a href=\"/job/beaumont/crew-member/282/71611416160\" data-job-id=\"71611416160\">\r\n                               <h2>Crew Member</h2>\r\n                                        <span class=\"job-location\">Beaumont, TX</span>\r\n                                    <span class=\"job-address\">3905 Dowlen Road, 77706</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a href=\"/job/north-little-rock/crew-member/282/71245358176\" data-job-id=\"71245358176\">\r\n                               <h2>Crew Member</h2>\r\n                                        <span class=\"job-location\">North Little Rock, AR</span>\r\n                                    <span class=\"job-address\">3917 McCain Blvd., 72116</span>\r\n                                \r\n                                <span class=\"view-job\">View Job</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                           ",
+ "radancyLinks": 100,
+ "radancyNoLinks": "\r\n\r\n\r\n\r\n    <section class=\"search-results\" id=\"search-results\" data-keywords=\"\" data-location=\"\" data-distance=\"50\" data-latitude=\"\" data-longitude=\"\" data-show-radius=\"False\" data-total-results=\"744\" data-total-job-results=\"683\" data-total-pages=\"46\" data-current-page=\"1\" data-records-per-page=\"15\" data-active-facet-id=\"0\" data-custom-facet-name=\"\" data-facet-term=\"\" data-facet-type=\"0\" data-search-results-module-name=\"Search Results\" data-sort-criteria=\"0\" data-sort-direction=\"0\" data-search-type=\"5\" data-ajax-url=\"/en/search-jobs/results\" data-ajax-post-url=\"/en/search-jobs/resultspost\" data-server-error-message=\"There was an error retrieving your results. Please refresh and try again.\" data-keyword-type=\"\" data-location-type=\"\" data-location-path=\"\" data-organization-ids=\"\" data-selector-name=\"searchresults\" data-refined-keywords=\"[]\" data-postal-code=\"\" data-save-jobs=\"true\" data-results-type=\"0\" data-total-content-results=\"61\" data-use-noindex=\"true\">\r\n        <h2 class=\"search-results__heading\">683 results</h2>\r\n\r\n            <div class=\"search-results__list\" id=\"search-results-list\">\r\n\r\n\r\n                <ul>\r\n                        <li>\r\n                            <a class=\"search-results__job-title-link\" href=\"/en/job/o-fallon/warehouse-worker-full-time-shift/733/102309535264\" data-job-id=\"102309535264\">Warehouse Worker - Full Time Shift</a>\r\n                                <span class=\"search-results__job-location\">O&#x27;Fallon, MO</span>\r\n                                <span class=\"search-results__job-date-posted\">10/22/2026</span>\r\n                                <button type=\"button\" class=\"js-save-job-btn\" data-job-id=\"102309535264\" data-org-id=\"733\"><span>Save for Later</span></button>\r\n                        </li>\r\n                        <li>\r\n                            <a class=\"search-results__job-title-link\" href=\"/en/job/duluth/warehouse-worker-full-time-shifts/733/102309535152\" data-job-id=\"102309535152\">Warehouse Worker - Full Time Shifts</a>\r\n                                <span class=\"search-results__job-location\">Duluth, GA</span>\r\n                                <span class=\"search-results__job-date-posted\">10/22/2026</span>\r\n                                <button type=\"button\" class=\"js-save-job-btn\" data-job-id=\"102309535152\" data-org-id=\"733\"><span>Save for Later</span></button>\r\n                        </li>\r\n                        <li>\r\n                            <a class=\"search-results__job-title-link\" href=\"/en/job/irving/senior-project-manager-real-estate-construction/733/103744290528\" data-job-id=\"103744290528\">Senior Project Manager, Real Estate Construction</a>\r\n                                <span class=\"search-results__job-location\">Multiple</span>\r\n                                <span class=\"search-results__job-date-posted\">11/24/2026</span>\r\n                                <button type=\"button\" class=\"js-save-job-btn\" data-job-id=\"103744290528\" data-org-id=\"733\"><span>Save for Later</span></button>\r\n                        </li>\r\n                        <li>\r\n                            <a class=\"search-results__job-title-link\" href=\"/en/job/sherbrooke/infirmier-ere-de-perfusion-sherbrooke/733/103744290448\" data-job-id=\"103744290448\">Infirmier/&#xE8;re de perfusion - Sherbrooke</a>\r\n                                <span class=\"search-results__job-location\">Multiple</span>\r\n                                <span class=\"search-results__job-date-posted\">11/24/2026</span>\r\n                                <button type=\"button\" class=\"js-save-job-btn\" data-job-id=\"103744290448\" data-org-id=\"733\"><span>Save for Later</span></button>\r\n                        </li>\r\n                        <li>\r\n                            <a class=\"search-results__job-title-link\" href=\"/en/job/olive-branch/receiving-monday-friday-7-00am-3-30pm/733/103744290192\" data-job-id=\"103744290192\">Receiving Monday - Friday 7:00am - 3:30pm</a>\r\n                                <span class=\"search-results__jo",
+ "eightfold": {
+  "keys": [
+   "positions",
+   "filterDef",
+   "count",
+   "sortBy",
+   "appliedFilters",
+   "debug",
+   "savedSearchMetadata",
+   "resultsMetaData"
+  ],
+  "pos": {
+   "id": 45463279,
+   "displayJobId": "JR117461",
+   "name": "Program Manager, SIG",
+   "locations": [
+    "San Jose, California, United States of America"
+   ],
+   "standardizedLocations": [
+    "San Jose, CA, US"
+   ],
+   "postedTs": 1795046400,
+   "solrScore": null,
+   "stars": 0,
+   "department": "TSE",
+   "creationTs": 1795046400,
+   "isHot": 1,
+   "workLocationOption": "onsite",
+   "locationFlexibility": "flexible_within_country",
+   "atsJobId": "JR117461",
+   "positionUrl": "/careers/job/45463279"
+  }
+ },
+ "eightfold2": {},
+ "wd": [
+  "myhrabc|wd5|distribution 2",
+  "myhrabc|wd5|global 1040",
+  "humana|wd5|centerwell_external_career_site 1878",
+  "humana|wd5|humana_external_career_site 338",
+  "truist|wd1|afco 0",
+  "truist|wd1|amrisc -",
+  "truist|wd1|careers 1327",
+  "truist|wd1|crc -",
+  "truist|wd1|mis -",
+  "republic|wd5|republic 1579",
+  "itw|wd5|external 756",
+  "pvh|wd1|pvh_careers 1253",
+  "hpe|wd5|acjobsite 1676",
+  "hpe|wd5|jobsathpe 1717",
+  "hpe|wd5|wfmathpe 1664",
+  "ppg|wd5|ppg_careers 680",
+  "fiserv|wd5|ext 424",
+  "regions|wd5|regions_careers 483",
+  "adobe|wd5|adobe_careers -",
+  "adobe|wd5|external_experienced 264",
+  "adobe|wd5|external_university -",
+  "masco|wd1|behr 38",
+  "masco|wd1|brasstech 3",
+  "masco|wd1|deltafaucet 55",
+  "masco|wd1|endlesspools 0",
+  "masco|wd1|liberty 1",
+  "masco|wd1|masco 144",
+  "masco|wd1|mascocanada 12",
+  "masco|wd1|mercuryplastics 2",
+  "conagrabrands|wd1|careers_can 8",
+  "conagrabrands|wd1|careers_us 229",
+  "dollartree|wd5|dollartreeca 449",
+  "dollartree|wd5|dollartreeus 18493",
+  "oreillyauto|wd1|oreilly 19330",
+  "advanceauto|wd5|advanceexternalcareers 2000"
+ ]
+}
