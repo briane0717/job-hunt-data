@@ -1,0 +1,446 @@
+{
+ "workday": [
+  "myhrabc|wd5|global|Cencora",
+  "humana|wd5|centerwell_external_career_site|CenterWell (Humana)",
+  "truist|wd1|careers|Truist",
+  "republic|wd5|republic|Republic Services",
+  "itw|wd5|external|ITW",
+  "pvh|wd1|pvh_careers|PVH",
+  "hpe|wd5|jobsathpe|Hewlett Packard Enterprise",
+  "ppg|wd5|ppg_careers|PPG",
+  "fiserv|wd5|ext|Fiserv",
+  "regions|wd5|regions_careers|Regions Bank",
+  "jj|wd5|jj|Johnson & Johnson",
+  "arrow|wd1|ac|Arrow Electronics",
+  "bakerhughes|wd5|bakerhughes|Baker Hughes",
+  "bdx|wd1|external_career_site_usa|BD",
+  "ur|wd1|urcareers|United Rentals",
+  "keybank|wd5|external_career_site|KeyBank",
+  "fis|wd5|searchjobs|FIS",
+  "rockwellautomation|wd1|external_rockwell_automation|Rockwell Automation",
+  "dover|wd103|dover|Dover",
+  "sysco|site-wd5|syscocareers|Sysco",
+  "mdlz|site-wd3|external|Mondelez",
+  "devonenergy|site-wd5|careers|Devon Energy"
+ ],
+ "oracle": [
+  {
+   "name": "Uber",
+   "host": "iaziqy.fa.ocs.oraclecloud.com",
+   "site": "UberCareers"
+  },
+  {
+   "name": "Cummins",
+   "host": "fa-espx-saasfaprod1.fa.ocs.oraclecloud.com",
+   "site": "CX_1"
+  },
+  {
+   "name": "Cummins",
+   "host": "fa-espx-saasfaprod1.fa.ocs.oraclecloud.com",
+   "site": "CX_1006"
+  },
+  {
+   "name": "Citizens Bank",
+   "host": "hcgn.fa.us2.oraclecloud.com",
+   "site": "CX_1"
+  }
+ ],
+ "jibe": [
+  {
+   "name": "PepsiCo",
+   "host": "www.pepsicojobs.com"
+  },
+  {
+   "name": "Booking Holdings",
+   "host": "www.bookingholdings-coe.com"
+  },
+  {
+   "name": "Constellation Energy",
+   "host": "jobs.constellationenergy.com"
+  },
+  {
+   "name": "Exelon",
+   "host": "jobs.exeloncorp.com"
+  },
+  {
+   "name": "Universal Health Services",
+   "host": "jobs.uhs.com"
+  },
+  {
+   "name": "Kinder Morgan",
+   "host": "careers.kindermorgan.com"
+  },
+  {
+   "name": "Principal Financial",
+   "host": "careers.principal.com"
+  },
+  {
+   "name": "Builders FirstSource",
+   "host": "careers.bldr.com"
+  },
+  {
+   "name": "First Citizens BancShares",
+   "host": "jobs.firstcitizens.com"
+  },
+  {
+   "name": "Reliance",
+   "host": "careers.reliance.com"
+  },
+  {
+   "name": "Arthur J. Gallagher",
+   "host": "jobs.ajg.com"
+  },
+  {
+   "name": "Intercontinental Exchange",
+   "host": "careers.ice.com"
+  },
+  {
+   "name": "FM",
+   "host": "careers.fm.com"
+  },
+  {
+   "name": "Sirius XM Holdings",
+   "host": "careers.siriusxm.com"
+  },
+  {
+   "name": "Post Holdings",
+   "host": "jobs.postholdings.com"
+  },
+  {
+   "name": "State Farm Insurance",
+   "host": "jobs.statefarm.com"
+  }
+ ],
+ "rmk": [
+  {
+   "name": "Phillips 66",
+   "host": "careers.phillips66.com"
+  },
+  {
+   "name": "NextEra Energy",
+   "host": "jobs.nexteraenergy.com"
+  },
+  {
+   "name": "HF Sinclair",
+   "host": "careers.hfsinclair.com"
+  },
+  {
+   "name": "Freeport-McMoRan",
+   "host": "jobs.fcx.com"
+  },
+  {
+   "name": "PG&E",
+   "host": "careers.pge.com"
+  },
+  {
+   "name": "Union Pacific",
+   "host": "up.jobs"
+  },
+  {
+   "name": "Lear",
+   "host": "jobs.lear.com"
+  },
+  {
+   "name": "Dominion Energy",
+   "host": "careers.dominionenergy.com"
+  },
+  {
+   "name": "Ball",
+   "host": "jobs.ball.com"
+  },
+  {
+   "name": "Entergy",
+   "host": "jobs.entergy.com"
+  },
+  {
+   "name": "Hershey",
+   "host": "careers.thehersheycompany.com"
+  },
+  {
+   "name": "Owens Corning",
+   "host": "careers.owenscorning.com"
+  },
+  {
+   "name": "Molson Coors Beverage",
+   "host": "jobs.molsoncoors.com"
+  },
+  {
+   "name": "Mohawk Industries",
+   "host": "careers.mohawkind.com"
+  },
+  {
+   "name": "Delek US Holdings",
+   "host": "jobs.delekus.com"
+  },
+  {
+   "name": "Cintas",
+   "host": "careers.cintas.com"
+  },
+  {
+   "name": "AGCO",
+   "host": "careers.agcocorp.com"
+  },
+  {
+   "name": "Dana",
+   "host": "jobs.dana.com"
+  },
+  {
+   "name": "WEC Energy Group",
+   "host": "careers.wecenergygroup.com"
+  },
+  {
+   "name": "CenterPoint Energy",
+   "host": "careers.centerpointenergy.com"
+  },
+  {
+   "name": "Optimum Communications",
+   "host": "www.optimumcareers.com"
+  },
+  {
+   "name": "CMS Energy",
+   "host": "careers.consumersenergy.com"
+  },
+  {
+   "name": "Commercial Metals",
+   "host": "jobs.cmc.com"
+  },
+  {
+   "name": "Nucor",
+   "host": "jobs.nucor.com"
+  },
+  {
+   "name": "Paccar",
+   "host": "jobs.paccar.com"
+  },
+  {
+   "name": "Super Micro Computer",
+   "host": "jobs.supermicro.com"
+  },
+  {
+   "name": "Lincoln National",
+   "host": "jobs.lincolnfinancial.com"
+  },
+  {
+   "name": "W.W. Grainger",
+   "host": "jobs.grainger.com"
+  },
+  {
+   "name": "Aflac",
+   "host": "careers.aflac.com"
+  },
+  {
+   "name": "Erie Insurance Group",
+   "host": "jobs.erieinsurance.com"
+  },
+  {
+   "name": "GXO Logistics",
+   "host": "jobs.gxo.com"
+  },
+  {
+   "name": "Public Service Enterprise Group",
+   "host": "jobs.pseg.com"
+  },
+  {
+   "name": "Expand Energy",
+   "host": "jobs.expandenergy.com"
+  },
+  {
+   "name": "JetBlue Airways",
+   "host": "careers.jetblue.com"
+  },
+  {
+   "name": "Eastman Chemical",
+   "host": "jobs.eastman.com"
+  },
+  {
+   "name": "XPO",
+   "host": "jobs.xpo.com"
+  },
+  {
+   "name": "Ingersoll Rand",
+   "host": "careers.irco.com"
+  }
+ ],
+ "phenom": [
+  {
+   "name": "Thermo Fisher Scientific",
+   "host": "jobs.thermofisher.com",
+   "ref": "TFSCGLOBAL",
+   "path": "global/en"
+  },
+  {
+   "name": "Marsh & McLennan",
+   "host": "careers.marsh.com",
+   "ref": "MAMCGLOBAL",
+   "path": "global/en"
+  },
+  {
+   "name": "Newmont",
+   "host": "jobs.newmont.com",
+   "ref": "NMCNMCUS",
+   "path": "us/en"
+  },
+  {
+   "name": "Zimmer Biomet Holdings",
+   "host": "careers.zimmerbiomet.com",
+   "ref": "ZBUZBRUS",
+   "path": "us/en"
+  },
+  {
+   "name": "United Airlines Holdings",
+   "host": "careers.united.com",
+   "ref": "UAIUADUS",
+   "path": "us/en"
+  },
+  {
+   "name": "Cisco Systems",
+   "host": "careers.cisco.com",
+   "ref": "CISCISGLOBAL",
+   "path": "global/en"
+  },
+  {
+   "name": "Warner Bros. Discovery",
+   "host": "careers.wbd.com",
+   "ref": "WAMEGLOBAL",
+   "path": "global/en"
+  },
+  {
+   "name": "PNC Financial Services Group",
+   "host": "careers.pnc.com",
+   "ref": "PNC1GLOBAL",
+   "path": "global/en"
+  },
+  {
+   "name": "LPL Financial Holdings",
+   "host": "career.lpl.com",
+   "ref": "LFMLFFUS",
+   "path": "us/en"
+  },
+  {
+   "name": "Ecolab",
+   "host": "jobs.ecolab.com",
+   "ref": "EIYEIEUS",
+   "path": "us/en"
+  },
+  {
+   "name": "Corning",
+   "host": "careers.corning.com",
+   "ref": "CUWCUPUS",
+   "path": "us/en"
+  }
+ ],
+ "radancy": [
+  {
+   "name": "McKesson",
+   "host": "careers.mckesson.com"
+  },
+  {
+   "name": "Chevron",
+   "host": "careers.chevron.com"
+  },
+  {
+   "name": "CHS",
+   "host": "jobs.chsinc.com"
+  },
+  {
+   "name": "Genuine Parts",
+   "host": "jobs.genpt.com"
+  },
+  {
+   "name": "Synchrony Financial",
+   "host": "www.synchronycareers.com"
+  },
+  {
+   "name": "Halliburton",
+   "host": "careers.halliburton.com"
+  },
+  {
+   "name": "L3Harris Technologies",
+   "host": "careers.l3harris.com"
+  },
+  {
+   "name": "Keurig Dr Pepper",
+   "host": "careers.keurigdrpepper.com"
+  },
+  {
+   "name": "Eversource Energy",
+   "host": "jobs.eversource.com"
+  },
+  {
+   "name": "Chipotle Mexican Grill",
+   "host": "jobs.chipotle.com"
+  },
+  {
+   "name": "Moody's",
+   "host": "careers.moodys.com"
+  },
+  {
+   "name": "Ford Motor",
+   "host": "www.careers.ford.com"
+  },
+  {
+   "name": "Massachusetts Mutual Life Insurance",
+   "host": "careers.massmutual.com"
+  },
+  {
+   "name": "3M",
+   "host": "careers.3m.com"
+  },
+  {
+   "name": "Intuit",
+   "host": "jobs.intuit.com"
+  }
+ ],
+ "eightfold": [
+  {
+   "name": "Morgan Stanley",
+   "host": "morganstanley.eightfold.ai",
+   "domain": "morganstanley.com"
+  },
+  {
+   "name": "Lockheed Martin",
+   "host": "lockheedmartin.eightfold.ai",
+   "domain": "lockheedmartin.com"
+  },
+  {
+   "name": "Micron",
+   "host": "micron.eightfold.ai",
+   "domain": "micron.com"
+  },
+  {
+   "name": "Boston Scientific",
+   "host": "bostonscientific.eightfold.ai",
+   "domain": "bostonscientific.com"
+  },
+  {
+   "name": "Lam Research",
+   "host": "lamresearch.eightfold.ai",
+   "domain": "lamresearch.com"
+  },
+  {
+   "name": "Corteva",
+   "host": "corteva.eightfold.ai",
+   "domain": "corteva.com"
+  },
+  {
+   "name": "Qualcomm",
+   "host": "careers.qualcomm.com",
+   "domain": "qualcomm.com"
+  },
+  {
+   "name": "Applied Materials",
+   "host": "careers.appliedmaterials.com",
+   "domain": "appliedmaterials.com"
+  },
+  {
+   "name": "Est\u00e9e Lauder Companies",
+   "host": "careers.elcompanies.com",
+   "domain": "elcompanies.com"
+  },
+  {
+   "name": "Lumen",
+   "host": "careers.lumen.com",
+   "domain": "lumen.com"
+  }
+ ]
+}

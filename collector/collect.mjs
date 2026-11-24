@@ -172,6 +172,143 @@ async function rmk({ name, host }) {
   return [...out.values()];
 }
 
+const pauseMs = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Phenom career sites (Thermo Fisher, Cisco, PNC, Corning, …): the site's own search widget,
+ * POST https://{host}/widgets (ddoKey refineSearch), 100 jobs at a time. `ref` is the site's
+ * Phenom id (phApp.refNum on its pages) and `path` its language path, such as "us/en".
+ */
+async function phenom({ name, host, ref, path = 'us/en' }) {
+  const out = new Map();
+  let total = Infinity;
+  for (let from = 0; from < Math.min(total, 10000); from += 100) {
+    const body = JSON.stringify({
+      lang: 'en_us', deviceType: 'desktop', country: 'us', pageName: 'search-results', ddoKey: 'refineSearch',
+      sortBy: '', subsearch: '', from, jobs: true, counts: false, all_fields: [], size: 100, clearAll: false,
+      jdsource: 'facets', isSliderEnable: false, pageId: 'page20', siteType: 'external', keywords: '', global: true,
+      selected_fields: {}, locationData: {}, refNum: ref,
+    });
+    let data;
+    try {
+      data = await curlJson(`https://${host}/widgets`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
+    } catch (e) {
+      if (!out.size) throw e;
+      console.log(`  ${name}: stopped at ${from} of ${total} (${e.message})`);
+      break;
+    }
+    const rs = data.refineSearch || {};
+    total = rs.totalHits || 0;
+    const list = rs.data?.jobs || [];
+    if (!list.length) break;
+    for (const j of list) {
+      if (j.country && !/^(United States|USA|US)$/i.test(j.country)) continue;
+      out.set(j.jobId, {
+        i: `ph:${host}:${j.jobId}`,
+        t: j.title,
+        c: name,
+        l: j.city && j.state ? `${j.city}, ${j.state}` : j.cityState || j.location || '',
+        u: `https://${host}/${path}/job/${encodeURIComponent(j.jobId)}`,
+        d: String(j.postedDate || '').slice(0, 10),
+        s: 'phenom',
+      });
+    }
+    await pauseMs(300);
+  }
+  return [...out.values()];
+}
+
+/**
+ * Radancy (TalentBrew) career sites (Chipotle, Citi, McKesson, …): the search page's own results
+ * call, GET /search-jobs/results?CurrentPage=N&RecordsPerPage=100, which returns the list as HTML.
+ */
+async function radancy({ name, host }) {
+  const out = new Map();
+  let pages = Infinity;
+  for (let page = 1; page <= Math.min(pages, 300); page++) {
+    const url =
+      `https://${host}/search-jobs/results?ActiveFacetID=0&CurrentPage=${page}&RecordsPerPage=100&Distance=50&RadiusUnitType=0` +
+      `&Keywords=&Location=&ShowRadius=False&IsPagination=False&FacetTerm=&FacetType=0&SearchResultsModuleName=Search+Results` +
+      `&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=5&ResultsType=0`;
+    let html;
+    try {
+      html = (await curlJson(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })).results || '';
+    } catch (e) {
+      if (!out.size) throw e;
+      console.log(`  ${name}: stopped at page ${page} (${e.message})`);
+      break;
+    }
+    const tp = html.match(/data-total-pages="(\d+)"/);
+    if (tp) pages = Number(tp[1]);
+    let added = 0;
+    for (const li of html.split(/<li[\s>]/i).slice(1)) {
+      const a = li.match(/href="([^"]*\/job\/[^"]+)"[^>]*data-job-id="(\d+)"/) || li.match(/data-job-id="(\d+)"[^>]*href="([^"]*\/job\/[^"]+)"/);
+      if (!a) continue;
+      const [href, id] = a[1].includes('/job/') ? [a[1], a[2]] : [a[2], a[1]];
+      if (out.has(id)) continue;
+      const title = (li.match(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/) || li.match(/data-job-id="\d+"[^>]*>([^<]+)</) || [])[1] || '';
+      const place = (li.match(/class="[^"]*job-location[^"]*"[^>]*>([\s\S]*?)<\/span>/) || [])[1] || '';
+      const date = (li.match(/class="[^"]*date-posted[^"]*"[^>]*>([^<]+)</) || [])[1] || '';
+      const clean = (t) => unescapeHtml(t.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+      const md = date.trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      out.set(id, {
+        i: `rd:${host}:${id}`,
+        t: clean(title),
+        c: name,
+        l: clean(place),
+        u: new URL(href.replace(/&amp;/g, '&'), `https://${host}`).href,
+        d: md ? `${md[3]}-${md[1].padStart(2, '0')}-${md[2].padStart(2, '0')}` : '',
+        s: 'radancy',
+      });
+      added++;
+    }
+    if (!added) break;
+    await pauseMs(300);
+  }
+  return [...out.values()];
+}
+
+/**
+ * Eightfold career sites (Lockheed Martin, Micron, Qualcomm, …): GET /api/pcsx/search?domain=…&start=N,
+ * 10 jobs at a time, read slowly because these sites limit how fast they answer.
+ */
+async function eightfold({ name, host, domain }) {
+  const out = new Map();
+  let total = Infinity;
+  for (let start = 0; start < Math.min(total, 10000); ) {
+    let data;
+    for (let attempt = 0; attempt < 3 && !data; attempt++) {
+      data = await curlJson(`https://${host}/api/pcsx/search?domain=${domain}&query=&location=&start=${start}&sort_by=timestamp`).catch(async (e) => {
+        await pauseMs(5000 * (attempt + 1));
+        if (attempt === 2) console.log(`  ${name}: stopped at ${start} of ${total} (${e.message})`);
+        return null;
+      });
+    }
+    if (!data) {
+      if (!out.size) throw new Error(`${name}: job list did not answer`);
+      break;
+    }
+    total = data.data?.count ?? 0;
+    const list = data.data?.positions || [];
+    if (!list.length) break;
+    for (const j of list) {
+      const loc = (j.standardizedLocations || [])[0] || (j.locations || [])[0] || '';
+      out.set(j.id, {
+        i: `ef:${host}:${j.id}`,
+        t: j.name,
+        c: name,
+        l: loc.replace(/,\s*(US|United States( of America)?)$/, ''),
+        u: new URL(j.positionUrl || `/careers/job/${j.id}`, `https://${host}`).href,
+        d: j.postedTs ? new Date(j.postedTs * 1000).toISOString().slice(0, 10) : '',
+        s: 'eightfold',
+      });
+    }
+    start += list.length;
+    await pauseMs(700);
+  }
+  return [...out.values()];
+}
+
 async function greenhouse(slug) {
   const data = await getJson(`https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(slug)}/jobs`);
   return (data.jobs || []).map((j) => ({
@@ -256,7 +393,10 @@ function workdayLocationSlices(facets = []) {
 async function workday(entry, max = 400) {
   // "tenant|wdN|site", optionally followed by "|Company name" when the tenant's short name isn't the company's.
   const [co, wd, site, label] = entry.split('|');
-  const base = `https://${co}.${wd}.myworkdayjobs.com`;
+  // "site-wd5" means the board lives at wd5.myworkdaysite.com/recruiting/{tenant}/{site} (Sysco, Mondelez).
+  const onSite = wd.startsWith('site-');
+  const base = onSite ? `https://${wd.slice(5)}.myworkdaysite.com` : `https://${co}.${wd}.myworkdayjobs.com`;
+  const jobBase = onSite ? `${base}/recruiting/${co}/${site}` : `${base}/${site}`;
   const out = new Map();
   // A job open in several places only says "3 Locations"; when reading one location at a time,
   // that location's name stands in, so the job still lands on the map.
@@ -269,7 +409,7 @@ async function workday(entry, max = 400) {
         t: j.title,
         c: label || pretty(co),
         l: /^\d+ Locations?$/i.test(text) && sliceName ? sliceName : text,
-        u: `${base}/${site}${j.externalPath}`,
+        u: `${jobBase}${j.externalPath}`,
         d: workdayDate(j.postedOn),
         s: 'workday',
       });
@@ -592,6 +732,21 @@ if (want('oracle')) {
 if (want('rmk') && big.rmk?.length) {
   const r = await pool(big.rmk, rmk, 'SuccessFactors career sites (Tractor Supply, …)', 3);
   sources.rmk = r.stats;
+  add(r.results);
+}
+if (want('phenom') && big.phenom?.length) {
+  const r = await pool(big.phenom, phenom, 'Phenom career sites (Thermo Fisher, …)', 3);
+  sources.phenom = r.stats;
+  add(r.results);
+}
+if (want('radancy') && big.radancy?.length) {
+  const r = await pool(big.radancy, radancy, 'Radancy career sites (Chipotle, …)', 3);
+  sources.radancy = r.stats;
+  add(r.results);
+}
+if (want('eightfold') && big.eightfold?.length) {
+  const r = await pool(big.eightfold, eightfold, 'Eightfold career sites (Lockheed Martin, …)', 2);
+  sources.eightfold = r.stats;
   add(r.results);
 }
 if (want('amazon') && big.amazon) {
