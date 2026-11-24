@@ -35,7 +35,7 @@ done < collector/parts.txt
 # Results saved under older part names (before collector/parts.txt changed) still count;
 # the collector drops repeated jobs when it merges.
 for f in rawnow/*/*.json; do
-  [ -f "$f" ] && [ ! -f "raw/$(basename "$f")" ] && cp "$f" raw/ && echo "$(basename "$f"): this run (older part name)"
+  [ -f "$f" ] && [ ! -f "raw/$(basename "$f")" ] && cp "$f" raw/ && echo "$(basename "$f"): this run (older part name)" || true
 done
 
 [ -f cities1000.txt ] || { curl -sSfL -o cities1000.zip https://download.geonames.org/export/dump/cities1000.zip && unzip -o -q cities1000.zip; }
