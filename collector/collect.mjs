@@ -72,7 +72,7 @@ async function getJson(url, init = {}) {
  */
 const run = promisify(execFile);
 async function curlJson(url, { method = 'GET', headers = {}, body } = {}) {
-  const argv = ['-sS', '--max-time', '25', '-X', method, '-w', '\n%{http_code}', '-A', UA, '-H', 'Accept: application/json'];
+  const argv = ['-sSL', '--max-time', '25', '-X', method, '-w', '\n%{http_code}', '-A', UA, '-H', 'Accept: application/json'];
   for (const [k, v] of Object.entries(headers)) argv.push('-H', `${k}: ${v}`);
   if (body) argv.push('--data-raw', body);
   argv.push(url);
@@ -202,7 +202,7 @@ async function phenom({ name, host, ref, path = 'us/en' }) {
     const list = rs.data?.jobs || [];
     if (!list.length) break;
     for (const j of list) {
-      if (j.country && !/^(United States|USA|US)$/i.test(j.country)) continue;
+      if (j.country && !/^(United States( of America)?|USA?|U\.S\.A?\.?)$/i.test(j.country)) continue;
       out.set(j.jobId, {
         i: `ph:${host}:${j.jobId}`,
         t: j.title,
@@ -304,7 +304,7 @@ async function eightfold({ name, host, domain }) {
       });
     }
     start += list.length;
-    await pauseMs(700);
+    await pauseMs(1500); // these sites refuse fast readers part way
   }
   return [...out.values()];
 }

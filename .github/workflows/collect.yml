@@ -37,6 +37,7 @@ jobs:
           - bigworkday@1/3
           - bigworkday@2/3
           - jibe,oracle,amazon,rmk
+          - phenom,radancy,eightfold
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
