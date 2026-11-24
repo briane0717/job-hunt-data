@@ -18,7 +18,11 @@
     "att|wd1|ATTGeneral",
     "att|wd1|ATTcollege",
     "verizon|wd12|verizon-careers",
-    "bjswholesaleclub|wd1|BJsCareers"
+    "bjswholesaleclub|wd1|BJsCareers",
+    "hyvee|wd1|HyVeeCareers",
+    "wegmans|wd1|Wegmans",
+    "gianteagle|wd503|GEExternalcareers",
+    "saks|wd1|careers_at_saks"
   ],
   "jibe": [
     {
@@ -40,6 +44,10 @@
     {
       "name": "H-E-B",
       "host": "careers.heb.com"
+    },
+    {
+      "name": "Sprouts Farmers Market",
+      "host": "jobs.sprouts.com"
     }
   ],
   "oracle": [
@@ -67,6 +75,16 @@
       "name": "Albertsons",
       "host": "eofd.fa.us6.oraclecloud.com",
       "site": "CX_1001"
+    },
+    {
+      "name": "AutoZone",
+      "host": "egud.fa.us2.oraclecloud.com",
+      "site": "CX_1"
+    },
+    {
+      "name": "Sherwin-Williams",
+      "host": "ejhp.fa.us6.oraclecloud.com",
+      "site": "CX_2"
     }
   ],
   "amazon": true
