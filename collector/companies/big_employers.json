@@ -22,7 +22,12 @@
     "hyvee|wd1|HyVeeCareers",
     "wegmans|wd1|Wegmans",
     "gianteagle|wd503|GEExternalcareers",
-    "saks|wd1|careers_at_saks"
+    "saks|wd1|careers_at_saks",
+    "basspro|wd1|careers",
+    "petco|wd504|External",
+    "totalwine|wd1|twm",
+    "qvc|wd5|QRG",
+    "signetjewelers|wd1|SignetCorporateCareers"
   ],
   "jibe": [
     {
@@ -85,6 +90,11 @@
       "name": "Sherwin-Williams",
       "host": "ejhp.fa.us6.oraclecloud.com",
       "site": "CX_2"
+    },
+    {
+      "name": "Dell Technologies",
+      "host": "enterpriseplatform.dell.com",
+      "site": "careers"
     }
   ],
   "amazon": true
