@@ -477,15 +477,32 @@ for (const j of all) {
 }
 
 await mkdir(path.join(OUT, 'v1', 'us'), { recursive: true });
+await mkdir(path.join(OUT, 'v1', 'cells'), { recursive: true });
+await mkdir(path.join(OUT, 'v1', 'unmapped'), { recursive: true });
 const newestFirst = (a, b) => String(b.d).localeCompare(String(a.d));
 const stateCounts = {};
+// Whole-state files (for "any distance" searches), plus small files the phone needs for a
+// distance search: map squares of 1 degree (about 69 by 50 miles) for jobs with coordinates,
+// and one file per state for jobs whose city couldn't be put on the map.
+const cells = {};
 for (const [st, jobs] of Object.entries(byState)) {
   jobs.sort(newestFirst);
   stateCounts[st] = jobs.length;
   await writeFile(path.join(OUT, 'v1', 'us', `${st}.json`), JSON.stringify(jobs));
+  const unmapped = jobs.filter((j) => !j.g);
+  await writeFile(path.join(OUT, 'v1', 'unmapped', `${st}.json`), JSON.stringify(unmapped));
+  for (const j of jobs) if (j.g) (cells[`${Math.floor(j.g[0])}_${Math.floor(j.g[1])}`] ||= new Map()).set(j.i, j);
+}
+const cellCounts = {};
+for (const [key, map] of Object.entries(cells)) {
+  const jobs = [...map.values()].sort(newestFirst);
+  cellCounts[key] = jobs.length;
+  await writeFile(path.join(OUT, 'v1', 'cells', `${key}.json`), JSON.stringify(jobs));
 }
 remote.sort(newestFirst);
 await writeFile(path.join(OUT, 'v1', 'remote.json'), JSON.stringify(remote));
+// The newest remote jobs only, so a phone search doesn't download every remote job each time.
+await writeFile(path.join(OUT, 'v1', 'remote-recent.json'), JSON.stringify(remote.slice(0, 8000)));
 const manifest = {
   generatedAt: new Date().toISOString(),
   totalJobs: seen.size,
@@ -493,6 +510,7 @@ const manifest = {
   skipped: { outsideUS: foreign, noPlace: unplaced },
   withCoordinates: located,
   states: stateCounts,
+  cells: cellCounts,
   sources,
 };
 await writeFile(path.join(OUT, 'v1', 'manifest.json'), JSON.stringify(manifest, null, 2));
