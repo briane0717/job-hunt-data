@@ -17,7 +17,9 @@
 //   {out}/v1/remote.json         remote jobs open to US workers
 // A job is {i: id, t: title, c: company, l: location, u: url, d: posted date or '', s: source, g?: [lat, lon]}.
 
+import { execFile } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -55,6 +57,27 @@ async function getJson(url, init = {}) {
     throw err;
   }
   return res.json();
+}
+
+/**
+ * Workday turns away Node's built-in fetch (it answers 429 with a block page) but answers curl,
+ * so Workday requests go through curl.
+ */
+const run = promisify(execFile);
+async function curlJson(url, { method = 'GET', headers = {}, body } = {}) {
+  const argv = ['-sS', '--max-time', '25', '-X', method, '-w', '\n%{http_code}', '-A', UA, '-H', 'Accept: application/json'];
+  for (const [k, v] of Object.entries(headers)) argv.push('-H', `${k}: ${v}`);
+  if (body) argv.push('--data-raw', body);
+  argv.push(url);
+  const { stdout } = await run('curl', argv, { maxBuffer: 64 * 1024 * 1024 });
+  const cut = stdout.lastIndexOf('\n');
+  const status = Number(stdout.slice(cut + 1));
+  if (status < 200 || status >= 300) {
+    const err = new Error(`HTTP ${status}`);
+    err.status = status;
+    throw err;
+  }
+  return JSON.parse(stdout.slice(0, cut));
 }
 
 async function greenhouse(slug) {
@@ -113,7 +136,7 @@ async function workday(entry) {
   const api = `${base}/wday/cxs/${co}/${site}/jobs`;
   const out = [];
   for (let offset = 0; offset < 400; offset += 20) {
-    const data = await getJson(api, {
+    const data = await curlJson(api, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Origin: base, Referer: `${base}/${site}` },
       body: JSON.stringify({ appliedFacets: {}, limit: 20, offset, searchText: '' }),
@@ -160,8 +183,8 @@ async function workableFeed() {
       const title = tag(block, 'title');
       const company = tag(block, 'company');
       if (!url.startsWith('https://') || !title || !company) continue;
-      const country = tag(block, 'country').toUpperCase();
-      if (country && country !== 'US') continue;
+      const country = tag(block, 'country').toLowerCase().replace(/[^a-z]/g, '');
+      if (country && !['us', 'usa', 'unitedstates', 'unitedstatesofamerica'].includes(country)) continue;
       const place = [tag(block, 'city'), tag(block, 'state')].filter(Boolean).join(', ');
       const remote = tag(block, 'remote').toLowerCase() === 'true';
       const loc = [place, remote ? 'Remote' : ''].filter(Boolean).join(' · ') || (remote ? 'Remote' : 'United States');
