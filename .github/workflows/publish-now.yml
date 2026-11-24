@@ -1,0 +1,29 @@
+# Publishes right away from the saved results of a collector run that is still going (or any run),
+# filling missing parts from the last run that published. Started by hand.
+name: Publish now
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Collector run to take finished parts from'
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Merge and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_RUN_ID: ${{ inputs.run_id }}
+        run: bash collector/publish.sh 5 final
