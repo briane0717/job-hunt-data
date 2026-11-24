@@ -238,7 +238,7 @@ function workdayLocationSlices(facets = []) {
   const walk = (list, param) => {
     for (const v of list || []) {
       if (Array.isArray(v.values)) walk(v.values, v.facetParameter || param);
-      else if (v.id && typeof v.count === 'number') flat.push({ param, id: v.id, count: v.count });
+      else if (v.id && typeof v.count === 'number') flat.push({ param, id: v.id, count: v.count, name: v.descriptor || '' });
     }
   };
   for (const f of facets) {
@@ -255,25 +255,28 @@ async function workday(entry, max = 400) {
   const [co, wd, site] = entry.split('|');
   const base = `https://${co}.${wd}.myworkdayjobs.com`;
   const out = new Map();
-  const add = (posts) => {
+  // A job open in several places only says "3 Locations"; when reading one location at a time,
+  // that location's name stands in, so the job still lands on the map.
+  const add = (posts, sliceName = '') => {
     for (const j of posts || []) {
       if (out.has(j.externalPath)) continue;
+      const text = j.locationsText || '';
       out.set(j.externalPath, {
         i: `wd:${co}:${j.externalPath}`,
         t: j.title,
         c: pretty(co),
-        l: j.locationsText || '',
+        l: /^\d+ Locations?$/i.test(text) && sliceName ? sliceName : text,
         u: `${base}/${site}${j.externalPath}`,
         d: workdayDate(j.postedOn),
         s: 'workday',
       });
     }
   };
-  const readAll = async (facets, limit, first) => {
+  const readAll = async (facets, limit, first, sliceName = '') => {
     let data = first;
     for (let offset = 0; offset < limit; offset += 20) {
       if (!data) data = await workdayPage(co, base, site, offset, facets);
-      add(data.jobPostings);
+      add(data.jobPostings, sliceName);
       const n = (data.jobPostings || []).length;
       if (n < 20 || offset + 20 >= (data.total || 0) || out.size >= max || Date.now() > DEADLINE) break;
       data = null;
@@ -287,7 +290,7 @@ async function workday(entry, max = 400) {
   } else {
     for (const sl of slices) {
       if (out.size >= max || Date.now() > DEADLINE) break;
-      await readAll({ [sl.param]: [sl.id] }, Math.min(sl.count, 2000));
+      await readAll({ [sl.param]: [sl.id] }, Math.min(sl.count, 2000), null, sl.name);
     }
   }
   return [...out.values()];
