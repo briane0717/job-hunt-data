@@ -223,11 +223,15 @@ async function jibe({ name, host }) {
   const out = new Map();
   const read = async (filter) => {
     let total = 0;
+    let lastPage = '';
     for (let page = 1; page <= 60; page++) {
       const data = await curlJson(`https://${host}/api/jobs?page=${page}&limit=100${filter}`);
       const jobs = data.jobs || [];
       total = data.totalCount || data.count || 0;
-      const before = out.size;
+      // Past its limit the API sends the same page again: stop there.
+      const thisPage = jobs.map((j) => j.data?.req_id || j.data?.slug || '').join(',');
+      if (thisPage && thisPage === lastPage) break;
+      lastPage = thisPage;
       for (const { data: d = {} } of jobs) {
         const country = String(d.country_code || d.country || '').toLowerCase();
         if (country && !['us', 'usa', 'united states', 'united states of america'].includes(country)) continue;
@@ -244,8 +248,7 @@ async function jibe({ name, host }) {
           s: 'jibe',
         });
       }
-      // Stop at the end, or when a page brings nothing new (the API repeating itself).
-      if (!jobs.length || page * 100 >= total || out.size === before) break;
+      if (!jobs.length || page * 100 >= total) break;
     }
     return total;
   };
