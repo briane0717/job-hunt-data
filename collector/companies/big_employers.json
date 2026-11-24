@@ -12,7 +12,13 @@
     "dollartree|wd5|dollartreeus",
     "cvshealth|wd1|cvs_health_careers",
     "michaels|wd5|external",
-    "burlington|wd5|BurlingtonCareers"
+    "burlington|wd5|BurlingtonCareers",
+    "meijer|wd5|Meijer_Stores_Hourly",
+    "meijer|wd5|Meijer_Market_Format",
+    "att|wd1|ATTGeneral",
+    "att|wd1|ATTcollege",
+    "verizon|wd12|verizon-careers",
+    "bjswholesaleclub|wd1|BJsCareers"
   ],
   "jibe": [
     {
@@ -30,6 +36,10 @@
     {
       "name": "PetSmart",
       "host": "careers.petsmart.com"
+    },
+    {
+      "name": "H-E-B",
+      "host": "careers.heb.com"
     }
   ],
   "oracle": [
@@ -52,6 +62,11 @@
       "name": "Staples",
       "host": "fa-exhh-saasfaprod1.fa.ocs.oraclecloud.com",
       "site": "StaplesInc"
+    },
+    {
+      "name": "Albertsons",
+      "host": "eofd.fa.us6.oraclecloud.com",
+      "site": "CX_1001"
     }
   ],
   "amazon": true
