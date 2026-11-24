@@ -105,7 +105,15 @@ export function parseRmkRows(html) {
   return links.map((m, k) => {
     const end = k + 1 < links.length ? links[k + 1].index : html.length;
     const loc = html.slice(m.index, end).match(/<span[^>]*class="[^"]*jobLocation[^"]*"[^>]*>([\s\S]*?)<\/span>/i);
-    return { href: m[1], title: unescapeHtml(m[2].replace(/<[^>]+>/g, '')), place: loc ? unescapeHtml(loc[1].replace(/<[^>]+>/g, '')) : '' };
+    const href = unescapeHtml(m[1]);
+    let place = loc ? unescapeHtml(loc[1].replace(/<[^>]+>/g, '')) : '';
+    // Some layouts show no location next to the title, but the link ends in "City-…-ST-ZIP/ID/".
+    if (!place) {
+      const slug = href.match(/\/job\/([^/]+)\/\d+\/?$/)?.[1] || '';
+      const st = decodeURIComponent(slug).match(/-([A-Z]{2})-(\d{5})$/);
+      if (st) place = `${decodeURIComponent(slug).split('-')[0]}, ${st[1]}, US, ${st[2]}`;
+    }
+    return { href, title: unescapeHtml(m[2].replace(/<[^>]+>/g, '')), place };
   });
 }
 
