@@ -40,6 +40,7 @@ const RAW_OUT = arg('--raw-out', '');
 // Stop reading big boards after this many minutes and keep what was read (GitHub stops jobs at a hard limit).
 const DEADLINE = Date.now() + Number(arg('--minutes', '0') || 1e9) * 60000;
 const RAW_IN = arg('--raw-in', '');
+const BIG = arg('--big', ''); // another big-employer list, for testing new entries
 const CONCURRENCY = Number(arg('--concurrency', '24'));
 const PLACES = arg('--places', ''); // path to GeoNames cities1000.txt, for job coordinates
 const UA = 'JobHuntCollector/1.0 (+https://github.com/; open-source job search app)';
@@ -253,7 +254,8 @@ function workdayLocationSlices(facets = []) {
 
 /** A Workday board's jobs, up to `max`. */
 async function workday(entry, max = 400) {
-  const [co, wd, site] = entry.split('|');
+  // "tenant|wdN|site", optionally followed by "|Company name" when the tenant's short name isn't the company's.
+  const [co, wd, site, label] = entry.split('|');
   const base = `https://${co}.${wd}.myworkdayjobs.com`;
   const out = new Map();
   // A job open in several places only says "3 Locations"; when reading one location at a time,
@@ -265,7 +267,7 @@ async function workday(entry, max = 400) {
       out.set(j.externalPath, {
         i: `wd:${co}:${j.externalPath}`,
         t: j.title,
-        c: pretty(co),
+        c: label || pretty(co),
         l: /^\d+ Locations?$/i.test(text) && sliceName ? sliceName : text,
         u: `${base}/${site}${j.externalPath}`,
         d: workdayDate(j.postedOn),
@@ -562,12 +564,16 @@ if (want('ashby')) {
   sources.ashby = r.stats;
   add(r.results);
 }
+const big = JSON.parse(await readFile(BIG ? path.resolve(BIG) : path.join(HERE, 'companies', 'big_employers.json'), 'utf8'));
+// Workday boards read in full as big employers are left out of the general list (read at most 400 there).
+const boardKey = (e) => e.split('|').slice(0, 3).join('|').toLowerCase();
+const bigBoards = new Set((big.workday || []).map(boardKey));
 if (want('workday')) {
-  const r = await pool(await companies('workday_companies.json'), workday, 'Workday');
+  const list = (await companies('workday_companies.json')).filter((e) => !bigBoards.has(boardKey(e)));
+  const r = await pool(list, workday, 'Workday');
   sources.workday = r.stats;
   add(r.results);
 }
-const big = JSON.parse(await readFile(path.join(HERE, 'companies', 'big_employers.json'), 'utf8'));
 if (want('bigworkday')) {
   const r = await pool(shardOf('bigworkday')(big.workday), (e) => workday(e, 40000), 'Big employers on Workday', 4);
   sources.bigworkday = r.stats;
