@@ -407,7 +407,7 @@ async function workday(entry, max = 400) {
       out.set(j.externalPath, {
         i: `wd:${co}:${j.externalPath}`,
         t: j.title,
-        c: label || pretty(co),
+        c: label || WORKDAY_NAMES[co] || pretty(co),
         l: /^\d+ Locations?$/i.test(text) && sliceName ? sliceName : text,
         u: `${jobBase}${j.externalPath}`,
         d: workdayDate(j.postedOn),
@@ -704,6 +704,8 @@ if (want('ashby')) {
   sources.ashby = r.stats;
   add(r.results);
 }
+// Proper names for Workday tenants whose short name isn't the company's ("oreillyauto" -> "O'Reilly Auto Parts").
+const WORKDAY_NAMES = JSON.parse(await readFile(path.join(HERE, 'companies', 'workday_names.json'), 'utf8'));
 const big = JSON.parse(await readFile(BIG ? path.resolve(BIG) : path.join(HERE, 'companies', 'big_employers.json'), 'utf8'));
 // Workday boards read in full as big employers are left out of the general list (read at most 400 there).
 const boardKey = (e) => e.split('|').slice(0, 3).join('|').toLowerCase();
