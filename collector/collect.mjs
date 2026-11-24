@@ -205,6 +205,7 @@ async function workday(entry, max = 400) {
 
 const US_STATE = /^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|PR|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$/;
 
+const US_STATE_ABBRS = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA PR RI SC SD TN TX UT VT VA WA WV WI WY'.split(' ');
 const US_STATE_NAMES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia',
   'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
@@ -260,23 +261,21 @@ async function jibe({ name, host }) {
 
 /**
  * Oracle Recruiting Cloud career sites: the public requisitions API behind the job search.
- * A search stops at 10,000 results, so bigger sites are read one state at a time through the
- * site's own location filter (each state is well under 10,000).
+ * A search stops at 10,000 results, so bigger sites are read one state at a time: the site's place
+ * lookup (findByLoc with the state's abbreviation) gives the state's ID for locationId=.
  */
 async function oracle({ name, host, site }) {
   const out = new Map();
   const read = async (facet) => {
     let step = 200;
     let total = 0;
-    let first = null;
     for (let offset = 0; offset < 10000; ) {
       const url =
-        `https://${host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList,locationsFacet` +
-        `&finder=findReqs;siteNumber=${site},facetsList=LOCATIONS,limit=${step},offset=${offset},sortBy=POSTING_DATES_DESC` +
-        (facet ? `,selectedLocationsFacet=${facet}` : '');
+        `https://${host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList` +
+        `&finder=findReqs;siteNumber=${site},limit=${step},offset=${offset},sortBy=POSTING_DATES_DESC` +
+        (facet ? `,locationId=${facet}` : '');
       const data = await curlJson(url);
       const item = (data.items || [])[0] || {};
-      first ||= item;
       const list = item.requisitionList || [];
       total = item.TotalJobsCount || total;
       for (const j of list) {
@@ -295,16 +294,22 @@ async function oracle({ name, host, site }) {
       offset += list.length;
       if (offset >= total) break;
     }
-    return { total, facets: first?.locationsFacet || [] };
+    return { total };
   };
-  const { total, facets } = await read(null);
+  const { total } = await read(null);
   if (total > out.size) {
-    const states = facets.filter((f) => /^[A-Z]{2}, United States$/.test(f.Name || ''));
-    console.log(`  ${name}: ${total} jobs, reading ${states.length} states one at a time`);
-    for (const f of states) {
-      const got = await read(f.Id);
-      if (Math.abs(got.total - f.TotalCount) > 50) console.log(`  ${name} ${f.Name}: filter returned ${got.total}, expected ${f.TotalCount}`);
+    // The site's own place lookup gives each state's location ID ("TX" -> "TX > United States").
+    let read_states = 0;
+    for (const ab of US_STATE_ABBRS) {
+      const sug = await curlJson(
+        `https://${host}/hcmRestApi/resources/latest/recruitingCESearchAutoSuggestions?expand=all&onlyData=true&finder=findByLoc;string=${ab}&limit=20`,
+      ).catch(() => ({}));
+      const hit = (sug.items || []).flatMap((i) => i.locations || i.items || [i]).find((l) => l && l.Level == 2 && l.State === ab);
+      if (!hit) continue;
+      read_states++;
+      await read(hit.Id);
     }
+    console.log(`  ${name}: ${total} jobs, read ${read_states} states one at a time, kept ${out.size}`);
   }
   return [...out.values()];
 }
