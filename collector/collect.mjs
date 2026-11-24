@@ -18,7 +18,7 @@
 // A job is {i: id, t: title, c: company, l: location, u: url, d: posted date or '', s: source, g?: [lat, lon]}.
 
 import { execFile, spawn } from 'node:child_process';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -34,6 +34,9 @@ const arg = (name, fallback) => {
 const LIMIT = Number(arg('--limit', '0')) || Infinity; // companies per system, for quick tests
 const OUT = path.resolve(arg('--out', 'public'));
 const ONLY = arg('--only', ''); // e.g. "greenhouse,lever"
+// Split runs: each part saves what it gathered (--raw-out), and a last step merges them (--raw-in).
+const RAW_OUT = arg('--raw-out', '');
+const RAW_IN = arg('--raw-in', '');
 const CONCURRENCY = Number(arg('--concurrency', '24'));
 const PLACES = arg('--places', ''); // path to GeoNames cities1000.txt, for job coordinates
 const UA = 'JobHuntCollector/1.0 (+https://github.com/; open-source job search app)';
@@ -439,7 +442,7 @@ async function companies(file) {
   return [...new Set(list)].slice(0, LIMIT);
 }
 
-const want = (name) => !ONLY || ONLY.split(',').includes(name);
+const want = (name) => !RAW_IN && (!ONLY || ONLY.split(',').includes(name));
 const sources = {};
 const all = [];
 const add = (jobs) => {
@@ -497,6 +500,26 @@ if (want('workable')) {
   } catch (e) {
     sources.workable = { companies: null, answered: 0, failed: 1, jobs: 0, error: String(e.message || e) };
     console.log(`Workable feed failed: ${e.message || e}`);
+  }
+}
+
+if (RAW_OUT) {
+  await writeFile(RAW_OUT, JSON.stringify({ sources, jobs: all }));
+  console.log(`Saved ${all.length} jobs to ${RAW_OUT}`);
+  process.exit(0);
+}
+if (RAW_IN) {
+  for (const f of (await readdir(RAW_IN)).filter((n) => n.endsWith('.json')).sort()) {
+    const part = JSON.parse(await readFile(path.join(RAW_IN, f), 'utf8'));
+    Object.assign(sources, part.sources);
+    add(part.jobs);
+    console.log(`Merged ${f}: ${part.jobs.length} jobs`);
+  }
+  // Never replace the live data with a nearly empty set because most parts failed.
+  const min = Number(arg('--min-jobs', '100000'));
+  if (all.length < min) {
+    console.log(`Only ${all.length} jobs gathered (fewer than ${min}); not publishing.`);
+    process.exit(1);
   }
 }
 
