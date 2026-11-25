@@ -1,1 +1,0 @@
-{ "name": "Job Hunt", "short_name": "Job Hunt", "start_url": "/job-hunt-data/", "display": "standalone", "background_color": "#ffffff", "theme_color": "#208AEF", "icons": [{ "src": "/job-hunt-data/apple-touch-icon.png", "sizes": "1024x1024", "type": "image/png" }] }
