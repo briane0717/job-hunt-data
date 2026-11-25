@@ -15,6 +15,7 @@
 //   {out}/v1/manifest.json       when it ran, counts per source and per state
 //   {out}/v1/us/{ST}.json        jobs in each US state (a job with several places is in each)
 //   {out}/v1/all/{0-7}.json      every US job once, in a compact form (for "any distance")
+//   {out}/v1/words/{key}.json   jobs by title word / company start, for keyword searches (index.json lists sizes)
 //   {out}/v1/remote.json         remote jobs open to US workers
 // A job is {i: id, t: title, c: company, l: location, u: url, d: posted date or '', s: source, g?: [lat, lon]}.
 
@@ -853,10 +854,11 @@ const commonStart = (list) => {
   for (const x of list) while (!x.startsWith(p)) p = p.slice(0, -1);
   return p;
 };
-const per = Math.ceil(nationwide.length / ALL_PARTS);
-for (let k = 0; k < ALL_PARTS; k++) {
+// sameId: write 1 when a job's id rest equals its link rest (word files only; the all/ files keep
+// the older form that phones already installed read).
+const compact = (list, sameId = false) => {
   const groups = new Map();
-  for (const j of nationwide.slice(k * per, (k + 1) * per)) {
+  for (const j of list) {
     const key = `${j.c}\u0000${j.s}`;
     (groups.get(key) || groups.set(key, []).get(key)).push(j);
   }
@@ -869,13 +871,45 @@ for (let k = 0; k < ALL_PARTS; k++) {
     c.push([jobs[0].c, jobs[0].s, pu, pi]);
     for (const j of jobs) {
       const t = Date.parse(j.d);
-      const row = [j.t, n, j.l.slice(0, 80), Number.isFinite(t) ? Math.floor(t / 864e5) : 0, j.u.slice(pu.length), j.i.slice(pi.length)];
+      const u = j.u.slice(pu.length);
+      const i = j.i.slice(pi.length);
+      const row = [j.t, n, j.l.slice(0, 80), Number.isFinite(t) ? Math.floor(t / 864e5) : 0, u, sameId && i === u ? 1 : i];
       if (j.g) row.push(j.g[0], j.g[1]);
       r.push(row);
     }
   }
-  await writeFile(path.join(OUT, 'v1', 'all', `${k}.json`), JSON.stringify({ c, r }));
+  return JSON.stringify({ c, r });
+};
+const per = Math.ceil(nationwide.length / ALL_PARTS);
+for (let k = 0; k < ALL_PARTS; k++) {
+  await writeFile(path.join(OUT, 'v1', 'all', `${k}.json`), compact(nationwide.slice(k * per, (k + 1) * per)));
 }
+// Search files, so a keyword search with "any distance" downloads only the jobs that could match
+// instead of the whole country: words/{key}.json holds every job with a title word starting with
+// those 3 letters (2-letter words get their own file), and words/@{key}.json every job whose
+// company name (letters and digits only) starts with those 3. A job is in one file per word.
+// words/index.json lists how many jobs each file has, so the phone picks the smallest file.
+const WORD_SKIP = ['and', 'the', 'for', 'with', 'of', 'in', 'at', 'to', 'a', 'an', 'i', 'ii', 'iii', 'sr', 'jr', 'or', 'on', 'as', 'by', 'is', 'per', 'our', 'you', 'your', 'from'];
+const skipWord = new Set(WORD_SKIP);
+const wordKeys = (j) => {
+  const keys = new Set();
+  for (const w of j.t.toLowerCase().split(/[^a-z0-9]+/)) if (w.length > 1 && !skipWord.has(w)) keys.add(w.slice(0, 3));
+  const co = String(j.c || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  if (co.length >= 3) keys.add(`@${co.slice(0, 3)}`);
+  return keys;
+};
+const byWord = new Map();
+for (const j of nationwide) for (const key of wordKeys(j)) (byWord.get(key) || byWord.set(key, []).get(key)).push(j);
+await mkdir(path.join(OUT, 'v1', 'words'), { recursive: true });
+const wordCounts = {};
+for (const [key, list] of byWord) {
+  wordCounts[key] = list.length;
+  await writeFile(path.join(OUT, 'v1', 'words', `${key}.json`), compact(list, true));
+}
+await writeFile(
+  path.join(OUT, 'v1', 'words', 'index.json'),
+  JSON.stringify({ generatedAt: new Date().toISOString(), jobs: nationwide.length, skip: WORD_SKIP, n: wordCounts }),
+);
 remote.sort(newestFirst);
 await writeFile(path.join(OUT, 'v1', 'remote.json'), JSON.stringify(remote));
 // The newest remote jobs only, so a phone search doesn't download every remote job each time.
