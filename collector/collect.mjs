@@ -372,7 +372,7 @@ async function paradox({ name, host, max = 3000 }) {
       if (out.has(url)) continue;
       const place = (li.match(/class="results-list__item-street--label"[^>]*>([^<]*)</) || [])[1] || '';
       out.set(url, {
-        i: `px:${host}:${url.split('/job/')[1] || url}`,
+        i: `px:${host}:${url.split('/job/')[1] || new URL(url).searchParams.get('job_id') || url}`,
         t: unescapeHtml(a[2].replace(/<[^>]+>/g, ' ')),
         c: name,
         l: paradoxPlace(unescapeHtml(place)),

@@ -781,7 +781,8 @@
     },
     {
       "name": "McDonald's",
-      "host": "jobs.mchire.com"
+      "host": "jobs.mchire.com",
+      "max": 6000
     }
   ]
 }
