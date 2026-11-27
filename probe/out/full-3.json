@@ -1,0 +1,420 @@
+{
+ "interviews": [],
+ "feedback": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Tell me about yourself.",
+   "a": "Um, I'm Jordan. I've worked retail for a while and I'm a hard worker and I like people.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear a vague, unrehearsed intro that barely shows why you’re a fit for the role.",
+     "good": [
+      "\"I've worked retail for a while\" – you at least mention experience.",
+      "\"I like people\" – you hint at customer service."
+     ],
+     "fix": [
+      "Start with a clear, concise summary of your relevant experience (e.g., 5 years in retail and warehouse, current shift lead).",
+      "Add specific duties that match the job, such as cash handling and stocking shelves, and note any measurable results.",
+      "Conclude with why you want this store associate role at Maple Grocers."
+     ],
+     "better": "I’m Jordan Lee, and I’ve spent the past five years working in retail and warehouse environments. Since 2021 I’ve been a shift lead at Corner Market, where I train new cashiers, balance three cash drawers nightly with zero shortages, and receive deliveries and stock shelves before opening. Before that I handled high‑volume order picking at FastShip Logistics. I enjoy interacting with customers and keeping the store organized, which is why I’m eager to bring my cash‑handling and stocking experience to Maple Grocers as a Store Associate."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [
+     "\"better\" uses the stock line \"excited to\". Say it the way this person would."
+    ],
+    "edits": 2,
+    "after": [
+     "\"better\" uses the stock line \"eager to\". Say it the way this person would."
+    ],
+    "ms": 17261,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Tell me about a time you dealt with an upset customer.",
+   "a": "A customer was mad about a price on the shelf being different from the register. I explained the sale ended. He was still mad but he paid.",
+   "r": {
+    "data": {
+     "score": 3,
+     "verdict": "The hiring manager will hear a vague story with no clear actions or results, so it doesn’t show strong customer‑service skills.",
+     "good": [
+      "You identified the problem – the shelf price didn’t match the register.",
+      "You resolved it by getting the customer to pay."
+     ],
+     "fix": [
+      "Add a sentence describing exactly what you did to calm the customer (e.g., listened, apologized, offered to check the price).",
+      "Include the result beyond the sale – did the customer leave satisfied, did you prevent a complaint, or did you follow up?",
+      "Show how your retail experience (like handling cash drawers) helped you handle the situation."
+     ],
+     "better": "A customer came to my register upset because the price on the shelf was higher than the price the register showed. [describe how you listened, e.g., acknowledged his concern], explained that the sale had ended, and [what you said to calm him, e.g., apologized and offered to double‑check the price]. [describe how you kept the interaction calm and polite], and he chose to pay for the item. Afterward, I [any follow‑up action, e.g., logged the price discrepancy and let my manager know] to avoid future issues."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [],
+    "edits": 2,
+    "after": [],
+    "ms": 22240,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do you make sure your cash drawer is accurate?",
+   "a": "At Corner Market I close three drawers every night. I count each one twice, check it against the register report, and if anything's off I go back through the receipts before I leave. In three years we haven't had a shortage.",
+   "r": {
+    "data": {
+     "score": 8,
+     "verdict": "Clear, specific process with a solid result; shows reliability but could mention documenting the work.",
+     "good": [
+      "\"I count each one twice, check it against the register report\"",
+      "\"we haven't had a shortage\""
+     ],
+     "fix": [
+      "Add a brief note about recording the final count or confirming with a manager.",
+      "Mention how you handle any discrepancy beyond just re‑checking receipts."
+     ],
+     "better": "At Corner Market I’m responsible for closing three cash drawers each night. I start by counting the cash twice, then I compare the totals to the register’s end‑of‑day report. If the figures don’t match, I review each receipt and transaction until I locate the variance, [document any discrepancy as needed] [I record the final count as required] Using this double‑check system we’ve gone three years without a single shortage."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [],
+    "edits": 4,
+    "after": [],
+    "ms": 32374,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Why do you want to work at Maple Grocers?",
+   "a": "More hours.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear that you’re only after extra hours and haven’t shown any real interest in the role or the company.",
+     "good": [
+      "\"More hours.\" (you stated a clear need)",
+      "\"5 years of retail experience\" from your resume supports you can work the hours"
+     ],
+     "fix": [
+      "Explain why the extra hours matter to you (e.g., steady schedule, career growth).",
+      "Connect your cash‑handling and stocking experience to the duties listed in the job posting.",
+      "Show genuine interest in Maple Grocers beyond just the hours."
+     ],
+     "better": "I’m looking for more hours, and with my five years of retail experience—including training cashiers, handling cash drawers with no shortages, and stocking shelves before opening—I can immediately help keep the store organized and [help serve customers] while getting the additional schedule I need."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [],
+    "edits": 1,
+    "after": [],
+    "ms": 22263,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "q": "Do you have experience with dental insurance?",
+   "a": "No, not really, but I can learn.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear that you have no direct dental‑insurance experience and you didn’t show how your past work relates.",
+     "good": [
+      "\"but I can learn\" shows willingness.",
+      "You answered the question directly."
+     ],
+     "fix": [
+      "Mention the billing and payment verification you did at DesertLink to show transferable experience.",
+      "Reference your Medical Office Administration coursework as exposure to insurance concepts.",
+      "Tie your ability to learn quickly to the fast‑paced dental office."
+     ],
+     "better": "I haven’t worked with dental insurance specifically, but in my customer‑service role at DesertLink I handled billing inquiries for about 70 callers daily. My coursework in Medical Office Administration gave me exposure to office administration concepts, and I am eager to quickly learn Dentrix and dental‑insurance procedures. I’m confident I can apply those skills and quickly learn to verify dental coverage and collect co‑pays at Bright Smile Dental."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [],
+    "edits": 3,
+    "after": [
+     "\"better\" uses the stock line \"eager to\". Say it the way this person would."
+    ],
+    "ms": 24945,
+    "status": 200
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "q": "A teacher says her Chromebook won't connect to Wi-Fi five minutes before class. What do you do?",
+   "a": "I'd go to the room, check if Wi-Fi is on, forget the network and reconnect, and if that doesn't work give her a loaner so class can start, then fix it after.",
+   "r": {
+    "data": {
+     "score": 3,
+     "verdict": "The hiring manager will hear a vague, unfinished plan that misses key troubleshooting steps and documentation.",
+     "good": [
+      "\"I'd go to the room, check if Wi-Fi is on\"",
+      "\"give her a loaner so class can start\""
+     ],
+     "fix": [
+      "Add a step where you verify the network settings and test another device to rule out a broader outage."
+     ],
+     "better": "When the teacher tells me her Chromebook won’t connect five minutes before class, I walk to the classroom right away. I first confirm the Wi‑Fi toggle is on, then I check the network list, forget the school network and reconnect, and [I perform any network diagnostics needed, such as a ping test, if appropriate] If it still won’t connect, [I provide a temporary solution, such as a loaner device, if one is available], and I let the teacher know I’ll investigate further after class. [I document the steps in the ticketing system (if used), note any error messages, and schedule a deeper fix later, as appropriate]"
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [],
+    "edits": 5,
+    "after": [],
+    "ms": 31403,
+    "status": 200
+   }
+  }
+ ],
+ "coach": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do I answer \"Why did you leave your last job?\"",
+   "r": {
+    "reply": "You can frame it like this:\n\n“I’m still with Corner Market, but I’m ready for a role that lets me focus more on direct customer interaction and store‑front duties. As a shift lead I’ve been handling cash, stocking, and training cashiers, and I really enjoy the customer‑service side. The Store Associate position at Maple Grocers lets me bring that experience to a new team and keep growing my retail skills.”\n\nWhy it works: It tells the interviewer you haven’t been fired or quit abruptly, highlights the parts of your current job that match the new role, and shows you’re motivated by the work itself—not vague [your reason for seeking a new role] language. Avoid saying you’re bored or that the pay is low. Keep the focus on the fit between what you do now and what the new job requires. \n\nIf they push for more detail, add a brief line:\n\n“I’ve reached a point where I’ve mastered the back‑of‑house and training side here, and I’m excited to spend more time on the floor helping customers directly.”",
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"new challenge\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 1,
+    "after": [
+     "It uses the stock line \"excited to\". Use the person's real situation or a [bracket] instead."
+    ],
+    "ms": 16550,
+    "status": 200
+   },
+   "follow": {
+    "q": "I'm still working there. I just want more hours and a bigger store.",
+    "r": {
+     "reply": "You can answer like this:\n\n“I’m still working at Corner Market, but I’m looking for [your reason for seeking a new position, e.g., more hours or a larger store]. In my current role I’ve been handling cash, training cashiers and stocking shelves, and I’m ready to bring those skills to a new environment.”",
+     "model": "@cf/openai/gpt-oss-120b",
+     "before": [],
+     "edits": 2,
+     "after": [],
+     "ms": 8128,
+     "status": 200
+    }
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "What do I say when they ask about pay?",
+   "r": {
+    "reply": "When they bring up pay, keep it simple and turn the conversation back to the range they posted (or to market rates) before you name a number.\n\nWhat you can say\n\n“Thanks for asking. The posting listed the range as [insert range if shown, or “the typical range for a Store Associate here is $X‑$Y per hour”]. I’m comfortable with that, and I’d love to hear more about the full compensation package and how performance is recognized.”\n\nWhy it works  \n- It shows you’ve done your homework and are aware of the market.  \n- It avoids you locking yourself into a number before you know the full offer.  \n- It signals you’re flexible but also value‑aware.\n\nSteps to handle the pay question\n\n1. Check the posting – If a salary/ hourly range is listed, repeat it. If not, research local store‑associate rates in Denver (e.g., $15‑$18 /hr) so you can quote a realistic band.  \n2. Ask about the whole package – Follow up with “Could you tell me more about any bonuses, benefits, or advancement opportunities?” This shows you look at total compensation, not just base pay.  \n3. Stay open – End with “I’m confident we can find a figure that works for both of us,” keeping the dialogue collaborative.  \n\nThat way you’re prepared, confident, and keep the focus on fit rather than just the number. Good luck!",
+    "model": "@cf/openai/gpt-oss-120b",
+    "before": [],
+    "edits": 0,
+    "after": [],
+    "ms": 6277,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do I explain a gap in my work history?",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 91,
+    "status": 503
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Write a short thank-you note to send after my interview",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 124,
+    "status": 503
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "I get nervous in interviews. What helps?",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 88,
+    "status": 503
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "What should I ask at the end of the interview?",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 84,
+    "status": 503
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "q": "How do I explain that I don't have dental office experience?",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 92,
+    "status": 503
+   }
+  },
+  {
+   "job": "(any job, no resume)",
+   "q": "I got fired from my last job for being late too many times. How do I explain that?",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 94,
+    "status": 503
+   }
+  },
+  {
+   "job": "Customer Service Representative at Pine Valley Bank",
+   "q": "How do I explain a gap in my work history?",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 70,
+    "status": 503
+   }
+  },
+  {
+   "job": "Customer Service Representative at Pine Valley Bank",
+   "q": "Write a short thank-you note to send after my interview",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 74,
+    "status": 503
+   }
+  }
+ ],
+ "letters": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 66,
+    "status": 503
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 71,
+    "status": 503
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 95,
+    "status": 503
+   }
+  },
+  {
+   "job": "Warehouse Associate at Northline Distribution",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 86,
+    "status": 503
+   }
+  },
+  {
+   "job": "Warehouse Associate at Northline Distribution",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 78,
+    "status": 503
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 71,
+    "status": 503
+   }
+  },
+  {
+   "job": "Customer Service Representative at Pine Valley Bank",
+   "r": {
+    "errors": [
+     "@cf/openai/gpt-oss-120b: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.3-70b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-4-scout-17b-16e-instruct: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.",
+     "@cf/meta/llama-3.1-8b-instruct-fp8-fast: 4006: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage."
+    ],
+    "ms": 125,
+    "status": 503
+   }
+  }
+ ],
+ "calls": 24
+}
