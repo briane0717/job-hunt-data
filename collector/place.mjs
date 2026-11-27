@@ -24,6 +24,58 @@ const CITY_STATE = {
 };
 const NON_US = /\b(canada|united kingdom|uk|england|london|germany|berlin|france|paris|india|bangalore|bengaluru|mexico|brazil|spain|ireland|dublin|netherlands|amsterdam|australia|sydney|singapore|japan|tokyo|china|poland|philippines|israel|tel aviv|toronto|vancouver|montreal|emea|apac|latam|europe|queensland|new south wales|brisbane|melbourne|new zealand|auckland|south africa|cape town|johannesburg|nigeria|lagos|kenya|nairobi|egypt|cairo|pakistan|karachi|lahore|vietnam|indonesia|jakarta|malaysia|kuala lumpur|thailand|bangkok|korea|seoul|hong kong|taiwan|taipei|hyderabad|pune|chennai|mumbai|delhi|gurgaon|gurugram|noida|manila|cebu|argentina|buenos aires|colombia|bogota|chile|santiago de chile|peru|lima, peru|sao paulo|são paulo|portugal|lisbon|italy|milan|madrid|barcelona|munich|zurich|switzerland|austria|vienna|belgium|brussels|sweden|stockholm|norway|oslo|denmark|copenhagen|finland|helsinki|czech|prague|romania|bucharest|ukraine|kyiv|turkey|istanbul|uae|dubai|abu dhabi|saudi|riyadh|scotland|edinburgh|glasgow|wales|manchester|costa rica|guatemala|el salvador|honduras|dominican republic)\b/i;
 
+// Countries, provinces and regions that end a place outside the US ("Milano, MI, Italy", "Perth, WA,
+// Australia", "Kitchener, Ontario"). Only the last part of a place counts, so "Ontario, CA",
+// "Peru, IN" and "New Mexico" stay in the US. Georgia is left out (a US state too).
+const COUNTRY = new RegExp(
+  '^(' +
+    [
+      'afghanistan', 'albania', 'algeria', 'andorra', 'angola', 'argentina', 'armenia', 'australia', 'austria', 'azerbaijan',
+      'bahrain', 'bangladesh', 'belarus', 'belgium', 'belize', 'bolivia', 'bosnia and herzegovina', 'botswana', 'brasil', 'brazil',
+      'bulgaria', 'cambodia', 'cameroon', 'canada', 'chile', 'china', 'colombia', 'costa rica', 'croatia', 'cyprus', 'czechia',
+      'czech republic', 'denmark', 'deutschland', 'dominican republic', 'ecuador', 'egypt', 'el salvador', 'estonia', 'ethiopia',
+      'finland', 'france', 'germany', 'ghana', 'greece', 'guatemala', 'honduras', 'hong kong', 'hungary', 'iceland', 'india',
+      'indonesia', 'iraq', 'ireland', 'israel', 'italy', 'jamaica', 'japan', 'jordan', 'kazakhstan', 'kenya', 'korea',
+      'south korea', 'republic of korea', 'kosovo', 'kuwait', 'latvia', 'lebanon', 'lithuania', 'luxembourg', 'macau', 'malaysia',
+      'malta', 'mauritius', 'mexico', 'méxico', 'moldova', 'mongolia', 'montenegro', 'morocco', 'nepal', 'netherlands',
+      'the netherlands', 'new zealand', 'nicaragua', 'nigeria', 'north macedonia', 'norway', 'oman', 'pakistan', 'panama',
+      'paraguay', 'peru', 'philippines', 'poland', 'portugal', 'qatar', 'romania', 'russia', 'rwanda', 'saudi arabia', 'serbia',
+      'singapore', 'slovakia', 'slovenia', 'south africa', 'spain', 'españa', 'sri lanka', 'sweden', 'switzerland', 'taiwan',
+      'tanzania', 'thailand', 'tunisia', 'turkey', 'türkiye', 'uganda', 'ukraine', 'united arab emirates', 'uae', 'united kingdom',
+      'uk', 'great britain', 'england', 'scotland', 'wales', 'northern ireland', 'uruguay', 'uzbekistan', 'venezuela', 'vietnam',
+      'viet nam', 'zambia', 'zimbabwe',
+      'ontario', 'quebec', 'québec', 'british columbia', 'alberta', 'manitoba', 'saskatchewan', 'nova scotia', 'new brunswick',
+      'newfoundland and labrador', 'prince edward island', 'on', 'qc', 'bc', 'ab',
+      'new south wales', 'nsw', 'queensland', 'qld', 'victoria', 'vic', 'western australia', 'south australia', 'tasmania',
+      'australian capital territory', 'act', 'northern territory',
+      'europe', 'emea', 'apac', 'latam', 'asia', 'africa', 'middle east', 'european union', 'eu',
+    ].join('|') +
+    ')$',
+  'i',
+);
+const CANADA = /^(on|qc|bc|ab|mb|sk|ns|nb|nl|pe|ontario|quebec|québec|british columbia|alberta|manitoba|saskatchewan|nova scotia|new brunswick)$/;
+const IN_US = /\b(us|usa|u\.s\.a?\.?|united states( of america)?|americas|north america)\b/i;
+
+/** True when every place a location names is outside the US. */
+export function abroad(location) {
+  const text = String(location || '');
+  if (!text.trim() || IN_US.test(text)) return false;
+  const places = text
+    .split(/;|\||\s\/\s|\s(?:or|and)\s|\s[-–]\s/)
+    .map((p) => p.replace(/\((?:remote|hybrid|on-?site)\)|·\s*(remote|hybrid|on-?site)|\b(remote|hybrid|on-?site)\b\s*[-–:,]?/gi, ' ').replace(/[()]/g, ' ').trim())
+    .filter((p) => p && /[a-z]/i.test(p));
+  if (!places.length) return false;
+  return places.every((p) => {
+    const parts = p.split(',').map((x) => x.trim().toLowerCase()).filter(Boolean);
+    // "Montreal, QC, CA": CA after a Canadian province is Canada, not California.
+    if (parts.length >= 3 && parts[parts.length - 1] === 'ca' && CANADA.test(parts[parts.length - 2])) return true;
+    if (!COUNTRY.test(parts[parts.length - 1] || '')) return false;
+    // "PA, Lebanon" is Lebanon, Pennsylvania; "New York City, London, Singapore" includes New York.
+    const usPart = (x) => NAME_TO_ABBR[x] || CITY_STATE[x] || (parts.length === 2 && STATES[x.toUpperCase()]);
+    return !parts.slice(0, -1).some(usPart);
+  });
+}
+
 /** Which US states a location text names, and whether it is remote for US workers. */
 export function placeOf(location) {
   const text = String(location || '');
@@ -42,7 +94,7 @@ export function placeOf(location) {
   const foreignPlace = NON_US.test(text);
   if (!states.size && !foreignPlace) for (const [city, abbr] of Object.entries(CITY_STATE)) if (new RegExp(`(^|[^a-z])${city.replace(/\./g, '\\.')}($|[^a-z])`).test(lower)) states.add(abbr);
   const remote = /remote|work from home|anywhere|distributed/i.test(text);
-  const foreign = foreignPlace && !states.size && !/\b(us|usa|united states|americas|north america)\b/i.test(text);
+  const foreign = (foreignPlace && !states.size && !/\b(us|usa|united states|americas|north america)\b/i.test(text)) || abroad(text);
   return { states: [...states].slice(0, 4), remote: remote && !foreign, foreign };
 }
 

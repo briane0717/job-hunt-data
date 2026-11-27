@@ -26,6 +26,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { coordsOf, loadGazetteer, placeOf } from './place.mjs';
+import { isJunkTitle, isReposter, junkPosters } from './junk.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
@@ -799,10 +800,18 @@ const byState = {};
 const remote = [];
 let foreign = 0;
 let unplaced = 0;
+let junk = 0;
 const seen = new Set();
+// Survey sign-ups and reposts aren't jobs (see junk.mjs). Posters are judged on all their listings, abroad too.
+const badPosters = junkPosters(all);
+console.log(`Not jobs: ${[...badPosters].join(', ') || 'no posters'}`);
 for (const j of all) {
   if (!j.t || !j.u || seen.has(j.i)) continue;
   seen.add(j.i);
+  if (badPosters.has(j.c) || isJunkTitle(j.t) || isReposter(j.c)) {
+    junk++;
+    continue;
+  }
   const p = placeOf(j.l);
   if (p.foreign) {
     foreign++;
@@ -918,7 +927,7 @@ const manifest = {
   generatedAt: new Date().toISOString(),
   totalJobs: seen.size,
   remoteJobs: remote.length,
-  skipped: { outsideUS: foreign, noPlace: unplaced },
+  skipped: { outsideUS: foreign, noPlace: unplaced, notJobs: junk },
   withCoordinates: located,
   states: stateCounts,
   cells: cellCounts,
@@ -926,4 +935,4 @@ const manifest = {
   sources,
 };
 await writeFile(path.join(OUT, 'v1', 'manifest.json'), JSON.stringify(manifest, null, 2));
-console.log(`Done: ${seen.size} jobs, ${remote.length} remote, ${Object.keys(stateCounts).length} states, ${foreign} outside the US, ${unplaced} with no place.`);
+console.log(`Done: ${seen.size} jobs, ${remote.length} remote, ${Object.keys(stateCounts).length} states, ${foreign} outside the US, ${unplaced} with no place, ${junk} not real jobs.`);
