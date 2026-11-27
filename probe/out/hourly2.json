@@ -1,0 +1,557 @@
+{
+ "phenom": {
+  "UPS": {
+   "host": "www.jobs-ups.com",
+   "path": "us/en",
+   "ref": "UPBUPSGLOBAL",
+   "total": 4636,
+   "sample": [
+    "Seasonal Support Driver @ Chicago, Illinois, United States of America",
+    "Emerging Sales Professional (Flexible Location) @ CHICAGO, Illinois, United States of America",
+    "2027 Industrial Engineering Summer Intern - Chicago IL @ CHICAGO, Illinois, United States of America"
+   ],
+   "countries": "\"\""
+  },
+  "Wawa": {
+   "host": "careers.wawa.com",
+   "path": "us/en",
+   "ref": "WAWWAWUS",
+   "total": 1587,
+   "sample": [
+    "Fuel Associate @ Cinnaminson, New Jersey, United States of America",
+    "Customer Service Supervisor @ Tampa, Florida, United States of America",
+    "Customer Service Associate @ Rio Grande, New Jersey, United States of America"
+   ],
+   "countries": "\"\""
+  },
+  "Panera": {
+   "host": "careers.panerabread.com",
+   "path": "global/en",
+   "ref": "PABRGLOBAL",
+   "total": 6272,
+   "sample": [
+    "Restaurant Team Member @ Chicago, Illinois, United States of America",
+    "Catering Lead @ Chicago, Illinois, United States of America",
+    "Restaurant Team Member @ Chicago, Illinois, United States of America"
+   ],
+   "countries": "\"\""
+  },
+  "RBI": {
+   "host": "careers.rbi.com",
+   "path": "global/en",
+   "ref": "RBINGLOBAL",
+   "total": 129,
+   "sample": [
+    "Sr. Manager, Real Estate, Firehouse Subs, US West @ Dallas, Texas, United States of America",
+    "Sr. Analyst, Pricing, Popeyes @ Miami, Florida, United States of America",
+    "Digital Workplace & Collaboration Technology Lead （数字化办公与协作技术负责人） @ , Shanghai, China"
+   ],
+   "countries": "\"\""
+  },
+  "Disney": {
+   "host": "join.disneycareers.com",
+   "path": "global/en",
+   "ref": "TWNTWDUS",
+   "total": 570,
+   "sample": [
+    "Puppet Specialist (PH) @ Toronto, Ontario, Canada",
+    "Dance Supervisor (fixed term) @ Toronto, Ontario, Canada",
+    "Sr Manager, Brand Marketing (PH) @ Toronto, Ontario, Canada"
+   ],
+   "countries": "\"\""
+  },
+  "DHL": {
+   "host": "careers.dhl.com",
+   "path": "amer/en",
+   "ref": "DPDHGLOBAL",
+   "total": 7824,
+   "sample": [
+    "Ocean Freight Supervisor @ Chicago, Illinois, United States of America",
+    "Air Export Supervisor @ Chicago, Illinois, United States of America",
+    "Air Freight Process Excellence Specialist @ Chicago, Illinois, United States of America"
+   ],
+   "countries": "\"\""
+  },
+  "Best Buy": {
+   "host": "jobs.bestbuy.com",
+   "status": 200,
+   "noRef": true,
+   "snippet": ""
+  }
+ },
+ "radancy": {
+  "careers.aldi.us": {
+   "pages": "15",
+   "total": "1477",
+   "ids": 200,
+   "locs": [
+    "Concord, NH"
+   ]
+  },
+  "careers.7-eleven.com": {
+   "pages": "49",
+   "total": "4883",
+   "ids": 200,
+   "locs": []
+  },
+  "jobs.spectrum.com": {
+   "pages": "14",
+   "total": "1374",
+   "ids": 100,
+   "locs": [
+    "Louisville, KY",
+    "New York, NY",
+    "Chatsworth Lake Manor, CA",
+    "Baton Rouge, LA"
+   ]
+  },
+  "jobs.aus.com": {
+   "pages": "106",
+   "total": "10616",
+   "ids": 200,
+   "locs": [
+    "Allentown, Lehigh, PA",
+    "Allentown, Lehigh, PA",
+    "Allentown, Lehigh, PA",
+    "Borough of Northampton, PA"
+   ]
+  },
+  "jobs.sixflags.com": {
+   "pages": "3",
+   "total": "205",
+   "ids": 200,
+   "locs": [
+    "San Antonio, TX",
+    "Oklahoma City, OK",
+    "San Antonio, TX",
+    "Valencia, Los Angeles, CA"
+   ]
+  },
+  "jobs.comcast.com": {
+   "pages": "7",
+   "total": "617",
+   "ids": 200,
+   "locs": [
+    "Lansing, MI",
+    "London, England",
+    "Plymouth, Wayne, MI",
+    "Methuen, MA"
+   ]
+  },
+  "www.kaiserpermanentejobs.org": {
+   "pages": "29",
+   "total": "2815",
+   "ids": 200,
+   "locs": [
+    "Seattle, WA, Onsite, Regular, Call-in/On-Call, Day shift, 1 hours",
+    "Pasadena, CA, Remote, Regular, Full-time, Day shift, 40 hours",
+    "Dublin, CA, Onsite, Regular, Call-in/On-Call, Day shift, 1 hours",
+    "Fontana, CA, Onsite, Regular, Full-time, Day shift, 36 hours"
+   ]
+  },
+  "jobs.walgreens.com": {
+   "pages": "222",
+   "total": "22144",
+   "ids": 200,
+   "locs": [
+    "Madawaska, Maine",
+    "McAllen, Texas",
+    "Oshkosh, Wisconsin",
+    "Frankfort, Illinois"
+   ]
+  }
+ },
+ "workday": {
+  "cinemark|wd1|cinemark": {
+   "total": 647,
+   "sample": [
+    "Full-Time Restaurant Assistant Manager @ 01130 - CUT! by Cinemark, Frisco, TX",
+    "Line Cook @ 01091 - Florence 14, Florence, KY",
+    "Kitchen Manager @ 01130 - CUT! by Cinemark, Frisco, TX",
+    "Theatre Team Member @ 00187 - Cinemark 16 and XD, Somerdale, NJ",
+    "Senior Data Scientist - Strategic Pricing @ CORP - Cinemark Service Center, Plano, TX"
+   ],
+   "facets": [
+    "jobFamilyGroup:21",
+    "timeType:2",
+    "Management_Level:5",
+    "locationMainGroup:3",
+    "distance:5"
+   ]
+  },
+  "choicehotels|wd5|HotelExternal": {
+   "total": 78,
+   "sample": [
+    "Front Office Supervisor @ Bloomington MN - Country Inn Bloomington",
+    "Room Attendant @ Bothell WA - Country Inn Seattle-Bothell",
+    "Front Office Supervisor @ Salt Lake City UT - Radisson Hotel Salt Lake City",
+    "Executive Lounge Attendant/Host (Sat & Sun - AM) @ Bloomington MN - Radisson Blu Mall of America Bloomington",
+    "Front Office Supervisor @ Sunnyvale CA - Radisson Hotel Sunnyvale - Silicon Valley"
+   ],
+   "facets": [
+    "jobFamilyGroup:5",
+    "workerSubType:1",
+    "timeType:2",
+    "locationMainGroup:1",
+    "distance:5"
+   ]
+  },
+  "tmobile|wd1|External": {
+   "total": 2000,
+   "sample": [
+    "Mobile Associate, Store-in-Store​ - Retail Sales @ Utica, Michigan",
+    "Sr Mobile Expert @ Mentor, Ohio",
+    "Sr Mobile Expert @ Beachwood, Ohio",
+    "Sr Mobile Expert @ Cuyahoga Falls, Ohio",
+    "Enterprise Account Executive - Bay Area, CA @ Concord, California"
+   ],
+   "facets": [
+    "Job_Family_Group:24",
+    "workerSubType:2",
+    "timeType:2",
+    "locationMainGroup:3",
+    "distance:5"
+   ]
+  },
+  "comcast|wd115|Comcast_Careers": {
+   "total": 568,
+   "sample": [
+    "Account Executive II @ Great Britain - London, Salisbury House",
+    "Xfinity Outside Sales Professional @ MI - Plymouth, 41112 Concept Dr",
+    "Xfinity Retail Sales Consultant-Bilingual Spanish Preferred @ MA - Methuen, 70 Pleasant Valley St - Retail XFR2512",
+    "Coordinator 1 - Advertising Sales Support & Analysis @ India - Chennai, Comcast India Engineering Cent",
+    "Specialist 2 - Systems Administration @ India - Chennai, Comcast India Engineering Cent"
+   ],
+   "facets": [
+    "timeType:2",
+    "workerSubType:3",
+    "jobFamilyGroup:18",
+    "locationMainGroup:1"
+   ]
+  },
+  "hcmportal|wd5|Search": {
+   "total": 1921,
+   "sample": [
+    "F&A Senior Admin Assistant - EBS Manbill (Asia) @ PH - ALABANG GLOBAL BUSINESS SERVICES - GBS (PHMNT)",
+    "Aviation Security Screener @ 7 Locations",
+    "Operador General Frontera @ MX - GUADALAJARA OPERATIONS (MXGLA)",
+    "Part Time Preload Supervisor @ US - MATTOON (ILMAT)",
+    "PM Warehouse Sorter/Loader, Part Time @ GR - ATHENS KOROPI (GRKOP)"
+   ],
+   "facets": [
+    "Work_Shift:55",
+    "jobFamilyGroup:31",
+    "workerSubType:6",
+    "timeType:2",
+    "locationMainGroup:2",
+    "distance:5"
+   ]
+  },
+  "upsLocFacets": "[{\"facetParameter\":\"Work_Shift\",\"descriptor\":\"Work Shift\",\"values\":[{\"descriptor\":\"Day (Canada)\",\"id\":\"7cabaa1904fa015d980a544904015165\",\"count\":115},{\"descriptor\":\"Evening (United States of America)\",\"id\":\"7cabaa1904fa01c8683f414904011765\",\"count\":45},{\"descriptor\":\"Evening (Mon-Fri) (Germany)\",\"id\":\"7cabaa1904fa01e5bf00ea4804010964\",\"count\":41},{\"descriptor\":\"Night (Canada)\",\"id\":\"7cabaa1904fa01ba71ce544904015465\",\"count\":38},{\"descriptor\":\"Early Morning (Canada)\",\"id\":\"7cabaa1904fa013fb44e544904015265\",\"count\":35},{\"descriptor\":\"Night (United States of America)\",\"id\":\"7cabaa1904fa019a2f77414904011865\",\"count\":34},{\"descriptor\":\"Day Shift (Mexico)\",\"id\":\"7cabaa1904fa0165cfdb194904019364\",\"count\":31},{\"descriptor\":\"Early Morning (United States of America)\",\"id\":\"7cabaa1904fa019ee504414904011665\",\"count\":28},{\"descriptor\":\"Day (United States of America)\",\"id\":\"7cabaa1904fa011137c9404904011565\",\"count\":27},{\"descriptor\":\"Early Morning (Sat) (Germany)\",\"id\":\"c95756e5ea151024540880d6997b0005\",\"count\":19},{\"descriptor\":\"Early Morning (Mon-Fri) (Germany)\",\"id\":\"7cabaa1904fa01a002cce94804010864\",\"count\":18},{\"descriptor\":\"Early Morning (Tue-Sat) (Germany)\",\"id\":\"c95756e5ea151024540881701c9d0003\",\"count\":15},{\"descriptor\":\"Day (Mon-Fri) (Germany)\",\"id\":\"7cabaa1904fa0156ee93e94804010764\",\"count\":15},{\"descriptor\":\"Night (India)\",\"id\":\"7cabaa1904fa018c5d490c4904015a64\",\"count\":15},{\"descriptor\":\"2nd Shift - Afternoon (SCS) (United States of America)\",\"id\":\"17975350d6971001fdea59821af80000\",\"count\":10},{\"descriptor\":\"Split Shift (Mon-Fri) (Germany)\",\"id\":\"7cabaa1904fa01ac4b8dee4804010b64\",\"count\":10},{\"descriptor\":\"Bid Process (SCS) (United States of America)\",\"id\":\"17975350d6971001fdea59821af80002\",\"count\":8},{\"descriptor\":\"Day (Australia)\",\"id\":\"7cabaa1904fa019a0af8494904013365\",\"count\":8},{\"descriptor\":\"Day (Mon-Fri) (Poland)\",\"id\":\"7cabaa1904fa01b01d6b29490401ca64\",\"count\":8},{\"descriptor\":\"Day (Colombia)\",\"id\":\"7cabaa1904fa01e56e34e6480401f863\",\"count\":8},{\"descriptor\":\"Night (Mon-Fri) (Poland)\",\"id\":\"7cabaa1904fa011bd8472a490401cd64\",\"count\":7},{\"descriptor\":\"1st Shift - Day (SCS) (United States of America)\",\"id\":\"17975350d6971001fdea58e81f460000\",\"count\":6},{\"descriptor\":\"Night (Mon-Fri) (Germany)\",\"id\":\"7cabaa1904fa01dc2037ea4804010a64\",\"count\":6},{\"descriptor\":\"Midnight (Canada)\",\"id\":\"7cabaa1904fa017b4990544904015365\",\"count\":5},{\"descriptor\":\"Split Shift (United States of America)\",\"id\":\"7cabaa1904fa0180aee4414904011965\",\"count\":5},{\"descriptor\":\"3rd Shift - Night (SCS) (United States of America)\",\"id\":\"17975350d6971001fdea59821af80001\",\"count\":4},{\"descriptor\":\"Day (Argentina)\",\"id\":\"7cabaa1904fa01518c81484904012e65\",\"count\":4},{\"descriptor\":\"Day (Peru)\",\"id\":\"7cabaa1904fa013c09a626490401c064\",\"count\":4},{\"descriptor\":\"Split Shift (Mon-Fri) (Italy)\",\"id\":\"7cabaa1904fa019631160f4904016564\",\"count\":4},{\"descriptor\":\"Evening (India)\",\"id\":\"7cabaa1904fa012e090b0c4904015964\",\"count\":3},{\"descriptor\":\"Split Shift (Hungary)\",\"id\":\"7cabaa1904fa013a320b"
+ },
+ "eightfold": {
+  "&num=100": {
+   "count": 21747,
+   "n": 10,
+   "loc": [
+    "Cobourg, ON, CA",
+    "Cobourg, ON, CA",
+    "Victoria, BC, CA"
+   ]
+  },
+  "&location=United%20States": "HTTP 429",
+  "&location=United%20States&num=50": {
+   "count": 19907,
+   "n": 10,
+   "loc": [
+    "Hope Mills, NC, US",
+    "Reading, MA, US",
+    "Dallas, TX, US"
+   ]
+  }
+ },
+ "amazon": {
+  "country=USA": 10000,
+  "country=USA&normalized_state_name[]=Texas": 2377,
+  "normalized_location[]=Texas, United States": 0,
+  "country=USA&state[]=TX": 10000,
+  "facetKeys": "error,hits,facets,content,jobs,job_posting_search_request",
+  "facets": "{}"
+ },
+ "pages": {
+  "Walmart": {
+   "status": 200,
+   "len": 56703,
+   "urls": []
+  },
+  "WalmartHome": {
+   "status": 200,
+   "len": 178197,
+   "urls": []
+  },
+  "Best Buy": {
+   "status": 200,
+   "len": 1091206,
+   "urls": [
+    "https://api-appsee.service-now.com",
+    "https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js?v=10-13-2026_1247"
+   ],
+   "title": "Best Buy Jobs - Best Buy  Jobs"
+  },
+  "FedEx": {
+   "status": 200,
+   "len": 503848,
+   "urls": [
+    "https://careers.fedex.com/jobs",
+    "https://fedex.wd1.myworkdayjobs.com/FXE-LAC_External_Career_Site/job/FXE-LACCOBOGABOGA-Bogota/Business-Development-Specialist_RC790376/apply",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-filter.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/search-box.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-current-searches.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-current-location.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-list-header.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-radius.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-sort-by.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-list-only.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-pagination.bundle.js",
+    "https://cdn.sites.fedex.paradox.ai/fedex-prod-careersites/9966f87f99/jobs-commute-time-modal.bundle.js"
+   ],
+   "title": "Search Jobs | FedEx Careers"
+  },
+  "Publix": {
+   "status": 200,
+   "len": 337405,
+   "urls": [
+    "https://jobs.publix.com/",
+    "https://launcher.myapps.microsoft.com/api/signin/c91b6b83-5fc2-4e49-83e2-e9974d42c855?tenantId=623cac68-b5d0-45f1-9109-3122c3974cc9",
+    "https://sjobs.brassring.com/TGNewUI/Search/Home/Home?partnerid=26173&amp;siteid=5197#home",
+    "https://jobs.publix.com/jobs/",
+    "https://twitter.com/publixjobs?lang=en",
+    "https://wpvip.publix.com/jobs/",
+    "https://wpvip.publix.com/jobs/#website",
+    "https://wpvip.publix.com/jobs/#primaryimage",
+    "https://wpvip.publix.com/jobs/#breadcrumb",
+    "https://wpvip.publix.com/jobs/?s={search_term_string}",
+    "https://wpvip.publix.com/jobs/\\",
+    "https://wpvip.publix.com/jobs\\",
+    "https://wpvip.publix.com/jobs/?page_id=2481",
+    "https://jobs.publix.com/life-at-publix/",
+    "https://wpvip.publix.com/jobs/?p=169",
+    "https://wpvip.publix.com/jobs/?p=3707",
+    "https://sjobs.brassring.com/TGNewUI/Search/Home/Home?partnerid=26173\\u0026siteid=5197#home",
+    "https://wpvip.publix.com/jobs/?p=178",
+    "https://wpvip.publix.com/jobs/?p=179",
+    "https://wpvip.publix.com/jobs/?p=9658",
+    "https://wpvip.publix.com/jobs/?p=273",
+    "https://wpvip.publix.com/jobs/?p=211",
+    "https://wpvip.publix.com/jobs/?p=3156",
+    "https://wpvip.publix.com/jobs/life-at-publix/",
+    "https://wpvip.publix.com/jobs/?p=3157",
+    "https://wpvip.publix.com/jobs/benefits/",
+    "https://wpvip.publix.com/jobs/?p=3158",
+    "https://wpvip.publix.com/jobs/tuition-reimbursement/",
+    "https://wpvip.publix.com/jobs/?p=208",
+    "https://wpvip.publix.com/jobs/?p=9196",
+    "https://wpvip.publix.com/jobs/blog/",
+    "https://wpvip.publix.com/jobs/?p=215",
+    "https://wpvip.publix.com/jobs/?p=213",
+    "https://wpvip.publix.com/jobs/?p=214",
+    "https://wpvip.publix.com/jobs/?p=216",
+    "https://wpvip.publix.com/jobs/?p=217",
+    "https://wpvip.publix.com/jobs/?p=218",
+    "https://wpvip.publix.com/jobs/?p=219",
+    "https://wpvip.publix.com/jobs/?p=220",
+    "https://wpvip.publix.com/jobs/?p=223"
+   ],
+   "next": "{\"props\":{\"pageProps\":{\"_nextI18Next\":{\"initialI18nStore\":{\"en-US\":{\"auth\":{\"auth_title\":\"Sign In\",\"auth_invalid_credentials\":\"Invalid credentials.\",\"auth_xsrf_error\":\"Something went wrong. Please try again.\",\"auth_submit\":\"View site\",\"auth_username_placeholder\":\"Username\",\"auth_password_placeholder\":\"Password\"},\"common\":{\"jump_menu_placeholder\":\"What are you looking for?\",\"jump_menu_label\":\"Jump To\",\"post_cta\":\"Learn more\",\"recipe_cta\":\"See full recipe\",\"404_page_title\":\"Page not found.\",\"404_page_message\":\"Sorry, but the page you were trying to view does not exist.\",\"error_page_title\":\"An unexpected error occurred.\",\"error_page_message\":\"We were unable to complete your request, please refresh the page or try again later.\",\"single_recipe_prep_time\":\"Prep Time\",\"single_recipe_active_time\":\"Active Time\",\"single_recipe_cook_time\":\"Cook Time\",\"single_recipe_total_time\":\"Total Time\",\"single_recipe_serving_size\":\"Servings\",\"random_region_loading_message\":\"Loading random region...\",\"random_region_no_results\":\"No regions found.\",\"random_recipe_loading_message\":\"Loading random recipe...\",\"random_recipe_no_results\":\"No recipes found.\",\"category_posts_clear_filters\":\"Clear filters\",\"category_posts_try_again\":\"Try again\",\"category_posts_no_results\":\"Looks like your search returned no results.\",\"category_posts_showing\":\"Showing\",\"explore_no_results_title\":\"It looks like your search returned no results.\",\"explore_no_results_description\":\"Please try a different set of filters.\",\"explore_cl",
+   "title": "Facebook"
+  },
+  "Ross": {
+   "status": 200,
+   "len": 131329,
+   "urls": [
+    "https://jobs.rossstores.com/",
+    "https://www.bing.com/api/maps/mapcontrol?callback=loadSearch&setLang=en",
+    "https://player.vimeo.com/api/player.js",
+    "https://www.linkedin.com/company/ross-stores/jobs/"
+   ],
+   "title": "Home | Ross Stores"
+  },
+  "Hyatt": {
+   "status": 200,
+   "len": 4816,
+   "urls": [
+    "https://www.youtube.com/iframe_api"
+   ],
+   "title": "Hyatt - Careers"
+  },
+  "Taco Bell": {
+   "status": 200,
+   "len": 83546,
+   "urls": [
+    "https://jobs.tacobell.com/",
+    "https://jobs.tacobell.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+    "https://jobs.tacobell.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+    "https://jobs.tacobell.com",
+    "https://jobs.tacobell.com/restaurant",
+    "https://jobs.tacobell.com/restaurant-life",
+    "https://jobs.tacobell.com/corporate",
+    "https://jobs.tacobell.com/life",
+    "https://jobs.tacobell.com/international",
+    "https://jobs.tacobell.com/jobs",
+    "https://jobs.tacobell.com/wp-content/plugins/appcast-jobsearch-plugin/plugin_helpers/../assets/js/appcast_addsources.js?ver=1795465894",
+    "https://jobs.tacobell.com/wp-json/appcast-jobsearch/v1/track-apply-click",
+    "https://jobs.tacobell.com/wp-json/appcast-jobsearch/v1/track-findjobs-event",
+    "https://jobs.tacobell.com/wp-json/appcast-jobsearch/v1/track-zrr-click",
+    "https://jobs.tacobell.com/wp-content/plugins/appcast-jobsearch-plugin/plugin_helpers/../assets/js/appcast_jobsearch_scripts.js?ver=1795465894",
+    "https://jobs.tacobell.com/wp-content/plugins/wp-analytify/assets/js/scrolldepth.min.js?ver=9.1.2",
+    "https://jobs.tacobell.com/wp-content/plugins/wp-analytify/assets/js/miscellaneous-tracking.min.js?ver=9.1.2",
+    "https://jobs.tacobell.com/wp-content/themes/jobs.tacobell.com",
+    "https://jobs.tacobell.com/wp-content/themes/jobs.tacobell.com/assets/build/js/page-home.min.js?tm=1795795934"
+   ],
+   "title": "\n    Taco Bell Careers - Home  "
+  },
+  "Domino's": {
+   "status": 200,
+   "len": 50223,
+   "urls": [
+    "https://maps.googleapis.com",
+    "https://jobs.dominos.com/us/",
+    "https://jobs.dominos.com/es/",
+    "https://www.linkedin.com/company/domino&#x27;s-pizza/jobs/",
+    "https://www.linkedin.com/company/domino\\u0027s-pizza/jobs/",
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyAA74uwX4Bc8pgnIR-tV7haxHLTBnbjjlM&amp;&amp;loading=async&amp;libraries=places,geometry,marker&amp;callback=initAutoComplete"
+   ],
+   "title": "Domino&#x2019;s Careers | Find Domino&#x2019;s jobs near you  | Domino&#x27;s Careers"
+  },
+  "Wendy's": {
+   "status": 200,
+   "len": 66669,
+   "urls": [
+    "https://api.w.org/",
+    "https://wendys-careers.com/job-search/"
+   ],
+   "title": "Careers Home - Wendy&#039;s Careers"
+  },
+  "McHire": {
+   "status": 200,
+   "len": 132474,
+   "urls": [
+    "https://jobs.mchire.com/",
+    "https://cdn.sites.mchire.com/mchire-prod-careersites/9966f87f99/search-box.bundle.js"
+   ],
+   "title": "McDonald's Restaurant Careers in the US"
+  },
+  "Pizza Hut": {
+   "status": 200,
+   "len": 127404,
+   "urls": [
+    "https://jobs.pizzahut.com/",
+    "https://pizzahutjobs.wpenginepowered.com/wp-content/uploads/2023/09/cropped-favicon.webp",
+    "https://jobs.pizzahut.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+    "https://jobs.pizzahut.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+    "https://jobs.pizzahut.com",
+    "https://jobs.pizzahut.com/whoweare/",
+    "https://jobs.pizzahut.com/restaurants/",
+    "https://jobs.pizzahut.com/corporate/",
+    "https://jobs.pizzahut.com/search/",
+    "https://jobs.pizzahut.com/wp-content/themes/jobs.pizzahut.com/assets/build/img/video/hero.mp4",
+    "https://jobs.pizzahut.com/wp-content/uploads/2025/09/PH-CA-Applicant-Employee-Privacy-Notice-2024_Clean_v312-05-2024-Transcend_Links-revised_Final-1.pdf",
+    "https://jobs.pizzahut.com/wp-content/plugins/appcast-jobsearch-plugin/plugin_helpers/../assets/js/appcast_addsources.js?ver=1795465980",
+    "https://jobs.pizzahut.com/wp-json/appcast-jobsearch/v1/track-apply-click",
+    "https://jobs.pizzahut.com/wp-json/appcast-jobsearch/v1/track-findjobs-event",
+    "https://jobs.pizzahut.com/wp-json/appcast-jobsearch/v1/track-zrr-click",
+    "https://jobs.pizzahut.com/wp-content/plugins/appcast-jobsearch-plugin/plugin_helpers/../assets/js/appcast_jobsearch_scripts.js?ver=1795465980",
+    "https://jobs.pizzahut.com/wp-content/plugins/wp-analytify/assets/js/scrolldepth.min.js?ver=9.1.2",
+    "https://jobs.pizzahut.com/wp-content/plugins/wp-analytify/assets/js/miscellaneous-tracking.min.js?ver=9.1.2",
+    "https://jobs.pizzahut.com/wp-content/plugins/wp-smushit/app/assets/js/smush-lazy-load.min.js?ver=4.3.7",
+    "https://jobs.pizzahut.com/wp-content/themes/jobs.pizzahut.com",
+    "https://jobs.pizzahut.com/wp-content/themes/jobs.pizzahut.com/assets/build/js/page-home.min.js?tm=1795795987"
+   ],
+   "title": "\n         Pizza Hut Jobs &#038; Careers | Pizza Hut       "
+  }
+ },
+ "names": {
+  "swa": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "gehc": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "usc": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "tamus": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "nyuhs": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "tsmg": {
+   "lever": "200 TSMG | og:TSMG jobs",
+   "ashby": "404 Jobs | og:"
+  },
+  "cgsfederal": {
+   "lever": "200 Contact Government Services, LLC | og:Contact Government Services, LLC jobs",
+   "ashby": "404 Jobs | og:"
+  },
+  "mydpr": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "ghj": {
+   "lever": "200 GHJ | og:GHJ jobs",
+   "ashby": "404 Jobs | og:"
+  },
+  "gfs": {
+   "lever": "404 Not found – 404 error | og:",
+   "ashby": "404 Jobs | og:"
+  },
+  "wd:gehc": {
+   "e": "gehc|wd5|gehc_externalsite",
+   "org": "{\"name\":\"I10270 GE Medical Systems Israel Ltd\",\"url\":\"\"}",
+   "title": "",
+   "ogsite": "GE HealthCare Careers"
+  },
+  "wd:usc": {
+   "e": "usc|wd5|externalkeckusccareers",
+   "org": "{\"name\":\"C018 University of Southern California- HS\",\"url\":\"\"}",
+   "title": ""
+  },
+  "wd:tamus": {
+   "e": "tamus|wd1|agrilife_extension_external",
+   "org": "{\"name\":\"Texas A&M Agrilife Extension Service\",\"url\":\"\"}",
+   "title": "",
+   "ogsite": "We value People, Programs, and Partnerships."
+  },
+  "wd:nyuhs": {
+   "e": "nyuhs|wd12|nyuhscareers1",
+   "org": "{\"name\":\"\",\"url\":\"\"}",
+   "title": "",
+   "ogsite": "Career Opportunities"
+  },
+  "wd:tsmg": "not in list",
+  "wd:albanymed": {
+   "e": "albanymed|wd5|albany_med",
+   "org": "{\"name\":\"100 Albany Med Health System\",\"url\":\"\"}",
+   "title": "",
+   "ogsite": "Careers at Albany Medical Center"
+  },
+  "wd:swbc": {
+   "e": "swbc|wd1|accounting",
+   "org": "{\"name\":\"005 Southwest Business Corporation\",\"url\":\"\"}",
+   "title": "",
+   "ogsite": "Careers at SWBC"
+  },
+  "wd:gfs": {
+   "e": "gfs|wd5|freshstartfoods",
+   "org": "{\"name\":\"Fresh Start Foods Canada Ltd.\",\"url\":\"\"}",
+   "title": "",
+   "ogsite": "Careers Home"
+  }
+ }
+}
