@@ -1,0 +1,130 @@
+minutes: 21.5
+
+US jobs by company (incl. remote):
+Walgreens: 10177
+Dunkin': 10050
+Allied Universal: 10015
+Amazon: 6066
+Panera Bread: 5984
+7-Eleven: 4642
+UPS: 4485
+Kaiser Permanente: 2863
+Amazon Data Services: 2661
+FedEx: 2639
+Whole Foods Market: 2456
+T-Mobile: 2413
+Starbucks: 2288
+Sheetz: 1764
+Foot Locker: 1746
+Spectrum: 1398
+Wawa: 1309
+DHL: 1283
+Amazon Web Services: 1272
+Amazon Development Center U.S.: 739
+Amazon Kuiper Manufacturing Enterprises: 731
+Comcast: 477
+Disney: 377
+Six Flags: 201
+Annapurna Labs (U.S.): 184
+PillPack: 109
+Amazon Advertising: 103
+Amazon Data Services, Inc. - A19: 96
+Aldi: 77
+Amazon Kuiper Commercial Services: 75
+Prime Now LLC - E78: 65
+KGS: 64
+PillPack, LLC - H96: 40
+Cinemark: 40
+Amazon Web Services, Inc. - A97: 28
+Amazon Kuiper Infrastructure: 21
+Prime Now: 20
+Audible: 20
+re:Cycle Reverse Logistics: 17
+Twitch Interactive, Inc. - D48: 14
+Annapurna Labs (U.S.) Inc. - D63: 14
+Amazon Advertising LLC - B11: 13
+Audible, Inc. - B13: 13
+Twitch Interactive: 12
+Metro-Goldwyn-Mayer Studios: 4
+INLT: 4
+Amazon Studios: 4
+Wondery: 4
+Amazon Logistics: 4
+AWS Security Assurance Services: 4
+Woot.com: 4
+1Life Healthcare: 3
+IMDb.com: 3
+Amazon Development Center U.S., Inc. - B02: 3
+Amazon Payments: 3
+Amazon Kuiper Manufacturing Enterprises LLC - M90: 3
+1Life Healthcare, Inc. - P53: 3
+IMDb.com, Inc. - B10: 2
+Amazon Operations Services US: 2
+Bop LLC - A95: 2
+Amazon US Services: 2
+Zappos.com LLC - B48: 2
+Ring Protect: 1
+Goodreads: 1
+Amazon Media Venture LLC - M32: 1
+Amazon Studios LLC - B24: 1
+Elemental Technologies LLC - E01: 1
+Fauna Robotics: 1
+Bop: 1
+Elemental Technologies: 1
+Amazon Technologies: 1
+Amazon Retail LLC - D79: 1
+Amazon Kuiper Commercial Services LLC - O41: 1
+Amazon US Services LLC - H37: 1
+Zappos.com: 1
+/tmp/t-amazon
+12452 {"outsideUS":0,"noPlace":19,"notJobs":0} {"amazon":{"companies":1,"answered":1,"failed":0,"jobs":12452,"failures":{}}}
+/tmp/t-bigworkday-jibe
+6348 {"outsideUS":34,"noPlace":115,"notJobs":0} {"bigworkday":{"companies":4,"answered":4,"failed":0,"jobs":2951,"failures":{}},"jibe":{"companies":2,"answered":2,"failed":0,"jobs":3397,"failures":{}}}
+/tmp/t-eightfold
+2290 {"outsideUS":0,"noPlace":15,"notJobs":0} {"eightfold":{"companies":1,"answered":1,"failed":0,"jobs":2290,"failures":{}}}
+/tmp/t-paradox
+18861 {"outsideUS":499,"noPlace":590,"notJobs":2710} {"paradox":{"companies":4,"answered":4,"failed":0,"jobs":18861,"failures":{}}}
+/tmp/t-phenom-radancy
+43916 {"outsideUS":299,"noPlace":1407,"notJobs":0} {"phenom":{"companies":5,"answered":5,"failed":0,"jobs":13204,"failures":{}},"radancy":{"companies":7,"answered":7,"failed":0,"jobs":30712,"failures":{}}}
+[{"i":"px:careers.fedex.com:P25-95417-30","t":"Seasonal Package Handler - Part Time (Warehouse like)","c":"FedEx","l":"Sherman, TX","u":"https://careers.fedex.com/seasonal-package-handler-part-time-warehouse-like/job/P25-95417-30","d":"","s":"paradox"},{"i":"px:careers.fedex.com:P25-95427-80","t":"Seasonal Package Handler - Part Time (Warehouse like)","c":"FedEx","l":"Irving, TX","u":"https://careers.fedex.com/seasonal-package-handler-part-time-warehouse-like/job/P25-95427-80","d":"","s":"paradox"},{"i":"px:careers.fedex.com:P25-95428-80","t":"Seasonal Package Handler - Part Time (Warehouse like)","c":"FedEx","l":"Mesquite, TX","u":"https://careers.fedex.com/seasonal-package-handler-part-time-warehouse-like/job/P25-95428-80","d":"","s":"paradox"},{"i":"px:careers.fedex.com:P25-95431-124","t":"Seasonal Package Handler - Part Time (Warehouse like)","c":"FedEx","l":"Fort Worth, TX","u":"https://careers.fedex.com/seasonal-package-handler-part-time-warehouse-like/job/P25-95431-124","d":"","s":"paradox"},{"i":"px:careers.fedex.com:P25-95433-60","t":"Seasonal Package Handler - Part Time (Warehouse like)","c":"FedEx","l":"Fort Worth, TX","u":"https://careers.fedex.com/seasonal-package-handler-part-time-warehouse-like/job/P25-95433-60","d":"","s":"paradox"},{"i":"px:careers.fedex.com:P25-95364-157","t":"Seasonal Package Handler - Part Time (Warehouse like)","c":"FedEx","l":"Baytown, TX","u":"https://careers.fedex.com/seasonal-package-handler-part-time-warehouse-like/job/P25-95364-157"
+[{"i":"ef:apply.starbucks.com:481082113619","t":"barista - Store# 53267, CAMP WISDOM & HWY 67","c":"Starbucks","l":"Dallas, TX","u":"https://apply.starbucks.com/careers/job/481082113619","d":"2026-11-25","s":"eightfold"},{"i":"ef:apply.starbucks.com:481082093047","t":"shift supervisor - Store# 09311, RICHMOND& CHIMNEY ROCK","c":"Starbucks","l":"Houston, TX","u":"https://apply.starbucks.com/careers/job/481082093047","d":"2026-11-24","s":"eightfold"},{"i":"ef:apply.starbucks.com:481082092994","t":"barista - Store# 09993, CUSTER & 15TH","c":"Starbucks","l":"Plano, TX","u":"https://apply.starbucks.com/careers/job/481082092994","d":"2026-11-24","s":"eightfold"},{"i":"ef:apply.starbucks.com:481082093019","t":"shift supervisor - Store# 10174, HWY 249 & HIRSCHFIELD","c":"Starbucks","l":"Tomball, T
+
+### bigworkday,jibe (15.2 min)
+Big employers on Workday: 4/4 boards answered, 2951 jobs, 816s, failures {}
+Jibe career sites (Costco, JCPenney, …): 2/2 boards answered, 3397 jobs, 94s, failures {}
+Not jobs: no posters
+Done: 6348 jobs, 72 remote, 52 states, 34 outside the US, 115 with no place, 0 not real jobs.
+
+
+### phenom,radancy (5.9 min)
+Phenom career sites (Thermo Fisher, …): 5/5 boards answered, 13204 jobs, 131s, failures {}
+Radancy career sites (Chipotle, …): 7/7 boards answered, 30712 jobs, 220s, failures {}
+Not jobs: no posters
+Done: 43916 jobs, 62 remote, 52 states, 299 outside the US, 1407 with no place, 0 not real jobs.
+
+
+### eightfold (7.9 min)
+  Starbucks: stopped at 2290 of 19907 (HTTP 429)
+Eightfold career sites (Lockheed Martin, …): 1/1 boards answered, 2290 jobs, 475s, failures {}
+Not jobs: no posters
+Done: 2290 jobs, 0 remote, 50 states, 0 outside the US, 15 with no place, 0 not real jobs.
+
+
+### paradox (21.5 min)
+  McDonald's: stopped at page 272 of 5489 (HTTP 500)
+Paradox career sites (FedEx, Dunkin', …): 4/4 boards answered, 18861 jobs, 1292s, failures {}
+Not jobs: McDonald's
+Done: 18861 jobs, 0 remote, 52 states, 499 outside the US, 590 with no place, 2710 not real jobs.
+
+
+### amazon (4.3 min)
+  Amazon: 10000+ jobs, read state by state, kept 12452
+Amazon: 1/1 boards answered, 12452 jobs, 257s, failures {}
+Not jobs: no posters
+Done: 12452 jobs, 0 remote, 50 states, 0 outside the US, 19 with no place, 0 not real jobs.
+
+
+### names (10.6 min)
+Lever: 1503 of 4368
+Ashby: 116 of 3161
+Workday: 577 of 3619

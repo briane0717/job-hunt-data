@@ -1,0 +1,19 @@
+{
+ "paradox": [
+  {
+   "name": "McDonald's",
+   "host": "jobs.mchire.com",
+   "max": 400
+  }
+ ],
+ "eightfold": [
+  {
+   "name": "Starbucks",
+   "host": "apply.starbucks.com",
+   "domain": "starbucks.com",
+   "location": "United States",
+   "max": 6000,
+   "pause": 3000
+  }
+ ]
+}

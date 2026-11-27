@@ -1,13 +1,14 @@
-// Step 7 (step 4 again with the second batch): read the new Fortune 500 entries with the collector itself (probe/test_big.json), as a test.
-import { execFileSync } from 'node:child_process';
-import { writeFileSync, mkdirSync } from 'node:fs';
-mkdirSync('probe/out', { recursive: true });
+// Step 15: McDonald's (first 400 pages) and Starbucks (first 6,000 jobs, read slower) after the fixes.
+import { execFileSync, spawn } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
 const t0 = Date.now();
-let log = '';
-try {
-  log = execFileSync('node', ['collector/collect.mjs', '--only', 'bigworkday,oracle,jibe,rmk,phenom,radancy,eightfold', '--big', 'probe/test_big2.json', '--out', '/tmp/test-out', '--minutes', '45'], { maxBuffer: 1 << 28, stdio: ['ignore', 'pipe', 'pipe'] }).toString();
-} catch (e) { log = String(e.stdout || '') + '\nERROR ' + String(e.stderr || e.message).slice(-3000); }
-// Per-company counts from the written files.
+const runPart = (only) => new Promise((resolve) => {
+  const p = spawn('node', ['collector/collect.mjs', '--only', only, '--big', 'probe/test_hourly2.json', '--out', `/tmp/t-${only}`, '--minutes', '50']);
+  let log = '';
+  p.stdout.on('data', (d) => (log += d)); p.stderr.on('data', (d) => (log += d));
+  p.on('close', () => resolve(`### ${only} (${((Date.now() - t0) / 60000).toFixed(1)} min)\n${log.slice(-3000)}`));
+});
+const logs = await Promise.all([runPart('paradox'), runPart('eightfold')]);
 let counts = '';
-try { counts = execFileSync('bash', ['-c', `cat /tmp/test-out/v1/us/*.json 2>/dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const c={};for(const m of s.matchAll(/"c":"([^"]+)"/g))c[m[1]]=(c[m[1]]||0)+1;console.log(Object.entries(c).sort((a,b)=>b[1]-a[1]).map(x=>x.join(": ")).join("\\n"))})'; ls /tmp/test-out/v1 | head`]).toString(); } catch (e) { counts = 'count failed ' + e.message; }
-writeFileSync('probe/out/test_run2.txt', `minutes: ${((Date.now() - t0) / 60000).toFixed(1)}\n\n${log.slice(-12000)}\n\nUS jobs by company:\n${counts}`);
+try { counts = execFileSync('bash', ['-c', `for d in /tmp/t-*; do echo $d; node -e 'const m=require(process.argv[1]+"/v1/manifest.json");console.log(m.totalJobs, JSON.stringify(m.skipped))' $d; done; cat /tmp/t-paradox/v1/us/*.json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const c={};for(const m of s.matchAll(/"t":"([^"]+)"/g))c[m[1]]=(c[m[1]]||0)+1;console.log(Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,25).map(x=>x.join(": ")).join("\\n"))})'; head -c 1200 /tmp/t-paradox/v1/us/TX.json`]).toString(); } catch (e) { counts = 'count failed ' + e.message; }
+writeFileSync('probe/out/test_hourly2.txt', `minutes: ${((Date.now() - t0) / 60000).toFixed(1)}\n\n${counts}\n\n${logs.join('\n\n')}`);
