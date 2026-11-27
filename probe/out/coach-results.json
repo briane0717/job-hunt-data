@@ -1,0 +1,374 @@
+{
+ "interviews": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "transcript": [
+    "Interviewer: I'm Rachel, the Store Manager, and this interview should take about fifteen minutes, can you tell me a little about yourself?",
+    "Me: I've been in retail about five years. Right now I'm a shift lead at Corner Market, a small neighborhood grocery, where I run the register, train new cashiers and handle the morning deliveries. Before that I worked two years in a warehouse picking orders. I'm looking for a bigger store with more hours.",
+    "Interviewer: You've got some good experience, now can you tell me about a time when you had to answer a lot of customer questions about products?",
+    "Me: I'm pretty good with customers I guess.",
+    "Interviewer: Can you give me an example of a time when you had to help a customer find something or answer a question about a product?",
+    "Me: A guy came in really upset because we'd charged him twice for a case of water. I said sorry right away, checked the receipt, and saw the double scan. I refunded him on the spot and gave him a coupon. He calmed down and he still comes in every week.",
+    "Interviewer: How did you handle the cash register part of that, to make sure the refund was done correctly?",
+    "Me: I count three drawers every night and they've balanced every time. I count twice and keep big bills under the tray.",
+    "Interviewer: That's good to hear about your cash handling, now can you tell me about a time when you received a large delivery and had to stock shelves quickly to get ready for customers?",
+    "Me: One night my drawer was twenty dollars short when I counted it. I recounted, then went back through the receipts and found a refund I'd keyed wrong. I fixed it in the system and wrote it up for my manager so it wouldn't happen again.",
+    "Interviewer: That's a great example of catching a mistake, but I was asking about receiving a delivery, can you tell me about a time when you had to stock shelves after a delivery?",
+    "Me: When we got two new cashiers the same week before Thanksgiving, I made a one page cheat sheet for the register and stood next to each of them for their first few shifts.",
+    "Interviewer: That's helpful training, now what would you do if you were restocking shelves and a customer asked you where something was, but you were in the middle of putting away a big pallet of merchandise?",
+    "Me: I'd stay calm, listen to the whole problem first, and fix what I can right there. If it's something I can't fix, like a big refund, I'd get the manager and stay with the customer.",
+    "Interviewer: The job posting mentions being able to lift 40 pounds, can you tell me about a time when you had to lift something heavy at work, and how you did it safely?",
+    "Me: Yes. I lift cases all day now, and in the warehouse I loaded trucks every shift.",
+    "Interviewer: Do you have any questions for me about the Store Associate position or Maple Grocers?",
+    "Me: What does a good first month look like for someone in this job? And how are shifts scheduled?",
+    "Interviewer: A good first month would be getting familiar with our store and products, and providing great customer service. Shifts are scheduled a week in advance, and we try to give everyone a mix of days and hours. Thank you for coming in today"
+   ],
+   "times": [
+    1264,
+    782,
+    642,
+    936,
+    891,
+    877,
+    1254,
+    898,
+    3143,
+    1336
+   ],
+   "review": {
+    "data": {
+     "score": 6,
+     "summary": "You have relevant experience and skills for the Store Associate position, but struggled to provide specific examples for some of the interviewer's questions, which may raise concerns about your ability to think on your feet. You were able to showcase your customer service skills and experience with cash handling, but could improve on providing more detailed and relevant examples for certain scenarios",
+     "good": [
+      "You provided a good example of handling a customer complaint and resolving the issue efficiently",
+      "You demonstrated experience with cash handling and inventory management"
+     ],
+     "fix": [
+      "For the question about answering customer questions, try to provide a more specific example of a time when you had to answer multiple questions about products, such as describing a situation where you helped a customer find a specific item or explained the features of a product",
+      "When asked about receiving a large delivery and stocking shelves, focus on providing a relevant example from your experience, such as describing a time when you had to quickly stock shelves after a delivery to prepare for customers",
+      "For the question about lifting heavy objects, try to provide a more detailed example of how you lifted the object safely, such as describing the proper lifting techniques you used or any safety precautions you took"
+     ],
+     "practice": "Can you tell me about a time when you had to answer a lot of customer questions about products?"
+    },
+    "ms": 8113,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "transcript": [
+    "Interviewer: I'm Karen, the Office Manager here at Bright Smile Dental. This interview should take about fifteen minutes, and I'd like to start by asking you to tell me a little bit about yourself.",
+    "Me: I've worked with people for about four years. I was a server at Casa Verde for three years and then I worked at DesertLink's call center, answering billing and outage calls. I took medical office classes at Pima this year because I want to work in healthcare.",
+    "Interviewer: You've had experience dealing with customers and you're looking to transition into healthcare, that's great. Can you tell me about your experience with scheduling, since that's a big part of this front desk role?",
+    "Me: I'm organized, I think.",
+    "Interviewer: Being organized is important, but can you give me an example of a time when you actually scheduled appointments or managed a schedule in one of your previous jobs?",
+    "Me: At the call center a customer called furious because his internet had been out for three days and he works from home. I apologized, checked the outage map, and saw his area was fixed but his modem wasn't. I walked him through a reset and when that didn't work I booked a tech for the next morning. He thanked me at the end of the call.",
+    "Interviewer: That sounds like a tough call to handle, but you seemed to resolve the issue for him. Tell me about a time when you had to handle a sensitive or confidential situation, since we deal with patient records and insurance information here.",
+    "Me: At Casa Verde we got slammed one Friday when two servers called out. I took two extra tables and asked the host to seat my section in waves so the kitchen wouldn't get buried. We got through the night without anyone walking out.",
+    "Interviewer: It sounds like you helped manage a chaotic situation. What would you do if a patient was upset because their insurance wasn't covering a procedure and they couldn't pay out of pocket?",
+    "Me: I'd smile, tell the patient in the lobby I'll be right with them, put the caller on a short hold, and check the patient in. Then I'd go back to the phone.",
+    "Interviewer: That's a good start, but how would you actually address the patient's concern about their insurance and payment? \n\nAlso, I noticed your resume doesn't mention experience with Dentrix or similar scheduling software, can you tell me about any experience you have with software like that?",
+    "Me: When Salesforce changed at work, I made notes for myself and shared them with two new people.",
+    "Interviewer: That's helpful, but I'm not seeing any direct experience with Dentrix. Do you have any questions for me about the position or Bright Smile Dental?",
+    "Me: What software do you use for scheduling, and is there training for it?",
+    "Interviewer: We use Dentrix, and yes, we provide training for all new staff members to get them up to speed on our systems. Thank you for coming in today, I appreciate your time"
+   ],
+   "times": [
+    811,
+    898,
+    865,
+    1115,
+    1100,
+    1231,
+    782,
+    1126
+   ],
+   "review": {
+    "data": {
+     "score": 6,
+     "summary": "You presented yourself as a customer-focused and organized individual with a desire to transition into healthcare, but struggled to provide specific examples of scheduling and handling sensitive situations, which are crucial for the Front Desk Receptionist role at Bright Smile Dental. A hiring manager would see you as a potential candidate with some relevant experience, but in need of further training and development to excel in the position",
+     "good": [
+      "You effectively handled a tough call at the call center and resolved the issue for the customer",
+      "You asked relevant questions about the position, such as the software used for scheduling and the availability of training"
+     ],
+     "fix": [
+      "Provide more specific examples of scheduling appointments or managing a schedule in your previous jobs, as seen in your response to the question about scheduling experience",
+      "Develop a more comprehensive approach to handling sensitive or confidential situations, such as the scenario with the patient's insurance not covering a procedure",
+      "Be more prepared to discuss your experience with software similar to Dentrix, even if it's not directly related, to show your ability to learn and adapt to new systems"
+     ],
+     "practice": "Tell me about a time when you had to handle a sensitive or confidential situation, since we deal with patient records and insurance information here"
+    },
+    "ms": 7256,
+    "status": 200
+   }
+  }
+ ],
+ "feedback": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Tell me about yourself.",
+   "a": "Um, I'm Jordan. I've worked retail for a while and I'm a hard worker and I like people.",
+   "r": {
+    "data": {
+     "score": 4,
+     "verdict": "The hiring manager would hear a vague and unconvincing introduction.",
+     "good": [
+      "You started with your name, 'I'm Jordan'",
+      "You mentioned retail experience"
+     ],
+     "fix": [
+      "Add a specific job title or experience from your resume to give context",
+      "Replace 'I'm a hard worker' with a concrete skill or achievement",
+      "Remove filler words like 'um' to sound more confident"
+     ],
+     "better": "I'm Jordan, a retail professional with 5 years of experience, currently working as a Shift Lead at Corner Market, where I've trained new cashiers and handled cash accurately, and I'm excited to bring my skills in customer service and inventory management to a new role at Maple Grocers."
+    },
+    "ms": 4277,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Tell me about a time you dealt with an upset customer.",
+   "a": "A customer was mad about a price on the shelf being different from the register. I explained the sale ended. He was still mad but he paid.",
+   "r": {
+    "data": {
+     "score": 4,
+     "verdict": "The hiring manager would think the answer is too brief and lacks a clear resolution to the customer's issue",
+     "good": [
+      "You started with a clear situation: 'A customer was mad about a price on the shelf being different from the register'"
+     ],
+     "fix": [
+      "Add what you personally did to try to resolve the issue, like offering a solution or apologizing",
+      "Include the outcome, such as if the customer left satisfied or if you had to involve a manager",
+      "Explain how you ensured the customer's concern was addressed, even if they were still upset"
+     ],
+     "better": "I recall a time when a customer was upset about a price discrepancy between the shelf and the register. I listened to their concern, explained that the sale had ended, and offered to check if we had any similar products at a comparable price. Although the customer was still unhappy, they paid and left the store, and I made sure to report the issue to my manager so we could improve our pricing signage to prevent similar issues in the future"
+    },
+    "ms": 5616,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do you make sure your cash drawer is accurate?",
+   "a": "At Corner Market I close three drawers every night. I count each one twice, check it against the register report, and if anything's off I go back through the receipts before I leave. In three years we haven't had a shortage.",
+   "r": {
+    "data": {
+     "score": 8,
+     "verdict": "The hiring manager would hear a competent answer, but it's a bit brief and lacks a personal touch.",
+     "good": [
+      "'I count each one twice' shows attention to detail",
+      "mention of 'three years' gives a sense of longevity"
+     ],
+     "fix": [
+      "Add what you personally do to investigate and fix any discrepancies, like 'I re-check the receipts and transactions'",
+      "Specify what you do to prevent shortages in the first place, such as 'I make sure to handle cash carefully throughout my shift'",
+      "Consider starting with a clearer statement of your goal, like 'My goal is to ensure the cash drawer is 100% accurate'"
+     ],
+     "better": "My goal is to ensure the cash drawer is 100% accurate, so at Corner Market I close three drawers every night, counting each one twice and checking it against the register report. If anything's off, I go back through the receipts to find the issue, and in three years we haven't had a shortage, which I think shows my attention to detail and care with handling cash."
+    },
+    "ms": 6050,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Why do you want to work at Maple Grocers?",
+   "a": "More hours.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager would hear this as an answer that lacks enthusiasm and understanding of the job",
+     "good": [],
+     "fix": [
+      "Add a sentence that shows you've read the job posting and understand the responsibilities",
+      "Mention a skill or experience from your resume that aligns with the job requirements",
+      "Explain why more hours are important to you in the context of this job"
+     ],
+     "better": "I want to work at Maple Grocers because I'm looking for a role with more hours where I can use my retail experience to help keep shelves full and customers happy, and I believe my cash handling skills will be a good fit for operating the cash register and handling customer transactions."
+    },
+    "ms": 5051,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "q": "Do you have experience with dental insurance?",
+   "a": "No, not really, but I can learn.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager would hear this as a lack of relevant experience and a somewhat negative tone.",
+     "good": [
+      "acknowledging the question directly"
+     ],
+     "fix": [
+      "Add a sentence to show enthusiasm for learning about dental insurance",
+      "Mention any related experience, such as handling billing or customer payments",
+      "Highlight any relevant education or coursework, like Medical Office Administration"
+     ],
+     "better": "I don't have direct experience with dental insurance, but I'm excited to learn about it and apply my customer service skills to help patients with their insurance questions, building on my experience handling billing and payments at Casa Verde Restaurant and my coursework in Medical Office Administration at Pima Community College."
+    },
+    "ms": 4165,
+    "status": 200
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "q": "A teacher says her Chromebook won't connect to Wi-Fi five minutes before class. What do you do?",
+   "a": "I'd go to the room, check if Wi-Fi is on, forget the network and reconnect, and if that doesn't work give her a loaner so class can start, then fix it after.",
+   "r": {
+    "data": {
+     "score": 7,
+     "verdict": "The hiring manager hears a mostly practical answer, but it's a bit brief and lacks a clear explanation of the steps taken to resolve the issue.",
+     "good": [
+      "'check if Wi-Fi is on' shows you'd start with a simple fix",
+      "you mention giving her a loaner so class can start, which shows you're aware of the time constraint"
+     ],
+     "fix": [
+      "Add a sentence to explain why you're checking the Wi-Fi setting, like 'to make sure it's not just a simple toggle'",
+      "Specify how you'd 'fix it after' class, such as 'by investigating further or escalating to a senior tech'",
+      "Consider mentioning how you'd document the issue and the fix in the ticketing system"
+     ],
+     "better": "I'd rush to the room and first check if Wi-Fi is on, to make sure it's not just a simple toggle, then forget the network and reconnect. If that doesn't work, I'd give her a loaner so class can start on time, and after class I'd investigate further to fix the issue, and document the problem and solution in our ticketing system."
+    },
+    "ms": 6302,
+    "status": 200
+   }
+  }
+ ],
+ "coach": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do I answer \"Why did you leave your last job?\"",
+   "r": {
+    "reply": "I can say I'm looking for a new opportunity to work with customers more directly. \nThis is a good answer because it focuses on what you want to do next, rather than why you left your last job. What was your reason for leaving Corner Market?",
+    "ms": 1170,
+    "status": 200
+   },
+   "follow": {
+    "q": "I'm still working there. I just want more hours and a bigger store.",
+    "r": {
+     "reply": "I can say I'm looking for a new opportunity to work more hours and be part of a larger team, like Maple Grocers. \nThis is a good answer because it's honest about your reasons for looking for a new job without speaking negatively about your current employer.",
+     "ms": 1464,
+     "status": 200
+    }
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "What do I say when they ask about pay?",
+   "r": {
+    "reply": "You can say: I'm excited about the role and want to learn more about the overall compensation package, can you share the salary range for this position.\n\nWhat is your current salary or the salary you're looking for in this role?",
+    "ms": 978,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do I explain a gap in my work history?",
+   "r": {
+    "reply": "You can say I was focusing on personal matters during that time. \nThis is honest and doesn't go into details that might raise more questions, what year was the gap in your work history?",
+    "ms": 1023,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Write a short thank-you note to send after my interview",
+   "r": {
+    "reply": "Dear interviewer, thanks for taking the time to talk to me about the Store Associate job at Maple Grocers, I really appreciated learning more about the role and your team.\n\nWhat was the interviewer's name, so I can make it more personal?",
+    "ms": 971,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "I get nervous in interviews. What helps?",
+   "r": {
+    "reply": "Take deep breaths before answering questions to calm down. \nThis helps slow down your heart rate and think more clearly, so you can focus on what you want to say. \nWhat's the main thing you're worried about happening in the interview?",
+    "ms": 1135,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "What should I ask at the end of the interview?",
+   "r": {
+    "reply": "You should ask what a typical day looks like in this role. \nThis shows you're interested in the job and want to know what to expect. \nYou can say: I'm excited about the Store Associate role, can you tell me what a typical day looks like? \nWhat's your current job situation, are you looking to leave your current job or is this a new opportunity?",
+    "ms": 1407,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "q": "How do I explain that I don't have dental office experience?",
+   "r": {
+    "reply": "You can say I'm excited about applying my customer service skills in a new setting, like a dental office, and I'm eager to learn the specifics of the job. \nThis shows you're positive and willing to learn, which is attractive to employers, and it doesn't make up experience you don't have. \nWhat type of customer service have you enjoyed most so far?",
+    "ms": 1495,
+    "status": 200
+   }
+  },
+  {
+   "job": "(any job, no resume)",
+   "q": "I got fired from my last job for being late too many times. How do I explain that?",
+   "r": {
+    "reply": "Be honest and say you learned from it. \nI say this because it shows you took responsibility and grew from the experience. \nI can say: I was let go due to tardiness, but since then I've [improved my routine, found a new way to get to work, etc]. \nWhat did you change to be on time now?",
+    "ms": 1656,
+    "status": 200
+   }
+  }
+ ],
+ "letters": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "r": {
+    "reply": "The Store Associate role at Maple Grocers stands out because it requires cash handling experience, which I've got plenty of from my time as a Shift Lead at Corner Market. I've been counting and balancing cash drawers nightly for years, and I'm comfortable handling cash accurately.\n\nAs a Shift Lead, I trained new cashiers on the register and store rules, and I also handled deliveries and stocked shelves before opening. In my previous role as a Warehouse Associate at FastShip Logistics, I picked and packed a large volume of orders per shift, which taught me how to work efficiently and keep up with a fast pace. I've also got experience operating a handheld scanner, which could be useful in receiving deliveries and stocking shelves.\n\nI'm interested in this role because Maple Grocers seems to prioritize keeping customers happy, which is something I've focused on in my previous retail experience. I'd like to talk more about how my skills and experience can help the store team at Maple Grocers, so let's discuss the opportunity.",
+    "ms": 9666,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "r": {
+    "reply": "The Store Associate role at Maple Grocers is a good match because it requires cash handling experience, which I have from my time as a Shift Lead at Corner Market. I've counted and balanced 3 cash drawers every night with no shortages, so I'm comfortable handling cash.\n\nAs a Shift Lead, I trained 6 new cashiers on the register and store rules, and handled deliveries, which involved stocking shelves before the store opened. I also worked as a Warehouse Associate at FastShip Logistics, where I loaded and unloaded trucks safely, and picked and packed 150+ orders per shift.\n\nI'm interested in this role at Maple Grocers because they focus on keeping shelves full and customers happy. I'd like to talk about the position and how I can contribute.",
+    "ms": 4817,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "r": {
+    "reply": "The Front Desk Receptionist role at Bright Smile Dental is a good match because it requires experience with customer service and scheduling. My experience as a Customer Service Rep at DesertLink Internet, where I answered about 70 calls a day, could be useful in this role.\n\nAt DesertLink, I scheduled technician visits in Salesforce, and at Casa Verde Restaurant, I handled cash and card payments and closed out my own checks. These tasks involved organizing and keeping track of information, skills that could be applied to keeping patient records accurate.\n\nThis job appeals to me because of the regular schedule. I'd like to talk about the position and how I can contribute to the office.",
+    "ms": 5673,
+    "status": 200
+   }
+  },
+  {
+   "job": "Warehouse Associate at Northline Distribution",
+   "r": {
+    "reply": "The Warehouse Associate role at Northline Distribution stands out because it requires someone who can lift 50 lbs and stand for long periods, which I can do. This physical ability is key to performing the main duties of the job.\n\nMy experience includes working in warehouses where I've loaded and unloaded trailers, and kept work areas clean. For example, at my previous job I loaded trailers 5 days a week, and I was responsible for cleaning my work area at the end of each shift. I also used RF scanners to pick orders, which I did daily.\n\nThis job appeals to me because it offers a set schedule with 4x10 night shifts. I'd like to talk about how my skills and experience match the needs of this role, and I look forward to discussing this opportunity.",
+    "ms": 2952,
+    "status": 200
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "r": {
+    "reply": "The IT Help Desk Technician role at Lakeside School District stands out because it requires supporting a large number of staff and students across 12 schools, which I think I can handle given my experience helping about 25 students a day with their tech issues at Harbor Community College's computer lab. \n\nAs a Student Tech Assistant, I helped students with common problems like printing, Wi-Fi, and login issues, which I think are similar to the kinds of problems I'd encounter at Lakeside School District. I also re-imaged 40 lab computers each semester, which shows I can work with computers and fix technical problems. \n\nThis job at Lakeside School District appeals to me because it involves supporting staff and students in an educational setting. I'd like to talk about how my experience and skills can help me succeed in this role.",
+    "ms": 2687,
+    "status": 200
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "r": {
+    "reply": "The IT Help Desk Technician role at Lakeside School District catches my attention because it involves supporting staff and students across 12 schools, and my experience helping students with tech issues at Harbor Community College's computer lab could be useful in this role.\n\nAs a Student Tech Assistant, I helped about 25 students a day with printing, Wi-Fi, and login problems. I also re-imaged 40 lab computers each semester, which gave me hands-on experience with Windows laptops. My experience with Google Workspace will also be helpful in managing accounts.\n\nThis job seems like a good opportunity to use my tech skills to help people. I'd like to discuss how my experience might work for this position.",
+    "ms": 5203,
+    "status": 200
+   }
+  }
+ ],
+ "calls": 41
+}
