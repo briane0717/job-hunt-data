@@ -27,7 +27,8 @@ export function cleanName(raw, slug) {
     .replace(/^(careers?|jobs?)\s*[|–—:-]\s*/i, '')
     .replace(/,?\s+(inc\.?|llc|l\.l\.c\.|ltd\.?|co\.)$/i, '')
     .trim();
-  if (!n || GENERIC.test(n) || n.length > 60 || n.split(' ').length > 7 || /[.!?]$/.test(n)) return null;
+  n = n.replace(/,?\s+(GmbH|AG|S\.?A\.?|B\.?V\.?)$/, '');
+  if (!n || GENERIC.test(n) || /[@/]|^(people|careers?|join|work|jobs?)\b/i.test(n) || n.length > 60 || n.split(' ').length > 7 || /[.!?]$/.test(n)) return null;
   // Must plausibly be this board's company: the name starts like the short name, contains it, or its initials match.
   const c = compact(n);
   const s = compact(slug);

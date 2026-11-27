@@ -1,7 +1,9 @@
 # Job collector
 
 Reads the public job lists of tens of thousands of employers (Greenhouse, Lever, Ashby and Workday
-boards, plus Workable's public feed of all its customers' jobs) and writes compact files by US
+boards, plus Workable's public feed of all its customers' jobs), and the public career sites of large
+employers listed in `companies/big_employers.json` (Oracle, Jibe, SuccessFactors, Phenom, Radancy,
+Eightfold and Paradox sites, and amazon.jobs) and writes compact files by US
 state for the Job Hunt app. It runs every 6 hours on GitHub Actions in the public
 `job-hunt-data` repository and publishes to the `data` branch.
 
@@ -11,3 +13,7 @@ state for the Job Hunt app. It runs every 6 hours on GitHub Actions in the publi
   [Riley-Dorrington/job-board-aggregator](https://github.com/Riley-Dorrington/job-board-aggregator)
   (MIT, commit 135ed20, 2026-11-23). See `companies/LICENSE-job-board-aggregator`.
 - Only public job information is collected. Nothing about app users is ever stored here.
+- Real company names for boards with short names (`insomniacookies` -> Insomnia Cookies) are in
+  `companies/board_names.json`, looked up from each board's public page by `tools/names.mjs`
+  (run now and then, not on every collection).
+- Sites whose robots.txt asks robots to stay out of their job search (Walmart) are not read.

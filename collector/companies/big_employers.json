@@ -762,7 +762,8 @@
       "host": "apply.starbucks.com",
       "domain": "starbucks.com",
       "location": "United States",
-      "max": 25000
+      "max": 25000,
+      "pause": 3000
     }
   ],
   "paradox": [

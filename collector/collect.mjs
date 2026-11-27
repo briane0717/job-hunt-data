@@ -60,7 +60,12 @@ const BOARD_NAMES = await readFile(path.join(HERE, 'companies', 'board_names.jso
   .catch(() => ({}));
 
 /** "Acme, Inc." -> "Acme". */
-const plainName = (n) => String(n || '').replace(/,?\s+(Inc\.?|LLC|L\.L\.C\.|Ltd\.?)$/i, '').trim();
+/** "Acme, Inc." -> "Acme"; Amazon's "Amazon Data Services, Inc. - A19" -> "Amazon Data Services". */
+const plainName = (n) =>
+  String(n || '')
+    .replace(/\s+-\s+[A-Z]\d{2}$/, '')
+    .replace(/,?\s+(Inc\.?|LLC|L\.L\.C\.|Ltd\.?)$/i, '')
+    .trim();
 
 function pretty(slug) {
   return String(slug)
@@ -290,15 +295,15 @@ async function radancy({ name, host }) {
  * Eightfold career sites (Lockheed Martin, Micron, Qualcomm, …): GET /api/pcsx/search?domain=…&start=N,
  * 10 jobs at a time, read slowly because these sites limit how fast they answer.
  */
-async function eightfold({ name, host, domain, location = '', max = 10000 }) {
+async function eightfold({ name, host, domain, location = '', max = 10000, pause = 1500 }) {
   const out = new Map();
   let total = Infinity;
   for (let start = 0; start < Math.min(total, max) && Date.now() < DEADLINE; ) {
     let data;
-    for (let attempt = 0; attempt < 3 && !data; attempt++) {
+    for (let attempt = 0; attempt < 5 && !data; attempt++) {
       data = await curlJson(`https://${host}/api/pcsx/search?domain=${domain}&query=&location=${encodeURIComponent(location)}&start=${start}&sort_by=timestamp`).catch(async (e) => {
-        await pauseMs(5000 * (attempt + 1));
-        if (attempt === 2) console.log(`  ${name}: stopped at ${start} of ${total} (${e.message})`);
+        await pauseMs(15000 * 2 ** attempt); // "too many requests": wait 15 s, 30 s, 1 min, 2 min, 4 min
+        if (attempt === 4) console.log(`  ${name}: stopped at ${start} of ${total} (${e.message})`);
         return null;
       });
     }
@@ -322,7 +327,7 @@ async function eightfold({ name, host, domain, location = '', max = 10000 }) {
       });
     }
     start += list.length;
-    await pauseMs(1500); // these sites refuse fast readers part way
+    await pauseMs(pause); // these sites refuse fast readers part way
   }
   return [...out.values()];
 }
@@ -346,13 +351,18 @@ async function paradox({ name, host, max = 3000 }) {
   let last = 1;
   for (let page = 1; page <= Math.min(last, max) && Date.now() < DEADLINE; page++) {
     let html;
-    try {
-      html = await curlText(`https://${host}/jobs/page/${page}`);
-    } catch (e) {
-      if (!out.size) throw e;
-      console.log(`  ${name}: stopped at page ${page} of ${last} (${e.message})`);
-      break;
+    for (let attempt = 0; attempt < 3 && html === undefined; attempt++) {
+      html = await curlText(`https://${host}/jobs/page/${page}`).catch(async (e) => {
+        if (attempt === 2) {
+          if (!out.size) throw e;
+          console.log(`  ${name}: stopped at page ${page} of ${last} (${e.message})`);
+          return null;
+        }
+        await pauseMs(10000 * (attempt + 1));
+        return undefined;
+      });
     }
+    if (!html) break;
     for (const m of html.matchAll(/\/jobs\/page\/(\d+)/g)) last = Math.max(last, Number(m[1]));
     let added = 0;
     for (const li of html.split(/<li class="results-list__item"/).slice(1)) {
@@ -900,11 +910,14 @@ let junk = 0;
 const seen = new Set();
 // Survey sign-ups and reposts aren't jobs (see junk.mjs). Posters are judged on all their listings, abroad too.
 const badPosters = junkPosters(all);
+// Employers read from their own career sites are real employers (McDonald's franchise posts say "earn extra cash").
+const trusted = new Set(['workday', 'jibe', 'oracle', 'rmk', 'phenom', 'radancy', 'eightfold', 'paradox', 'amazon'].flatMap((k) => (Array.isArray(big[k]) ? big[k] : []).map((e) => (typeof e === 'string' ? e.split('|')[3] : e.name)).filter(Boolean)));
+for (const c of trusted) badPosters.delete(c);
 console.log(`Not jobs: ${[...badPosters].join(', ') || 'no posters'}`);
 for (const j of all) {
   if (!j.t || !j.u || seen.has(j.i)) continue;
   seen.add(j.i);
-  if (badPosters.has(j.c) || isJunkTitle(j.t) || isReposter(j.c)) {
+  if (badPosters.has(j.c) || (isJunkTitle(j.t) && !trusted.has(j.c)) || isReposter(j.c)) {
     junk++;
     continue;
   }
