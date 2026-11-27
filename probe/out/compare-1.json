@@ -1,0 +1,316 @@
+{
+ "run": "compare-1",
+ "results": [
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "letter",
+   "job": "Warehouse Associate at Northline Distribution",
+   "ask": "My name is not given. Write the body of my cover letter for this job.",
+   "r": {
+    "reply": "The Warehouse Associate job at Northline Distribution involves working night shifts, which is a specific schedule that requires adaptability. At [a past job], I [worked a similar schedule] and at [another job], I [handled physical demands], and at [a previous position], I [operated equipment safely].\n\nThe duties listed for this job, such as picking and packing orders using RF scanners, loading and unload trailers, and keeping work areas clean and safe, are all important tasks that require attention to detail and physical ability. The job also requires being able to lift 50 lbs and stand for 10 hours, which are key physical demands.\n\nI'm drawn to this job because it offers a set schedule with 4x10 night shifts, which provides a consistent routine. I'd like to talk about how I might be a good candidate for this role.",
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 5915,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "letter",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My name is Jordan Lee. Write the body of my cover letter for this job.",
+   "r": {
+    "reply": "I've already handled deliveries and stocked shelves as a Shift Lead at Corner Market, so I know how to get products on the shelves quickly and efficiently. This experience will serve me well in the Store Associate role at Maple Grocers, where keeping shelves full is a key part of the job. \n\nAs a Shift Lead, I trained 6 new cashiers on the register and store rules, and I counted and balanced 3 cash drawers every night with no shortages. I also handled deliveries and stocked shelves before opening, which gave me a sense of what needs to be done to keep the store running smoothly. At FastShip Logistics, I loaded and unloaded trucks safely, which shows I can handle physical work.\n\nI'm applying for this job because the posting mentions keeping the store clean and organized, which is something I've done as a Shift Lead. I'd like to talk about how my experience can help Maple Grocers.",
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 4562,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "letter",
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "ask": "My name is Alex Kim. Write the body of my cover letter for this job.",
+   "r": {
+    "reply": "I helped about 25 students a day with printing, Wi-Fi and login problems as a Student Tech Assistant at Harbor CC Computer Lab, and I'm applying for the IT Help Desk Technician job at Lakeside School District.\n\nAt the computer lab, I fixed a lot of login issues and helped students with their devices, which will help me manage accounts in Active Directory and Google Admin. I also re-imaged 40 lab computers each semester, so I have experience setting up and repairing devices like Chromebooks and Windows laptops.\n\nI'm interested in this job because the posting says I'll be supporting staff and students across 12 schools, which sounds like a big responsibility. I'd like to talk about how my experience can help me answer help desk tickets and support the schools.",
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 5970,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "feedback",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "Interview question: Tell me about yourself.\n\nMy answer:\nUm, I'm Jordan. I've worked retail for a while and I'm a hard wo",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The answer is too vague and doesn't show how the candidate's experience matches the job requirements.",
+     "good": [
+      "I've worked retail for a while"
+     ],
+     "fix": [
+      "Mention your relevant experience as a Shift Lead at Corner Market",
+      "Specify the skills you have that match the job requirements, such as cash handling and inventory",
+      "Remove general statements like 'I'm a hard worker' and focus on specific experiences"
+     ],
+     "better": "I'm Jordan, a retail and warehouse worker with 5 years of experience, currently working as a Shift Lead at Corner Market where I've trained new cashiers and handled deliveries, and I'm confident my skills in cash handling and inventory will help me keep shelves full and customers happy at Maple Grocers."
+    },
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 6855,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "feedback",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "Interview question: Tell me about a time you dealt with an upset customer.\n\nMy answer:\nA customer was mad about a price ",
+   "r": {
+    "data": {
+     "score": 6,
+     "verdict": "The answer shows some relevant experience, but lacks detail and a clear resolution to the situation.",
+     "good": [
+      "explained the sale ended",
+      "shows some experience with customer interactions"
+     ],
+     "fix": [
+      "Add more context about the situation, such as where it happened and what your role was",
+      "Describe what you did to try to resolve the customer's issue beyond just explaining the sale ended",
+      "Include a specific outcome, such as the customer calming down or leaving satisfied"
+     ],
+     "better": "I was working as a Shift Lead at Corner Market when a customer got upset about a price discrepancy. I explained that the sale had ended, and then I offered to [check if there were any other options, such as a raincheck]. The customer was still unhappy, but he paid and left, and I made sure to [report the issue to my manager, John] so we could avoid similar problems in the future."
+    },
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 7924,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "feedback",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "Interview question: How do you make sure your cash drawer is accurate?\n\nMy answer:\nAt Corner Market I close three drawer",
+   "r": {
+    "data": {
+     "score": 9,
+     "verdict": "The hiring manager would hear a clear and effective approach to handling cash accurately, which is a key requirement for the Store Associate role at Maple Grocers.",
+     "good": [
+      "You provided a specific example from your experience at Corner Market",
+      "You mentioned a concrete result: 'In three years we haven't had a shortage'"
+     ],
+     "fix": [
+      "Consider mentioning your cash handling skill from your resume to reinforce your experience",
+      "You could specify what you do if you find a discrepancy, such as [what you said to your manager] or [how you corrected it]",
+      "To make the story more engaging, you could describe the situation in a bit more detail, such as [what time of day you close the drawers]"
+     ],
+     "better": "At Corner Market, I'm responsible for closing three cash drawers every night. I count each one twice, check it against the register report, and if anything's off, I go back through the receipts before I leave. As a skilled cash handler with 5 years of retail experience, I've developed a thorough process to ensure accuracy. In three years, we haven't had a shortage, which I'm proud of."
+    },
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 8732,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "coach",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My question: How do I answer \"Why did you leave your last job?\"",
+   "r": {
+    "reply": "You didn't leave your last job, so you can say you're looking for a different type of store to work in. \n\"I'm looking to join Maple Grocers because I want to work in a grocery store environment, and I think my skills will be a good fit, having already worked as a Shift Lead at Corner Market.\" \nThis works because it shows you're interested in the specific type of store and you're not leaving your current job for a negative reason. \nWhat is your current reason for looking to leave Corner Market?",
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 4620,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "coach",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My question: How do I explain a gap in my work history?",
+   "r": {
+    "reply": "You don't have a gap in your work history, according to your resume. \n\nIf you were in a situation where you did have a gap, you could say, \"I was focusing on [personal or family matters] during that time, but I'm now ready to return to work and contribute to a team like Maple Grocers.\" \n\nTo explain why you're looking for a new job, you could say, \"As a Shift Lead at Corner Market, I've enjoyed training new cashiers and handling deliveries, but I'm looking for a role where I can [use my skills in a different way or work in a specific type of store], and I think the Store Associate role at Maple Grocers could be a good fit.\" \n\nWhat is your reason for looking to leave your current job as Shift Lead at Corner Market?",
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 6011,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "mode": "coach",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My question: Write a short thank-you note to send after my interview",
+   "r": {
+    "reply": "You can send a thank-you note after your interview to show your appreciation for the interviewer's time. \nYou can say \"Hi [interviewer's name], I wanted to thank you for taking the time to speak with me about the Store Associate position at Maple Grocers, especially discussing how my experience as a Shift Lead at Corner Market can help me keep the store clean and organized. I'm looking forward to hearing from you soon. Best, Jordan Lee.\"\nThis works because it shows you value their time and reiterates your interest in the position. \nWhat was the interviewer's name?",
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "problems": [],
+    "ms": 2146,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "letter",
+   "job": "Warehouse Associate at Northline Distribution",
+   "ask": "My name is not given. Write the body of my cover letter for this job.",
+   "r": {
+    "reply": "Night‑shift work that involves picking and packing orders with RF scanners fits the type of routine I’m used to handling. At [your last job] I [used RF scanners to pick and pack orders accurately while meeting deadlines].\n\nIn my previous role I [loaded and unloaded trailers, making sure each shipment was secured and documented] and I kept the warehouse clean and safe by following daily sanitation checks and safety protocols. When it came to lifting, I regularly handled loads up to 50 lb and stood for full shifts without issue, and I also hold a forklift certification that helped keep the flow of goods moving smoothly.\n\nThe night‑shift schedule and the focus on reliable attendance are exactly what I’m looking for, and I’d like to talk about how I can help Northline Distribution. Let’s talk soon.",
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 7675,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "letter",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My name is Jordan Lee. Write the body of my cover letter for this job.",
+   "r": {
+    "reply": "I’m currently a Shift Lead at Corner Market, and I’m applying for the Store Associate position at Maple Grocers.  \n\nIn my role I train new cashiers, six of them this year, on register operation and store policies, then I count and balance three cash drawers each night with no shortages. I receive deliveries, unpack pallets, and stock shelves before opening, making sure the aisles are tidy and fully stocked for the morning rush. I also handle customer questions on product locations, directing shoppers to the right sections and keeping the checkout line moving smoothly.  \n\nYour emphasis on keeping shelves full and customers happy aligns directly with the duties I perform daily. I’d like to discuss how my five years of retail and warehouse experience can support your team’s goals.",
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 8198,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "letter",
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "ask": "My name is Alex Kim. Write the body of my cover letter for this job.",
+   "r": {
+    "reply": "I helped about 25 students a day with printing, Wi‑Fi and login problems while working as a Student Tech Assistant, and I’m applying for the IT Help Desk Technician position.  \n\nAt Harbor Community College’s computer lab I re‑imaged 40 lab computers each semester, keeping the machines ready for daily use. I also fielded a steady stream of in‑person and remote requests, guiding students through password resets and network connectivity issues, which mirrors the ticket‑handling and account‑management duties you describe.  \n\nI’m drawn to this role because it supports staff and students across 12 schools, a scale that matches my experience in a busy campus environment. I’d welcome the chance to talk about how I can help keep your tech running smoothly.",
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 4859,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "feedback",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "Interview question: Tell me about yourself.\n\nMy answer:\nUm, I'm Jordan. I've worked retail for a while and I'm a hard wo",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear a vague, unfocused answer that doesn’t show why you’re a good fit for the store associate role.",
+     "good": [
+      "\"I've worked retail for a while\" shows you have some experience.",
+      "\"I like people\" hints at customer‑service attitude."
+     ],
+     "fix": [
+      "Start with a concise statement of your relevant experience, e.g., years and roles.",
+      "Mention specific duties you performed that match the job, like cash handling and stocking.",
+      "Tie those experiences to how you can help Maple Grocers’ team and customers."
+     ],
+     "better": "I’m Jordan Lee, and I’ve spent the last five years working in retail and warehouses. For the past three years I’ve been a Shift Lead at Corner Market, where I train new cashiers, balance three cash drawers nightly with zero shortages, and receive deliveries and stock shelves before opening. Before that I helped load and unload trucks at FastShip Logistics, processing over 150 orders per shift. I enjoy fast‑paced environments, love interacting with customers, and am ready to keep Maple Grocers’ shelves full and shoppers happy."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 6719,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "feedback",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "Interview question: Tell me about a time you dealt with an upset customer.\n\nMy answer:\nA customer was mad about a price ",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The answer is too brief and missing a full story of what you did and the outcome.",
+     "good": [
+      "\"I explained the sale ended\" shows you took action.",
+      "\"He was still mad but he paid\" shows the issue was resolved."
+     ],
+     "fix": [
+      "Add a sentence describing how you approached the upset customer (e.g., greeting, listening).",
+      "Include the result beyond the payment, such as preventing a complaint or improving the store’s signage.",
+      "If possible, quantify the impact (e.g., saved X dollars, retained a loyal customer)."
+     ],
+     "better": "At Corner Market, a customer approached me at the register angry because the shelf price didn’t match the register price. I [greeted him calmly and listened to his concern]. I explained that the promotional sale had ended earlier that morning, and he understood why the price was higher. He stayed upset but chose to pay the listed price and left the store. I [noted the incident for my manager] to prevent future confusion."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 24499,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "feedback",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "Interview question: How do you make sure your cash drawer is accurate?\n\nMy answer:\nAt Corner Market I close three drawer",
+   "r": {
+    "data": {
+     "score": 8,
+     "verdict": "The hiring manager would hear a clear, reliable process with a solid track record of no shortages.",
+     "good": [
+      "\"I count each one twice, check it against the register report\"",
+      "\"In three years we haven't had a shortage\""
+     ],
+     "fix": [
+      "Specify that you perform the count at the end of each shift before leaving.",
+      "Mention that you document any discrepancies or confirm that the drawer balances before the next shift starts."
+     ],
+     "better": "At Corner Market I close three cash drawers each night. I count each drawer twice, then compare the total to the register report, and if there’s any difference I review the receipts before I leave. I repeat this process consistently every night, and in the three years I’ve used it we’ve never had a shortage."
+    },
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 21368,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "coach",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My question: How do I answer \"Why did you leave your last job?\"",
+   "r": {
+    "reply": "Answer (what to say):\n\n“Because I’m looking for a role where I can work directly with customers every day. In my current position I’m mainly handling deliveries and back‑of‑house tasks, and I really enjoy the customer‑facing side of retail. Maple Grocers’ store associate role lets me use my cash‑handling and stocking experience while spending more time on the floor greeting shoppers and helping them find products.”  \n\nWhy it works: It frames the move as a positive career focus, not a complaint. You highlight the parts of your current job you already do well (cash handling, stocking) and explain that you want more customer interaction, which matches the posting. Avoid mentioning any negative aspects of your current employer or saying you’re “bored.”  \n\nNext steps:  \n1. Practice saying it out loud a few times so it sounds natural.  \n2. Keep it under 30 seconds; stay on point about the customer‑focus you’re after.  \n3. If they ask for more detail, you can add a brief line about how you’ve already trained cashiers and would love to bring that skill to a larger team.",
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 10265,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "coach",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My question: How do I explain a gap in my work history?",
+   "r": {
+    "reply": "There isn’t actually a gap in your employment – your resume shows continuous work from 2019 to the present. If the interviewer asks about any “gap,” you can simply point that out and give a brief timeline.\n\nWhat to say:\n> “I actually don’t have a gap. I worked as a Warehouse Associate at FastShip Logistics from 2019‑2021, then moved into a Shift Lead role at Corner Market, where I’ve been since 2021. My experience has been continuous, just shifting focus from warehouse to retail.”  \n\nWhy it works: It directly addresses the question, confirms the dates on your résumé, and frames the transition as a natural career progression. Avoid over‑explaining or adding details that aren’t on your résumé.  \n\nIf you ever need to fill a small period (e.g., a few weeks between jobs) you can say you used the time for “a short transition and training period before starting the new role,” but in your case it isn’t necessary. Any other concerns?",
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 4418,
+    "status": 200
+   }
+  },
+  {
+   "model": "@cf/openai/gpt-oss-120b",
+   "mode": "coach",
+   "job": "Store Associate at Maple Grocers",
+   "ask": "My question: Write a short thank-you note to send after my interview",
+   "r": {
+    "reply": "Hi [interviewer’s name],\n\nThank you for meeting with me today about the Store Associate role at Maple Grocers. I appreciated hearing how the team prioritizes quick shelf restocking and friendly customer service. I believe my experience training cashiers and balancing registers at Corner Market, along with handling deliveries and keeping the aisle aisles organized, would fit well with what you described.\n\nPlease let me know if you need any additional information.\n\nThanks again,\nJordan Lee",
+    "model": "@cf/openai/gpt-oss-120b",
+    "problems": [],
+    "ms": 4376,
+    "status": 200
+   }
+  }
+ ],
+ "calls": 18
+}
