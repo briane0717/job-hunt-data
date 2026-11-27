@@ -1,0 +1,380 @@
+{
+ "sites": {
+  "Walmart": [
+   "200 https://careers.walmart.com/ -> https://careers.walmart.com/us/en/home len=178197 ",
+   "200 https://careers.walmart.com/results?q=cashier -> https://careers.walmart.com/results?q=cashier len=56703 "
+  ],
+  "Sam's Club": [
+   "0 https://careers.samsclub.com/ -> undefined len=100 "
+  ],
+  "UPS": [
+   "200 https://www.jobs-ups.com/ -> https://www.jobs-ups.com/us/en len=77159 phenom",
+   "200 https://www.jobs-ups.com/us/en/search-results -> https://www.jobs-ups.com/us/en/search-results len=55494 phenom"
+  ],
+  "FedEx": [
+   "200 https://careers.fedex.com/ -> https://careers.fedex.com/ len=306632 paradox",
+   "200 https://careers.fedex.com/jobs -> https://careers.fedex.com/jobs len=506263 paradox",
+   "200 https://careers.fedex.com/ground -> https://careers.fedex.com/ len=306632 paradox"
+  ],
+  "Starbucks": [
+   "200 https://careers.starbucks.com/ -> https://careers.starbucks.com/ len=112444 eightfold(starbucks)",
+   "200 https://apply.starbucks.com/careers -> https://apply.starbucks.com/careers len=348229 eightfold(starbucks)"
+  ],
+  "McDonald's": [
+   "403 https://careers.mcdonalds.com/ -> https://careers.mcdonalds.com/ len=375 ",
+   "200 https://jobs.mchire.com/ -> https://jobs.mchire.com/ len=132474 "
+  ],
+  "Walgreens": [
+   "200 https://jobs.walgreens.com/ -> https://jobs.walgreens.com/en len=50344 radancy, brassring, paradox"
+  ],
+  "Publix": [
+   "200 https://jobs.publix.com/ -> https://jobs.publix.com/ len=337594 brassring",
+   "200 https://corporate.publix.com/careers -> https://jobs.publix.com/ len=337570 brassring"
+  ],
+  "Best Buy": [
+   "200 https://jobs.bestbuy.com/ -> https://jobs.bestbuy.com/bby len=1091206 "
+  ],
+  "Hyatt": [
+   "200 https://careers.hyatt.com/ -> https://careers.hyatt.com/ len=4816 "
+  ],
+  "IHG": [
+   "403 https://careers.ihg.com/ -> https://careers.ihg.com/ len=367 "
+  ],
+  "Aldi": [
+   "200 https://careers.aldi.us/ -> https://careers.aldi.us/ len=87131 radancy"
+  ],
+  "7-Eleven": [
+   "200 https://careers.7-eleven.com/ -> https://careers.7-eleven.com/ len=55552 radancy, paradox"
+  ],
+  "Wawa": [
+   "0 https://jobs.wawa.com/ -> undefined len=100 ",
+   "200 https://www.wawa.com/careers -> https://careers.wawa.com/us/en len=83000 phenom"
+  ],
+  "Sheetz": [
+   "200 https://jobs.sheetz.com/ -> https://jobs.sheetz.com/ len=489572 icims(www), jibe"
+  ],
+  "Circle K": [
+   "0 https://careers.circlek.com/ -> undefined len=100 "
+  ],
+  "Casey's": [
+   "403 https://www.caseys.com/careers -> https://www.caseys.com/careers len=5586 "
+  ],
+  "Ross": [
+   "200 https://jobs.rossstores.com/ -> https://jobs.rossstores.com/ len=131323 avature(ross.avature.net)"
+  ],
+  "Taco Bell": [
+   "200 https://jobs.tacobell.com/ -> https://jobs.tacobell.com/ len=83546 "
+  ],
+  "Pizza Hut": [
+   "200 https://jobs.pizzahut.com/ -> https://jobs.pizzahut.com/ len=127404 "
+  ],
+  "Domino's": [
+   "200 https://jobs.dominos.com/ -> https://jobs.dominos.com/us/ len=50223 "
+  ],
+  "Darden": [
+   "200 https://www.darden.com/careers -> https://www.darden.com/careers/ len=120916 paradox",
+   "200 https://jobs.olivegarden.com/ -> https://jobs.olivegarden.com/ len=79408 paradox"
+  ],
+  "Panera": [
+   "403 https://www.panerabread.com/en-us/careers.html -> https://www.panerabread.com/en-us/careers.html len=403 ",
+   "200 https://careers.panerabread.com/ -> https://careers.panerabread.com/global/en len=135521 phenom"
+  ],
+  "Wendy's": [
+   "200 https://wendys-careers.com/ -> https://wendys-careers.com/ len=66669 "
+  ],
+  "Burger King": [
+   "200 https://careers.rbi.com/ -> https://careers.rbi.com/global/en len=283723 phenom"
+  ],
+  "Dunkin": [
+   "200 https://careers.dunkindonuts.com/ -> https://careers.dunkindonuts.com/ len=159672 paradox",
+   "200 https://careers.inspirebrands.com/ -> https://careers.inspirebrands.com/ len=185009 paradox"
+  ],
+  "Disney": [
+   "200 https://jobs.disneycareers.com/ -> https://join.disneycareers.com/global/en len=203407 phenom"
+  ],
+  "AMC": [
+   "200 https://careers.amctheatres.com/ -> https://careers.amctheatres.com/ len=127849 paradox"
+  ],
+  "Cinemark": [
+   "200 https://careers.cinemark.com/ -> https://careers.cinemark.com/ len=89148 workday(cinemark|wd1|cinemark), paradox"
+  ],
+  "Six Flags": [
+   "200 https://careers.sixflags.com/ -> https://jobs.sixflags.com/ len=59897 icims(careers-cedarfair), radancy"
+  ],
+  "Bath & Body Works": [
+   "200 https://careers.bathandbodyworks.com/ -> https://careers.bathandbodyworks.com/ len=101196 taleo(lbrands), paradox"
+  ],
+  "Victoria's Secret": [
+   "200 https://careers.victoriassecret.com/ -> https://careers.victoriassecret.com/en/ len=1784903 taleo(vsco), avature(vs.avature.net)"
+  ],
+  "American Eagle": [
+   "0 https://jobs.ae.com/ -> undefined len=100 "
+  ],
+  "GameStop": [
+   "200 https://careers.gamestop.com/ -> https://www.gamestop.com/careers len=206500 ukg"
+  ],
+  "Foot Locker": [
+   "200 https://jobs.footlocker.com/ -> https://careers.footlocker.com/ len=413195 icims(www), jibe"
+  ],
+  "Hobby Lobby": [
+   "200 https://careers.hobbylobby.com/ -> https://careers.hobbylobby.com/ len=40386 brassring"
+  ],
+  "Big Lots": [
+   "0 https://jobs.biglots.com/ -> undefined len=100 "
+  ],
+  "Office Depot": [
+   "0 https://careers.odpcorp.com/ -> undefined len=100 "
+  ],
+  "DHL": [
+   "200 https://careers.dhl.com/global/en -> https://careers.dhl.com/global/en len=2147578 phenom",
+   "200 https://careers.dhl.com/us/en -> https://careers.dhl.com/amer/en len=1973961 phenom"
+  ],
+  "Allied Universal": [
+   "200 https://jobs.aus.com/ -> https://jobs.aus.com/ len=154221 icims(securitycareers-aus), radancy"
+  ],
+  "Securitas": [
+   "0 https://jobs.securitasinc.com/ -> undefined len=100 "
+  ],
+  "Aramark": [
+   "200 https://careers.aramark.com/ -> https://careers.aramark.com/ len=157102 paradox"
+  ],
+  "Sodexo": [
+   "0 https://us.jobs.sodexo.com/ -> undefined len=100 "
+  ],
+  "Compass Group": [
+   "200 https://www.compassgroupcareers.com/ -> https://careers.compass-usa.com/ len=127892 successfactors, paradox"
+  ],
+  "Whole Foods": [
+   "200 https://careers.wholefoodsmarket.com/ -> https://careers.wholefoods.com/ len=236598 paradox"
+  ],
+  "Trader Joe's": [
+   "403 https://www.traderjoes.com/home/careers -> https://www.traderjoes.com/home/careers len=386 "
+  ],
+  "Safeway": [
+   "403 https://www.albertsonscompanies.com/careers/ -> https://www.albertsonscompanies.com/careers/ len=5687 "
+  ],
+  "Food Lion": [
+   "0 https://careers.foodlion.com/ -> undefined len=100 "
+  ],
+  "Stop & Shop": [
+   "0 https://careers.stopandshop.com/ -> undefined len=100 "
+  ],
+  "Rite Aid": [
+   "200 https://careers.riteaid.com/ -> https://riteaid.com/ len=535618 "
+  ],
+  "Dollar General": [
+   "200 https://careers.dollargeneral.com/ -> https://careers.dollargeneral.com/ len=495137 oracle(ibxwjb.fa.ocs.oraclecloud.com), paradox"
+  ],
+  "Lyft": [
+   "200 https://www.lyft.com/careers -> https://www.lyft.com/careers len=345404 "
+  ],
+  "Marriott": [
+   "200 https://careers.marriott.com/ -> https://careers.marriott.com/ len=613208 oracle(ejwl.fa.us2.oraclecloud.com), paradox"
+  ],
+  "Hilton": [
+   "200 https://jobs.hilton.com/ -> https://jobs.hilton.com/ len=1389428 oracle(efet.fa.us2.oraclecloud.com)"
+  ],
+  "Wyndham": [
+   "200 https://careers.wyndhamhotels.com/ -> https://careers.wyndhamhotels.com/ len=133235 successfactors, paradox"
+  ],
+  "Choice Hotels": [
+   "200 https://careers.choicehotels.com/ -> https://careers.choicehotels.com/ len=44560 workday(choicehotels|wd5|HotelExternal)"
+  ],
+  "Spectrum": [
+   "200 https://jobs.spectrum.com/ -> https://jobs.spectrum.com/ len=182705 radancy"
+  ],
+  "T-Mobile": [
+   "200 https://careers.t-mobile.com/ -> https://careers.t-mobile.com/ len=260952 workday(tmobile|wd1|External), paradox"
+  ],
+  "Comcast": [
+   "200 https://jobs.comcast.com/ -> https://jobs.comcast.com/ len=44275 workday(comcast|wd115|Comcast_Careers), radancy"
+  ],
+  "HCA Healthcare": [
+   "403 https://careers.hcahealthcare.com/ -> https://careers.hcahealthcare.com/ len=5597 "
+  ],
+  "Kaiser Permanente": [
+   "200 https://www.kaiserpermanentejobs.org/ -> https://www.kaiserpermanentejobs.org/ len=100036 taleo(kp), radancy, avature(kp.avature.net)"
+  ],
+  "Uline": [
+   "403 https://www.uline.jobs/ -> https://www.uline.jobs/ len=368 "
+  ]
+ },
+ "workday": {
+  "walmart|wd5|WalmartExternal": {
+   "sample": [],
+   "facets": []
+  },
+  "walmart|wd5|WalmartExternalHourly": {
+   "sample": [],
+   "facets": []
+  },
+  "hcmportal|wd5|Search": {
+   "total": 1921,
+   "sample": [
+    "F&A Senior Admin Assistant - EBS Manbill (Asia) @ PH - ALABANG GLOBAL BUSINESS SERVICES - GBS (PHMNT)",
+    "Aviation Security Screener @ 7 Locations",
+    "Operador General Frontera @ MX - GUADALAJARA OPERATIONS (MXGLA)"
+   ],
+   "facets": [
+    "Work_Shift",
+    "jobFamilyGroup",
+    "workerSubType",
+    "timeType",
+    "locationMainGroup",
+    "distance"
+   ]
+  },
+  "fedex|wd1|FXE-US_External": {
+   "sample": [],
+   "facets": []
+  },
+  "fedex|wd1|FDX_Ground": {
+   "sample": [],
+   "facets": []
+  },
+  "fedex|wd1|FedEx_Careers": {
+   "sample": [],
+   "facets": []
+  },
+  "starbucks|wd1|StarbucksExternal": {
+   "sample": [],
+   "facets": []
+  },
+  "publix|wd1|External": {
+   "sample": [],
+   "facets": []
+  },
+  "bestbuy|wd5|BestBuy": {
+   "sample": [],
+   "facets": []
+  },
+  "bestbuy|wd5|External": {
+   "sample": [],
+   "facets": []
+  },
+  "rossstores|wd5|Ross_External": {
+   "sample": [],
+   "facets": []
+  },
+  "mcdonalds|wd5|External": {
+   "sample": [],
+   "facets": []
+  },
+  "walgreens|wd1|External": {
+   "sample": [],
+   "facets": []
+  },
+  "ihg|wd1|External": {
+   "sample": [],
+   "facets": []
+  },
+  "hyatt|wd5|External": {
+   "sample": [],
+   "facets": []
+  },
+  "bathandbodyworks|wd1|BBW": {
+   "sample": [],
+   "facets": []
+  },
+  "circlek|wd3|CircleK": {
+   "sample": [],
+   "facets": []
+  },
+  "sheetz|wd1|Sheetz": {
+   "sample": [],
+   "facets": []
+  },
+  "wawa|wd1|Wawa_Careers": {
+   "sample": [],
+   "facets": []
+  },
+  "darden|wd1|External": {
+   "sample": [],
+   "facets": []
+  },
+  "dhl|wd3|DHL": {
+   "sample": [],
+   "facets": []
+  }
+ },
+ "jibe": {
+  "careers.fedex.com": "HTTP 403 Access Denied",
+  "careers.walmart.com": "HTTP 200 <!DOCTYPE html>\n<html lang=en class=__className_9aedb4><head><link href=\"//asset",
+  "jobs.bestbuy.com": {
+   "sample": []
+  },
+  "jobs.publix.com": "HTTP 404 <!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/",
+  "careers.starbucks.com": "HTTP 404 <!DOCTYPE html>\n<html lang=\"en-US\" class=\"no-js\">\n\t<head>\n\t\t<meta charset=\"UTF-8",
+  "jobs.wawa.com": "HTTP 0 Command failed: curl -sSL --compressed --max-time 25 -A Mozilla/5.0 (Macintosh; ",
+  "jobs.dominos.com": "HTTP 404 <!doctype html>\r\n<html lang=\"en-US\">\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <m",
+  "careers.mcdonalds.com": "HTTP 403 <HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n ",
+  "jobs.sheetz.com": {
+   "total": 1635,
+   "sample": [
+    "{\"slug\":\"83305\",\"language\":\"en-us\",\"languages\":[\"en-us\"],\"client_code\":\"sheetz\",\"req_id\":\"83305\",\"title\":\"Store Team Member - #976\",\"description\":\"<p style=\\\"color: red;\\\"><strong>Additional $1.50/hr. for working 10pm-6am</strong></p> <p style=\\\"margin: 0px;\\\">Got high-energy and love to hustle? Com",
+    "{\"slug\":\"83304\",\"language\":\"en-us\",\"languages\":[\"en-us\"],\"client_code\":\"sheetz\",\"req_id\":\"83304\",\"title\":\"Store Team Member - #976\",\"description\":\"<p style=\\\"color: red;\\\"><strong>Additional $1.50/hr. for working 10pm-6am</strong></p> <p style=\\\"margin: 0px;\\\">Got high-energy and love to hustle? Com"
+   ]
+  },
+  "careers.7-eleven.com": "HTTP 200 \r\n<!DOCTYPE html>\r\n<html lang=\"en\" class=\"no-js\" data-facet-id=\"\">\r\n<head>\r\n\t<me",
+  "careers.circlek.com": "HTTP 0 Command failed: curl -sSL --compressed --max-time 25 -A Mozilla/5.0 (Macintosh; ",
+  "jobs.rossstores.com": "HTTP 200 \n\n<!DOCTYPE html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\"\n      xml",
+  "careers.gamestop.com": "HTTP 200 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!DOCTYPE html>\n\n<html lang=\"en\" style=\"color-scheme: ",
+  "careers.amctheatres.com": "HTTP 403 Access Denied",
+  "jobs.aus.com": "HTTP 200 \r\n<!DOCTYPE html>\r\n<html lang=\"en\" class=\"no-js\" data-theme-name=\"GST\" data-cate",
+  "careers.aramark.com": "HTTP 404 <!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n\n\n  \n<!-- Google Tag Manager -->\n<sc",
+  "jobs.footlocker.com": {
+   "total": 2862,
+   "sample": [
+    "{\"slug\":\"73555\",\"language\":\"pt-pt\",\"languages\":[\"pt-pt\"],\"req_id\":\"73555\",\"title\":\"Store Manager\",\"description\":\"Visão geral Os Nossos stripers sao o coracao do nosso negocio... e eles merecem ser lideramos pelo melhor! Para ser um gerente de uma loja Foot Locker, tu precisaras de algumas series de ",
+    "{\"slug\":\"73554\",\"language\":\"pt-pt\",\"languages\":[\"pt-pt\"],\"req_id\":\"73554\",\"title\":\"Assistant Store Manager\",\"description\":\"Visão geral Os Nossos stripers sao o coracao do nosso negocio... e eles merecem ser lideramos pelo melhor! Para ser um gerente de uma loja Foot Locker, tu precisaras de algumas "
+   ]
+  },
+  "careers.hyatt.com": "HTTP 404 The destination uri has not been found. &#40;source=&#39;/api/jobs&#39;&#41;.",
+  "jobs.walgreens.com": "HTTP 200  \r\n<!DOCTYPE html>\r\n<html lang=\"en\" class=\"no-js\">\r\n<head>\r\n\t<meta charset=\"utf-",
+  "jobs.spectrum.com": "HTTP 200 \r\n<!DOCTYPE html>\r\n<html lang=\"en\" class=\"no-js\">\r\n<head>\r\n\t<meta charset=\"utf-8",
+  "careers.t-mobile.com": "HTTP 403 Access Denied",
+  "jobs.comcast.com": "HTTP 200  \r\n\r\n\r\n\r\n\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\" class=\"no-js\">\r\n<head>\r\n\t<meta cha"
+ },
+ "eightfold": {
+  "starbucks.eightfold.ai": {
+   "count": 21747,
+   "sample": [
+    "barista - Store# 83828, DIVISION & PATTERSON @ 1030 Division  Street, Block B, Cobourg, Ontario, Canada",
+    "shift supervisor - Store# 83828, DIVISION & PATTERSON @ 1030 Division  Street, Block B, Cobourg, Ontario, Canada"
+   ]
+  },
+  "apply.starbucks.com": {
+   "count": 21747,
+   "sample": [
+    "barista - Store# 83828, DIVISION & PATTERSON @ 1030 Division  Street, Block B, Cobourg, Ontario, Canada",
+    "shift supervisor - Store# 83828, DIVISION & PATTERSON @ 1030 Division  Street, Block B, Cobourg, Ontario, Canada"
+   ]
+  },
+  "walmart.eightfold.ai": {
+   "sample": []
+  },
+  "bestbuy.eightfold.ai": {
+   "sample": []
+  },
+  "fedex.eightfold.ai": "HTTP 0 Command failed: curl -sSL --compressed --max-time 25 -A Mozilla/5.0 (Macintosh; ",
+  "ups.eightfold.ai": "HTTP 0 Command failed: curl -sSL --compressed --max-time 25 -A Mozilla/5.0 (Macintosh; "
+ },
+ "radancy": {
+  "www.jobs-ups.com": "HTTP 200 <!doctype html>\r\n<html lang=\"en\" data-ph-id=\"ph-page-element-page12-GENG67\" clas",
+  "jobs.walgreens.com": {
+   "pages": "1477",
+   "total": "22144",
+   "ids": 30
+  },
+  "jobs.disneycareers.com": "HTTP 200 <!doctype html> \n<html lang=\"en\" data-ph-id=\"ph-page-element-page12-GENG67\" clas",
+  "careers.fedex.com": "HTTP 404 <!DOCTYPE html>\n\t<html lang=\"en\" class=\"default\">\t \n    <head>\n    \n     <meta c",
+  "jobs.bestbuy.com": "HTTP 200 <!DOCTYPE html><html lang=\"en\" class=\" ltr \" data-doctype=\"true\" dir=\"ltr\" ontou",
+  "jobs.publix.com": "HTTP 404 <!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/",
+  "careers.starbucks.com": "HTTP 404 <!DOCTYPE html>\n<html lang=\"en-US\" class=\"no-js\">\n\t<head>\n\t\t<meta charset=\"UTF-8",
+  "jobs.hilton.com": "HTTP 404 <!DOCTYPE html><html dir=\"ltr\" data-scroll-behavior=\"smooth\" lang=\"en\"><head><me",
+  "careers.marriott.com": "HTTP 404 <!DOCTYPE html>\n<html lang=\"en\" class=\"core default\">\n\n  <head>\n    \n    \n    \n<"
+ },
+ "other": {
+  "upsWorkday": "{\"total\":1921,\"jobPostings\":[{\"title\":\"F&A Senior Admin Assistant - EBS Manbill (Asia)\",\"externalPath\":\"/job/PH---ALABANG-GLOBAL-BUSINESS-SERVICES---GBS-PHMNT/F-A-Senior-Admin-Assistant---EBS-Manbill--Asia-_R26044461\",\"locationsText\":\"PH - ALABANG GLOBAL BUSINESS SERVICES - GBS (PHMNT)\",\"postedOn\":\"Posted Today\",\"bulletFields\":[\"R26044461\",\"Day (Philippines)\"]},{\"title\":\"Aviation Security Screener\",\"externalPath\":\"/job/GB---STANSTED-AIR-GATEWAY-GBSAG/Part-time-Aviation-Security-Cargo-Screener_R24029927\",\"locationsText\":\"7 Locations\",\"postedOn\":\"Posted Yesterday\",\"bulletFields\":[\"R24029927\",\"Evening (Mon-Fri) (United Kingdom)\"]},{\"title\":\"Operador General Frontera\",\"externalPath\":\"/job/MX---GUADALAJARA-OPERATIONS-MXGLA/Operador-General-Frontera_R26043614\",\"locationsText\":\"MX - GUADALAJARA OPERATIONS (MXGLA)\",\"postedOn\":\"Posted 2 Days Ago\",\"bulletFields\":[\"R26043614\",\"Night Shift (Mexico)\"]},{\"title\":\"Part Time Preload Supervisor\",\"externalPath\":\"/job/US---MATTOON-ILMAT/Part-Time-Preload-Supervisor_R26036843\",\"locationsText\":\"US - MATTOON (ILMAT)\",\"postedOn\":\"Posted 2 Days Ago\",\"bulletFields\":[\"R26036843\",\"Early Morning (United States of America)\"]},{\"title\":\"PM Warehouse Sorter/Loader, Part Time\",\"externalPath\":\"/job/GR---ATHENS-KOROPI-GRKOP/PM-Warehouse-Sorter-Loader--Part-Time_R26043509\",\"locationsText\":\"GR - ATHENS KOROPI (GRKOP)\",\"postedOn\":\"Posted 2 Days Ago\",\"bulletFields\":[\"R26043509\"]},{\"title\":\"Part-Time BaSE (Building and Systems Engineering) Supervisor\",\"externalPath\":\"/job/CA---CALEDON-HUB-ONCND/Part-Time-BaSE--Building-and-Systems-Engineering--Supervisor_R26042574\",\"locationsText\":\"CA - CALEDON HUB (ONCND)\",\"postedOn\":\"Posted 2 Days Ago\",\"bulletFields\":[\"R26042574\",\"Day (Canada)\"]},{\"title\":\"AR Administrator with Italian (m/f/x)\",\"externalPath\":\"/job/PL---WROCLAW-GLOBAL-BUSINESS-SERVICES---GBS-PLWCW/AR-Administrator-with-Italian--m-f-x-_R26040714\",\"locationsText\":\"PL - WROCLAW GLOBAL BUSINESS SERVICES - GBS (PLWCW)\",\"postedOn\":\"Posted 2 Days Ago\",\"bulletFields\":[\"R26040714\"]},{\"title\":\"Payroll Supervisor | 202\",\"externalPath\":\"/job/US---DALLAS-SANDY-LAKE-TXCOP/Payroll-Supervisor---202_R26042952-1\",\"locationsText\":\"US - DALLAS SANDY LAKE (TXCOP)\",\"postedOn\":\"Posted 3 Days Ago\",\"bulletFields\":[\"R26042952\"]},{\"title\":\"PT Seasonal Operations Supervisor\",\"externalPath\":\"/job/US---LIBERTY-NYLIB/PT-Seasonal-Operations-Supervisor_R26039548\",\"locationsText\":\"US - LIBERTY (NYLIB)\",\"postedOn\":\"Posted 3 Days Ago\",\"bulletFields\":[\"R26039548\",\"Early Morning (United States of America)\"]},{\"title\":\"PT Seasonal Preload Operations Supervisor - Parsippany Preload\",\"externalPath\":\"/job/US---PARSIPPANY-NJPAR/PT-Seasonal-Helper-Coordinator_R26037661\",\"locationsText\":\"US - PARSIPPANY (NJPAR)\",\"postedOn\":\"Posted 3 Days Ago\",\"bulletFields\":[\"R26037661\"]},{\"title\":\"Brokerage Export Rater (m/w/d) 100%\",\"externalPath\":\"/job/CH---SWISS-HQ-CHMUN/Brokerage-Export-Rater--m-w-d--100-_R26042188\",\"locationsText\":\"CH - SWISS HQ (CHMUN)\",\"postedOn\":\"Posted 3 Days Ago\",\"bulletFields\":[\"R26042188\",\"Split Shift (Switzerland)\"]},{\"title\":\"Administrator ds. Danych Importowych z językiem francuskim (m/k/x) - zmiana popołudniowa\",\"externalPath\":\"/job/PL---WROCLAW-GLOBAL-BUSINESS-SERVICES---GBS-PLWCW/Administrator-ds-Danych-Importowych-z-jzykiem-francuskim--m-k-x----zmiana-popoudniowa_R26043513\",\"locationsText\":\"PL - WROCLAW GLOBAL BUSINESS SERVICES - GBS (PLWCW)\",\"postedOn\":\"Posted 3 Days Ago\",\"bulletFields\":[\"R26043513\",\"Evening (Tue-Sat) (Poland)\"]},{\"title\":\"PT SEASONAL Revenue Recovery Supervisor\",\"externalPath\":\"/job/US---OLYMPIC-CAOLY/PT-SEASONAL-Revenue-Recovery-Supervisor_R26038108\",\"locationsText\":\"2 Locations\",\"postedOn\":\"Posted 4 Days Ago\",\"bulletFields\":[\"R26038108\",\"Day (United States of America)\"]},{\"title\":\"Automotive Administrative Assistant\",\"externalPath\":\"/job/CA---MONTREAL-HUB-PQMON/Automotive-Administrative-Assistant_R26043756\",\"locationsText\":\"CA - MONTREAL HUB (PQMON)\",\"postedOn\":\"Posted 4 Days Ago\",\"bulletFields\":[\"R26043756\",\"Day (Canada)\"]},{\"title\":\"PT Air Ramp Supervisor\",\"externalPath\":\"/job/US---ANCHORAGE-CENTERCUSTOMS-GATEWAY-AKERI/PT-Air-Ramp-Supervisor_R26043206\",\"locationsText\":\"US - ANCHORAGE CENTER/CUSTOMS GATEWAY (AKERI)\",\"postedOn\":\"Posted 4 Days Ago\",\"bulletFields\":[\"R26043206\"]},{\"title\":\"Brokerage Rater\",\"externalPath\":\"/job/PT---OPORTO-HUB-PTMAI/Brokerage-Rater_R26043517\",\"locationsText\":\"PT - OPORTO HUB (PTMAI)\",\"postedOn\":\"Posted 4 Days Ago\",\"bulletFields\":[\"R26043517\",\"Early Morning (Portugal)\"]},{\"title\":\"Brokerage Rater-Night Shift\",\"externalPath\":\"/job/PT---OPORTO-HUB-PTMAI/Brokerage-Rater-Night-Shift_R26043704\",\"locationsText\":\"PT - OPORTO HUB (PTMAI)\",\"postedOn\":\"Posted 4 Days Ago\",\"bulletFields\":[\"R26043704\",\"Night (Portugal)\"]},{\"title\":\"Collections Administrator with Swedish, Finish, Danish or Norwegian (m/f/x)\",\"externalPath\":\"/job/PL---LODZ-GLOBAL-BUSINESS-SERVICES---GBS-PLLDZ/Collections-Administrator-with-Swedish--Finish--Danish-or-Norwegian--m-f-x-_R26043707\",\"locationsText\":\"PL - LODZ GLOBAL BUSINESS SERVICES - GBS (PLLDZ)\",\"postedOn\":\"Posted 4 Days Ago\",\"bulletFields\":[\"R26043707\",\"Day (Mon-Fri) (Poland)\"]},{\"title\":\"Mebane Night PT Supervisor\",\"externalPath\":\"/job/US---MEBANE-NCBAN/Mebane-Night-PT-Supervisor_R26043070\",\"locationsText\":\"US - MEBANE (NCBAN)\",\"postedOn\":\"Posted 7 Days Ago\",\"bulletFields\":[\"R26043070\",\"Night (United States of America)\"]},{\"title\":\"Feeder Associate\",\"externalPath\":\"/job/CA---MONTREAL-HUB-PQMON/Feeder-Associate_R26041885-1\",\"locationsText\":\"CA - MONTREAL HUB (PQMON)\",\"postedOn\":\"Posted 8 Days Ago\",\"bulletFields\":[\"R26041885\",\"Night (Canada)\"]}],\"facets\":[{\"facetParameter\":\"Work_Shift\",\"descriptor\":\"Work Shift\",\"values\":[{\"descriptor\":\"Day (Canada)\",\"id\":\"7cabaa1904fa015d980a544904015165\",\"count\":115},{\"descriptor\":\"Evening (United States of America)\",\"id\":\"7cabaa1904fa01c8683f414904011765\",\"count\":45},{\"descriptor\":\"Evening (Mon-Fri) (Germany)\",\"id\":\"7cabaa1904fa01e5bf00ea4804010964\",\"count\":41},{\"descriptor\":\"Night (Canada)\",\"id\":"
+ }
+}
