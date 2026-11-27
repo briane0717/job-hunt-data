@@ -12,7 +12,11 @@
 //   mode "letter": job + resume -> the body of a cover letter that reads like a person wrote it.
 
 // Strongest first. If one is unavailable or over the free amount, the next is tried.
-const MODELS = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-4-scout-17b-16e-instruct', '@cf/meta/llama-3.1-8b-instruct-fp8-fast'];
+// The interview stays on the quick Llama model (spoken replies need speed). Coaching and writing use
+// OpenAI's free open model, which in side-by-side tests read people's situations better and wrote
+// more natural letters.
+const FAST = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-4-scout-17b-16e-instruct', '@cf/meta/llama-3.1-8b-instruct-fp8-fast'];
+const SMART = ['@cf/openai/gpt-oss-120b', ...FAST];
 // Other free models a test may ask for by name (body.model). Anything else is ignored.
 const TRY_MODELS = ['@cf/openai/gpt-oss-120b', '@cf/openai/gpt-oss-20b', '@cf/mistralai/mistral-small-3.1-24b-instruct', '@cf/qwen/qwen3-30b-a3b-fp8', '@cf/google/gemma-3-12b-it'];
 const MAX_MESSAGES = 41; // odd, so the kept turns still alternate person, AI, person...
@@ -112,9 +116,9 @@ const NO_RESUME =
   ' This person gave no resume, so you know nothing about their work history. Do not write any experience, skill, tool, number or ability as theirs. ' +
   'Wherever experience belongs, write it as a fill-in sentence with square brackets, like "At [your last job], I [a duty that matches this one]." Use two or three of these. The rest can be about what this job involves, from the posting.';
 
-const BANNED = /\b(passionate|thrilled|excit(ed|ing)|dynamic|synerg|leverag|spearhead|orchestrat|results-driven|proven track record|fast-paced|team player|detail-oriented|self-starter|go-getter|outside the box|hit the ground running|(good|perfect|great) (fit|match)|stands? out|caught my eye|catches my attention|valuable asset|aligns? (well )?with|honed|furthermore|moreover|in today's|unique blend|wealth of experience|commitment to excellence|testament|delve|seamless|robust|eager|skills and experience|how I (can|could) contribute|look forward to discussing|this opportunity|appeals to me|I think|I believe|could be useful|i am writing to|i'?m confident|i am confident)\b/i;
-const STOCK_ANSWER = /\b(retail professional|(customer service|sales|hospitality) professional|excited to|bring my skills|good fit|great fit|hard worker|people person|passionate|I believe my|eager to)\b/i;
-const STOCK_COACH = /(dear interviewer|new challenge|new opportunity|excited about|eager to learn|personal matters|perfectionist)/i;
+const BANNED = /\b(passionate|thrilled|excit(ed|ing)|dynamic|synerg|leverag|spearhead|orchestrat|results-driven|proven track record|fast-paced|team player|detail-oriented|self-starter|go-getter|outside the box|hit the ground running|(good|perfect|great) (fit|match)|stands? out|caught my eye|catches my attention|valuable asset|aligns?|drawn to|good candidate|honed|furthermore|moreover|in today's|unique blend|wealth of experience|commitment to excellence|testament|delve|seamless|robust|eager|skills and experience|how I (can|could) contribute|look forward to discussing|this opportunity|appeals to me|I think|I believe|could be useful|i am writing to|i'?m confident|i am confident)\b/i;
+const STOCK_ANSWER = /\b(retail professional|fast-paced|i'?m confident|i am confident|skilled|(customer service|sales|hospitality) professional|excited to|bring my skills|good fit|great fit|hard worker|people person|passionate|I believe my|eager to)\b/i;
+const STOCK_COACH = /(dear interviewer|good fit|great fit|i think my skills|family matters|new challenge|new opportunity|excited about|eager to learn|personal matters|perfectionist)/i;
 
 const WORD_NUMBERS = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, fifteen: 15, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90, hundred: 100 };
 
@@ -207,12 +211,14 @@ const REVIEW_SCHEMA = {
   required: ['score', 'summary', 'good', 'fix', 'practice'],
 };
 
+const CHECK_SCHEMA = { type: 'object', properties: { unsupported: list }, required: ['unsupported'] };
+
 const MODES = {
-  interview: { system: INTERVIEW, tokens: 220, temperature: 0.7 },
-  feedback: { system: FEEDBACK, tokens: 900, temperature: 0.3, json: FEEDBACK_SCHEMA, check: answerProblems, tries: 2 },
+  interview: { system: INTERVIEW, tokens: 220, temperature: 0.7, models: FAST },
+  feedback: { system: FEEDBACK, tokens: 900, temperature: 0.3, json: FEEDBACK_SCHEMA, check: answerProblems, tries: 2, verify: (d) => d && d.better },
   review: { system: REVIEW, tokens: 800, temperature: 0.3, json: REVIEW_SCHEMA },
-  coach: { system: COACH, tokens: 600, temperature: 0.6, check: coachProblems, tries: 2, notes: true },
-  letter: { system: LETTER, tokens: 700, temperature: 0.7, check: letterProblems, tries: 3, notes: true },
+  coach: { system: COACH, tokens: 600, temperature: 0.6, check: coachProblems, tries: 2, notes: true, verify: (r) => r },
+  letter: { system: LETTER, tokens: 700, temperature: 0.7, check: letterProblems, tries: 3, notes: true, verify: (r) => r },
 };
 
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
@@ -298,8 +304,28 @@ function jsonIn(value) {
   }
 }
 
+const CHECK =
+  'You check writing for made-up facts. SOURCE is everything a person has said about themselves: their resume, their answers and their messages. ' +
+  'TEXT was written for that person. List each claim in TEXT about the person (their past jobs, duties, actions, skills, tools, abilities, numbers, time spans, schedule, habits, feelings or results) ' +
+  'that SOURCE does not state or clearly imply. A job posting describes the job, not the person: a duty in the posting is not something the person did. ' +
+  'Ignore anything inside [square brackets], facts about the job itself, and general advice. ' +
+  'Reply with only JSON: {"unsupported": ["short exact quote from TEXT", ...]}, an empty list when everything is supported.';
+
+/** Phrases in `text` that claim things the person never said, as problems to fix. */
+async function madeUp(env, model, messages, text) {
+  if (!text) return [];
+  const source = messages.filter((m) => m.role === 'user').map((m) => m.content).join('\n\n').slice(0, 12000);
+  try {
+    const raw = await ask(env, model, CHECK, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}` }], { tokens: 400, temperature: 0 }, CHECK_SCHEMA);
+    const found = ((jsonIn(raw) || {}).unsupported || []).map((x) => String(x).trim()).filter((x) => x.length > 3).slice(0, 6);
+    return found.length ? [`These parts claim things the person never said: ${found.map((x) => `"${x}"`).join('; ')}. Remove each one, or turn it into a [bracket] for them to fill in.`] : [];
+  } catch {
+    return [];
+  }
+}
+
 function tidy(text, mode) {
-  let t = String(text || '').replace(/[*#]+/g, '').trim();
+  let t = String(text || '').replace(/[*#]+/g, '').replace(/^>\s?/gm, '').trim();
   if (mode === 'letter') {
     t = t
       .replace(/^(dear[^\n]*\n+)/i, '')
@@ -329,7 +355,7 @@ export async function onRequestPost({ request, env }) {
   const messages = clean(body && body.messages);
   if (!messages) return new Response('{}', { status: 400, headers });
   if (!env.AI) return new Response('{}', { status: 503, headers });
-  const wanted = TRY_MODELS.includes(body.model) || MODELS.includes(body.model) ? [body.model] : MODELS;
+  const wanted = TRY_MODELS.includes(body.model) || SMART.includes(body.model) ? [body.model] : setup.models || SMART;
   const first = messages[0].content;
   const system = systemFor(mode, first);
   const errors = [];
@@ -344,6 +370,8 @@ export async function onRequestPost({ request, env }) {
         const value = setup.json ? jsonIn(raw) : tidy(raw, mode);
         if (!value) continue;
         const problems = setup.check ? setup.check(value, first) : [];
+        // A second read by the model: does it claim anything about the person they never said?
+        if (setup.verify && !problems.length) problems.push(...(await madeUp(env, model, messages, setup.verify(value))));
         if (!best || problems.length < best.problems.length) best = { value, problems };
         if (!problems.length) break;
         asked = [

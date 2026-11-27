@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const SITE = 'https://claude-project-thread-20803l.jobbo-app.pages.dev';
 const URL = SITE + '/interview';
-const RUN = 'compare-1';
+const RUN = 'full-1';
 let calls = 0;
 async function call(mode, turns, model) {
   const t0 = Date.now();
@@ -43,23 +43,113 @@ const B = {
 };
 const C = { name: 'Warehouse Associate at Northline Distribution', posting: `Join our night shift team.\n\nDuties\n- Pick and pack orders using RF scanners\n- Load and unload trailers\n- Keep work areas clean and safe\n\nRequirements\n- Able to lift 50 lbs and stand for 10 hours\n- Forklift certification a plus\n- Reliable attendance\n\n$18.50/hour, 4x10 night shifts`, resume: '', person: '' };
 const D = { name: 'IT Help Desk Technician at Lakeside School District', posting: `Support staff and students across 12 schools.\n\nResponsibilities\n- Answer help desk tickets by phone, email and in person\n- Reset passwords and manage accounts in Active Directory and Google Admin\n- Set up and repair Chromebooks and Windows laptops\n- Document fixes in our ticketing system\n\nQualifications\n- 1 year of help desk or IT support experience, or a related degree\n- CompTIA A+ preferred\n- Clear communicator with non-technical people`, resume: `Alex Kim\nalex.kim@example.com\n\nEDUCATION\nA.A.S. Information Technology, Harbor Community College, May 2026\n\nEXPERIENCE\nStudent Tech Assistant | Harbor CC Computer Lab | 2024 – 2026\n- Helped about 25 students a day with printing, Wi-Fi and login problems\n- Re-imaged 40 lab computers each semester\n\nCashier | QuickStop Gas | 2022 – 2024\n- Ran the register and opened the store alone on weekends\n\nSKILLS\nWindows 10/11, Google Workspace, basic networking, customer service`, person: 'Alex Kim' };
-const MODELS = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/openai/gpt-oss-120b'];
-const CASES = [
-  ['letter', C, 'My name is not given. Write the body of my cover letter for this job.'],
-  ['letter', A, 'My name is Jordan Lee. Write the body of my cover letter for this job.'],
-  ['letter', D, 'My name is Alex Kim. Write the body of my cover letter for this job.'],
-  ['feedback', A, "Interview question: Tell me about yourself.\n\nMy answer:\nUm, I'm Jordan. I've worked retail for a while and I'm a hard worker and I like people."],
-  ['feedback', A, "Interview question: Tell me about a time you dealt with an upset customer.\n\nMy answer:\nA customer was mad about a price on the shelf being different from the register. I explained the sale ended. He was still mad but he paid."],
-  ['feedback', A, "Interview question: How do you make sure your cash drawer is accurate?\n\nMy answer:\nAt Corner Market I close three drawers every night. I count each one twice, check it against the register report, and if anything's off I go back through the receipts before I leave. In three years we haven't had a shortage."],
-  ['coach', A, 'My question: How do I answer "Why did you leave your last job?"'],
-  ['coach', A, 'My question: How do I explain a gap in my work history?'],
-  ['coach', A, 'My question: Write a short thank-you note to send after my interview'],
-];
-const out = { run: RUN, results: [] };
-for (const model of MODELS) for (const [mode, p, ask] of CASES) {
-  const r = await call(mode, [ctx(p, ask)], model);
-  out.results.push({ model, mode, job: p.name, ask: ask.slice(0, 120), r });
+
+// ---- Mock interview: a scripted candidate answering whatever is asked.
+function bankFor(p) {
+  if (p === A) return {
+    intro: "I've been in retail about five years. Right now I'm a shift lead at Corner Market, a small neighborhood grocery, where I run the register, train new cashiers and handle the morning deliveries. Before that I worked two years in a warehouse picking orders. I'm looking for a bigger store with more hours.",
+    vague: "I'm pretty good with customers I guess.",
+    stories: [
+      "A guy came in really upset because we'd charged him twice for a case of water. I said sorry right away, checked the receipt, and saw the double scan. I refunded him on the spot and gave him a coupon. He calmed down and he still comes in every week.",
+      "One night my drawer was twenty dollars short when I counted it. I recounted, then went back through the receipts and found a refund I'd keyed wrong. I fixed it in the system and wrote it up for my manager so it wouldn't happen again.",
+      "When we got two new cashiers the same week before Thanksgiving, I made a one page cheat sheet for the register and stood next to each of them for their first few shifts.",
+    ],
+    duties: [
+      "I count three drawers every night and they've balanced every time. I count twice and keep big bills under the tray.",
+      "At Corner Market I take the deliveries before opening, check them against the invoice, and get everything on the shelves before we open at seven.",
+      "I'd walk them to the aisle instead of pointing, and if I don't know, I'd find someone who does.",
+    ],
+    situation: "I'd stay calm, listen to the whole problem first, and fix what I can right there. If it's something I can't fix, like a big refund, I'd get the manager and stay with the customer.",
+    physical: "Yes. I lift cases all day now, and in the warehouse I loaded trucks every shift.",
+    followup: "It was probably about ten deliveries a week, and it took me around an hour each morning.",
+    question: "What does a good first month look like for someone in this job? And how are shifts scheduled?",
+  };
+  return {
+    intro: "I've worked with people for about four years. I was a server at Casa Verde for three years and then I worked at DesertLink's call center, answering billing and outage calls. I took medical office classes at Pima this year because I want to work in healthcare.",
+    vague: "I'm organized, I think.",
+    stories: [
+      "At the call center a customer called furious because his internet had been out for three days and he works from home. I apologized, checked the outage map, and saw his area was fixed but his modem wasn't. I walked him through a reset and when that didn't work I booked a tech for the next morning. He thanked me at the end of the call.",
+      "At Casa Verde we got slammed one Friday when two servers called out. I took two extra tables and asked the host to seat my section in waves so the kitchen wouldn't get buried. We got through the night without anyone walking out.",
+      "When Salesforce changed at work, I made notes for myself and shared them with two new people.",
+    ],
+    duties: [
+      "At the call center I scheduled technician visits every day, so I'm used to booking appointments while someone is on the line.",
+      "I haven't verified dental insurance yet. In my classes we covered insurance basics, and at DesertLink I explained billing every day, so I'd learn your process fast.",
+      "I answered about seventy calls a day, so a busy phone doesn't scare me.",
+    ],
+    situation: "I'd smile, tell the patient in the lobby I'll be right with them, put the caller on a short hold, and check the patient in. Then I'd go back to the phone.",
+    physical: "Yes, that schedule works for me.",
+    followup: "It was about seventy calls a day, and my satisfaction score was ninety two percent.",
+    question: "What software do you use for scheduling, and is there training for it?",
+  };
 }
+function answer(bank, q, n, used) {
+  const s = q.toLowerCase();
+  if (n === 2) return bank.vague; // second answer is deliberately weak
+  if (/questions? for (me|us)|anything you'd like to ask|any questions/.test(s)) return bank.question;
+  if (/how did (that|it) (turn out|end)|what happened next|what did you do next|result|how many|roughly|how often|how much/.test(s) && used.lastWasStory) return bank.followup;
+  if (/yourself|walk me through|background/.test(s) && !used.intro) { used.intro = 1; return bank.intro; }
+  if (/lift|physical|stand|schedule work|hours work|available/.test(s)) return bank.physical;
+  if (/what would you do|how would you (handle|deal)|imagine|suppose|let's say|if a (customer|patient|caller)/.test(s)) return bank.situation;
+  if (/time when|a time|an example|give me an example|describe a (situation|time)|tell me about a/.test(s) && bank.stories.length) { used.lastWasStory = 1; return bank.stories.shift(); }
+  used.lastWasStory = 0;
+  return bank.duties.length ? bank.duties.shift() : "I'd say I'm reliable. I show up on time and I don't leave work for the next shift.";
+}
+const START = 'Start the interview. Greet me by saying who you are in one short sentence (make up a first name and use the job title of the person I would report to), say it will take about fifteen minutes, then ask the first question.';
+async function interview(p) {
+  const bank = bankFor(p);
+  const used = {};
+  const turns = [ctx(p, START)];
+  const times = [];
+  let n = 0;
+  while (turns.length < 33) {
+    const r = await call('interview', turns);
+    times.push(r.ms);
+    if (!r.reply) { turns.push(`[ERROR ${JSON.stringify(r)}]`); break; }
+    const end = /\s*\[END\]\s*$/i.test(r.reply);
+    turns.push(r.reply.replace(/\s*\[END\]\s*$/i, '').trim());
+    if (end || turns.length + 1 >= 33) break;
+    n++;
+    turns.push(answer(bank, r.reply, n, used));
+  }
+  const lines = turns.slice(1).map((t, i) => `${i % 2 === 0 ? 'Interviewer' : 'Me'}: ${t}`);
+  const rev = await call('review', [ctx(p, `The interview:\n${lines.join('\n').slice(-9000)}`)]);
+  return { job: p.name, transcript: lines, times, review: rev };
+}
+
+const FEEDBACK = [
+  [A, 'Tell me about yourself.', "Um, I'm Jordan. I've worked retail for a while and I'm a hard worker and I like people."],
+  [A, 'Tell me about a time you dealt with an upset customer.', "A customer was mad about a price on the shelf being different from the register. I explained the sale ended. He was still mad but he paid."],
+  [A, 'How do you make sure your cash drawer is accurate?', "At Corner Market I close three drawers every night. I count each one twice, check it against the register report, and if anything's off I go back through the receipts before I leave. In three years we haven't had a shortage."],
+  [A, 'Why do you want to work at Maple Grocers?', 'More hours.'],
+  [B, 'Do you have experience with dental insurance?', "No, not really, but I can learn."],
+  [D, 'A teacher says her Chromebook won\'t connect to Wi-Fi five minutes before class. What do you do?', "I'd go to the room, check if Wi-Fi is on, forget the network and reconnect, and if that doesn't work give her a loaner so class can start, then fix it after."],
+];
+const COACH = [
+  [A, 'How do I answer "Why did you leave your last job?"'],
+  [A, 'What do I say when they ask about pay?'],
+  [A, 'How do I explain a gap in my work history?'],
+  [A, 'Write a short thank-you note to send after my interview'],
+  [A, 'I get nervous in interviews. What helps?'],
+  [A, 'What should I ask at the end of the interview?'],
+  [B, "How do I explain that I don't have dental office experience?"],
+  [{ name: '', posting: '', resume: '' }, 'I got fired from my last job for being late too many times. How do I explain that?'],
+];
+const E = { name: 'Customer Service Representative at Pine Valley Bank', posting: `Help customers by phone and chat with accounts, cards and online banking.\n\n- Answer 50+ calls a day\n- Explain fees and fix simple account problems\n- 1 year of customer service experience`, resume: `Taylor Brooks\n\nEXPERIENCE\nCashier | Sunny Mart | 2015 – 2019\n- Ran the register and balanced the drawer every shift\n- Answered customer questions and handled returns\n\nSKILLS\nCash handling, customer service`, person: 'Taylor Brooks' };
+COACH.push([E, 'How do I explain a gap in my work history?'], [E, 'Write a short thank-you note to send after my interview']);
+const LETTERS = [A, A, B, C, C, D, E];
+
+const out = { interviews: [], feedback: [], coach: [], letters: [] };
+for (const p of [A, B]) out.interviews.push(await interview(p));
+for (const [p, q, a] of FEEDBACK) out.feedback.push({ job: p.name, q, a, r: await call('feedback', [ctx(p, `Interview question: ${q}\n\nMy answer:\n${a}`)]) });
+for (const [p, q] of COACH) {
+  const first = ctx(p, `My question: ${q}`);
+  const r = await call('coach', [first]);
+  const item = { job: p.name || '(any job, no resume)', q, r };
+  if (p === A && /leave/.test(q) && r.reply) item.follow = { q: "I'm still working there. I just want more hours and a bigger store.", r: await call('coach', [first, r.reply, "I'm still working there. I just want more hours and a bigger store."]) };
+  out.coach.push(item);
+}
+for (const p of LETTERS) out.letters.push({ job: p.name, r: await call('letter', [ctx(p, `My name is ${p.person || 'not given'}. Write the body of my cover letter for this job.`)]) });
 out.calls = calls;
 mkdirSync('probe/out', { recursive: true });
 writeFileSync(`probe/out/${RUN}.json`, JSON.stringify(out, null, 1));
