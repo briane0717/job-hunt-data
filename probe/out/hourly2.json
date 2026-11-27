@@ -419,7 +419,7 @@
     "https://jobs.dominos.com/es/",
     "https://www.linkedin.com/company/domino&#x27;s-pizza/jobs/",
     "https://www.linkedin.com/company/domino\\u0027s-pizza/jobs/",
-    "https://maps.googleapis.com/maps/api/js?key=AIzaSyAA74uwX4Bc8pgnIR-tV7haxHLTBnbjjlM&amp;&amp;loading=async&amp;libraries=places,geometry,marker&amp;callback=initAutoComplete"
+    "https://maps.googleapis.com/maps/api/js?key=REDACTED&amp;&amp;loading=async&amp;libraries=places,geometry,marker&amp;callback=initAutoComplete"
    ],
    "title": "Domino&#x2019;s Careers | Find Domino&#x2019;s jobs near you  | Domino&#x27;s Careers"
   },
