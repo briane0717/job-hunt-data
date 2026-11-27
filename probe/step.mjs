@@ -1,120 +1,93 @@
-// Step 8: find public job lists for big hourly employers still missing (Walmart, UPS, FedEx, Starbucks, …).
+// Step 9: test the job lists found in step 8, and look closer at Walmart, Best Buy, FedEx and Amazon.
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 const run = promisify(execFile);
-mkdirSync('probe/out', { recursive: true });
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15';
 async function curl(args) {
   try {
-    const { stdout } = await run('curl', ['-sSL', '--compressed', '--max-time', '25', '-A', UA, '-w', '\n%{http_code} %{url_effective}', ...args], { maxBuffer: 80e6 });
+    const { stdout } = await run('curl', ['-sSL', '--compressed', '--max-time', '30', '-A', UA, '-w', '\n%{http_code}', ...args], { maxBuffer: 80e6 });
     const cut = stdout.lastIndexOf('\n');
-    const [st, eff] = stdout.slice(cut + 1).split(' ');
-    return { status: Number(st), eff, body: stdout.slice(0, cut) };
+    return { status: Number(stdout.slice(cut + 1)), body: stdout.slice(0, cut) };
   } catch (e) { return { status: 0, body: String(e.message).slice(0, 100) }; }
 }
-const out = { sites: {}, workday: {}, jibe: {}, eightfold: {}, radancy: {}, other: {} };
-const SITES = {
-  Walmart: ['https://careers.walmart.com/', 'https://careers.walmart.com/results?q=cashier'],
-  "Sam's Club": ['https://careers.samsclub.com/'],
-  UPS: ['https://www.jobs-ups.com/', 'https://www.jobs-ups.com/us/en/search-results'],
-  FedEx: ['https://careers.fedex.com/', 'https://careers.fedex.com/jobs', 'https://careers.fedex.com/ground'],
-  Starbucks: ['https://careers.starbucks.com/', 'https://apply.starbucks.com/careers'],
-  "McDonald's": ['https://careers.mcdonalds.com/', 'https://jobs.mchire.com/'],
-  Walgreens: ['https://jobs.walgreens.com/'],
-  Publix: ['https://jobs.publix.com/', 'https://corporate.publix.com/careers'],
-  'Best Buy': ['https://jobs.bestbuy.com/'],
-  Hyatt: ['https://careers.hyatt.com/'],
-  IHG: ['https://careers.ihg.com/'],
-  Aldi: ['https://careers.aldi.us/'],
-  '7-Eleven': ['https://careers.7-eleven.com/'],
-  Wawa: ['https://jobs.wawa.com/', 'https://www.wawa.com/careers'],
-  Sheetz: ['https://jobs.sheetz.com/'],
-  'Circle K': ['https://careers.circlek.com/'],
-  "Casey's": ['https://www.caseys.com/careers'],
-  Ross: ['https://jobs.rossstores.com/'],
-  'Taco Bell': ['https://jobs.tacobell.com/'],
-  'Pizza Hut': ['https://jobs.pizzahut.com/'],
-  "Domino's": ['https://jobs.dominos.com/'],
-  Darden: ['https://www.darden.com/careers', 'https://jobs.olivegarden.com/'],
-  Panera: ['https://www.panerabread.com/en-us/careers.html', 'https://careers.panerabread.com/'],
-  "Wendy's": ['https://wendys-careers.com/'],
-  'Burger King': ['https://careers.rbi.com/'],
-  Dunkin: ['https://careers.dunkindonuts.com/', 'https://careers.inspirebrands.com/'],
-  Disney: ['https://jobs.disneycareers.com/'],
-  AMC: ['https://careers.amctheatres.com/'],
-  Cinemark: ['https://careers.cinemark.com/'],
-  'Six Flags': ['https://careers.sixflags.com/'],
-  'Bath & Body Works': ['https://careers.bathandbodyworks.com/'],
-  "Victoria's Secret": ['https://careers.victoriassecret.com/'],
-  'American Eagle': ['https://jobs.ae.com/'],
-  GameStop: ['https://careers.gamestop.com/'],
-  'Foot Locker': ['https://jobs.footlocker.com/'],
-  'Hobby Lobby': ['https://careers.hobbylobby.com/'],
-  'Big Lots': ['https://jobs.biglots.com/'],
-  'Office Depot': ['https://careers.odpcorp.com/'],
-  DHL: ['https://careers.dhl.com/global/en', 'https://careers.dhl.com/us/en'],
-  'Allied Universal': ['https://jobs.aus.com/'],
-  Securitas: ['https://jobs.securitasinc.com/'],
-  Aramark: ['https://careers.aramark.com/'],
-  Sodexo: ['https://us.jobs.sodexo.com/'],
-  'Compass Group': ['https://www.compassgroupcareers.com/'],
-  'Whole Foods': ['https://careers.wholefoodsmarket.com/'],
-  "Trader Joe's": ['https://www.traderjoes.com/home/careers'],
-  Safeway: ['https://www.albertsonscompanies.com/careers/'],
-  'Food Lion': ['https://careers.foodlion.com/'],
-  'Stop & Shop': ['https://careers.stopandshop.com/'],
-  'Rite Aid': ['https://careers.riteaid.com/'],
-  'Dollar General': ['https://careers.dollargeneral.com/'],
-  Lyft: ['https://www.lyft.com/careers'],
-  Marriott: ['https://careers.marriott.com/'],
-  'Hilton': ['https://jobs.hilton.com/'],
-  Wyndham: ['https://careers.wyndhamhotels.com/'],
-  'Choice Hotels': ['https://careers.choicehotels.com/'],
-  'Spectrum': ['https://jobs.spectrum.com/'],
-  'T-Mobile': ['https://careers.t-mobile.com/'],
-  'Comcast': ['https://jobs.comcast.com/'],
-  'HCA Healthcare': ['https://careers.hcahealthcare.com/'],
-  'Kaiser Permanente': ['https://www.kaiserpermanentejobs.org/'],
-  'Uline': ['https://www.uline.jobs/'],
-};
-const MARKERS = { workday: /([a-z0-9-]+)\.(wd\d+)\.myworkdayjobs\.com\/(?:[a-z]{2}-[A-Z]{2}\/)?([A-Za-z0-9_-]+)/, icims: /([a-z0-9-]+)\.icims\.com/, taleo: /([a-z0-9-]+)\.taleo\.net/, successfactors: /successfactors|jobs\.sap\.com|rmkcdn/, eightfold: /eightfold\.ai|([a-z0-9-]+)\.eightfold/, phenom: /phenompeople|cdn\.phenompeople|"refNum":"([A-Z0-9]+)"/, radancy: /tbcdn\.talentbrew|talentbrew|radancy/, oracle: /([a-z0-9]+\.fa\.[a-z0-9]+\.oraclecloud\.com)/, avature: /([a-z0-9-]+\.avature\.net)/, brassring: /brassring/, jibe: /jibeapply|jibecdn|\/api\/jobs/, paradox: /paradox\.ai/i, greenhouse: /greenhouse\.io/, lever: /lever\.co/, smartrecruiters: /smartrecruiters/, ukg: /ultipro|ukg\.net|recruiting\.ultipro/, adp: /workforcenow\.adp|recruiting\.adp/, cornerstone: /csod\.com/, jobvite: /jobvite/ };
-for (const [name, urls] of Object.entries(SITES)) {
-  out.sites[name] = [];
-  for (const url of urls) {
-    const r = await curl([url]);
-    const found = Object.entries(MARKERS).filter(([, re]) => re.test(r.body)).map(([k, re]) => { const m = r.body.match(re); return m[1] ? `${k}(${m.slice(1).filter(Boolean).join('|')})` : k; });
-    out.sites[name].push(`${r.status} ${url} -> ${r.eff} len=${r.body.length} ${found.join(', ')}`);
-  }
+const J = (r) => { try { return JSON.parse(r.body); } catch { return null; } };
+const out = { phenom: {}, radancy: {}, workday: {}, eightfold: {}, amazon: {}, pages: {}, names: {} };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// Phenom: find refNum on the home page, then ask the widgets search for a total.
+for (const [name, home] of [['UPS', 'https://www.jobs-ups.com/us/en'], ['Wawa', 'https://careers.wawa.com/us/en'], ['Panera', 'https://careers.panerabread.com/global/en'], ['RBI', 'https://careers.rbi.com/global/en'], ['Disney', 'https://join.disneycareers.com/global/en'], ['DHL', 'https://careers.dhl.com/amer/en'], ['Best Buy', 'https://jobs.bestbuy.com/bby']]) {
+  const h = await curl([home]);
+  const ref = (h.body.match(/"refNum"\s*:\s*"([A-Z0-9]+)"/) || [])[1];
+  const host = new URL(home).host;
+  const path = new URL(home).pathname.replace(/^\/|\/$/g, '');
+  let total = null, sample = [];
+  if (ref) {
+    const body = JSON.stringify({ lang: 'en_us', deviceType: 'desktop', country: 'us', pageName: 'search-results', ddoKey: 'refineSearch', sortBy: '', subsearch: '', from: 0, jobs: true, counts: true, all_fields: ['country'], size: 10, clearAll: false, jdsource: 'facets', isSliderEnable: false, pageId: 'page20', siteType: 'external', keywords: '', global: true, selected_fields: {}, locationData: {}, refNum: ref });
+    const r = await curl(['-X', 'POST', '-H', 'Content-Type: application/json', '--data-raw', body, `https://${host}/widgets`]);
+    const d = J(r);
+    total = d?.refineSearch?.totalHits ?? `HTTP ${r.status} ${r.body.slice(0, 80)}`;
+    sample = (d?.refineSearch?.data?.jobs || []).slice(0, 3).map((j) => `${j.title} @ ${j.city}, ${j.state}, ${j.country}`);
+    out.phenom[name] = { host, path, ref, total, sample, countries: JSON.stringify(d?.refineSearch?.aggregations || '').slice(0, 600) };
+  } else out.phenom[name] = { host, status: h.status, noRef: true, snippet: (h.body.match(/.{0,200}(api|search)[^"]{0,80}json.{0,100}/i) || [''])[0] };
 }
-const WD = ['walmart|wd5|WalmartExternal', 'walmart|wd5|WalmartExternalHourly', 'hcmportal|wd5|Search', 'fedex|wd1|FXE-US_External', 'fedex|wd1|FDX_Ground', 'fedex|wd1|FedEx_Careers', 'starbucks|wd1|StarbucksExternal', 'publix|wd1|External', 'bestbuy|wd5|BestBuy', 'bestbuy|wd5|External', 'rossstores|wd5|Ross_External', 'mcdonalds|wd5|External', 'walgreens|wd1|External', 'ihg|wd1|External', 'hyatt|wd5|External', 'bathandbodyworks|wd1|BBW', 'circlek|wd3|CircleK', 'sheetz|wd1|Sheetz', 'wawa|wd1|Wawa_Careers', 'darden|wd1|External', 'dhl|wd3|DHL'];
-for (const e of WD) {
+for (const host of ['careers.aldi.us', 'careers.7-eleven.com', 'jobs.spectrum.com', 'jobs.aus.com', 'jobs.sixflags.com', 'jobs.comcast.com', 'www.kaiserpermanentejobs.org', 'jobs.walgreens.com']) {
+  const r = await curl(['-H', 'X-Requested-With: XMLHttpRequest', `https://${host}/search-jobs/results?ActiveFacetID=0&CurrentPage=1&RecordsPerPage=100&Distance=50&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&FacetTerm=&FacetType=0&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=5&ResultsType=0`]);
+  const h = J(r)?.results || '';
+  out.radancy[host] = h ? { pages: (h.match(/data-total-pages="(\d+)"/) || [])[1], total: (h.match(/data-total-results="(\d+)"/) || [])[1], ids: (h.match(/data-job-id="\d+"/g) || []).length, locs: [...h.matchAll(/job-location[^>]*>([^<]+)</g)].slice(0, 4).map((m) => m[1].trim()) } : `HTTP ${r.status}`;
+}
+for (const e of ['cinemark|wd1|cinemark', 'choicehotels|wd5|HotelExternal', 'tmobile|wd1|External', 'comcast|wd115|Comcast_Careers', 'hcmportal|wd5|Search']) {
   const [co, wd, site] = e.split('|');
   const base = `https://${co}.${wd}.myworkdayjobs.com`;
-  const r = await curl(['-X', 'POST', '-H', 'Content-Type: application/json', '-H', 'Accept: application/json', '--data-raw', JSON.stringify({ appliedFacets: {}, limit: 3, offset: 0, searchText: '' }), `${base}/wday/cxs/${co}/${site}/jobs`]);
-  let v; try { const d = JSON.parse(r.body); v = { total: d.total, sample: (d.jobPostings || []).map((j) => `${j.title} @ ${j.locationsText}`), facets: (d.facets || []).map((f) => f.facetParameter) }; } catch { v = `HTTP ${r.status}`; }
-  out.workday[e] = v;
+  const r = await curl(['-X', 'POST', '-H', 'Content-Type: application/json', '-H', 'Accept: application/json', '--data-raw', JSON.stringify({ appliedFacets: {}, limit: 5, offset: 0, searchText: '' }), `${base}/wday/cxs/${co}/${site}/jobs`]);
+  const d = J(r);
+  out.workday[e] = d ? { total: d.total, sample: (d.jobPostings || []).map((j) => `${j.title} @ ${j.locationsText}`), facets: (d.facets || []).map((f) => `${f.facetParameter}:${(f.values || []).length}`) } : `HTTP ${r.status}`;
+  if (d && co === 'hcmportal') {
+    const loc = (d.facets || []).find((f) => /location/i.test(f.facetParameter));
+    out.workday.upsLocFacets = JSON.stringify(d.facets).slice(0, 3000);
+  }
 }
-// UPS sample of locations from its Workday board, to see why so few land on the map.
-{
-  const base = 'https://hcmportal.wd5.myworkdayjobs.com';
-  const r = await curl(['-X', 'POST', '-H', 'Content-Type: application/json', '-H', 'Accept: application/json', '--data-raw', JSON.stringify({ appliedFacets: {}, limit: 20, offset: 0, searchText: '' }), `${base}/wday/cxs/hcmportal/Search/jobs`]);
-  out.other.upsWorkday = r.body.slice(0, 6000);
+// Starbucks: page size and a US filter.
+for (const q of ['&num=100', '&location=United%20States', '&location=United%20States&num=50']) {
+  const r = await curl([`https://apply.starbucks.com/api/pcsx/search?domain=starbucks.com&query=${q}&start=0&sort_by=timestamp`]);
+  const d = J(r);
+  out.eightfold[q] = d ? { count: d.data?.count, n: (d.data?.positions || []).length, loc: (d.data?.positions || []).slice(0, 3).map((j) => (j.standardizedLocations || j.locations || [])[0]) } : `HTTP ${r.status}`;
+  await sleep(4000);
 }
-for (const host of ['careers.fedex.com', 'careers.walmart.com', 'jobs.bestbuy.com', 'jobs.publix.com', 'careers.starbucks.com', 'jobs.wawa.com', 'jobs.dominos.com', 'careers.mcdonalds.com', 'jobs.sheetz.com', 'careers.7-eleven.com', 'careers.circlek.com', 'jobs.rossstores.com', 'careers.gamestop.com', 'careers.amctheatres.com', 'jobs.aus.com', 'careers.aramark.com', 'jobs.footlocker.com', 'careers.hyatt.com', 'jobs.walgreens.com', 'jobs.spectrum.com', 'careers.t-mobile.com', 'jobs.comcast.com']) {
-  const r = await curl([`https://${host}/api/jobs?page=1&limit=2`]);
-  let v; try { const d = JSON.parse(r.body); v = { total: d.totalCount ?? d.count, sample: (d.jobs || []).map((j) => JSON.stringify(j.data || j).slice(0, 300)) }; } catch { v = `HTTP ${r.status} ${r.body.slice(0, 80)}`; }
-  out.jibe[host] = v;
+// Amazon: can a state filter get past the 10,000 limit?
+for (const q of ['country=USA', 'country=USA&normalized_state_name[]=Texas', 'normalized_location[]=Texas, United States', 'country=USA&state[]=TX']) {
+  const r = await curl([`https://www.amazon.jobs/en/search.json?${encodeURI(q)}&result_limit=1`]);
+  out.amazon[q] = J(r)?.hits ?? `HTTP ${r.status}`;
 }
-for (const [host, domain] of [['starbucks.eightfold.ai', 'starbucks.com'], ['apply.starbucks.com', 'starbucks.com'], ['walmart.eightfold.ai', 'walmart.com'], ['bestbuy.eightfold.ai', 'bestbuy.com'], ['fedex.eightfold.ai', 'fedex.com'], ['ups.eightfold.ai', 'ups.com']]) {
-  const r = await curl([`https://${host}/api/pcsx/search?domain=${domain}&query=&location=&start=0`]);
-  let v; try { const d = JSON.parse(r.body); v = { count: d.data?.count, sample: (d.data?.positions || []).slice(0, 2).map((j) => `${j.name} @ ${(j.locations || [])[0]}`) }; } catch { v = `HTTP ${r.status} ${r.body.slice(0, 80)}`; }
-  out.eightfold[host] = v;
-  await new Promise((r) => setTimeout(r, 3000));
+{ const r = await curl(['https://www.amazon.jobs/en/search.json?country=USA&result_limit=1']); out.amazon.facetKeys = Object.keys(J(r) || {}).join(','); out.amazon.facets = JSON.stringify(J(r)?.facets || {}).slice(0, 800); }
+// Walmart, Best Buy, FedEx, Publix, Ross, Hyatt, Taco Bell, Domino's, Wendy's, McHire: endpoints named in their pages.
+for (const [name, url] of [['Walmart', 'https://careers.walmart.com/results?q=cashier'], ['WalmartHome', 'https://careers.walmart.com/us/en/home'], ['Best Buy', 'https://jobs.bestbuy.com/bby/jobs'], ['FedEx', 'https://careers.fedex.com/jobs'], ['Publix', 'https://jobs.publix.com/'], ['Ross', 'https://jobs.rossstores.com/'], ['Hyatt', 'https://careers.hyatt.com/'], ['Taco Bell', 'https://jobs.tacobell.com/'], ["Domino's", 'https://jobs.dominos.com/us/'], ["Wendy's", 'https://wendys-careers.com/'], ['McHire', 'https://jobs.mchire.com/'], ['Pizza Hut', 'https://jobs.pizzahut.com/']]) {
+  const r = await curl([url]);
+  const urls = [...new Set([...r.body.matchAll(/["'(](https?:\/\/[^"'()\s]*(?:api|search|jobs|graphql)[^"'()\s]*|\/[a-z0-9_\-\/]*(?:api|graphql)[a-z0-9_\-\/.?=&]*)["')]/gi)].map((m) => m[1]))].filter((u) => !/\.(png|jpg|svg|css|woff2?)(\?|$)/.test(u)).slice(0, 40);
+  const next = (r.body.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]{0,1500})/) || [])[1];
+  out.pages[name] = { status: r.status, len: r.body.length, urls, next, title: (r.body.match(/<title>([^<]*)/) || [])[1] };
 }
-for (const host of ['www.jobs-ups.com', 'jobs.walgreens.com', 'jobs.disneycareers.com', 'careers.fedex.com', 'jobs.bestbuy.com', 'jobs.publix.com', 'careers.starbucks.com', 'jobs.hilton.com', 'careers.marriott.com']) {
-  const r = await curl(['-H', 'X-Requested-With: XMLHttpRequest', `https://${host}/search-jobs/results?ActiveFacetID=0&CurrentPage=1&RecordsPerPage=15&Distance=50&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&FacetTerm=&FacetType=0&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=5&ResultsType=0`]);
-  let v; try { const h = JSON.parse(r.body).results || ''; v = { pages: (h.match(/data-total-pages="(\d+)"/) || [])[1], total: (h.match(/data-total-results="(\d+)"/) || [])[1], ids: (h.match(/data-job-id="\d+"/g) || []).length }; } catch { v = `HTTP ${r.status} ${r.body.slice(0, 80)}`; }
-  out.radancy[host] = v;
+// Names: what Lever, Ashby and Workday pages say the company is called.
+for (const s of ['swa', 'gehc', 'usc', 'tamus', 'nyuhs', 'tsmg', 'cgsfederal', 'mydpr', 'ghj', 'gfs']) {
+  const res = {};
+  for (const [k, u] of [['lever', `https://jobs.lever.co/${s}`], ['ashby', `https://jobs.ashbyhq.com/${s}`]]) {
+    const r = await curl([u]);
+    res[k] = `${r.status} ${(r.body.match(/<title>([^<]*)/) || [])[1] || ''} | og:${(r.body.match(/og:site_name" content="([^"]*)/) || r.body.match(/og:title" content="([^"]*)/) || [])[1] || ''}`;
+  }
+  out.names[s] = res;
 }
-writeFileSync('probe/out/hourly1.json', JSON.stringify(out, null, 1));
+// Workday tenant names: the site's own page title and a job's hiring organization.
+const wdNames = (await import('node:fs')).readFileSync('collector/companies/workday_companies.json', 'utf8');
+const wdList = JSON.parse(wdNames);
+for (const co of ['gehc', 'usc', 'tamus', 'nyuhs', 'tsmg', 'albanymed', 'swbc', 'gfs']) {
+  const e = wdList.find((x) => x.split('|')[0] === co);
+  if (!e) { out.names['wd:' + co] = 'not in list'; continue; }
+  const [, wd, site] = e.split('|');
+  const base = `https://${co}.${wd}.myworkdayjobs.com`;
+  const r = await curl(['-X', 'POST', '-H', 'Content-Type: application/json', '-H', 'Accept: application/json', '--data-raw', JSON.stringify({ appliedFacets: {}, limit: 1, offset: 0, searchText: '' }), `${base}/wday/cxs/${co}/${site}/jobs`]);
+  const p = J(r)?.jobPostings?.[0]?.externalPath;
+  let org = '';
+  if (p) { const d = J(await curl(['-H', 'Accept: application/json', `${base}/wday/cxs/${co}/${site}${p}`])); org = JSON.stringify(d?.hiringOrganization || d?.jobPostingInfo?.company || '').slice(0, 200); }
+  const page = await curl([`${base}/${site}`]);
+  out.names['wd:' + co] = { e, org, title: (page.body.match(/<title>([^<]*)/) || [])[1], ogsite: (page.body.match(/og:(?:site_name|title)" content="([^"]*)/) || [])[1] };
+}
+writeFileSync('probe/out/hourly2.json', JSON.stringify(out, null, 1));
