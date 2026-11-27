@@ -319,7 +319,7 @@ const EDIT =
   'TEXT was written for that person. Find each claim in TEXT about the person (their past jobs, duties, actions, skills, tools, abilities, numbers, time spans, schedule, reasons, habits, feelings or results) ' +
   'that SOURCE does not state or clearly imply. A job posting describes the job, not the person: a duty in the posting is not something the person did. ' +
   'Also find each phrase listed under PROBLEMS. Ignore anything already inside [square brackets], facts about the job itself, and general advice. ' +
-  'For each one, give a replacement that reads naturally in the sentence and uses only facts from SOURCE, or turns the unknown part into a short [bracket] for the person to fill in, like [what you said to him] or [your reason]. ' +
+  'Keep every bracket short, two to six words. Never bracket something SOURCE does say. For each one, give a replacement that reads naturally in the sentence and uses only facts from SOURCE, or turns the unknown part into a short [bracket] for the person to fill in, like [what you said to him] or [your reason]. ' +
   'Check every sentence of TEXT, one by one. If TIPS are given, also list the number of each tip that asks for something the person\'s answer already says, or that assumes experience SOURCE does not show. ' +
   'Reply with only JSON: {"edits": [{"quote": "exact text copied from TEXT", "fix": "replacement"}], "drop_tips": [numbers]}, empty lists when nothing needs changing.';
 const EDIT_SCHEMA = {
@@ -362,6 +362,31 @@ async function cleanUp(env, model, messages, value, problems, mode) {
     return { value: { ...value, better: apply(value.better), fix: fix.length ? fix : value.fix }, edits: done + drop.size };
   }
   return { value: apply(value), edits: done };
+}
+
+// Stock lines the model keeps reaching for, swapped for plain words after every other step.
+const PLAIN_SWAPS = [
+  [/\bI'?m (really )?(excited|eager|thrilled) (to|for)\b/gi, "I'd like $3"],
+  [/\bI am (really )?(excited|eager|thrilled) (to|for)\b/gi, "I'd like $3"],
+  [/\b(and )?eager to learn\b/gi, '$1ready to learn'],
+  [/\bI'?m confident (that )?I can\b/gi, 'I can'],
+  [/\bI am confident (that )?I can\b/gi, 'I can'],
+  [/\bI look forward to the possibility of\b/gi, "I'd welcome"],
+  [/\bDear interviewer\b/g, 'Hi [interviewer\'s name]'],
+];
+
+/** Pay amounts the posting never gave are made up: leave a blank for the person to look up. */
+function payBlanks(text, first) {
+  const known = numbers(first);
+  return text.replace(/\$\s?\d[\d,.]*(?:k)?(?:\s?(?:-|‑|–|to)\s?\$?\d[\d,.]*(?:k)?)?(?:\s?(?:\/\s?(?:hr|hour|year|yr)|an hour|per hour|a year|per year))?/gi, (m) =>
+    [...numbers(m)].every((n) => known.has(n)) ? m : '[the usual pay for this job near you]',
+  );
+}
+
+function plainer(text, first) {
+  let t = String(text || '');
+  for (const [re, to] of PLAIN_SWAPS) t = t.replace(re, to);
+  return payBlanks(t, first);
 }
 
 function tidy(text, mode) {
@@ -430,6 +455,7 @@ export async function onRequestPost({ request, env }) {
             // keep the draft as written
           }
         }
+        if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first) } : plainer(value, first);
         const out = setup.json ? { data: value } : { reply: value };
         if (body.debug) Object.assign(out, { model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
         return new Response(JSON.stringify(out), { headers });
