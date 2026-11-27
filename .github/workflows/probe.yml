@@ -1,6 +1,5 @@
-# One-off checks of employers' public job lists (which hiring system, how many jobs).
-# Runs only on the work branch when probe/step.mjs changes, and saves results to probe/out/.
-name: Probe employers
+# One-off live test of the coach on this branch's preview site. Saves results to probe/out/.
+name: Probe coach
 on:
   push:
     branches: ['claude/**']
