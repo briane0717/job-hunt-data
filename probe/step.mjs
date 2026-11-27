@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const SITE = 'https://claude-project-thread-20803l.jobbo-app.pages.dev';
 const URL = SITE + '/interview';
-const RUN = 'full-2';
+const RUN = 'full-3';
 let calls = 0;
 async function call(mode, turns, model) {
   const t0 = Date.now();
@@ -140,7 +140,7 @@ COACH.push([E, 'How do I explain a gap in my work history?'], [E, 'Write a short
 const LETTERS = [A, A, B, C, C, D, E];
 
 const out = { interviews: [], feedback: [], coach: [], letters: [] };
-for (const p of [A, B]) out.interviews.push(await interview(p));
+// interviews unchanged since full-2: for (const p of [A, B]) out.interviews.push(await interview(p));
 for (const [p, q, a] of FEEDBACK) out.feedback.push({ job: p.name, q, a, r: await call('feedback', [ctx(p, `Interview question: ${q}\n\nMy answer:\n${a}`)]) });
 for (const [p, q] of COACH) {
   const first = ctx(p, `My question: ${q}`);

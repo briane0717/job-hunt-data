@@ -52,7 +52,9 @@ const FEEDBACK =
   'Read their answer closely before writing tips. Never tell them to add something their answer already says. Never tell them to remove filler words, sound confident, or show enthusiasm. ' +
   'Each tip points at one specific part of their answer and says exactly what to add or change, and, when their resume has a fact that would help, names that fact. ' +
   FACTS +
-  ' The stronger version: keep their own words and facts, tighten and reorder them, and pull in matching facts from their resume. ' +
+  ' Tips may suggest what to add, but never say or assume they have done something their answer and resume do not show. ' +
+  ' The stronger version: build it only from their own sentences and their resume lines, tightened and reordered. ' +
+  'For a "tell me about a time" story use this shape: the situation in their words; what they did, in their words, then [what else you did] if that part is thin; how it ended, in their words or [how it turned out]. ' +
   'It must not add any action, event or result they did not state. Where the story is missing a part (what they did, how it ended, a number), put a bracket there, like [what you said to him] or [how it ended]. ' +
   'It sounds like this person talking, not a cover letter: no stock lines such as "retail professional", "excited to bring my skills", "I believe my skills will be a good fit", "hard worker", "people person", "passionate". ' +
   'Reply with only a JSON object, no other text, in this shape: ' +
@@ -80,7 +82,8 @@ const COACH =
   'Write like a coach talking to one person: start with the plain answer, then give the exact words they can say, in quotes, in first person, built from their real jobs, duties and numbers. ' +
   'Then one or two sentences on why it works or what to avoid. For practical questions (nerves, what to ask, pay), give two or three concrete steps that fit this job. ' +
   'For a note or message they will send, write the whole thing, ready to send: start "Hi [interviewer\'s name]," (never "Dear interviewer"), mention the job and employer and [one thing you talked about], and sign with their name if you know it. ' +
-  'For pay: use the posting\'s pay if it gives one, otherwise suggest asking for the range first. ' +
+  'For pay: use the posting\'s pay if it gives one, otherwise suggest asking for the range first and checking local pay for the job title themselves. Never state pay numbers the posting does not give. ' +
+  'In scripts, never give them a reason, course, website, activity or achievement they have not told you about: put a [bracket] there instead, like [your reason]. ' +
   'Avoid stock lines interviewers hear all day, like "looking for a new challenge", "new opportunity", "I\'m excited about the role", "eager to learn", "personal matters" or "I\'m a perfectionist". ' +
   'End with one short question only when the answer would change your advice. Keep replies between 90 and 200 words. Plain text, short paragraphs, no markdown symbols. ' +
   FACTS;
@@ -88,7 +91,7 @@ const COACH =
 const LETTER =
   'You write cover letters that sound like a real person wrote them, not an AI. The message gives the job posting, the person\'s resume, and their name. ' +
   'Write only the body of the letter: no greeting line, no sign-off, no name, no address. ' +
-  'Rules: 140 to 210 words in three short paragraphs. Vary sentence length. Use contractions. Write the way a capable person talks, plainly and directly. Say things straight, never hedge with "I think", "I believe" or "could be useful". ' +
+  'Rules: 140 to 210 words in three short paragraphs. Vary sentence length. Use contractions. Write the way a capable person talks, plainly and directly. Use present tense for a job the resume marks Present and past tense for the rest. Say things straight, never hedge with "I think", "I believe" or "could be useful". ' +
   'Paragraph one: the opening described below. ' +
   'Paragraph two: one or two real examples from the resume that match the main duties, with the concrete details and numbers the resume gives (place, what they did, how many). ' +
   'Paragraph three: one sentence on why this job or employer, based only on something specific in the posting, then the close described below. ' +
@@ -259,7 +262,7 @@ async function ask(env, model, system, messages, setup, json) {
   const chat = [{ role: 'system', content: system }, ...messages];
   if (model.includes('gpt-oss')) {
     // OpenAI's open models on Workers AI take the Responses format.
-    const out = await env.AI.run(model, { instructions: system, input: messages, reasoning: { effort: 'low' }, max_output_tokens: setup.tokens + 600 });
+    const out = await env.AI.run(model, { instructions: system, input: messages, reasoning: { effort: setup.effort || 'low' }, max_output_tokens: setup.tokens + (setup.effort === 'medium' ? 1500 : 600) });
     return textOf(out);
   }
   if (json) {
@@ -317,12 +320,14 @@ const EDIT =
   'that SOURCE does not state or clearly imply. A job posting describes the job, not the person: a duty in the posting is not something the person did. ' +
   'Also find each phrase listed under PROBLEMS. Ignore anything already inside [square brackets], facts about the job itself, and general advice. ' +
   'For each one, give a replacement that reads naturally in the sentence and uses only facts from SOURCE, or turns the unknown part into a short [bracket] for the person to fill in, like [what you said to him] or [your reason]. ' +
-  'Reply with only JSON: {"edits": [{"quote": "exact text copied from TEXT", "fix": "replacement"}]}, an empty list when nothing needs changing.';
+  'Check every sentence of TEXT, one by one. If TIPS are given, also list the number of each tip that asks for something the person\'s answer already says, or that assumes experience SOURCE does not show. ' +
+  'Reply with only JSON: {"edits": [{"quote": "exact text copied from TEXT", "fix": "replacement"}], "drop_tips": [numbers]}, empty lists when nothing needs changing.';
 const EDIT_SCHEMA = {
   type: 'object',
   properties: { edits: { type: 'array', items: { type: 'object', properties: { quote: { type: 'string' }, fix: { type: 'string' } }, required: ['quote', 'fix'] } } },
   required: ['edits'],
 };
+EDIT_SCHEMA.properties.drop_tips = { type: 'array', items: { type: 'number' } };
 
 /** A pattern for a quote that tolerates curly vs straight quotes and spacing. */
 function loose(quote) {
@@ -332,12 +337,13 @@ function loose(quote) {
 
 /** Has the model take out anything the person never said (and flagged stock lines), then applies its edits. */
 async function cleanUp(env, model, messages, value, problems, mode) {
-  const parts = mode === 'feedback' ? [value.better, ...(value.fix || [])] : [value];
-  const text = parts.filter(Boolean).join('\n\n');
+  const text = String((mode === 'feedback' ? value.better : value) || '');
+  const tips = mode === 'feedback' ? (value.fix || []).map((t, i) => `TIP ${i + 1}: ${t}`).join('\n') : '';
   if (!text) return { value, edits: 0 };
   const source = messages.filter((m) => m.role === 'user').map((m) => m.content).join('\n\n').slice(0, 12000);
-  const raw = await ask(env, model, EDIT, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}\n\nPROBLEMS:\n${problems.join('\n') || 'none'}` }], { tokens: 700, temperature: 0 }, EDIT_SCHEMA);
-  const edits = ((jsonIn(raw) || {}).edits || []).filter((e) => e && typeof e.quote === 'string' && e.quote.trim().length > 3 && typeof e.fix === 'string').slice(0, 12);
+  const raw = await ask(env, model, EDIT, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}\n\nPROBLEMS:\n${problems.join('\n') || 'none'}${tips ? `\n\nTIPS:\n${tips}` : ''}` }], { tokens: 900, temperature: 0, effort: 'medium' }, EDIT_SCHEMA);
+  const result = jsonIn(raw) || {};
+  const edits = (result.edits || []).filter((e) => e && typeof e.quote === 'string' && e.quote.trim().length > 3 && typeof e.fix === 'string').slice(0, 12);
   let done = 0;
   const apply = (t) => {
     let out = String(t || '');
@@ -350,7 +356,11 @@ async function cleanUp(env, model, messages, value, problems, mode) {
     }
     return out.replace(/\s+([,.])/g, '$1').replace(/ {2,}/g, ' ');
   };
-  if (mode === 'feedback') return { value: { ...value, better: apply(value.better), fix: (value.fix || []).map(apply) }, edits: done };
+  if (mode === 'feedback') {
+    const drop = new Set((result.drop_tips || []).map(Number));
+    const fix = (value.fix || []).filter((_, i) => !drop.has(i + 1));
+    return { value: { ...value, better: apply(value.better), fix: fix.length ? fix : value.fix }, edits: done + drop.size };
+  }
   return { value: apply(value), edits: done };
 }
 
