@@ -1,5 +1,5 @@
 {
-  "_about": "Large employers with many store and warehouse jobs, checked by hand on 2026-11-24. Their job lists are read in full (not cut at 400 like the general Workday list). Fortune 500 employers were added on 2026-11-24 after a test read from GitHub (see probe/out/).",
+  "_about": "Large employers with many store and warehouse jobs, checked by hand on 2026-11-24. Their job lists are read in full (not cut at 400 like the general Workday list). Fortune 500 employers were added on 2026-11-24 after a test read from GitHub (see probe/out/). Hourly employers (Walgreens, Starbucks, UPS, Wawa, 7-Eleven, Aldi, Sheetz, …) were added on 2026-11-27 after test reads from GitHub (probe/out/hourly*.json).",
   "workday": [
     "target|wd5|targetcareers|Target",
     "kohls|wd504|kohlscareers|Kohl's",
@@ -117,7 +117,10 @@
     "dover|wd103|dover|Dover",
     "sysco|site-wd5|syscocareers|Sysco",
     "mdlz|site-wd3|external|Mondelez",
-    "devonenergy|site-wd5|careers|Devon Energy"
+    "devonenergy|site-wd5|careers|Devon Energy",
+    "cinemark|wd1|cinemark|Cinemark",
+    "tmobile|wd1|External|T-Mobile",
+    "comcast|wd115|Comcast_Careers|Comcast"
   ],
   "jibe": [
     {
@@ -207,6 +210,14 @@
     {
       "name": "State Farm",
       "host": "jobs.statefarm.com"
+    },
+    {
+      "name": "Sheetz",
+      "host": "jobs.sheetz.com"
+    },
+    {
+      "name": "Foot Locker",
+      "host": "jobs.footlocker.com"
     }
   ],
   "oracle": [
@@ -603,6 +614,36 @@
       "host": "careers.corning.com",
       "ref": "CUWCUPUS",
       "path": "us/en"
+    },
+    {
+      "name": "UPS",
+      "host": "www.jobs-ups.com",
+      "ref": "UPBUPSGLOBAL",
+      "path": "us/en"
+    },
+    {
+      "name": "Wawa",
+      "host": "careers.wawa.com",
+      "ref": "WAWWAWUS",
+      "path": "us/en"
+    },
+    {
+      "name": "Panera Bread",
+      "host": "careers.panerabread.com",
+      "ref": "PABRGLOBAL",
+      "path": "global/en"
+    },
+    {
+      "name": "DHL",
+      "host": "careers.dhl.com",
+      "ref": "DPDHGLOBAL",
+      "path": "amer/en"
+    },
+    {
+      "name": "Disney",
+      "host": "join.disneycareers.com",
+      "ref": "TWNTWDUS",
+      "path": "global/en"
     }
   ],
   "radancy": [
@@ -665,6 +706,34 @@
     {
       "name": "Intuit",
       "host": "jobs.intuit.com"
+    },
+    {
+      "name": "Walgreens",
+      "host": "jobs.walgreens.com"
+    },
+    {
+      "name": "Aldi",
+      "host": "careers.aldi.us"
+    },
+    {
+      "name": "7-Eleven",
+      "host": "careers.7-eleven.com"
+    },
+    {
+      "name": "Spectrum",
+      "host": "jobs.spectrum.com"
+    },
+    {
+      "name": "Allied Universal",
+      "host": "jobs.aus.com"
+    },
+    {
+      "name": "Six Flags",
+      "host": "jobs.sixflags.com"
+    },
+    {
+      "name": "Kaiser Permanente",
+      "host": "www.kaiserpermanentejobs.org"
     }
   ],
   "eightfold": [
@@ -687,6 +756,31 @@
       "name": "Lumen",
       "host": "careers.lumen.com",
       "domain": "lumen.com"
+    },
+    {
+      "name": "Starbucks",
+      "host": "apply.starbucks.com",
+      "domain": "starbucks.com",
+      "location": "United States",
+      "max": 25000
+    }
+  ],
+  "paradox": [
+    {
+      "name": "FedEx",
+      "host": "careers.fedex.com"
+    },
+    {
+      "name": "Whole Foods Market",
+      "host": "careers.wholefoods.com"
+    },
+    {
+      "name": "Dunkin'",
+      "host": "careers.dunkindonuts.com"
+    },
+    {
+      "name": "McDonald's",
+      "host": "jobs.mchire.com"
     }
   ]
 }

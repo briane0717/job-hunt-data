@@ -1,24 +1,21 @@
-// Step 13: what a Paradox career site's job list page holds for each job (title, place, link).
-import { execFile } from 'node:child_process';
-import { promisify } from 'node:util';
-import { writeFileSync } from 'node:fs';
-const run = promisify(execFile);
-const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15';
-async function curl(url) {
-  try {
-    const { stdout } = await run('curl', ['-sSL', '--compressed', '--max-time', '40', '-A', UA, '-w', '\n%{http_code}', url], { maxBuffer: 200e6 });
-    const cut = stdout.lastIndexOf('\n');
-    return { status: Number(stdout.slice(cut + 1)), body: stdout.slice(0, cut) };
-  } catch (e) { return { status: 0, body: String(e.message).slice(0, 100) }; }
-}
-const out = {};
-for (const base of ['https://careers.fedex.com', 'https://jobs.mchire.com', 'https://careers.wholefoods.com', 'https://careers.dunkindonuts.com', 'https://careers.amctheatres.com', 'https://careers.aramark.com']) {
-  const t0 = Date.now();
-  const p = await curl(`${base}/jobs/page/2`);
-  const ms = Date.now() - t0;
-  const hrefs = [...p.body.matchAll(/href="([^"]*\/job\/[^"]+)"/g)];
-  const i = hrefs[0]?.index ?? -1;
-  const last = [...p.body.matchAll(/\/jobs\/page\/(\d+)/g)].map((m) => +m[1]);
-  out[base] = { status: p.status, ms, len: p.body.length, jobLinks: new Set(hrefs.map((m) => m[1])).size, lastPage: Math.max(0, ...last), snippet: i >= 0 ? p.body.slice(Math.max(0, i - 2500), i + 3500) : p.body.slice(0, 400), ld: (p.body.match(/application\/ld\+json[^>]*>([\s\S]{0,1500})/) || [])[1] };
-}
-writeFileSync('probe/out/hourly6.json', JSON.stringify(out, null, 1));
+// Step 14: read the new hourly employers with the collector itself (probe/test_hourly.json), and look up board names.
+import { execFileSync, spawn } from 'node:child_process';
+import { writeFileSync, copyFileSync } from 'node:fs';
+const t0 = Date.now();
+const runPart = (only) => new Promise((resolve) => {
+  const p = spawn('node', ['collector/collect.mjs', '--only', only, '--big', 'probe/test_hourly.json', '--out', `/tmp/t-${only.replace(/,/g, '-')}`, '--minutes', '50']);
+  let log = '';
+  p.stdout.on('data', (d) => (log += d)); p.stderr.on('data', (d) => (log += d));
+  p.on('close', () => resolve(`### ${only} (${((Date.now() - t0) / 60000).toFixed(1)} min)\n${log.slice(-5000)}`));
+});
+const names = new Promise((resolve) => {
+  const p = spawn('node', ['collector/tools/names.mjs']);
+  let log = '';
+  p.stdout.on('data', (d) => (log += d)); p.stderr.on('data', (d) => (log += d));
+  p.on('close', () => resolve(`### names (${((Date.now() - t0) / 60000).toFixed(1)} min)\n${log.slice(-3000)}`));
+});
+const logs = await Promise.all([runPart('bigworkday,jibe'), runPart('phenom,radancy'), runPart('eightfold'), runPart('paradox'), runPart('amazon'), names]);
+try { copyFileSync('collector/companies/board_names.json', 'probe/out/board_names.json'); } catch {}
+let counts = '';
+try { counts = execFileSync('bash', ['-c', `cat /tmp/t-*/v1/us/*.json /tmp/t-*/v1/remote.json 2>/dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const c={};for(const m of s.matchAll(/"c":"([^"]+)"/g))c[m[1]]=(c[m[1]]||0)+1;console.log(Object.entries(c).sort((a,b)=>b[1]-a[1]).map(x=>x.join(": ")).join("\\n"))})'; for d in /tmp/t-*; do echo $d; node -e 'const m=require(process.argv[1]+"/v1/manifest.json");console.log(m.totalJobs, JSON.stringify(m.skipped), JSON.stringify(m.sources))' $d; done; head -c 1500 /tmp/t-paradox/v1/us/TX.json; echo; head -c 800 /tmp/t-eightfold/v1/us/TX.json`]).toString(); } catch (e) { counts = 'count failed ' + e.message; }
+writeFileSync('probe/out/test_hourly.txt', `minutes: ${((Date.now() - t0) / 60000).toFixed(1)}\n\nUS jobs by company (incl. remote):\n${counts}\n\n${logs.join('\n\n')}`);

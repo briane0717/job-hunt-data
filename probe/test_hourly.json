@@ -1,0 +1,108 @@
+{
+ "workday": [
+  "hcmportal|wd5|Search|UPS",
+  "cinemark|wd1|cinemark|Cinemark",
+  "tmobile|wd1|External|T-Mobile",
+  "comcast|wd115|Comcast_Careers|Comcast"
+ ],
+ "phenom": [
+  {
+   "name": "UPS",
+   "host": "www.jobs-ups.com",
+   "ref": "UPBUPSGLOBAL",
+   "path": "us/en"
+  },
+  {
+   "name": "Wawa",
+   "host": "careers.wawa.com",
+   "ref": "WAWWAWUS",
+   "path": "us/en"
+  },
+  {
+   "name": "Panera Bread",
+   "host": "careers.panerabread.com",
+   "ref": "PABRGLOBAL",
+   "path": "global/en"
+  },
+  {
+   "name": "DHL",
+   "host": "careers.dhl.com",
+   "ref": "DPDHGLOBAL",
+   "path": "amer/en"
+  },
+  {
+   "name": "Disney",
+   "host": "join.disneycareers.com",
+   "ref": "TWNTWDUS",
+   "path": "global/en"
+  }
+ ],
+ "radancy": [
+  {
+   "name": "Walgreens",
+   "host": "jobs.walgreens.com"
+  },
+  {
+   "name": "Aldi",
+   "host": "careers.aldi.us"
+  },
+  {
+   "name": "7-Eleven",
+   "host": "careers.7-eleven.com"
+  },
+  {
+   "name": "Spectrum",
+   "host": "jobs.spectrum.com"
+  },
+  {
+   "name": "Allied Universal",
+   "host": "jobs.aus.com"
+  },
+  {
+   "name": "Six Flags",
+   "host": "jobs.sixflags.com"
+  },
+  {
+   "name": "Kaiser Permanente",
+   "host": "www.kaiserpermanentejobs.org"
+  }
+ ],
+ "jibe": [
+  {
+   "name": "Sheetz",
+   "host": "jobs.sheetz.com"
+  },
+  {
+   "name": "Foot Locker",
+   "host": "jobs.footlocker.com"
+  }
+ ],
+ "eightfold": [
+  {
+   "name": "Starbucks",
+   "host": "apply.starbucks.com",
+   "domain": "starbucks.com",
+   "location": "United States",
+   "max": 25000
+  }
+ ],
+ "paradox": [
+  {
+   "name": "FedEx",
+   "host": "careers.fedex.com"
+  },
+  {
+   "name": "Whole Foods Market",
+   "host": "careers.wholefoods.com"
+  },
+  {
+   "name": "Dunkin'",
+   "host": "careers.dunkindonuts.com"
+  },
+  {
+   "name": "McDonald's",
+   "host": "jobs.mchire.com"
+  }
+ ],
+ "amazon": true
+}

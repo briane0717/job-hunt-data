@@ -47,6 +47,21 @@ const CONCURRENCY = Number(arg('--concurrency', '24'));
 const PLACES = arg('--places', ''); // path to GeoNames cities1000.txt, for job coordinates
 const UA = 'JobHuntCollector/1.0 (+https://github.com/; open-source job search app)';
 
+/** "Austin, TX" plus " · Remote" when a job is remote, unless the place already says remote. */
+function withRemote(place, remote) {
+  const p = String(place || '').trim();
+  if (!remote || /\bremote\b/i.test(p)) return p || (remote ? 'Remote' : '');
+  return p ? `${p} · Remote` : 'Remote';
+}
+
+// Real names for boards whose short name isn't readable ("insomniacookies" -> "Insomnia Cookies"); see tools/names.mjs.
+const BOARD_NAMES = await readFile(path.join(HERE, 'companies', 'board_names.json'), 'utf8')
+  .then(JSON.parse)
+  .catch(() => ({}));
+
+/** "Acme, Inc." -> "Acme". */
+const plainName = (n) => String(n || '').replace(/,?\s+(Inc\.?|LLC|L\.L\.C\.|Ltd\.?)$/i, '').trim();
+
 function pretty(slug) {
   return String(slug)
     .replace(/[-_]+/g, ' ')
@@ -257,7 +272,8 @@ async function radancy({ name, host }) {
         i: `rd:${host}:${id}`,
         t: clean(title),
         c: name,
-        l: clean(place),
+        // Some sites add work details after the place ("Seattle, WA, Onsite, Regular, Day shift"): keep the place.
+        l: clean(place).replace(/,\s*(Onsite|On-site|Remote|Hybrid)\b.*$/i, (m) => (/remote/i.test(m) ? ' · Remote' : '')),
         u: new URL(href.replace(/&amp;/g, '&'), `https://${host}`).href,
         d: md ? `${md[3]}-${md[1].padStart(2, '0')}-${md[2].padStart(2, '0')}` : '',
         s: 'radancy',
@@ -274,13 +290,13 @@ async function radancy({ name, host }) {
  * Eightfold career sites (Lockheed Martin, Micron, Qualcomm, …): GET /api/pcsx/search?domain=…&start=N,
  * 10 jobs at a time, read slowly because these sites limit how fast they answer.
  */
-async function eightfold({ name, host, domain }) {
+async function eightfold({ name, host, domain, location = '', max = 10000 }) {
   const out = new Map();
   let total = Infinity;
-  for (let start = 0; start < Math.min(total, 10000); ) {
+  for (let start = 0; start < Math.min(total, max) && Date.now() < DEADLINE; ) {
     let data;
     for (let attempt = 0; attempt < 3 && !data; attempt++) {
-      data = await curlJson(`https://${host}/api/pcsx/search?domain=${domain}&query=&location=&start=${start}&sort_by=timestamp`).catch(async (e) => {
+      data = await curlJson(`https://${host}/api/pcsx/search?domain=${domain}&query=&location=${encodeURIComponent(location)}&start=${start}&sort_by=timestamp`).catch(async (e) => {
         await pauseMs(5000 * (attempt + 1));
         if (attempt === 2) console.log(`  ${name}: stopped at ${start} of ${total} (${e.message})`);
         return null;
@@ -311,12 +327,63 @@ async function eightfold({ name, host, domain }) {
   return [...out.values()];
 }
 
+/** "3251 Berlin Drive, La Crosse, WI, US" -> "La Crosse, WI"; places in other countries keep their country. */
+export function paradoxPlace(text) {
+  const parts = String(text || '').split(',').map((x) => x.trim()).filter(Boolean);
+  if (parts.length >= 3 && /^[A-Z]{2}$/.test(parts.at(-1)) && /^[A-Z]{2}$/.test(parts.at(-2))) {
+    if (parts.at(-1) !== 'US') return parts.slice(-3).join(', ');
+    parts.pop();
+  }
+  return parts.slice(-2).join(', ');
+}
+
+/**
+ * Paradox career sites (FedEx, Whole Foods, Dunkin', …): the job list pages /jobs/page/N, which the
+ * site renders as plain HTML with each job's title, link and place.
+ */
+async function paradox({ name, host, max = 3000 }) {
+  const out = new Map();
+  let last = 1;
+  for (let page = 1; page <= Math.min(last, max) && Date.now() < DEADLINE; page++) {
+    let html;
+    try {
+      html = await curlText(`https://${host}/jobs/page/${page}`);
+    } catch (e) {
+      if (!out.size) throw e;
+      console.log(`  ${name}: stopped at page ${page} of ${last} (${e.message})`);
+      break;
+    }
+    for (const m of html.matchAll(/\/jobs\/page\/(\d+)/g)) last = Math.max(last, Number(m[1]));
+    let added = 0;
+    for (const li of html.split(/<li class="results-list__item"/).slice(1)) {
+      const a = li.match(/class="results-list__item-title--link"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/);
+      if (!a) continue;
+      const url = new URL(unescapeHtml(a[1]), `https://${host}`).href;
+      if (out.has(url)) continue;
+      const place = (li.match(/class="results-list__item-street--label"[^>]*>([^<]*)</) || [])[1] || '';
+      out.set(url, {
+        i: `px:${host}:${url.split('/job/')[1] || url}`,
+        t: unescapeHtml(a[2].replace(/<[^>]+>/g, ' ')),
+        c: name,
+        l: paradoxPlace(unescapeHtml(place)),
+        u: url,
+        d: '',
+        s: 'paradox',
+      });
+      added++;
+    }
+    if (!added) break;
+    await pauseMs(250);
+  }
+  return [...out.values()];
+}
+
 async function greenhouse(slug) {
   const data = await getJson(`https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(slug)}/jobs`);
   return (data.jobs || []).map((j) => ({
     i: `gh:${slug}:${j.id}`,
     t: j.title,
-    c: j.company_name || pretty(slug),
+    c: plainName(j.company_name) || pretty(slug),
     l: j.location?.name || '',
     u: j.absolute_url,
     d: j.first_published || j.updated_at || '',
@@ -329,8 +396,8 @@ async function lever(slug) {
   return (Array.isArray(data) ? data : []).map((j) => ({
     i: `lv:${slug}:${j.id}`,
     t: j.text,
-    c: pretty(slug),
-    l: [j.categories?.location, j.workplaceType === 'remote' ? 'Remote' : ''].filter(Boolean).join(' · '),
+    c: BOARD_NAMES.lever?.[slug] || pretty(slug),
+    l: withRemote(j.categories?.location, j.workplaceType === 'remote'),
     u: j.hostedUrl,
     d: j.createdAt ? new Date(j.createdAt).toISOString() : '',
     s: 'lever',
@@ -342,8 +409,8 @@ async function ashby(slug) {
   return (data.jobs || []).map((j) => ({
     i: `ab:${slug}:${j.id}`,
     t: j.title,
-    c: pretty(slug),
-    l: [j.location, j.isRemote ? 'Remote' : ''].filter(Boolean).join(' · '),
+    c: BOARD_NAMES.ashby?.[slug] || pretty(slug),
+    l: withRemote(j.location, j.isRemote),
     u: j.jobUrl,
     d: j.publishedAt || '',
     s: 'ashby',
@@ -392,6 +459,14 @@ function workdayLocationSlices(facets = []) {
 }
 
 /** A Workday board's jobs, up to `max`. */
+/** Site codes like UPS's "US - MATTOON (ILMAT)" read as "Mattoon, IL"; other places pass through. */
+export function workdayPlace(text) {
+  const m = String(text || '').match(/^US\s*-\s*(.+?)\s*\(([A-Z]{2})[A-Z0-9]{1,5}\)\s*$/);
+  if (!m || !US_STATE.test(m[2])) return text;
+  const city = m[1].toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
+  return `${city}, ${m[2]}`;
+}
+
 async function workday(entry, max = 400) {
   // "tenant|wdN|site", optionally followed by "|Company name" when the tenant's short name isn't the company's.
   const [co, wd, site, label] = entry.split('|');
@@ -409,8 +484,8 @@ async function workday(entry, max = 400) {
       out.set(j.externalPath, {
         i: `wd:${co}:${j.externalPath}`,
         t: j.title,
-        c: label || WORKDAY_NAMES[co] || pretty(co),
-        l: /^\d+ Locations?$/i.test(text) && sliceName ? sliceName : text,
+        c: label || WORKDAY_NAMES[co] || BOARD_NAMES.workday?.[co] || pretty(co),
+        l: workdayPlace(/^\d+ Locations?$/i.test(text) && sliceName ? sliceName : text),
         u: `${jobBase}${j.externalPath}`,
         d: workdayDate(j.postedOn),
         s: 'workday',
@@ -552,27 +627,41 @@ async function oracle({ name, host, site }) {
   return [...out.values()];
 }
 
-/** Amazon's own job search (amazon.jobs), newest first. It shows at most 10,000 results. */
+/**
+ * Amazon's own job search (amazon.jobs), newest first. It shows at most 10,000 results, so when
+ * there are more, it is read again one state at a time (&normalized_state_name[]=Texas).
+ */
 async function amazon() {
-  const out = [];
-  for (let offset = 0; offset < 10000; offset += 100) {
-    const data = await curlJson(`https://www.amazon.jobs/en/search.json?country=USA&result_limit=100&offset=${offset}&sort=recent`);
-    const jobs = data.jobs || [];
-    for (const j of jobs) {
+  const out = new Map();
+  const read = async (filter) => {
+    let hits = 0;
+    for (let offset = 0; offset < 10000; offset += 100) {
+      const data = await curlJson(`https://www.amazon.jobs/en/search.json?country=USA&result_limit=100&offset=${offset}&sort=recent${filter}`);
+      const jobs = data.jobs || [];
+      hits = data.hits || 0;
+      for (const j of jobs) add(j);
+      if (jobs.length < 100 || offset + 100 >= hits || Date.now() > DEADLINE) break;
+    }
+    return hits;
+  };
+  const add = (j) => {
       const st = String(j.state || '').trim();
-      out.push({
+      out.set(`az:${j.id_icims || j.id}`, {
         i: `az:${j.id_icims || j.id}`,
         t: j.title,
-        c: j.company_name || 'Amazon',
+        c: /^Amazon\.com\b/.test(j.company_name || '') ? 'Amazon' : plainName(j.company_name) || 'Amazon',
         l: j.city && US_STATE.test(st) ? `${j.city}, ${st}` : j.normalized_location || j.location || '',
         u: `https://www.amazon.jobs${j.job_path || ''}`,
         d: j.posted_date ? new Date(j.posted_date).toISOString() : '',
         s: 'amazon',
       });
-    }
-    if (jobs.length < 100 || offset + 100 >= (data.hits || 0)) break;
+  };
+  const hits = await read('');
+  if (hits >= 10000) {
+    for (const st of US_STATE_NAMES) await read(`&normalized_state_name%5B%5D=${encodeURIComponent(st)}`);
+    console.log(`  Amazon: ${hits}+ jobs, read state by state, kept ${out.size}`);
   }
-  return out;
+  return [...out.values()];
 }
 
 /**
@@ -601,16 +690,17 @@ async function workableFeed() {
       buffer = buffer.slice(end + 6);
       const url = tag(block, 'url');
       const title = tag(block, 'title');
-      const company = tag(block, 'company');
+      const company = plainName(tag(block, 'company'));
       if (!url.startsWith('https://') || !title || !company) continue;
       const country = tag(block, 'country').toLowerCase().replace(/[^a-z]/g, '');
       if (country && !['us', 'usa', 'unitedstates', 'unitedstatesofamerica'].includes(country)) continue;
       const place = [tag(block, 'city'), tag(block, 'state')].filter(Boolean).join(', ');
       const remote = tag(block, 'remote').toLowerCase() === 'true';
-      const loc = [place, remote ? 'Remote' : ''].filter(Boolean).join(' · ') || (remote ? 'Remote' : 'United States');
       const prev = byUrl.get(url);
       if (prev) {
-        if (place && !prev.l.includes(place)) prev.l = `${prev.l}; ${loc}`;
+        // The same job in more places: list the places once, and say "Remote" once at the end.
+        if (place && !prev.places.includes(place)) prev.places.push(place);
+        prev.remote ||= remote;
         continue;
       }
       const date = tag(block, 'date');
@@ -618,7 +708,8 @@ async function workableFeed() {
         i: `wk:${url.split('/').slice(-2).join(':')}`,
         t: title,
         c: company,
-        l: loc,
+        places: place ? [place] : [],
+        remote,
         u: url,
         d: date ? new Date(date).toISOString() : '',
         s: 'workable',
@@ -627,7 +718,7 @@ async function workableFeed() {
   }
   const code = await exited;
   if (code !== 0 && byUrl.size === 0) throw new Error(`curl exit ${code}: ${stderr.trim().slice(0, 200)}`);
-  return [...byUrl.values()];
+  return [...byUrl.values()].map(({ places, remote, ...j }) => ({ ...j, l: withRemote(places.join('; '), remote) || 'United States' }));
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -751,6 +842,11 @@ if (want('radancy') && big.radancy?.length) {
 if (want('eightfold') && big.eightfold?.length) {
   const r = await pool(big.eightfold, eightfold, 'Eightfold career sites (Lockheed Martin, …)', 2);
   sources.eightfold = r.stats;
+  add(r.results);
+}
+if (want('paradox') && big.paradox?.length) {
+  const r = await pool(big.paradox, paradox, "Paradox career sites (FedEx, Dunkin', …)", 2);
+  sources.paradox = r.stats;
   add(r.results);
 }
 if (want('amazon') && big.amazon) {
