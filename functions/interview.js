@@ -82,6 +82,21 @@ const REVIEW =
   '"good": ["2 specific strengths"], "fix": ["the 3 most useful changes, each naming the question it is about"], ' +
   '"practice": "the one question they should practice again, word for word"}';
 
+// The coach talks to the person, so it asks for what it does not know instead of leaving blanks.
+const COACH_FACTS = FACTS.replace(/Where a detail would help[^]*$/, '') +
+  'Never leave a blank, a fill-in, or anything in [square brackets] for them to complete. When a detail would help and you do not have it, ask them for it in one short question, or write the sentence without it.';
+
+// Interview prep: instead of a list of tips, the coach builds one short story with them, one question at a time.
+const STAR =
+  'Interview prep: when they want to get ready for interviews (nerves, "tell me about yourself", "tell me about a time" questions, or they ask about STAR or a short story to tell), ' +
+  'do not give a list of tips. Walk them through building one short story with the STAR method (Situation, Task, Action, Result), one step per reply. ' +
+  'Step 1: in one or two sentences say why this helps (a story they have ready means less to make up on the spot, which calms nerves), then suggest one or two real moments from their resume that would fit this job, or if you have no resume ask about a time at work they handled something hard, and ask which one they want to use. ' +
+  'Then ask for each part in turn, one per reply: the Situation (where they were and what was going on), the Task (what they had to fix or get done), the Action (what they personally did, step by step) and the Result (how it ended, with a number if they know one). ' +
+  'Each of those replies: one short sentence that reflects back what they just said in their own words, then the next single question, with a short example of the kind of detail you mean. Skip a part they already covered. If an answer is vague, ask one follow-up for a concrete detail before moving on. ' +
+  'In the walk-through, ask exactly one question per reply, keep replies under 80 words, and never answer your own question for them. ' +
+  'When you have all four parts, write their story in first person, in quotes, about 30 seconds spoken (70 to 100 words), built only from what they told you and their resume. ' +
+  'Then in one line name two interview questions it answers, and offer to tighten it or build a second story. ';
+
 const COACH =
   'You are Jobbo\'s job coach: an experienced career coach and recruiter who helps people find and land jobs. ' +
   'The first message may give the job they are going for and their resume. Help with anything in a job search: what to say in interviews, ' +
@@ -91,12 +106,13 @@ const COACH =
   'If their resume shows no gap, say so in a sentence and give only a short just-in-case answer. ' +
   'Write like a coach talking to one person: start with the plain answer, then give the exact words they can say, in quotes, in first person, built from their real jobs, duties and numbers. ' +
   'Then one or two sentences on why it works or what to avoid. For practical questions (nerves, what to ask, pay), give two or three concrete steps that fit this job. ' +
-  'For a note or message they will send, write the whole thing, ready to send: start "Hi [interviewer\'s name]," (never "Dear interviewer"), mention the job and employer and [one thing you talked about], and sign with their name if you know it. ' +
+  'For a note or message they will send, write the whole thing, ready to send. If you do not know who it goes to or one thing from the talk, ask for those first in one short question instead of writing it. Start "Hi" and the name (never "Dear interviewer"), mention the job and employer, and sign with their name if you know it. ' +
   'For pay: use the posting\'s pay if it gives one, otherwise suggest asking for the range first and checking local pay for the job title themselves. Never state pay numbers the posting does not give. ' +
-  'In scripts, never give them a reason, course, website, activity or achievement they have not told you about: put a [bracket] there instead, like [your reason]. ' +
+  'In scripts, never give them a reason, course, website, activity or achievement they have not told you about. ' +
   'Avoid stock lines interviewers hear all day, like "looking for a new challenge", "new opportunity", "I\'m excited about the role", "eager to learn", "personal matters" or "I\'m a perfectionist". ' +
-  'End with one short question only when the answer would change your advice. Keep replies between 90 and 200 words. Plain text, short paragraphs, no markdown symbols. ' +
-  FACTS;
+  STAR +
+  'Outside that walk-through, end with one short question only when the answer would change your advice, and keep replies between 90 and 200 words. Plain text, short paragraphs, no markdown symbols. ' +
+  COACH_FACTS;
 
 const LETTER =
   'You write cover letters that sound like a real person wrote them, not an AI. The message gives the job posting, the person\'s resume, and their name. ' +
@@ -159,9 +175,9 @@ function newNumbers(reply, source) {
 const hasResume = (first) => /\nMy resume:\n\s*\S/.test(first);
 
 /** What the resume's dates say: whether they still work at their latest job, and any gaps. Plain notes for the coach. */
-function resumeNotes(first) {
+function resumeNotes(first, mode) {
   const i = first.indexOf('\nMy resume:\n');
-  if (i < 0) return ' Notes: they have not added a resume, so you do not know their work history. Do not guess it: use [brackets] for their details.';
+  if (i < 0) return ` Notes: they have not added a resume, so you do not know their work history. Do not guess it: ${mode === 'coach' ? 'ask them' : 'use [brackets] for their details'}.`;
   const resume = first.slice(i);
   const year = new Date().getFullYear();
   const spans = [];
@@ -213,9 +229,28 @@ function answerProblems(data, first) {
   return p;
 }
 
+// A fill-in left for the person, like [your reason] or [Company Name].
+const BLANK = /\[[^\]\n]{2,80}\]/;
+
 function coachProblems(reply) {
+  const p = [];
   const s = reply.match(STOCK_COACH);
-  return s ? [`It uses the stock line "${s[0]}". Use the person's real situation or a [bracket] instead.`] : [];
+  if (s) p.push(`It uses the stock line "${s[0]}". Use the person's real situation instead.`);
+  const b = reply.match(BLANK);
+  if (b) p.push(`It leaves a fill-in blank, ${b[0]}. Never leave blanks: ask them for that detail in one short question, or write it without it.`);
+  return p;
+}
+
+/** Last safety net for the coach: drops any sentence that still has a fill-in blank in it. */
+function noBlanks(text) {
+  if (!BLANK.test(text)) return text;
+  const kept = text
+    .split('\n')
+    .map((line) => (line.match(/[^.!?]+[.!?"”]*\s*|.+$/g) || [line]).filter((x) => !BLANK.test(x)).join('').trim())
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  return kept.length > 15 ? kept : text.replace(new RegExp(BLANK.source, 'g'), '').replace(/ {2,}/g, ' ');
 }
 
 const list = { type: 'array', items: { type: 'string' } };
@@ -234,12 +269,12 @@ const MODES = {
   interview: { system: INTERVIEW, tokens: 220, temperature: 0.7, models: FAST },
   feedback: { system: FEEDBACK, tokens: 900, temperature: 0.3, json: FEEDBACK_SCHEMA, check: answerProblems, tries: 2, clean: true },
   review: { system: REVIEW, tokens: 800, temperature: 0.3, json: REVIEW_SCHEMA },
-  coach: { system: COACH, tokens: 600, temperature: 0.6, check: coachProblems, tries: 1, notes: true, clean: true },
+  coach: { system: COACH, tokens: 600, temperature: 0.6, check: coachProblems, tries: 2, notes: true, clean: true },
   letter: { system: LETTER, tokens: 700, temperature: 0.7, check: letterProblems, tries: 2, notes: true, clean: true },
 };
 
 // Problems a rewrite fixes; the rest are fixed by editing the draft.
-const REWRITE = /too short|too long|there are none|only JSON/;
+const REWRITE = /too short|too long|there are none|only JSON|fill-in blank/;
 
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
@@ -248,7 +283,7 @@ function systemFor(mode, first) {
   const setup = MODES[mode];
   let system = setup.system;
   if (mode === 'letter') system += ' Opening: ' + pick(hasResume(first) ? OPENINGS : OPENINGS_NO_RESUME) + ' Close: ' + pick(CLOSES) + (hasResume(first) ? '' : NO_RESUME);
-  if (setup.notes) system += resumeNotes(first);
+  if (setup.notes) system += resumeNotes(first, mode);
   return system;
 }
 
@@ -358,6 +393,11 @@ const EDIT =
   'Keep every bracket short, two to six words. Never bracket something SOURCE does say. For each one, give a replacement that reads naturally in the sentence and uses only facts from SOURCE, or turns the unknown part into a short [bracket] for the person to fill in, like [what you said to him] or [your reason]. ' +
   'Check every sentence of TEXT, one by one. If TIPS are given, also list the number of each tip that asks for something the person\'s answer already says, or that assumes experience SOURCE does not show. ' +
   'Reply with only JSON: {"edits": [{"quote": "exact text copied from TEXT", "fix": "replacement"}], "drop_tips": [numbers]}, empty lists when nothing needs changing.';
+// The coach's editor leaves the unknown part out (or asks for it) instead of adding a [bracket].
+const EDIT_COACH = EDIT.replace(
+  /or turns the unknown part into a short \[bracket\][^.]*\./,
+  'or leaves the unknown part out so the sentence still reads naturally. Never add [square brackets] or blanks.',
+);
 const EDIT_SCHEMA = {
   type: 'object',
   properties: { edits: { type: 'array', items: { type: 'object', properties: { quote: { type: 'string' }, fix: { type: 'string' } }, required: ['quote', 'fix'] } } },
@@ -377,7 +417,7 @@ async function cleanUp(env, model, messages, value, problems, mode) {
   const tips = mode === 'feedback' ? (value.fix || []).map((t, i) => `TIP ${i + 1}: ${t}`).join('\n') : '';
   if (!text) return { value, edits: 0 };
   const source = messages.filter((m) => m.role === 'user').map((m) => m.content).join('\n\n').slice(0, 12000);
-  const raw = await ask(env, model, EDIT, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}\n\nPROBLEMS:\n${problems.join('\n') || 'none'}${tips ? `\n\nTIPS:\n${tips}` : ''}` }], { tokens: 900, temperature: 0, effort: 'medium' }, EDIT_SCHEMA);
+  const raw = await ask(env, model, mode === 'coach' ? EDIT_COACH : EDIT, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}\n\nPROBLEMS:\n${problems.join('\n') || 'none'}${tips ? `\n\nTIPS:\n${tips}` : ''}` }], { tokens: 900, temperature: 0, effort: 'medium' }, EDIT_SCHEMA);
   const result = jsonIn(raw) || {};
   const edits = (result.edits || []).filter((e) => e && typeof e.quote === 'string' && e.quote.trim().length > 3 && typeof e.fix === 'string').slice(0, 12);
   let done = 0;
@@ -412,17 +452,18 @@ const PLAIN_SWAPS = [
 ];
 
 /** Pay amounts the posting never gave are made up: leave a blank for the person to look up. */
-function payBlanks(text, first) {
+function payBlanks(text, first, mode) {
   const known = numbers(first);
   return text.replace(/\$\s?\d[\d,.]*(?:k)?(?:\s?(?:-|‑|–|to)\s?\$?\d[\d,.]*(?:k)?)?(?:\s?(?:\/\s?(?:hr|hour|year|yr)|an hour|per hour|a year|per year))?/gi, (m) =>
-    [...numbers(m)].every((n) => known.has(n)) ? m : '[the usual pay for this job near you]',
+    [...numbers(m)].every((n) => known.has(n)) ? m : mode === 'coach' ? 'the usual pay for this job near you' : '[the usual pay for this job near you]',
   );
 }
 
-function plainer(text, first) {
+function plainer(text, first, mode) {
   let t = String(text || '');
-  for (const [re, to] of PLAIN_SWAPS) t = t.replace(re, to);
-  return payBlanks(t, first);
+  for (const [re, to] of PLAIN_SWAPS) t = t.replace(re, mode === 'coach' && /interviewer/.test(to) ? 'Hi' : to);
+  t = payBlanks(t, first, mode);
+  return mode === 'coach' ? noBlanks(t) : t;
 }
 
 function tidy(text, mode) {
@@ -496,7 +537,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
             // keep the draft as written
           }
         }
-        if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first) } : plainer(value, first);
+        if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first, mode) } : plainer(value, first, mode);
         const out = setup.json ? { data: value } : { reply: value };
         if (body.debug) Object.assign(out, { model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
         return new Response(JSON.stringify(out), { headers });
