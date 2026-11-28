@@ -554,6 +554,15 @@ function tidy(text, mode) {
   let t = String(text || '').replace(/[*#]+/g, '').replace(/^>\s?/gm, '').trim();
   // The coach answers in the app's chat, so a greeting line ("Hi Sam,") on top only gets in the way.
   if (mode === 'coach') t = t.replace(/^(hi|hello|hey)( there| [A-Z][a-z]+)?[,!.]?\s*\n+/i, '');
+  if (mode === 'star_ask') {
+    // One question only: an example in parentheses never asks its own, and anything after the first question goes.
+    t = t.replace(/^["“]|["”]$/g, '').replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/\?/g, '').trim()})`);
+    const q = t.indexOf('?');
+    if (q >= 0 && t.indexOf('?', q + 1) >= 0) {
+      const example = t.slice(q + 1).match(/\([^)]*\)/);
+      t = t.slice(0, q + 1) + (example ? ` ${example[0]}` : '');
+    }
+  }
   if (mode === 'letter') {
     t = t
       .replace(/^(dear[^\n]*\n+)/i, '')
