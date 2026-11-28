@@ -1,0 +1,213 @@
+{
+ "calls": 12,
+ "log": [
+  {
+   "label": "A nervous, STAR walk-through",
+   "convo": [
+    {
+     "me": "I get nervous in interviews. What helps?"
+    },
+    {
+     "coach": "Hi Jordan,\n\nFeeling nervous before an interview is totally normal, and a few simple habits can calm your mind and help you show the your experience leading a shift at Corner Market.\n\n1. Practice a short “elevator pitch.” Spend 2‑3 minutes rehearsing a 30‑second answer to “Tell me about yourself.” Focus on the most relevant points: 5 years in retail/warehouse, current role as Shift Lead, cash‑handling success, and why you’re interested in the Store Associate role at Maple Grocers. Saying the same script a few times builds muscle memory and reduces the urge to overthink.\n\n2. Do a body‑language warm‑up. Right before the interview, stand tall, roll your shoulders back, and take three deep breaths. Then practice a firm handshake and a smile in the mirror. Open posture signals confidence to your brain and to the interviewer.\n\n3. Use the “pause‑and‑answer” technique. When a question comes, pause for one breath, then answer. That brief pause gives you a moment to collect your thoughts and prevents you from rushing or filling silence with filler words.\n\nWhy it works: The pitch gives you a clear, rehearsed narrative so you don’t scramble for what to say. Body‑language tricks physically shift you into a confident state, and the pause creates a natural rhythm that keeps you calm and clear.\n\nOne quick question: Do you have a specific interview scheduled already, or are you preparing for a future call?",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [
+      "It uses the stock line \"excited about\". Use the person's real situation instead."
+     ],
+     "after": [],
+     "edits": 2,
+     "ms": 3758,
+     "blank": false,
+     "questions": 1,
+     "words": 234
+    },
+    {
+     "me": "Let's use the cash drawer one."
+    },
+    {
+     "coach": "Great, let’s turn your cash‑drawer experience into a STAR story.\n\nStep 1 – Situation \nWhy this helps: Having a concrete story ready means you won’t have to think on the spot, which calms nerves. \n\nWhat was the setting when you were counting and balancing the cash drawers? Think about the store, the time of day, and any particular pressure you felt. \n\n(Please describe the situation in a sentence or two.)",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 1821,
+     "blank": false,
+     "questions": 1,
+     "words": 70
+    },
+    {
+     "me": "I was the shift lead at Corner Market and one night a cashier's drawer came up short at closing."
+    },
+    {
+     "coach": "Got it.\n\nStep 2 – Task \nWhat exactly were you responsible for fixing in that moment? (e.g., identify the discrepancy, reconcile the cash, ensure the store could close without loss.) \n\nPlease tell me the specific task you had to accomplish.",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 1148,
+     "blank": false,
+     "questions": 1,
+     "words": 40
+    },
+    {
+     "me": "I had to find out what went wrong before we closed out the night, and make sure it did not happen again."
+    },
+    {
+     "coach": "Understood.\n\nStep 3 – Action \nWhat specific steps did you take to investigate the shortage? Describe exactly what you did, step by step, to find the cause.",
+     "status": 200,
+     "model": "groq:qwen/qwen3.8-27b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 1051,
+     "blank": false,
+     "questions": 1,
+     "words": 27
+    },
+    {
+     "me": "I recounted the drawer with her, went back through the receipts and found a refund rung up twice. Then I showed her how to check the screen before finishing a refund."
+    },
+    {
+     "coach": "Step 4 – Result \nHow did this end? Did you resolve the shortage that night, and what changed afterward? If you know any numbers (like the amount recovered or how many days without a shortage followed), please include them.",
+     "status": 200,
+     "model": "groq:qwen/qwen3.8-27b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 736,
+     "blank": false,
+     "questions": 2,
+     "words": 39
+    },
+    {
+     "me": "The drawer balanced that night and she had no more shortages after that."
+    },
+    {
+     "coach": "“During my shift as Lead at Corner Market, one night a cashier’s drawer was short at closing. I had to find the root cause before the store closed and ensure it didn’t happen again. I recounted the drawer with her, reviewed the receipts, and discovered a refund had been rung up twice. I then walked her through how to verify the screen before completing a refund. The drawer balanced that night, and she had no further shortages after that.”\n\nThis story answers:\n\n1. “Describe a time you handled a cash‑handling error.”\n2. “How do you prevent mistakes in the future?”\n\nFeel free to tweak the numbers or add a specific amount if you remember it.",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-20b",
+     "before": [],
+     "after": [],
+     "edits": 1,
+     "ms": 2346,
+     "blank": false,
+     "questions": 1,
+     "words": 115
+    }
+   ]
+  },
+  {
+   "label": "C no resume, nervous",
+   "convo": [
+    {
+     "me": "I get nervous in interviews. What helps?"
+    },
+    {
+     "coach": "Hi,\n\nFeeling nervous before an interview is normal, and a few simple habits can calm your mind and keep you focused:\n\n1. Practice a short “elevator pitch.” \n Spend 2‑3 minutes rehearsing a concise answer to “Tell me about yourself.” Use the same wording each time so it feels automatic. Example: “I have experience working as a warehouse associate, where I performed tasks such as picking and packing orders, loading trailers, and keeping the work area clean and safe. I can meet the physical requirements of the role.” \n\n2. Do a physical reset 10 minutes before the interview. \n - Stand up, stretch your shoulders and back. \n - Take three slow, deep breaths: inhale for 4 seconds, hold 2, exhale for 6. \n This lowers adrenaline and steadies your voice.\n\n3. Prepare a quick “pause‑and‑think” cue. \n If a question catches you off guard, say, “That’s a great question; let me think for a second.” This gives you a moment to collect your thoughts and shows confidence.\n\nWhy it works: Repeating a familiar intro reduces the blank‑page feeling, the breathing reset controls the physical symptoms of anxiety, and the pause cue prevents you from rushing or rambling.\n\nDo you have a specific part of the interview (e.g., “Tell me about a time you handled a heavy load”) that worries you most? Let me know so we can craft a focused story together.",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 1,
+     "ms": 3738,
+     "blank": false,
+     "questions": 1,
+     "words": 228
+    },
+    {
+     "me": "One time at my old job a truck came in late and we had to unload it fast before the next shift."
+    },
+    {
+     "coach": "That sounds like a great moment to highlight your speed and teamwork.\n\nWhat was the specific task you were responsible for during that rush? For example, were you operating the forklift, manually unloading boxes, or coordinating the team?",
+     "status": 200,
+     "model": "groq:qwen/qwen3.8-27b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 697,
+     "blank": false,
+     "questions": 2,
+     "words": 38
+    }
+   ]
+  },
+  {
+   "label": "B why leave",
+   "convo": [
+    {
+     "me": "How do I answer \"Why did you leave your last job?\""
+    },
+    {
+     "coach": "Hi Sam. Since your resume shows you worked at DesertLink Internet until 2025 and you are currently looking for work, you have a recent change to explain. You do not have a long gap to hide, so keep this brief and positive.\n\nSay this:\n\"I completed my role at DesertLink and am now looking to pivot my career. I realized that while I loved the customer service aspect, I wanted to move into an in-person environment where I could apply my medical office coursework. Bright Smile Dental fits that perfectly because it combines the scheduling and phone skills I have with the healthcare setting I am studying for.\"\n\nThis works because it frames your move as a deliberate career step rather than a reaction to leaving. It connects your past experience directly to their needs. Avoid saying you were bored or that the call center was too stressful. Instead, focus on how this job is the logical next step for your specific skills.",
+     "status": 200,
+     "model": "groq:qwen/qwen3.8-27b",
+     "before": [],
+     "after": [],
+     "edits": 2,
+     "ms": 1857,
+     "blank": false,
+     "questions": 0,
+     "words": 163
+    }
+   ]
+  },
+  {
+   "label": "B why this job",
+   "convo": [
+    {
+     "me": "What do I say when they ask why I want to work here?"
+    },
+    {
+     "coach": "Hi Sam,\n\nWhen they ask why you want to work at Bright Smile Dental, keep it short, specific, and tie it to what you actually bring:\n\nPlain answer \n“I’m eager to bring my customer service and scheduling experience to a busy dental office where I can use my skills in scheduling, payment handling, and communication with customers to keep the practice running smoothly.”\n\nExact words you can say \n“I’m eager to bring my customer service and scheduling experience to a busy dental office where I can use my skills in scheduling, payment handling, and communication with customers to keep the practice running smoothly.”\n\nWhy it works \nIt shows you’re focused on the job’s core tasks, you have relevant experience, and you’re eager to contribute to the team. Avoid generic phrases like “looking for a new challenge” or “I’m a perfectionist.”",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-20b",
+     "before": [
+      "It uses the stock line \"excited to\". Use the person's real situation instead."
+     ],
+     "after": [
+      "It uses the stock line \"eager to\". Use the person's real situation instead."
+     ],
+     "edits": 2,
+     "ms": 2662,
+     "blank": false,
+     "questions": 0,
+     "words": 140
+    }
+   ]
+  },
+  {
+   "label": "B thank you",
+   "convo": [
+    {
+     "me": "Write a short thank-you note to send after my interview"
+    },
+    {
+     "coach": "",
+     "status": 503,
+     "ms": 869,
+     "blank": false,
+     "questions": 0,
+     "words": 0
+    }
+   ]
+  },
+  {
+   "label": "A 30s story ask",
+   "convo": [
+    {
+     "me": "Help me build a 30-second story for my interview"
+    },
+    {
+     "coach": "",
+     "status": 503,
+     "ms": 222,
+     "blank": false,
+     "questions": 0,
+     "words": 0
+    }
+   ]
+  }
+ ]
+}
