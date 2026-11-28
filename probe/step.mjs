@@ -53,7 +53,12 @@ async function chat(label, t, ask, answers) {
   writeFileSync('probe/out/star-results.json', JSON.stringify({ calls, log }, null, 1));
 }
 mkdirSync('probe/out', { recursive: true });
-await wait(90000); // let the preview site finish deploying
+for (let i = 0; i < 40; i++) { // wait until the preview site runs this build
+  const r = await fetch(URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'nope', messages: [] , debug: true }) }).catch(() => null);
+  const html = await fetch(URL.replace('/interview', '/functions-build.txt')).then((x) => x.text()).catch(() => '');
+  if (html.includes('star3')) break;
+  await wait(15000);
+}
 await chat('A nervous', A, 'I get nervous in interviews. What helps?', ['The cash drawer one sounds good.']);
 await wait(10000);
 await chat('C no resume, nervous', C, 'I get nervous in interviews. What helps?', []);

@@ -232,8 +232,14 @@ function answerProblems(data, first) {
 // A fill-in left for the person, like [your reason] or [Company Name].
 const BLANK = /\[[^\]\n]{2,80}\]/;
 
-function coachProblems(reply) {
+// Conversations about getting ready for interviews, where the coach builds a STAR story with them.
+const PREP = /\b(nervous|nerves|anxious|anxiety|scared|star method|star story|30[- ]?second|story|tell me about (yourself|a time)|prepare|prep|practice|get ready)\b/i;
+const isPrep = (first) => PREP.test(first.slice(first.lastIndexOf('\nMy question:')));
+
+function coachProblems(reply, first) {
   const p = [];
+  if (isPrep(first) && /^\s*(\d+[.)]|[-•])\s/m.test(reply) && !/^\s*["“]/m.test(reply))
+    p.push('It gives a list of tips. Do not list tips here: start the STAR walk-through instead. Give at most one calming tip in one sentence, suggest one or two moments from their resume, and ask which one to use. One question only, under 80 words.');
   const s = reply.match(STOCK_COACH);
   if (s) p.push(`It uses the stock line "${s[0]}". Use the person's real situation instead.`);
   const b = reply.match(BLANK);
@@ -274,7 +280,7 @@ const MODES = {
 };
 
 // Problems a rewrite fixes; the rest are fixed by editing the draft.
-const REWRITE = /too short|too long|there are none|only JSON|fill-in blank/;
+const REWRITE = /too short|too long|there are none|only JSON|fill-in blank|list of tips/;
 
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
@@ -284,6 +290,7 @@ function systemFor(mode, first) {
   let system = setup.system;
   if (mode === 'letter') system += ' Opening: ' + pick(hasResume(first) ? OPENINGS : OPENINGS_NO_RESUME) + ' Close: ' + pick(CLOSES) + (hasResume(first) ? '' : NO_RESUME);
   if (setup.notes) system += resumeNotes(first, mode);
+  if (mode === 'coach' && isPrep(first)) system += ' This conversation is interview prep: follow the STAR walk-through above, one question per reply, and do not list tips.';
   return system;
 }
 
@@ -468,6 +475,8 @@ function plainer(text, first, mode) {
 
 function tidy(text, mode) {
   let t = String(text || '').replace(/[*#]+/g, '').replace(/^>\s?/gm, '').trim();
+  // The coach answers in the app's chat, so a greeting line ("Hi Sam,") on top only gets in the way.
+  if (mode === 'coach') t = t.replace(/^(hi|hello|hey)( there| [A-Z][a-z]+)?[,!.]?\s*\n+/i, '');
   if (mode === 'letter') {
     t = t
       .replace(/^(dear[^\n]*\n+)/i, '')
@@ -539,7 +548,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
         }
         if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first, mode) } : plainer(value, first, mode);
         const out = setup.json ? { data: value } : { reply: value };
-        if (body.debug) Object.assign(out, { model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
+        if (body.debug) Object.assign(out, { build: 'star3', model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
         return new Response(JSON.stringify(out), { headers });
       }
       errors.push(`${model}: empty`);
