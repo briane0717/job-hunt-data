@@ -3,8 +3,8 @@ import { LIMITS, checkJsonRequest, rateLimit, readJson } from './_guard.js';
 // Cloudflare Pages Function: POST /interview
 // The app's job coach and writer (phone and web). It runs on Cloudflare's free Workers AI through
 // the site's "AI" connection (set in wrangler.toml), so there is no key anywhere in the app or the
-// site. The free daily amount is shared by everyone; when it runs out, requests fail until the next
-// day and the app falls back to its offline coaching. Nothing is stored here.
+// site. The free daily amount is shared by everyone; when it runs out, Groq's free plan is the backup
+// (see GROQ below), and only when both are out does the app fall back to offline coaching. Nothing is stored here.
 //
 // body: { mode?, messages: [{ content }] }
 //   mode "interview" (default): a realistic spoken mock interview. messages alternate person, interviewer...
@@ -17,8 +17,14 @@ import { LIMITS, checkJsonRequest, rateLimit, readJson } from './_guard.js';
 // The interview stays on the quick Llama model (spoken replies need speed). Coaching and writing use
 // OpenAI's free open model, which in side-by-side tests read people's situations better and wrote
 // more natural letters.
-const FAST = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-4-scout-17b-16e-instruct', '@cf/meta/llama-3.1-8b-instruct-fp8-fast'];
-const SMART = ['@cf/openai/gpt-oss-120b', ...FAST];
+// Backup: when Cloudflare's free amount runs out (error 4006, which can last about a day), the same
+// kinds of models are asked through Groq's free plan. That needs a free Groq key saved in the site's
+// Cloudflare settings as GROQ_API_KEY (never in the app or the code). Without the key it is skipped.
+const CF_FAST = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-4-scout-17b-16e-instruct', '@cf/meta/llama-3.1-8b-instruct-fp8-fast'];
+const GROQ_FAST = ['groq:llama-3.3-70b-versatile', 'groq:llama-3.1-8b-instant'];
+const FAST = [...CF_FAST, ...GROQ_FAST];
+const SMART = ['@cf/openai/gpt-oss-120b', 'groq:openai/gpt-oss-120b', ...FAST];
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 // Other free models a test may ask for by name (body.model). Anything else is ignored.
 const TRY_MODELS = ['@cf/openai/gpt-oss-120b', '@cf/openai/gpt-oss-20b', '@cf/mistralai/mistral-small-3.1-24b-instruct', '@cf/qwen/qwen3-30b-a3b-fp8', '@cf/google/gemma-3-12b-it'];
 const MAX_MESSAGES = 41; // odd, so the kept turns still alternate person, AI, person...
@@ -259,7 +265,28 @@ function textOf(out) {
   return '';
 }
 
+/** Asks a model on Groq's free plan (same OpenAI-style chat format). */
+async function askGroq(env, model, system, messages, setup, json) {
+  const name = model.slice(5);
+  const oss = name.includes('gpt-oss');
+  const req = { model: name, messages: [{ role: 'system', content: system }, ...messages], temperature: setup.temperature };
+  if (oss) {
+    req.reasoning_effort = setup.effort || 'low';
+    req.max_completion_tokens = setup.tokens + (setup.effort === 'medium' ? 1500 : 600);
+    if (json) req.response_format = { type: 'json_schema', json_schema: { name: 'reply', schema: json } };
+  } else req.max_tokens = setup.tokens;
+  const r = await fetch(GROQ_URL, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(req),
+    signal: AbortSignal.timeout(60000),
+  });
+  if (!r.ok) throw new Error(`${r.status}: ${(await r.text()).slice(0, 160)}`);
+  return textOf(await r.json());
+}
+
 async function ask(env, model, system, messages, setup, json) {
+  if (model.startsWith('groq:')) return askGroq(env, model, system, messages, setup, json);
   const base = { max_tokens: setup.tokens, temperature: setup.temperature };
   const chat = [{ role: 'system', content: system }, ...messages];
   if (model.includes('gpt-oss')) {
@@ -422,12 +449,16 @@ export async function onRequestPost({ request, env, waitUntil }) {
   const setup = MODES[mode];
   const messages = clean(body && body.messages);
   if (!messages) return new Response('{}', { status: 400, headers });
-  if (!env.AI) return new Response('{}', { status: 503, headers });
-  const wanted = TRY_MODELS.includes(body.model) || SMART.includes(body.model) ? [body.model] : setup.models || SMART;
+  if (!env.AI && !env.GROQ_API_KEY) return new Response('{}', { status: 503, headers });
+  const wanted = (TRY_MODELS.includes(body.model) || SMART.includes(body.model) ? [body.model] : setup.models || SMART).filter(
+    (m) => (m.startsWith('groq:') ? env.GROQ_API_KEY : env.AI),
+  );
+  let cloudflareOut = false; // after Cloudflare says the free amount is used up, skip its other models
   const first = messages[0].content;
   const system = systemFor(mode, first);
   const errors = [];
   for (const model of wanted) {
+    if (cloudflareOut && model.startsWith('@cf/')) continue;
     try {
       // Write it, check it, and rewrite once when it's the wrong length or shape. Then a second read
       // takes out anything the person never said and any stock lines.
@@ -466,7 +497,9 @@ export async function onRequestPost({ request, env, waitUntil }) {
       errors.push(`${model}: empty`);
     } catch (e) {
       // try the next model; if all fail (for example the free daily amount is used up) say so
-      errors.push(`${model}: ${String((e && e.message) || e).slice(0, 200)}`);
+      const message = String((e && e.message) || e);
+      if (model.startsWith('@cf/') && /\b4006\b/.test(message)) cloudflareOut = true;
+      errors.push(`${model}: ${message.slice(0, 200)}`);
     }
   }
   return new Response(body.debug ? JSON.stringify({ errors }) : '{}', { status: 503, headers });
