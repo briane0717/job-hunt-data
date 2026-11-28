@@ -53,6 +53,7 @@ async function chat(label, t, ask, answers) {
   writeFileSync('probe/out/star-results.json', JSON.stringify({ calls, log }, null, 1));
 }
 mkdirSync('probe/out', { recursive: true });
+await wait(90000); // let the preview site finish deploying
 await chat('A nervous, STAR walk-through', A, 'I get nervous in interviews. What helps?', [
   "Let's use the cash drawer one.",
   'I was the shift lead at Corner Market and one night a cashier\'s drawer came up short at closing.',
