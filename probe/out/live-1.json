@@ -1,0 +1,18 @@
+[
+ {
+  "try": 0,
+  "mode": "interview",
+  "status": 200,
+  "ms": 653,
+  "body": "{\"reply\":\"Thanks for joining me today. To begin, could you tell me a bit about yourself and why you’re interested in this cashier position at Maple Grocers?\",\"model\":\"groq:openai/gpt-oss-20b\",\"before\":[],\"edits\":0,\"after\":[]}"
+ },
+ {
+  "mode": "coach",
+  "status": 200,
+  "ms": 3563,
+  "body": "{\"reply\":\"Wear something clean, neat, and a bit more polished than the everyday uniform you’d wear on the floor. A button‑down shirt or a simple blouse with a collar, paired with dark slacks or a modest skirt, works well. If you usually wear a polo, you can upgrade to a solid‑color button‑down. Put on closed‑toe shoes (no sneakers) and keep accessories minimal.\\n\\nYou could say when they ask if you’re comfortable with the dress code: \\n“Absolutely—I [plan to dress professionally], with a clean shirt and dark pants, so I’m [ready to represent Maple Grocers well].”\\n\\nWhy it works: It shows you respect the store’s image and understand a retail environment, without over‑dressing. Avoid jeans, graphic tees, caps, or anything with holes.\\n\\nThree quick steps:\\n1. Choose a solid‑color shirt/blouse (no logos) and dark, tidy pants or a knee‑length skirt. \\n2. Make sure everything is freshly laundered and ironed; shoes should be polished. \\n3. Bring a simple, clean bag for your resume—no backpacks or gym bags.\\n\\nAnything else you’re unsure about for the interview?\",\"model\":\"groq:openai/gpt-oss-120b\",\"before\":[],\"edits\":1,\"after\":[]}"
+ },
+ {
+  "at": "2026-11-28T08:11:21.081Z"
+ }
+]
