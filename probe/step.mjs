@@ -53,12 +53,17 @@ async function chat(label, t, ask, answers) {
   writeFileSync('probe/out/star-results.json', JSON.stringify({ calls, log }, null, 1));
 }
 mkdirSync('probe/out', { recursive: true });
-for (let i = 0; i < 40; i++) { // wait until the preview site runs this build
-  const r = await fetch(URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'nope', messages: [] , debug: true }) }).catch(() => null);
-  const html = await fetch(URL.replace('/interview', '/functions-build.txt')).then((x) => x.text()).catch(() => '');
-  if (html.includes('star3')) break;
+let seen = '';
+for (let i = 0; i < 60; i++) { // wait until the preview site runs this build
+  seen = await fetch(URL.replace('/interview', '/functions-build.txt')).then((x) => x.status + ' ' + x.headers.get('content-type') + ' ' + (x.ok ? 'x' : '')).catch((e) => String(e));
+  const t = await fetch(URL.replace('/interview', '/functions-build.txt')).then((x) => x.text()).catch(() => '');
+  if (t.trim() === 'star4') { seen += ' ok after ' + i; break; }
+  seen += ' got ' + t.slice(0, 30);
   await wait(15000);
 }
+log.push({ seen });
+writeFileSync('probe/out/star-results.json', JSON.stringify({ calls, log }, null, 1));
+if (!seen.includes(' ok after ')) process.exit(0);
 await chat('A nervous', A, 'I get nervous in interviews. What helps?', ['The cash drawer one sounds good.']);
 await wait(10000);
 await chat('C no resume, nervous', C, 'I get nervous in interviews. What helps?', []);

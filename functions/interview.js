@@ -548,7 +548,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
         }
         if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first, mode) } : plainer(value, first, mode);
         const out = setup.json ? { data: value } : { reply: value };
-        if (body.debug) Object.assign(out, { build: 'star3', model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
+        if (body.debug) Object.assign(out, { build: 'star4', model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
         return new Response(JSON.stringify(out), { headers });
       }
       errors.push(`${model}: empty`);
