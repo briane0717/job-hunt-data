@@ -1,0 +1,75 @@
+[
+ {
+  "mode": "interview",
+  "status": 503,
+  "headers": {
+   "access-control-allow-headers": "Content-Type",
+   "access-control-allow-methods": "POST, OPTIONS",
+   "access-control-allow-origin": "https://jobbo-app.pages.dev",
+   "alt-svc": "h3=\":443\"; ma=86400",
+   "cache-control": "no-store",
+   "cf-ray": "a61610843903d623-DFW",
+   "connection": "keep-alive",
+   "content-length": "2",
+   "content-type": "application/json",
+   "date": "Sat, 28 Nov 2026 02:50:20 GMT",
+   "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+   "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=%2B3XZnU5xilJ98b%2B%2BzFu8hsVPXsn756Hw%2BcXm4O093xkK8izUt70HrRLFJABKpNVut9wVltAVH12h8C2s1Qloh%2FyfuN4iK3EBr8yxzIZqXEC21WhAG8q2dULO3VXkOOwQAjfUhwBQ\"}]}",
+   "server": "cloudflare",
+   "vary": "Origin",
+   "x-content-type-options": "nosniff"
+  },
+  "ms": 370,
+  "body": "{}"
+ },
+ {
+  "mode": "coach",
+  "status": 503,
+  "headers": {
+   "access-control-allow-headers": "Content-Type",
+   "access-control-allow-methods": "POST, OPTIONS",
+   "access-control-allow-origin": "https://jobbo-app.pages.dev",
+   "alt-svc": "h3=\":443\"; ma=86400",
+   "cache-control": "no-store",
+   "cf-ray": "a61610855f900824-DFW",
+   "connection": "keep-alive",
+   "content-length": "2",
+   "content-type": "application/json",
+   "date": "Sat, 28 Nov 2026 02:50:20 GMT",
+   "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+   "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=0DuXUUbcAfK6ZUMW95141WRdvWjJ7VzLhqFWpoU22JmvTWmvmCAOEI9ErEYsaRddMI6tgca2T%2BctcK8X1IQIjhzaKhbAM8bHYDRnaVoxs%2BlyXblevJUblTj1OcQU9FnZ3ZjhTGEp\"}]}",
+   "server": "cloudflare",
+   "vary": "Origin",
+   "x-content-type-options": "nosniff"
+  },
+  "ms": 244,
+  "body": "{}"
+ },
+ {
+  "mode": "interview",
+  "model": "@cf/google/gemma-3-12b-it",
+  "status": 503,
+  "headers": {
+   "access-control-allow-headers": "Content-Type",
+   "access-control-allow-methods": "POST, OPTIONS",
+   "access-control-allow-origin": "https://jobbo-app.pages.dev",
+   "alt-svc": "h3=\":443\"; ma=86400",
+   "cache-control": "no-store",
+   "cf-ray": "a61610869ec6d623-DFW",
+   "connection": "keep-alive",
+   "content-length": "2",
+   "content-type": "application/json",
+   "date": "Sat, 28 Nov 2026 02:50:20 GMT",
+   "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+   "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Ei7Olc6kk2kl9vvp4iowpjo0%2BWdoV%2FR%2BiakJ4IcjSc6ZrCETd7m8lXr618hywuQycU3kf%2F50vuciERzPOJrqSfAgmJEKOnTY5p1c%2B07WI4UVgrHl7jbGoddyy2gigrIiJWn95sOS\"}]}",
+   "server": "cloudflare",
+   "vary": "Origin",
+   "x-content-type-options": "nosniff"
+  },
+  "ms": 87,
+  "body": "{}"
+ },
+ {
+  "at": "2026-11-28T02:50:20.653Z"
+ }
+]
