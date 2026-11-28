@@ -12,6 +12,8 @@ import { LIMITS, checkJsonRequest, rateLimit, readJson } from './_guard.js';
 //   mode "review": a whole interview transcript -> a short report as JSON.
 //   mode "coach": a job coach chat about anything in the job search.
 //   mode "letter": job + resume -> the body of a cover letter that reads like a person wrote it.
+//   mode "star_ask": the next single question of the STAR answer builder (situation, task, action, result).
+//   mode "star": the person's own STAR parts -> their finished interview answer as JSON, from their words only.
 
 // Strongest first. If one is unavailable or over the free amount, the next is tried.
 // The interview stays on the quick Llama model (spoken replies need speed). Coaching and writing use
@@ -67,6 +69,8 @@ const FEEDBACK =
   'For a "tell me about a time" story use this shape: the situation in their words; what they did, in their words, then [what else you did] if that part is thin; how it ended, in their words or [how it turned out]. ' +
   'It must not add any action, event or result they did not state. Where the story is missing a part (what they did, how it ended, a number), put a bracket there, like [what you said to him] or [how it ended]. ' +
   'It sounds like this person talking, not a cover letter: no stock lines such as "retail professional", "excited to bring my skills", "I believe my skills will be a good fit", "hard worker", "people person", "passionate". ' +
+  'The message may also give their prepared answer, one they built earlier from their own words. Then judge what they said today, use facts from the prepared answer in the stronger version, ' +
+  'and if today\'s answer left out a key part of it (the situation, what they did, or how it turned out), make one tip name that part and the detail from their prepared answer. ' +
   'Reply with only a JSON object, no other text, in this shape: ' +
   '{"score": number 1-10, "verdict": "one honest sentence on how a hiring manager would hear it", ' +
   '"good": ["up to 2 short things that worked, quoting their own words"], ' +
@@ -96,6 +100,37 @@ const STAR =
   'In the walk-through, ask exactly one question per reply, keep replies under 80 words, and never answer your own question for them. ' +
   'When you have all four parts, write their story in first person, in quotes, about 30 seconds spoken (70 to 100 words), built only from what they told you and their resume. ' +
   'Then in one line name two interview questions it answers, and offer to tighten it or build a second story. ';
+
+// The STAR answer builder (the Practice page): one question per step, then the answer from their own words.
+const STAR_PARTS = {
+  situation:
+    'the Situation: a real time from their work (or school or volunteering if they have no work history) that fits the interview question. Ask where they were and what was going on. ' +
+    'If their resume lists jobs, you may name one or two of those real jobs as places to think of. Never suggest what happened.',
+  task: 'the Task: what they had to get done or fix in that moment, and why it mattered.',
+  action: 'the Action: what they personally did, step by step. Ask for their own part, not the team\'s.',
+  result: 'the Result: how it turned out, with a number if they know one (how many, how much, how fast), and what changed after.',
+  more: 'one concrete detail about the part they just answered, because that answer was short or vague. Name what is missing.',
+};
+
+const STAR_ASK =
+  'You help a person get ready for one interview question by building a true answer with the STAR method (Situation, Task, Action, Result), one question at a time. ' +
+  'The first message gives the job, maybe their resume, the interview question, the part to ask about now, and what they have said so far. ' +
+  'Write only the next question for that part. Shape: if they have already said something, one short sentence that reflects back one detail in their own words; then the one question; then, in parentheses starting with "for example", the kinds of detail that fit this part. ' +
+  'The example names kinds of detail (a place, who was there, a number). It is never a sample answer, never in quotes, and never guesses what happened. ' +
+  'Use words a friend would use: never "metric", "specific", "workflow", "delegate", "prioritize" or "leverage". Use the person\'s resume only to name a job they could think of, and never say they mentioned something they did not say in this conversation. ' +
+  'Exactly one question mark. Under 60 words. Plain text: no lists, no quotes, no markdown, no greeting, no praise like "great". ' +
+  'Never answer the question for them, never suggest what they did or how it ended, and never write their answer. ' +
+  COACH_FACTS;
+
+const STAR_WRITE =
+  'You turn a person\'s own notes into their spoken answer to one interview question, using the STAR method. The first message gives the job, maybe their resume, the interview question, and their notes for each part: situation, task, action and result, sometimes with extra details. ' +
+  'Write the answer in first person, the way this person would say it out loud in the interview: the situation in a sentence or two, what they had to do, what they did, and how it turned out. ' +
+  'Build it only from their notes. Keep their facts, names, numbers and wording where it reads well. Fix grammar, cut repeats, and put it in order. ' +
+  'Never add a fact, action, step, tool, number, time span, feeling, lesson or result their notes do not state, even if it sounds likely. ' +
+  'Never say how anyone felt or why they did something (impressed, happy, proud, thankful) unless the notes say it, and never add describing words they did not use (quick, busy, huge). If a part is thin, keep it short rather than filling it in. ' +
+  'Never write blanks, fill-ins or anything in [square brackets]. Do not use the resume to add things they did not say in the notes. ' +
+  'Length: 80 to 170 words, shorter if their notes are short. Use contractions and everyday words. No stock lines such as "retail professional", "fast-paced", "I\'m confident", "hard worker", "people person", "passionate", "team player", "excited to". ' +
+  'Reply with only a JSON object, no other text, in this shape: {"answer": "the answer"}';
 
 const COACH =
   'You are Jobbo\'s job coach: an experienced career coach and recruiter who helps people find and land jobs. ' +
@@ -247,6 +282,39 @@ function coachProblems(reply, first) {
   return p;
 }
 
+/** What a STAR builder question gets wrong. */
+function starAskProblems(reply) {
+  const p = [];
+  const q = (reply.match(/\?/g) || []).length;
+  if (q === 0) p.push('It asks no question. Ask exactly one question.');
+  if (q > 1) p.push('It asks more than one question. Ask exactly one.');
+  if (reply.split(/\s+/).filter(Boolean).length > 70) p.push('It is too long. Keep it under 60 words.');
+  if (BLANK.test(reply)) p.push(`It leaves a fill-in blank, ${reply.match(BLANK)[0]}. Never use brackets.`);
+  return p;
+}
+
+// Feelings and judgments the writer likes to add to a story ("my manager was impressed").
+const FEELINGS = /\b(impress(ed|ive)?|proud|happy|glad|thrilled|grateful|thankful|appreciat(ed|ive)|prais(ed|e)|loved|excited|relieved|stressful|stressed|calm(ly)?|confident(ly)?|amazing|great job|smooth(ly)?|successful(ly)?|quick(ly)?|huge|hectic|chaotic)\b/gi;
+
+/** What a written STAR answer gets wrong. */
+function starProblems(data, first) {
+  const p = [];
+  const answer = String((data && data.answer) || '');
+  const words = answer.split(/\s+/).filter(Boolean).length;
+  if (words < 25) p.push('The answer is too short. Use everything in their notes.');
+  if (words > 210) p.push('The answer is too long. Keep it under 170 words.');
+  const b = answer.match(BLANK);
+  if (b) p.push(`The answer leaves a fill-in blank, ${b[0]}. Never leave blanks: write the sentence without it.`);
+  const s = answer.match(STOCK_ANSWER);
+  if (s) p.push(`The answer uses the stock line "${s[0]}". Say it the way this person would.`);
+  const n = newNumbers(answer, first);
+  if (n.length) p.push(`The answer mentions ${n.join(', ')}, which the person never said. Use only their numbers.`);
+  const notes = first.slice(first.indexOf('My notes:')).toLowerCase();
+  const felt = [...new Set((answer.match(FEELINGS) || []).map((w) => w.toLowerCase()))].filter((w) => !notes.includes(w.slice(0, 5)));
+  if (felt.length) p.push(`The answer says ${felt.map((w) => `"${w}"`).join(', ')}, which the person never said. Rewrite without it.`);
+  return p;
+}
+
 /** Last safety net for the coach: drops any sentence that still has a fill-in blank in it. */
 function noBlanks(text) {
   if (!BLANK.test(text)) return text;
@@ -265,6 +333,7 @@ const FEEDBACK_SCHEMA = {
   properties: { score: { type: 'number' }, verdict: { type: 'string' }, good: list, fix: list, better: { type: 'string' } },
   required: ['score', 'verdict', 'good', 'fix', 'better'],
 };
+const STAR_SCHEMA = { type: 'object', properties: { answer: { type: 'string' } }, required: ['answer'] };
 const REVIEW_SCHEMA = {
   type: 'object',
   properties: { score: { type: 'number' }, summary: { type: 'string' }, good: list, fix: list, practice: { type: 'string' } },
@@ -277,10 +346,12 @@ const MODES = {
   review: { system: REVIEW, tokens: 800, temperature: 0.3, json: REVIEW_SCHEMA },
   coach: { system: COACH, tokens: 600, temperature: 0.6, check: coachProblems, tries: 2, notes: true, clean: true },
   letter: { system: LETTER, tokens: 700, temperature: 0.7, check: letterProblems, tries: 2, notes: true, clean: true },
+  star_ask: { system: STAR_ASK, tokens: 160, temperature: 0.5, check: starAskProblems, tries: 2, models: FAST },
+  star: { system: STAR_WRITE, tokens: 600, temperature: 0.3, json: STAR_SCHEMA, check: starProblems, tries: 2, clean: true },
 };
 
 // Problems a rewrite fixes; the rest are fixed by editing the draft.
-const REWRITE = /too short|too long|there are none|only JSON|fill-in blank|list of tips/;
+const REWRITE = /too short|too long|there are none|only JSON|fill-in blank|list of tips|no question|more than one question|Rewrite without it/;
 
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
@@ -290,6 +361,10 @@ function systemFor(mode, first) {
   let system = setup.system;
   if (mode === 'letter') system += ' Opening: ' + pick(hasResume(first) ? OPENINGS : OPENINGS_NO_RESUME) + ' Close: ' + pick(CLOSES) + (hasResume(first) ? '' : NO_RESUME);
   if (setup.notes) system += resumeNotes(first, mode);
+  if (mode === 'star_ask') {
+    const part = (first.match(/\nAsk about: (\w+)/) || [])[1];
+    system += ' The part to ask about now is ' + (STAR_PARTS[part] || STAR_PARTS.situation);
+  }
   if (mode === 'coach' && isPrep(first)) system += ' This conversation is interview prep: follow the STAR walk-through above, one question per reply, and do not list tips.';
   return system;
 }
@@ -420,11 +495,12 @@ function loose(quote) {
 
 /** Has the model take out anything the person never said (and flagged stock lines), then applies its edits. */
 async function cleanUp(env, model, messages, value, problems, mode) {
-  const text = String((mode === 'feedback' ? value.better : value) || '');
+  const field = mode === 'feedback' ? 'better' : mode === 'star' ? 'answer' : null;
+  const text = String((field ? value[field] : value) || '');
   const tips = mode === 'feedback' ? (value.fix || []).map((t, i) => `TIP ${i + 1}: ${t}`).join('\n') : '';
   if (!text) return { value, edits: 0 };
   const source = messages.filter((m) => m.role === 'user').map((m) => m.content).join('\n\n').slice(0, 12000);
-  const raw = await ask(env, model, mode === 'coach' ? EDIT_COACH : EDIT, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}\n\nPROBLEMS:\n${problems.join('\n') || 'none'}${tips ? `\n\nTIPS:\n${tips}` : ''}` }], { tokens: 900, temperature: 0, effort: 'medium' }, EDIT_SCHEMA);
+  const raw = await ask(env, model, mode === 'coach' || mode === 'star' ? EDIT_COACH : EDIT, [{ role: 'user', content: `SOURCE:\n${source}\n\nTEXT:\n${text}\n\nPROBLEMS:\n${problems.join('\n') || 'none'}${tips ? `\n\nTIPS:\n${tips}` : ''}` }], { tokens: 900, temperature: 0, effort: 'medium' }, EDIT_SCHEMA);
   const result = jsonIn(raw) || {};
   const edits = (result.edits || []).filter((e) => e && typeof e.quote === 'string' && e.quote.trim().length > 3 && typeof e.fix === 'string').slice(0, 12);
   let done = 0;
@@ -444,6 +520,7 @@ async function cleanUp(env, model, messages, value, problems, mode) {
     const fix = (value.fix || []).filter((_, i) => !drop.has(i + 1));
     return { value: { ...value, better: apply(value.better), fix: fix.length ? fix : value.fix }, edits: done + drop.size };
   }
+  if (field) return { value: { ...value, [field]: apply(value[field]) }, edits: done };
   return { value: apply(value), edits: done };
 }
 
@@ -462,21 +539,32 @@ const PLAIN_SWAPS = [
 function payBlanks(text, first, mode) {
   const known = numbers(first);
   return text.replace(/\$\s?\d[\d,.]*(?:k)?(?:\s?(?:-|‑|–|to)\s?\$?\d[\d,.]*(?:k)?)?(?:\s?(?:\/\s?(?:hr|hour|year|yr)|an hour|per hour|a year|per year))?/gi, (m) =>
-    [...numbers(m)].every((n) => known.has(n)) ? m : mode === 'coach' ? 'the usual pay for this job near you' : '[the usual pay for this job near you]',
+    [...numbers(m)].every((n) => known.has(n)) ? m : mode === 'coach' || mode === 'star' ? 'the usual pay for this job near you' : '[the usual pay for this job near you]',
   );
 }
 
 function plainer(text, first, mode) {
   let t = String(text || '');
-  for (const [re, to] of PLAIN_SWAPS) t = t.replace(re, mode === 'coach' && /interviewer/.test(to) ? 'Hi' : to);
+  for (const [re, to] of PLAIN_SWAPS) t = t.replace(re, (mode === 'coach' || mode === 'star') && /interviewer/.test(to) ? 'Hi' : to);
   t = payBlanks(t, first, mode);
-  return mode === 'coach' ? noBlanks(t) : t;
+  return mode === 'coach' || mode === 'star' ? noBlanks(t) : t;
 }
 
 function tidy(text, mode) {
   let t = String(text || '').replace(/[*#]+/g, '').replace(/^>\s?/gm, '').trim();
   // The coach answers in the app's chat, so a greeting line ("Hi Sam,") on top only gets in the way.
   if (mode === 'coach') t = t.replace(/^(hi|hello|hey)( there| [A-Z][a-z]+)?[,!.]?\s*\n+/i, '');
+  if (mode === 'star_ask') {
+    // One question only: an example in parentheses never asks its own, and anything after the first question goes.
+    t = t.replace(/^["“]|["”]$/g, '').replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/\?/g, '').trim()})`);
+    // "It went ok, right?" is a statement, not the question.
+    t = t.replace(/,?\s*(right|correct|yes|is that right)\?(?=\s|$)/gi, '.');
+    const q = t.indexOf('?');
+    if (q >= 0 && t.indexOf('?', q + 1) >= 0) {
+      const example = t.slice(q + 1).match(/\([^)]*\)/);
+      t = t.slice(0, q + 1) + (example ? ` ${example[0]}` : '');
+    }
+  }
   if (mode === 'letter') {
     t = t
       .replace(/^(dear[^\n]*\n+)/i, '')
@@ -546,7 +634,8 @@ export async function onRequestPost({ request, env, waitUntil }) {
             // keep the draft as written
           }
         }
-        if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first, mode) } : plainer(value, first, mode);
+        if (setup.clean && mode === 'star') value = { answer: plainer(value.answer, first, mode).replace(/\s+/g, ' ').trim() };
+        else if (setup.clean) value = setup.json ? { ...value, better: plainer(value.better, first, mode) } : plainer(value, first, mode);
         const out = setup.json ? { data: value } : { reply: value };
         if (body.debug) Object.assign(out, { model, before: best.problems, edits, after: setup.check ? setup.check(value, first) : [] });
         return new Response(JSON.stringify(out), { headers });

@@ -15,6 +15,10 @@
 export const LIMITS = {
   interview: { perMinute: 12, perDay: 150 },
   read: { perMinute: 30, perDay: 600 },
+  // Apply confirmation emails: a person applies a few times a day at most.
+  notify: { perMinute: 3, perDay: 25 },
+  // The same address can only get so many a day, whoever asks for them.
+  notifyTo: { perMinute: 3, perDay: 15 },
 };
 
 /** Biggest request body accepted (the app sends a job, a resume and a short chat: well under this). */
@@ -68,13 +72,14 @@ async function bumpCache(cache, key, windowMs, now, waitUntil) {
 /**
  * Counts this request and says whether it may go ahead.
  * Returns null when it may, or a ready 429 Response when the visitor is over the limit.
- * options: { name, limits, headers, cache, now, waitUntil }; cache defaults to Cloudflare's caches.default.
+ * options: { name, limits, headers, cache, now, waitUntil, id }; cache defaults to Cloudflare's caches.default.
+ * id counts something other than the visitor (already hashed, never raw personal data).
  */
 export async function rateLimit(request, options) {
   const { name, limits, headers = {}, waitUntil } = options;
   const now = options.now ?? Date.now();
   const cache = 'cache' in options ? options.cache : globalThis.caches && globalThis.caches.default;
-  const id = await visitorId(request);
+  const id = options.id || (await visitorId(request));
   const windows = [
     { key: `${name}:m:${id}`, ms: 60_000, max: limits.perMinute },
     { key: `${name}:d:${id}`, ms: 86_400_000, max: limits.perDay },
