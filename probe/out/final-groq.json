@@ -1,0 +1,434 @@
+{
+ "interviews": [],
+ "feedback": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Tell me about yourself.",
+   "a": "Um, I'm Jordan. I've worked retail for a while and I'm a hard worker and I like people.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear a vague intro with no concrete evidence you fit the role.",
+     "good": [
+      "\"I've worked retail for a while\""
+     ],
+     "fix": [
+      "Add a brief summary of your most recent role, e.g., \"I’m currently a Shift Lead at Corner Market where I train cashiers and balance cash drawers.\"",
+      "Mention a specific skill that matches the job, such as cash handling or stocking shelves, and give a quick result or responsibility."
+     ],
+     "better": "I’m Jordan Lee, currently a Shift Lead at Corner Market. In that role I train new cashiers on the register, balance three cash drawers each night with no shortages, and handle deliveries and shelf stocking before opening. Before that I worked as a Warehouse Associate, picking and packing over 150 orders per shift. [Your motivation], which is why I’m excited to bring my cash‑handling and stocking experience to Maple Grocers."
+    },
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "\"better\" uses the stock line \"excited to\". Say it the way this person would."
+    ],
+    "edits": 3,
+    "after": [
+     "\"better\" uses the stock line \"excited to\". Say it the way this person would."
+    ],
+    "ms": 33342,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Tell me about a time you dealt with an upset customer.",
+   "a": "A customer was mad about a price on the shelf being different from the register. I explained the sale ended. He was still mad but he paid.",
+   "r": {
+    "data": {
+     "score": 3,
+     "verdict": "The hiring manager will hear a vague story that shows you handled the issue but lacks detail on your actions and results.",
+     "good": [
+      "I explained the sale ended.",
+      "He was still mad but he paid."
+     ],
+     "fix": [
+      "Add a brief description of the situation, e.g., why the price mismatch mattered to the customer.",
+      "Explain the specific steps you took to calm the customer (e.g., apologized, offered to check the price, suggested an alternative).",
+      "Include the outcome beyond the payment, such as whether the customer left satisfied or you prevented a complaint."
+     ],
+     "better": "A customer came to the register upset because the shelf price differed from the register price. I explained that the sale had ended. I processed his purchase. He paid."
+    },
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 4,
+    "after": [],
+    "ms": 33550,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do you make sure your cash drawer is accurate?",
+   "a": "At Corner Market I close three drawers every night. I count each one twice, check it against the register report, and if anything's off I go back through the receipts before I leave. In three years we haven't had a shortage.",
+   "r": {
+    "data": {
+     "score": 8,
+     "verdict": "The hiring manager hears a solid, specific process that shows reliability and results.",
+     "good": [
+      "I count each one twice, check it against the register report",
+      "In three years we haven't had a shortage"
+     ],
+     "fix": [
+      "Mention the total amount of cash you typically reconcile to give scale."
+     ],
+     "better": "At Corner Market I close three cash drawers each night. I count each drawer twice, compare the totals to the register report, and if anything is off I review the receipts and [who you notify]. Over the past three years I've never had a shortage, handling roughly $[average nightly total] in cash without error."
+    },
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 2,
+    "after": [],
+    "ms": 32225,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Why do you want to work at Maple Grocers?",
+   "a": "More hours.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear that you’re only after more hours and see no connection to the store or role.",
+     "good": [
+      "You mentioned a reason (more hours)."
+     ],
+     "fix": [
+      "Connect your skills (training cashiers, balancing drawers) to how you’ll help keep shelves full and customers happy."
+     ],
+     "better": "I want to work at Maple Grocers because I am looking for more hours. At Corner Market I trained new cashiers, balanced cash drawers without shortages, and stocked shelves before opening, which shows I can [greet shoppers], operate the register accurately, and keep the aisles organized. I’m excited to bring that experience to Maple Grocers and contribute to a friendly, well‑stocked store."
+    },
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "\"better\" uses the stock line \"excited to\". Say it the way this person would."
+    ],
+    "edits": 3,
+    "after": [
+     "\"better\" uses the stock line \"excited to\". Say it the way this person would."
+    ],
+    "ms": 33680,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "q": "Do you have experience with dental insurance?",
+   "a": "No, not really, but I can learn.",
+   "r": {
+    "data": {
+     "score": 2,
+     "verdict": "The hiring manager will hear that you lack dental insurance experience and give no proof you can pick it up quickly.",
+     "good": [
+      "You said you can learn."
+     ],
+     "fix": [
+      "Mention how your 92% customer satisfaction score shows you can handle detailed, sensitive tasks."
+     ],
+     "better": "I haven’t worked directly with dental insurance, but in my server role at Casa Verde I handled cash and card payments for 40‑60 patrons each shift, and at DesertLink I handled billing questions for about 70 callers daily, maintaining a 92% satisfaction score. Those experiences [relevant skill], so I’m confident I can quickly learn to verify dental insurance and collect co‑pays at Bright Smile Dental."
+    },
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 3,
+    "after": [],
+    "ms": 35200,
+    "status": 200
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "q": "A teacher says her Chromebook won't connect to Wi-Fi five minutes before class. What do you do?",
+   "a": "I'd go to the room, check if Wi-Fi is on, forget the network and reconnect, and if that doesn't work give her a loaner so class can start, then fix it after.",
+   "r": {
+    "data": {
+     "score": 4,
+     "verdict": "The hiring manager will see a basic idea but no clear process or results, so it feels under‑prepared for the role.",
+     "good": [
+      "I’d go to the room, check if Wi-Fi is on",
+      "give her a loaner so class can start"
+     ],
+     "fix": [
+      "Add a step where you verify the Chromebook’s network settings in Google Admin or the device’s console.",
+      "Mention that you log the incident in the ticketing system and follow up after class.",
+      "Explain what you do to resolve the Wi‑Fi issue after the loaner is given (e.g., reset the network adapter or re‑image the device)."
+     ],
+     "better": "When a teacher tells me her Chromebook won’t connect five minutes before class, [Go to the classroom], confirm the Wi‑Fi switch is on, and quickly check the network settings. [Log a ticket in the system], then forget and reconnect to the school network. If it still won’t connect, I [provide a loaner Chromebook] so the class can start on time, and I [inform the teacher I’ll address the original device later] by [resetting the network adapter] or [re‑imaging the device] if needed."
+    },
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 3,
+    "after": [],
+    "ms": 35758,
+    "status": 200
+   }
+  }
+ ],
+ "coach": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do I answer \"Why did you leave your last job?\"",
+   "r": {
+    "reply": "You can keep it simple and honest. Since you’re still at Corner Market, frame it as “I’m looking for a role that lets me [your reason].”\n\nWhat to say\n\n“Because I’m still working at Corner Market, I’m not leaving a job so much as shifting my focus. I love training cashiers and handling the register, but I’m eager to spend more of my day directly helping customers on the floor, which is why the Store Associate position at Maple Grocers really appeals to me.”\n\nWhy it works \nIt acknowledges you’re still employed, shows you’re proactive about career direction, and ties directly to the duties listed in the posting. Avoid mentioning any negative aspects of your current store or saying you’re “looking for a new challenge.” \n\nDo you need help with a follow‑up thank‑you note after the interview?",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"eager to\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 1,
+    "after": [
+     "It uses the stock line \"eager to\". Use the person's real situation or a [bracket] instead."
+    ],
+    "ms": 33410,
+    "status": 200
+   },
+   "follow": {
+    "q": "I'm still working there. I just want more hours and a bigger store.",
+    "r": {
+     "reply": "What to say\n\n“I'm still working at Corner Market, where I train new cashiers and manage the cash drawers. [seeking new opportunities] The Store Associate role at Maple Grocers fits that perfectly.”",
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "edits": 1,
+     "after": [],
+     "ms": 31975,
+     "status": 200
+    }
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "What do I say when they ask about pay?",
+   "r": {
+    "reply": "When they bring up compensation, keep it simple and turn the conversation back to the role’s responsibilities and the market range.\n\nWhat to say \n“Based on my research and the responsibilities of this Store Associate position, I’m looking for a salary that’s in line with the typical range for similar roles in Denver. Could you share the budgeted range for this position?”\n\nWhy it works \nIt shows you’ve done homework, signals you’re focused on fair market value, and lets the employer give the number first so you can respond appropriately. Avoid stating a specific figure yourself unless they insist.\n\nPractical steps \n\n1. Before the interview, check salary data for “store associate” in Denver on sites like Glassdoor or Payscale so you have a rough range in mind. \n2. If they give a range that meets your expectations, confirm you’re comfortable and pivot back to your fit: “That works for me, and I can apply my cash‑handling and stocking experience at Maple Grocers.” \n3. If the range is lower than you’d like, politely ask if there’s flexibility based on performance or overtime opportunities: “Is there room for growth or additional incentives after the first few months?”\n\nThat should keep the pay discussion smooth and focused. Let me know if you need a follow‑up email template after you get the offer.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"excited to\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 1,
+    "after": [],
+    "ms": 33290,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "How do I explain a gap in my work history?",
+   "r": {
+    "reply": "Your resume actually shows continuous employment from 2019 to now, so there’s no real gap to explain. If an interviewer asks about any perceived break, you can simply say you’ve been working continuously.\n\nExample wording: \n“From 2019 through today I’ve been employed full‑time—first at FastShip Logistics as a Warehouse Associate, then as Shift Lead at Corner Market, where I’m still working.” \n\nWhy it works: It directly references the dates on your resume, shows steady employment, and avoids creating a story you haven’t lived. If they still press for a reason you’re looking to leave Corner Market, keep it brief and honest, e.g., “I’m [your reason] for applying to the Store Associate position at Maple Grocers.” \n\nAnything else you’d like to clarify about your work history?",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"excited about\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 1,
+    "after": [],
+    "ms": 33260,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "Write a short thank-you note to send after my interview",
+   "r": {
+    "reply": "Hi [interviewer’s name],\n\nThank you for taking the time to meet with me about the Store Associate position at Maple Grocers. I appreciated learning more about the store’s organization. [your genuine feeling] about bringing my cash‑handling and stocking experience from Corner Market to help keep shelves full and customers happy.\n\nPlease let me know if you need any additional information. I look forward to hearing from you.\n\nThanks again, \nJordan Lee",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"excited about\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 2,
+    "after": [],
+    "ms": 32114,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "I get nervous in interviews. What helps?",
+   "r": {
+    "reply": "When you feel the nerves kicking in, give yourself a quick “reset” before each question. \n\n1. Pause and breathe – take a slow, three‑second inhale, hold for one second, then exhale. That tiny break stops the adrenaline surge and lets you collect your thoughts. \n2. Use the STAR shortcut – for any question, think: Situation, Task, Action, Result. Even if the answer is short, framing it this way keeps you organized and confident. \n3. Practice a “power phrase” – start each answer with a confident lead‑in like “In my current role at Corner Market…” so you jump straight into the story instead of scrambling.\n\nHere’s a ready‑to‑use script you can rehearse for the opening question “Tell me about yourself”:\n\n“I’m Jordan Lee, and I’ve spent the last five years working in retail and warehouse settings. At Corner Market, where I’m a Shift Lead, I train new cashiers, balance three cash drawers nightly with zero shortages, and handle deliveries and stocking before opening. Before that I processed 150‑plus orders per shift at FastShip Logistics, which sharpened my speed and accuracy. I’m looking to bring that mix of customer service and inventory expertise to the Store Associate role at Maple Grocers.”\n\nWhy it works: it hits the key duties Maple Grocers wants (customer service, cash handling, stocking) and ties directly to your real experience, so you sound focused and credible. Keep your tone relaxed, smile, and remember the pause‑breathe‑STAR loop whenever a question catches you off guard. \n\nDo you have a specific interview question you’re most worried about?",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 0,
+    "after": [],
+    "ms": 32865,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "q": "What should I ask at the end of the interview?",
+   "r": {
+    "reply": "Ask questions that show you’re thinking about the day‑to‑day flow and how you can [apply your experience].\n\nYou could say:\n\n“Thanks for walking me through the role. I have a few quick questions: \n\n1. ‘What does a typical shift look like for a Store Associate here, especially during the busiest times?’ \n\n2. ‘How does the team handle receiving deliveries and restocking when the store is busy?’ \n\n3. ‘What are the key qualities you look for in someone who’s successful in keeping the store clean and organized?’”\n\nThese questions let you tie directly to the duties listed in the posting, [demonstrate your teamwork and efficiency], and give you insight into the store’s rhythm. Avoid overly generic questions like “What’s the company culture?” unless you already covered it. Do you want a follow‑up question about training or advancement?",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"hit the ground running\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 2,
+    "after": [],
+    "ms": 32603,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "q": "How do I explain that I don't have dental office experience?",
+   "r": {
+    "reply": "You can turn the lack of dental‑office experience into a strength by showing how the skills you already have map directly to what Bright Smile needs.\n\nWhat to say in the interview\n\n“While I haven’t worked in a dental office before, my time as a server and as a customer‑service rep gave me solid experience with the exact tasks you described. At Casa Verde I greeted 40‑60 guests each shift, handled cash and card payments, and [kept the seating chart accurate]—so I’m comfortable checking patients in and out and protecting their information. At DesertLink I answered 70+ calls daily, scheduled technician visits in Salesforce, and maintained a 92 % satisfaction score, which shows I can manage a multi‑line phone, schedule appointments, verify billing details and stay calm under pressure. I’m also fluent in Spanish, which helps communicate with a diverse patient base.”\n\nWhy it works \nYou’re matching each job duty to something you’ve already done, showing you can [show immediate results]. Avoid saying “I’m new to dental” without tying it to a transferable skill; the focus should be on what you already excel at.\n\nTwo concrete steps to prepare\n\n1. Write down three specific examples (one from each past role) that line up with the posting’s duties and rehearse them so you can pull them out quickly.\n2. Learn the basics of Dentrix (or watch a quick tutorial) and be ready to say, “I’m familiar with Salesforce and [have started reviewing Dentrix tutorials] to get up to speed.”\n\nAnything else you want to practice, like answering a question about HIPAA?",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"hit the ground running\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 3,
+    "after": [],
+    "ms": 35627,
+    "status": 200
+   }
+  },
+  {
+   "job": "(any job, no resume)",
+   "q": "I got fired from my last job for being late too many times. How do I explain that?",
+   "r": {
+    "reply": "When you bring up the firing, keep it short, own it, and spin it into what you learned.\n\nWhat to say in an interview\n\n“Unfortunately I was let go from my last role because I had a pattern of arriving late. [you can describe any steps you took to improve punctuality] [you can mention any recent attendance record you have, if applicable]”\n\nWhy it works: You acknowledge responsibility, show you’ve fixed the problem, and give concrete evidence you’re reliable now. Avoid blaming others, making excuses, or dwelling on the negative.\n\nThree concrete steps to prepare\n\n1. [describe any habit or scheduling change you plan to implement]\n2. [identify any recent role or project you can reference]\n3. Anticipate a follow‑up “What else have you learned from that experience?” and be ready with a short lesson about time‑management or communication.\n\nGive me a quick snapshot of the most recent position you held so I can help you tailor the attendance example.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 4,
+    "after": [],
+    "ms": 34785,
+    "status": 200
+   }
+  },
+  {
+   "job": "Customer Service Representative at Pine Valley Bank",
+   "q": "How do I explain a gap in my work history?",
+   "r": {
+    "reply": "You can keep it short, honest, and focused on what you did that’s relevant now.\n\nWhat to say: \n\"I took some time off after 2019 to focus on [personal matters/skill development/education], and during that period [how you kept your customer‑service skills sharp] [volunteering at a local food bank/ helping friends with their small‑business bookkeeping/ completing an online customer‑service certification]. I'm now ready to bring that experience back into a full‑time role.\"\n\nWhy it works: \nIt acknowledges the gap without over‑explaining, shows you stayed active, and ties directly to the cash handling and customer‑service abilities the bank needs. Avoid blaming anyone else or sounding uncertain.\n\nSteps to handle it in the interview: \n1. Practice the line so it sounds natural and confident. \n2. Keep the explanation to one sentence, then steer back to how your cashier experience gave you cash handling and customer‑service skills—exactly what Pine Valley Bank is looking for. \n3. Have a quick example ready (e.g., “[example of a relevant skill you demonstrated]”) to demonstrate those skills.\n\nGive me a quick heads‑up: did you do any volunteering, coursework, or freelance work during that time? That will let me fine‑tune the placeholder.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"personal matters\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 3,
+    "after": [
+     "It uses the stock line \"personal matters\". Use the person's real situation or a [bracket] instead."
+    ],
+    "ms": 35862,
+    "status": 200
+   }
+  },
+  {
+   "job": "Customer Service Representative at Pine Valley Bank",
+   "q": "Write a short thank-you note to send after my interview",
+   "r": {
+    "reply": "Hi [interviewer’s name],\n\nThank you for taking the time to meet with me today about the Customer Service Representative role at Pine Valley Bank. I enjoyed learning more about how the team handles phone and chat support for accounts, cards, and online banking, especially the focus on resolving simple account issues quickly.\n\nI’m [your feeling] to bring my cash‑handling and customer‑service experience from Sunny Mart to help Pine Valley Bank’s customers every day.\n\nPlease let me know if you need any additional information. I look forward to hearing from you.\n\nThanks again, \nTaylor Brooks",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses the stock line \"excited about\". Use the person's real situation or a [bracket] instead."
+    ],
+    "edits": 1,
+    "after": [],
+    "ms": 32539,
+    "status": 200
+   }
+  }
+ ],
+ "letters": [
+  {
+   "job": "Store Associate at Maple Grocers",
+   "r": {
+    "reply": "I am currently a Shift Lead at Corner Market. In that role I [lead store operations]. [responsibilities include floor tasks] \n\nI train new cashiers, having taught six people how to run the register and follow store policies. Each night I count and balance three cash drawers with no shortages, demonstrating the cash‑handling accuracy you need. I also receive deliveries and stock shelves before opening, so the aisles are full and ready for shoppers. My experience in the warehouse at FastShip Logistics, where I loaded and unloaded trucks safely, adds to my ability to handle deliveries and [manage inventory]. \n\nMaple Grocers’ focus on keeping shelves full and customers happy lines up directly with the work I do every day. I’m happy to answer any questions in person or by phone.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [],
+    "edits": 3,
+    "after": [],
+    "ms": 34488,
+    "status": 200
+   }
+  },
+  {
+   "job": "Store Associate at Maple Grocers",
+   "r": {
+    "reply": "Handled deliveries and stocked shelves before opening each day, [kept aisles full] \n\nAt Corner Market I trained six new cashiers on register procedures and store rules, then counted and balanced three cash drawers every night with no shortages. I also received deliveries, unpacked cases, and arranged products on the floor, [helped customers find items] Earlier at FastShip Logistics I picked and packed more than 150 orders per shift, loading and unloading trucks safely while maintaining accuracy with a handheld scanner. Those experiences gave me solid cash‑handling practice and the ability to lift and move merchandise efficiently. \n\nMaple Grocers’ emphasis on keeping shelves full and customers happy aligns directly with how I run a store every shift. I would be glad to come in and talk.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses \"aligns\", from the never-use list."
+    ],
+    "edits": 2,
+    "after": [
+     "It uses \"aligns\", from the never-use list."
+    ],
+    "ms": 34257,
+    "status": 200
+   }
+  },
+  {
+   "job": "Front Desk Receptionist at Bright Smile Dental",
+   "r": {
+    "reply": "I’m currently a Customer Service Representative at DesertLink Internet, where I handle a high volume of calls and schedule service visits. In that role I answer about 70 calls each day, resolve billing issues, and use Salesforce to book technician appointments, keeping the schedule organized and accurate. I also processed payments as a server and [maintain detailed records], which matches checking patients in and out, verifying insurance, and collecting co‑pays at a dental front desk. My experience training new staff and maintaining a 92 % customer satisfaction score shows I can stay calm and friendly in a busy environment.\n\nI’m comfortable [managing multi‑line phone systems] and [keeping records private], skills that fit the needs of Bright Smile Dental’s four‑dentist office. I also completed coursework in Medical Office Administration, giving me a solid foundation for dental office procedures.\n\nWhen would be a good time to talk?",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses \"aligns\", from the never-use list."
+    ],
+    "edits": 2,
+    "after": [],
+    "ms": 34547,
+    "status": 200
+   }
+  },
+  {
+   "job": "Warehouse Associate at Northline Distribution",
+   "r": {
+    "reply": "Warehouse Associate at Northline Distribution. I've [your most relevant experience, e.g., worked as a warehouse associate handling order fulfillment]. \n\n[Your relevant duties and experience] \n\nThe night‑shift schedule and the focus on reliable attendance fit my availability and work style. I would appreciate the chance to discuss how I can help, and I look forward to an interview.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses \"how i can contribute\", from the never-use list."
+    ],
+    "edits": 2,
+    "after": [
+     "It is too short. Write 140 to 210 words."
+    ],
+    "ms": 33507,
+    "status": 200
+   }
+  },
+  {
+   "job": "Warehouse Associate at Northline Distribution",
+   "r": {
+    "reply": "Warehouse Associate at Northline Distribution. I’ve [your most relevant experience, e.g., worked in a warehouse environment handling order fulfillment and inventory control]. \n\nAt [your last job] I [used RF scanners] to pick and pack orders, [met daily quota] and [labeled packages] correctly. I also [loaded and unloaded trailers], moving [weight] loads safely and [securing them] for transport, while [keeping dock tidy] and free of hazards. In addition, I [performed clean‑up tasks], [swept aisles], [organized pallets], and [reported safety concerns] immediately, which helped maintain a clean and safe work environment throughout each shift. \n\nThe night‑shift schedule and emphasis on reliable attendance fit the routine I [my preferred], and the focus on safety [matches well] the standards I have always followed. I would be glad to come in and talk.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses \"aligns\", from the never-use list."
+    ],
+    "edits": 4,
+    "after": [],
+    "ms": 36911,
+    "status": 200
+   }
+  },
+  {
+   "job": "IT Help Desk Technician at Lakeside School District",
+   "r": {
+    "reply": "Please consider me for the IT Help Desk Technician role at Lakeside School District. I am currently a Student Tech Assistant at Harbor Community College, where I help about 25 students daily with printing, Wi‑Fi, and login problems.\n\nIn that position I [reset passwords & manage accounts]. I also re‑image 40 lab computers each semester and [troubleshoot devices & log]. [supports lab for many]\n\nI am interested in this job because it supports staff and students across multiple schools, which matches my experience helping many students in a busy campus environment. I would welcome the chance to discuss how I might help in an interview.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses \"drawn to\", \"how i can contribute\", from the never-use list."
+    ],
+    "edits": 5,
+    "after": [
+     "It is too short. Write 140 to 210 words."
+    ],
+    "ms": 34471,
+    "status": 200
+   }
+  },
+  {
+   "job": "Customer Service Representative at Pine Valley Bank",
+   "r": {
+    "reply": "Ran the register and balanced the drawer every shift at Sunny Mart, handling cash and customer transactions accurately while keeping the line moving. I was the first point of contact for shoppers, answering questions about prices, promotions, and store policies, and I processed returns with clear explanations of the reasons and any associated fees. \n\nIn that role I dealt with a steady flow of customers throughout each shift, often fielding several inquiries at once and resolving simple problems on the spot. My daily routine required me to stay organized, keep a [friendly tone], and make sure every shopper left with a correct transaction and a [positive impression] of the store. I handled cash, gave change, and reconciled the drawer at the end of each day [without discrepancies], demonstrating [attention to detail] and [reliability]. \n\nPine Valley Bank’s need for someone who can answer 50+ calls a day and explain fees matches my experience fielding frequent customer questions and resolving issues quickly. I would appreciate the opportunity to interview.",
+    "model": "groq:openai/gpt-oss-120b",
+    "before": [
+     "It uses \"aligns\", from the never-use list."
+    ],
+    "edits": 3,
+    "after": [],
+    "ms": 35341,
+    "status": 200
+   }
+  }
+ ],
+ "calls": 24
+}
