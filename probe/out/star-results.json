@@ -1,8 +1,145 @@
 {
- "calls": 0,
+ "calls": 7,
  "log": [
   {
-   "seen": "200 text/html; charset=utf-8 x got <!doctype html>\n<html lang=\"en"
+   "seen": "200 text/plain; charset=utf-8 x ok after 0"
+  },
+  {
+   "label": "A nervous",
+   "convo": [
+    {
+     "me": "I get nervous in interviews. What helps?"
+    },
+    {
+     "coach": "Take a slow, deep breath right before the interview and hold it for three seconds before exhaling—it drops the adrenaline spike and clears your mind.\n\nHaving a ready story means you won’t scramble for examples on the spot, which instantly eases nerves. Think of a time at Corner Market when you demonstrated your customer service and cash‑handling skills. Which situation would you like to turn into a STAR story?",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 1,
+     "ms": 1786,
+     "blank": false,
+     "questions": 1,
+     "words": 69
+    },
+    {
+     "me": "The cash drawer one sounds good."
+    },
+    {
+     "coach": "Great choice. What was the situation—where you were, what was happening that night, and why balancing the cash drawers was important?",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 1357,
+     "blank": false,
+     "questions": 1,
+     "words": 21
+    }
+   ]
+  },
+  {
+   "label": "C no resume, nervous",
+   "convo": [
+    {
+     "me": "I get nervous in interviews. What helps?"
+    },
+    {
+     "coach": "Take a slow, deep breath right before the interview and hold it for three seconds, then exhale fully; the pause resets your nervous system and gives you a moment to focus.\n\nNow let’s build a short story you can tell using the STAR method. Having a ready‑to‑go example means you won’t have to invent something on the spot, which cuts down anxiety.\n\nThink of a time in a previous job (or a volunteer role) where you had to handle a busy workload, keep the area organized, or load/unload items efficiently—something that matches the Warehouse Associate duties. Which situation would you like to use?",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 1596,
+     "blank": false,
+     "questions": 1,
+     "words": 103
+    }
+   ]
+  },
+  {
+   "label": "A 30s story ask",
+   "convo": [
+    {
+     "me": "Help me build a 30-second story for my interview"
+    },
+    {
+     "coach": "Pick a moment that shows you handling a shift while keeping the store organized and the cash drawers balanced. Which situation from your Corner Market experience would you like to turn into the story?",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 1,
+     "ms": 1600,
+     "blank": false,
+     "questions": 1,
+     "words": 34
+    }
+   ]
+  },
+  {
+   "label": "B why this job",
+   "convo": [
+    {
+     "me": "What do I say when they ask why I want to work here?"
+    },
+    {
+     "coach": "Explain that you’re interested in Bright Smile because you have experience serving customers in a busy restaurant and handling payments, and you want to use those customer‑service skills in a dental office. \n\nWhat to say: \n\"I’m interested in Bright Smile because I have experience working directly with people, and I hope to apply my customer‑service background from restaurant and call‑center roles to support patients during their visits.\" \n\nWhy it works: It ties your proven customer‑service background and recent medical‑office coursework to the specific environment they’ve described, showing genuine interest without using overused clichés. It also signals you understand the role’s focus on friendly, organized patient interaction.",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [
+      "It uses the stock line \"excited about\". Use the person's real situation instead."
+     ],
+     "after": [],
+     "edits": 2,
+     "ms": 4033,
+     "blank": false,
+     "questions": 0,
+     "words": 106
+    }
+   ]
+  },
+  {
+   "label": "B thank you",
+   "convo": [
+    {
+     "me": "Write a short thank-you note to send after my interview"
+    },
+    {
+     "coach": "Who was the person you interviewed with, so I can include their name in the note?",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 1548,
+     "blank": false,
+     "questions": 1,
+     "words": 16
+    }
+   ]
+  },
+  {
+   "label": "B why leave",
+   "convo": [
+    {
+     "me": "How do I answer \"Why did you leave your last job?\""
+    },
+    {
+     "coach": "Why did you leave your last job?  \n“After a rewarding year at DesertLink, I decided to focus on moving into a role that aligns more closely with my long‑term goal of working in a healthcare setting. I completed a Medical Office Administration course at Pima Community College, and the Front Desk Receptionist position at Bright Smile Dental lets me apply both my customer‑service experience and my new dental‑office knowledge.”  \n\nWhy it works: It frames the departure as a proactive, career‑focused decision, ties your recent education to the dental office, and shows you’re not leaving because of a problem at the previous job. Avoid mentioning any negative aspects of the call‑center or saying you were “fired.”  \n\nIf they press for more detail, you can add: “I was looking for a position where I could use my bilingual skills and my experience with scheduling software in a patient‑focused environment.”",
+     "status": 200,
+     "model": "groq:openai/gpt-oss-120b",
+     "before": [],
+     "after": [],
+     "edits": 0,
+     "ms": 840,
+     "blank": false,
+     "questions": 1,
+     "words": 147
+    }
+   ]
   }
  ]
 }
