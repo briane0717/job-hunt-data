@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const SITE = 'https://claude-project-thread-20803l.jobbo-app.pages.dev';
 const URL = SITE + '/interview';
-const RUN = 'full-3';
+const RUN = 'full-4';
 let calls = 0;
 async function call(mode, turns, model) {
   const t0 = Date.now();
