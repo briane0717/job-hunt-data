@@ -54,7 +54,7 @@ async function chat(label, t, ask, answers) {
 }
 mkdirSync('probe/out', { recursive: true });
 let seen = '';
-for (let i = 0; i < 60; i++) { // wait until the preview site runs this build
+for (let i = 0; i < 60; i++) { // wait until the preview site runs this build (round 5)
   seen = await fetch(URL.replace('/interview', '/functions-build.txt')).then((x) => x.status + ' ' + x.headers.get('content-type') + ' ' + (x.ok ? 'x' : '')).catch((e) => String(e));
   const t = await fetch(URL.replace('/interview', '/functions-build.txt')).then((x) => x.text()).catch(() => '');
   if (t.trim() === 'star4') { seen += ' ok after ' + i; break; }
