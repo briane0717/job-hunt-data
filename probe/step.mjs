@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const SITE = 'https://claude-project-thread-20803l.jobbo-app.pages.dev';
 const URL = SITE + '/interview';
-const RUN = 'full-4';
+const RUN = 'full-5';
 let calls = 0;
 async function call(mode, turns, model) {
   const t0 = Date.now();
@@ -21,6 +21,12 @@ for (let i = 0; i < 60; i++) {
   const t = await fetch(SITE + '/probe/step.mjs?' + Date.now()).then((r) => (r.ok ? r.text() : '')).catch(() => '');
   if (t.trim() === me.trim()) break;
   await new Promise((r) => setTimeout(r, 10000));
+}
+// Wait until the free daily AI allowance is back (one tiny call every 5 minutes, up to 50 minutes).
+for (let i = 0; i < 10; i++) {
+  const r = await fetch(URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'interview', model: '@cf/meta/llama-3.1-8b-instruct-fp8-fast', messages: [{ content: 'Say hi.' }] }) }).catch(() => null);
+  if (r && r.ok) break;
+  await new Promise((res) => setTimeout(res, 300000));
 }
 function ctx(t, ask) {
   const p = [t.name ? `The job: ${t.name}.` : 'The job: not chosen yet, any job.'];
