@@ -1,3 +1,5 @@
+import { LIMITS, checkJsonRequest, rateLimit, readJson } from './_guard.js';
+
 // Cloudflare Pages Function: POST /interview
 // The app's job coach and writer (phone and web). It runs on Cloudflare's free Workers AI through
 // the site's "AI" connection (set in wrangler.toml), so there is no key anywhere in the app or the
@@ -155,13 +157,14 @@ export async function onRequestOptions({ request }) {
   return new Response(null, { status: 204, headers: cors(request) });
 }
 
-export async function onRequestPost({ request, env }) {
-  const headers = { ...cors(request), 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
-  const origin = request.headers.get('Origin');
-  if (origin && origin !== new URL(request.url).origin) return new Response('{}', { status: 403, headers });
+export async function onRequestPost({ request, env, waitUntil }) {
+  const headers = { ...cors(request), 'Content-Type': 'application/json', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' };
+  // Only this site or the app, small JSON bodies, and a per-visitor limit so no one can use up the shared free AI.
+  const refused = checkJsonRequest(request, headers) || (await rateLimit(request, { name: 'interview', limits: LIMITS.interview, headers, waitUntil }));
+  if (refused) return refused;
   let body;
   try {
-    body = await request.json();
+    body = await readJson(request);
   } catch {
     return new Response('{}', { status: 400, headers });
   }
