@@ -1,0 +1,38 @@
+[
+ {
+  "liveAfter": 1
+ },
+ {
+  "mode": "interview",
+  "status": 200,
+  "ms": 505,
+  "body": "{\"reply\":\"Thanks for joining me today. Could you start by telling me a bit about yourself and what drew you to this cashier position?\",\"model\":\"groq:openai/gpt-oss-20b\",\"before\":[],\"edits\":0,\"after\":[]}"
+ },
+ {
+  "mode": "interview",
+  "status": 200,
+  "ms": 211,
+  "body": "{\"reply\":\"Hi, thanks for coming in. I’m the store manager here. Let’s jump right in. To start, can you give me a quick overview of your background?\",\"model\":\"groq:qwen/qwen3.8-27b\",\"before\":[],\"edits\":0,\"after\":[]}"
+ },
+ {
+  "mode": "coach",
+  "status": 200,
+  "ms": 650,
+  "body": "{\"reply\":\"You are a strong fit because you already do the job, just at a different store. Your three years as a shift lead at Corner Market prove you can run a register, train staff, and count drawers nightly. Maple Grocers will likely worry about why you are leaving a leadership role for a cashier position, so be ready to explain that honestly.\\n\\nIn the interview, say: \\\"I have spent the last three years as a shift lead at Corner Market, where I ran the register, trained new cashiers, and counted drawers nightly. I am applying for the cashier role at Maple Grocers because I want to focus on high-volume customer service and the daily operations of the register. I am looking for a position where I can use my experience to keep lines moving and ensure every drawer balances, which is what I do best.\\\"\\n\\nThis works because it highlights your proven reliability and specific duties without sounding like you are quitting a job you loved. Avoid saying you are \\\"looking for a change\\\" or \\\"need a break,\\\" as that sounds uncommitted. Instead, frame it as a deliberate choice to focus on the core cashier tasks you are good at.\\n\\nWhat is your main reason for leaving Corner Market?\",\"model\":\"groq:qwen/qwen3.8-27b\",\"before\":[],\"edits\":0,\"after\":[]}"
+ },
+ {
+  "mode": "feedback",
+  "status": 503,
+  "ms": 85,
+  "body": "{\"errors\":[\"groq:qwen/qwen3.8-27b: 429: {\\\"error\\\":{\\\"message\\\":\\\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m8gjw5t0erqajxeayv6rxy08` service tier `on_demand` on output tokens \"]}"
+ },
+ {
+  "mode": "coach",
+  "status": 200,
+  "ms": 3368,
+  "body": "{\"reply\":\"Plain answer  \\nTalk about how your 3‑year shift‑lead experience gives you the exact skills a cashier needs: quick, accurate transactions, handling cash, and training new staff. Highlight your record of keeping drawers balanced and your ability to stay calm under busy periods.\\n\\nExact words you can use  \\n“In my role as shift lead at Corner Market, I ran the register daily, trained new cashiers, and counted drawers each night. I consistently kept cash balances within [X] cents of the expected amount, even during peak hours. I’m comfortable using the POS system and handling a high volume of transactions smoothly.”\\n\\nWhy it works  \\nIt shows you have the core cashier duties and a proven track record. Avoid generic phrases; stick to concrete duties you listed.\\n\\nPractical steps before the interview  \\n1. Review the POS software they use (if you can find a demo or screenshot online).  \\n2. Practice a quick math drill: add, subtract, and give change for common amounts.  \\n3. Prepare one example of a time you resolved a customer issue while still keeping the line moving.\\n\\nFollow‑up note  \\nHi [Interviewer's Name],  \\nThank you for meeting with me about the cashier position at Maple Grocers. I enjoyed learning more about your team and the focus on customer service. I’m excited about the opportunity to bring my register and training experience to your store.  \\nBest,  \\n[Your Name]\",\"model\":\"groq:openai/gpt-oss-20b\",\"before\":[\"It uses the stock line \\\"excited about\\\". Use the person's real situation or a [bracket] instead.\"],\"edits\":0,\"after\":[\"It uses the stock line \\\"excited about\\\". Use the person's real situation or a [bracket] instead.\"]}"
+ },
+ {
+  "at": "2026-11-28T08:09:28.619Z"
+ }
+]
