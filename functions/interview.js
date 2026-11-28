@@ -115,7 +115,9 @@ const STAR_PARTS = {
 const STAR_ASK =
   'You help a person get ready for one interview question by building a true answer with the STAR method (Situation, Task, Action, Result), one question at a time. ' +
   'The first message gives the job, maybe their resume, the interview question, the part to ask about now, and what they have said so far. ' +
-  'Write only the next question for that part. Shape: if they have already said something, one short sentence that reflects back one detail in their own words; then the one question; then, in parentheses, a short example of the kind of detail you mean that does not assume anything about them. ' +
+  'Write only the next question for that part. Shape: if they have already said something, one short sentence that reflects back one detail in their own words; then the one question; then, in parentheses, a short example of the kind of detail you mean, like "for example, where you worked and what day it was". ' +
+  'The example names kinds of detail (a place, who was there, a number). It is never a sample answer, never in quotes, and never guesses what happened. ' +
+  'Use words a friend would use: never "metric", "specific", "workflow", "delegate", "prioritize" or "leverage". Use the person\'s resume only to name a job they could think of, and never say they mentioned something they did not say in this conversation. ' +
   'Exactly one question mark. Under 60 words. Plain text: no lists, no quotes, no markdown, no greeting, no praise like "great". ' +
   'Never answer the question for them, never suggest what they did or how it ended, and never write their answer. ' +
   COACH_FACTS;
@@ -124,7 +126,8 @@ const STAR_WRITE =
   'You turn a person\'s own notes into their spoken answer to one interview question, using the STAR method. The first message gives the job, maybe their resume, the interview question, and their notes for each part: situation, task, action and result, sometimes with extra details. ' +
   'Write the answer in first person, the way this person would say it out loud in the interview: the situation in a sentence or two, what they had to do, what they did, and how it turned out. ' +
   'Build it only from their notes. Keep their facts, names, numbers and wording where it reads well. Fix grammar, cut repeats, and put it in order. ' +
-  'Never add a fact, action, step, tool, number, time span, feeling, lesson or result their notes do not state, even if it sounds likely. If a part is thin, keep it short rather than filling it in. ' +
+  'Never add a fact, action, step, tool, number, time span, feeling, lesson or result their notes do not state, even if it sounds likely. ' +
+  'Never say how anyone felt or why they did something (impressed, happy, proud, thankful) unless the notes say it, and never add describing words they did not use (quick, busy, huge). If a part is thin, keep it short rather than filling it in. ' +
   'Never write blanks, fill-ins or anything in [square brackets]. Do not use the resume to add things they did not say in the notes. ' +
   'Length: 80 to 170 words, shorter if their notes are short. Use contractions and everyday words. No stock lines such as "retail professional", "fast-paced", "I\'m confident", "hard worker", "people person", "passionate", "team player", "excited to". ' +
   'Reply with only a JSON object, no other text, in this shape: {"answer": "the answer"}';
@@ -290,6 +293,9 @@ function starAskProblems(reply) {
   return p;
 }
 
+// Feelings and judgments the writer likes to add to a story ("my manager was impressed").
+const FEELINGS = /\b(impress(ed|ive)?|proud|happy|glad|thrilled|grateful|thankful|appreciat(ed|ive)|prais(ed|e)|loved|excited|relieved|stressful|stressed|calm(ly)?|confident(ly)?|amazing|great job|smooth(ly)?|successful(ly)?|quick(ly)?|huge|hectic|chaotic)\b/gi;
+
 /** What a written STAR answer gets wrong. */
 function starProblems(data, first) {
   const p = [];
@@ -303,6 +309,9 @@ function starProblems(data, first) {
   if (s) p.push(`The answer uses the stock line "${s[0]}". Say it the way this person would.`);
   const n = newNumbers(answer, first);
   if (n.length) p.push(`The answer mentions ${n.join(', ')}, which the person never said. Use only their numbers.`);
+  const notes = first.slice(first.indexOf('My notes:')).toLowerCase();
+  const felt = [...new Set((answer.match(FEELINGS) || []).map((w) => w.toLowerCase()))].filter((w) => !notes.includes(w.slice(0, 5)));
+  if (felt.length) p.push(`The answer says ${felt.map((w) => `"${w}"`).join(', ')}, which the person never said. Rewrite without it.`);
   return p;
 }
 
@@ -342,7 +351,7 @@ const MODES = {
 };
 
 // Problems a rewrite fixes; the rest are fixed by editing the draft.
-const REWRITE = /too short|too long|there are none|only JSON|fill-in blank|list of tips|no question|more than one question/;
+const REWRITE = /too short|too long|there are none|only JSON|fill-in blank|list of tips|no question|more than one question|Rewrite without it/;
 
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
