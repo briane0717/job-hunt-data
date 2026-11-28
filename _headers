@@ -1,0 +1,24 @@
+# Browser safety rules for the Jobbo website (Cloudflare Pages reads this file).
+# They stop other sites from showing Jobbo inside a frame, stop any code that isn't Jobbo's own
+# from running on the site (where web users' resume and details are saved), and share as little
+# as possible with other sites. The /read and /interview answers set their own rules in
+# web-functions/, because this file only covers the site's own files.
+# Check with: bash scripts/check-security.sh
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https: blob: data:; media-src 'self' data: blob:; worker-src 'self' blob:; frame-src 'self'; child-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: microphone=(self), camera=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), hid=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), display-capture=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# The resume reader runs in a walled-off frame inside the app. It may load only its own script
+# and the two exact pdf.js files it checks by fingerprint, and it can't send anything anywhere.
+/pdf-reader
+  ! Content-Security-Policy
+  ! X-Frame-Options
+  ! Referrer-Policy
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js; frame-ancestors 'self'; base-uri 'none'; form-action 'none'
+  Referrer-Policy: no-referrer
