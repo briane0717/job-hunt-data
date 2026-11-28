@@ -21,9 +21,11 @@ import { LIMITS, checkJsonRequest, rateLimit, readJson } from './_guard.js';
 // kinds of models are asked through Groq's free plan. That needs a free Groq key saved in the site's
 // Cloudflare settings as GROQ_API_KEY (never in the app or the code). Without the key it is skipped.
 const CF_FAST = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-4-scout-17b-16e-instruct', '@cf/meta/llama-3.1-8b-instruct-fp8-fast'];
-const GROQ_FAST = ['groq:llama-3.3-70b-versatile', 'groq:llama-3.1-8b-instant'];
+// Groq's free plan now has only OpenAI's open models and Qwen (its Llama models were retired). Each
+// model has its own small per-minute limit, so several are listed to spread a busy minute across them.
+const GROQ_FAST = ['groq:openai/gpt-oss-20b', 'groq:qwen/qwen3.8-27b', 'groq:openai/gpt-oss-120b'];
 const FAST = [...CF_FAST, ...GROQ_FAST];
-const SMART = ['@cf/openai/gpt-oss-120b', 'groq:openai/gpt-oss-120b', ...FAST];
+const SMART = ['@cf/openai/gpt-oss-120b', 'groq:openai/gpt-oss-120b', ...CF_FAST, 'groq:qwen/qwen3.8-27b', 'groq:openai/gpt-oss-20b'];
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 // Other free models a test may ask for by name (body.model). Anything else is ignored.
 const TRY_MODELS = ['@cf/openai/gpt-oss-120b', '@cf/openai/gpt-oss-20b', '@cf/mistralai/mistral-small-3.1-24b-instruct', '@cf/qwen/qwen3-30b-a3b-fp8', '@cf/google/gemma-3-12b-it'];
@@ -270,7 +272,12 @@ async function askGroq(env, model, system, messages, setup, json) {
   const name = model.slice(5);
   const oss = name.includes('gpt-oss');
   const req = { model: name, messages: [{ role: 'system', content: system }, ...messages], temperature: setup.temperature };
-  if (oss) {
+  if (name.includes('qwen')) {
+    // Qwen thinks before answering; keep its thinking out of the reply and leave room for it.
+    req.reasoning_format = 'hidden';
+    req.max_completion_tokens = setup.tokens + 1500;
+    if (json) req.response_format = { type: 'json_object' };
+  } else if (oss) {
     req.reasoning_effort = setup.effort || 'low';
     req.max_completion_tokens = setup.tokens + (setup.effort === 'medium' ? 1500 : 600);
     if (json) req.response_format = { type: 'json_schema', json_schema: { name: 'reply', schema: json } };
