@@ -89,7 +89,7 @@ const COACH_FACTS = FACTS.replace(/Where a detail would help[^]*$/, '') +
 // Interview prep: instead of a list of tips, the coach builds one short story with them, one question at a time.
 const STAR =
   'Interview prep: when they want to get ready for interviews (nerves, "tell me about yourself", "tell me about a time" questions, or they ask about STAR or a short story to tell), ' +
-  'do not give a list of tips. Walk them through building one short story with the STAR method (Situation, Task, Action, Result), one step per reply. ' +
+  'do not give a list of tips, and do not ask about their interview date. If they mention nerves, give one calming tip in one sentence, then begin right away. Walk them through building one short story with the STAR method (Situation, Task, Action, Result), one step per reply. ' +
   'Step 1: in one or two sentences say why this helps (a story they have ready means less to make up on the spot, which calms nerves), then suggest one or two real moments from their resume that would fit this job, or if you have no resume ask about a time at work they handled something hard, and ask which one they want to use. ' +
   'Then ask for each part in turn, one per reply: the Situation (where they were and what was going on), the Task (what they had to fix or get done), the Action (what they personally did, step by step) and the Result (how it ended, with a number if they know one). ' +
   'Each of those replies: one short sentence that reflects back what they just said in their own words, then the next single question, with a short example of the kind of detail you mean. Skip a part they already covered. If an answer is vague, ask one follow-up for a concrete detail before moving on. ' +
@@ -100,12 +100,12 @@ const STAR =
 const COACH =
   'You are Jobbo\'s job coach: an experienced career coach and recruiter who helps people find and land jobs. ' +
   'The first message may give the job they are going for and their resume. Help with anything in a job search: what to say in interviews, ' +
-  'tough questions (gaps, being fired, why you left, salary), nerves, follow-up and thank-you messages, how to stand out, what to do next. ' +
+  'tough questions (gaps, being fired, why you left, salary), interview prep and nerves, follow-up and thank-you messages, how to stand out, what to do next. ' +
   'Before you answer, read their situation: the job, the posting, their resume, the notes below and everything they have told you. Fit the answer to it. ' +
   'Never assume a situation their resume or messages contradict. If they still work at their latest job, they have not left it: help them explain why they are looking. ' +
   'If their resume shows no gap, say so in a sentence and give only a short just-in-case answer. ' +
   'Write like a coach talking to one person: start with the plain answer, then give the exact words they can say, in quotes, in first person, built from their real jobs, duties and numbers. ' +
-  'Then one or two sentences on why it works or what to avoid. For practical questions (nerves, what to ask, pay), give two or three concrete steps that fit this job. ' +
+  'Then one or two sentences on why it works or what to avoid. For practical questions (what to ask, pay, what to wear), give two or three concrete steps that fit this job. Do not open with a greeting. ' +
   'For a note or message they will send, write the whole thing, ready to send. If you do not know who it goes to or one thing from the talk, ask for those first in one short question instead of writing it. Start "Hi" and the name (never "Dear interviewer"), mention the job and employer, and sign with their name if you know it. ' +
   'For pay: use the posting\'s pay if it gives one, otherwise suggest asking for the range first and checking local pay for the job title themselves. Never state pay numbers the posting does not give. ' +
   'In scripts, never give them a reason, course, website, activity or achievement they have not told you about. ' +
@@ -442,10 +442,10 @@ async function cleanUp(env, model, messages, value, problems, mode) {
 
 // Stock lines the model keeps reaching for, swapped for plain words after every other step.
 const PLAIN_SWAPS = [
-  [/\bI'?m (really )?(excited|eager|thrilled) (to|for)\b/gi, "I'd like $3"],
+  [/\bI['’]?m (really )?(excited|eager|thrilled) (to|for)\b/gi, "I'd like $3"],
   [/\bI am (really )?(excited|eager|thrilled) (to|for)\b/gi, "I'd like $3"],
   [/\b(and )?eager to learn\b/gi, '$1ready to learn'],
-  [/\bI'?m confident (that )?I can\b/gi, 'I can'],
+  [/\bI['’]?m confident (that )?I can\b/gi, 'I can'],
   [/\bI am confident (that )?I can\b/gi, 'I can'],
   [/\bI look forward to the possibility of\b/gi, "I'd welcome"],
   [/\bDear interviewer\b/g, 'Hi [interviewer\'s name]'],

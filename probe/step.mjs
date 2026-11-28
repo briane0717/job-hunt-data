@@ -47,23 +47,22 @@ async function chat(label, t, ask, answers) {
     if (!reply || i === answers.length) break;
     turns.push(reply, answers[i]);
     convo.push({ me: answers[i] });
-    await wait(4000);
+    await wait(10000);
   }
   log.push({ label, convo });
   writeFileSync('probe/out/star-results.json', JSON.stringify({ calls, log }, null, 1));
 }
 mkdirSync('probe/out', { recursive: true });
 await wait(90000); // let the preview site finish deploying
-await chat('A nervous, STAR walk-through', A, 'I get nervous in interviews. What helps?', [
-  "Let's use the cash drawer one.",
-  'I was the shift lead at Corner Market and one night a cashier\'s drawer came up short at closing.',
-  'I had to find out what went wrong before we closed out the night, and make sure it did not happen again.',
-  'I recounted the drawer with her, went back through the receipts and found a refund rung up twice. Then I showed her how to check the screen before finishing a refund.',
-  'The drawer balanced that night and she had no more shortages after that.',
-]);
-await chat('C no resume, nervous', C, 'I get nervous in interviews. What helps?', ['One time at my old job a truck came in late and we had to unload it fast before the next shift.']);
-await chat('B why leave', B, 'How do I answer "Why did you leave your last job?"', []);
+await chat('A nervous', A, 'I get nervous in interviews. What helps?', ['The cash drawer one sounds good.']);
+await wait(10000);
+await chat('C no resume, nervous', C, 'I get nervous in interviews. What helps?', []);
+await wait(10000);
+await chat('A 30s story ask', A, 'Help me build a 30-second story for my interview', []);
+await wait(10000);
 await chat('B why this job', B, 'What do I say when they ask why I want to work here?', []);
+await wait(10000);
 await chat('B thank you', B, 'Write a short thank-you note to send after my interview', []);
-await chat('A 30s story ask', A, 'Help me build a 30-second story for my interview', ['The time I trained new cashiers.']);
+await wait(10000);
+await chat('B why leave', B, 'How do I answer "Why did you leave your last job?"', []);
 writeFileSync('probe/out/star-results.json', JSON.stringify({ calls, log }, null, 1));
