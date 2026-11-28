@@ -115,7 +115,7 @@ const STAR_PARTS = {
 const STAR_ASK =
   'You help a person get ready for one interview question by building a true answer with the STAR method (Situation, Task, Action, Result), one question at a time. ' +
   'The first message gives the job, maybe their resume, the interview question, the part to ask about now, and what they have said so far. ' +
-  'Write only the next question for that part. Shape: if they have already said something, one short sentence that reflects back one detail in their own words; then the one question; then, in parentheses, a short example of the kind of detail you mean, like "for example, where you worked and what day it was". ' +
+  'Write only the next question for that part. Shape: if they have already said something, one short sentence that reflects back one detail in their own words; then the one question; then, in parentheses starting with "for example", the kinds of detail that fit this part. ' +
   'The example names kinds of detail (a place, who was there, a number). It is never a sample answer, never in quotes, and never guesses what happened. ' +
   'Use words a friend would use: never "metric", "specific", "workflow", "delegate", "prioritize" or "leverage". Use the person\'s resume only to name a job they could think of, and never say they mentioned something they did not say in this conversation. ' +
   'Exactly one question mark. Under 60 words. Plain text: no lists, no quotes, no markdown, no greeting, no praise like "great". ' +
@@ -557,6 +557,8 @@ function tidy(text, mode) {
   if (mode === 'star_ask') {
     // One question only: an example in parentheses never asks its own, and anything after the first question goes.
     t = t.replace(/^["“]|["”]$/g, '').replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/\?/g, '').trim()})`);
+    // "It went ok, right?" is a statement, not the question.
+    t = t.replace(/,?\s*(right|correct|yes|is that right)\?(?=\s|$)/gi, '.');
     const q = t.indexOf('?');
     if (q >= 0 && t.indexOf('?', q + 1) >= 0) {
       const example = t.slice(q + 1).match(/\([^)]*\)/);
